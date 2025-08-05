@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
+import 'package:psn_root/psn_root_widget/psn_click.dart';
+import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
+import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
+
+class PsnABtnWidget extends StatelessWidget{
+  String text;
+  String bgName;
+  Widget? leftIcon;
+  Function()? onTap;
+  PsnABtnWidget({
+    required this.text,
+    required this.bgName,
+    this.leftIcon,
+    this.onTap,
+});
+
+  @override
+  Widget build(BuildContext context) => PsnClick(
+    onTap: (){
+      onTap?.call();
+    },
+    child: SizedBox(
+      width: 297.w,
+      height: 107.h,
+      child: Stack(
+        children: [
+          PsnImageWidget(name: bgName,width: double.infinity,height: double.infinity,),
+          Align(
+            alignment: Alignment.center,
+            child:  Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                leftIcon??Container(),
+                PsnTextWidget(text: text, size: 42.sp, color: "#F2F3F3".toColor(),outlineColor: "#090733".toColor(),),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
