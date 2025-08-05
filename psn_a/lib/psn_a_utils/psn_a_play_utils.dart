@@ -87,7 +87,7 @@ class PsnAPlayUtils {
         content: PsnALevelUpDialog(
           totalReward: totalReward,
           dismissCallback: (){
-            resetPlay();
+            _levelUpResult();
           },
         ),
       );
@@ -150,6 +150,13 @@ class PsnAPlayUtils {
     }catch(e){
       canClick=true;
     }
+  }
+
+  _levelUpResult()async{
+    var resultBean = calculateLevel();
+    var psnACardTypeEnum = PsnACardTypeEnum.values[resultBean.level-1];
+    await PsnAUserInfoUtils.instance.unlockCard(psnACardTypeEnum);
+    resetPlay();
   }
 
   resetPlay()async{
