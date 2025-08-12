@@ -25,6 +25,8 @@ dependencies:
   audioplayers: 6.1.0
   outlined_text: 1.0.1
   carousel_slider: 5.1.1
+  decimal: 3.2.4
+  spine_flutter: 4.2.36
 
 dev_dependencies:
   flutter_test:

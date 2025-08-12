@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:psn_a/psn_a_routers/psn_a_page_list.dart';
 import 'package:psn_a/psn_a_utils/psn_a_user_info_utils.dart';
+import 'package:psn_b/psn_b_routers/psn_b_page_list.dart';
+import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 
 void main() async{
@@ -21,6 +23,11 @@ void main() async{
   );
   await GetStorage.init();
   await PsnAUserInfoUtils.instance.initCardInfo();
+
+
+  await initSpineFlutter();
+  await PsnBUserInfoUtils.instance.initCardInfo();
+
   runApp(const MyApp());
 }
 
@@ -37,7 +44,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       initialRoute: RootPageName.launch,
       debugShowCheckedModeBanner: false,
-      getPages: rootPageList+aPageList,
+      getPages: rootPageList+aPageList+bPageList,
       defaultTransition: Transition.rightToLeft,
     ),
   );

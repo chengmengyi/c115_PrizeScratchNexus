@@ -1,3 +1,4 @@
+import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -22,5 +23,21 @@ extension ShowToast on String{
       textColor: Colors.white,
       fontSize: 16,
     );
+  }
+}
+
+double twoNumAdd(num1,num2){
+  try{
+    return (Decimal.parse("$num1")+Decimal.parse("$num2")).toDouble();
+  }catch(e){
+    return 0.0;
+  }
+}
+
+double twoNumMul(num1,num2){
+  try{
+    return (Decimal.parse("$num1")*Decimal.parse("$num2")).toDouble();
+  }catch(e){
+    return 0.0;
   }
 }

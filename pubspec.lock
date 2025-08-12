@@ -145,6 +145,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
+  decimal:
+    dependency: transitive
+    description:
+      name: decimal
+      sha256: fc706a5618b81e5b367b01dd62621def37abc096f2b46a9bd9068b64c1fa36d0
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.4"
   event_bus:
     dependency: transitive
     description:
@@ -280,6 +288,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.2"
+  inject_js:
+    dependency: transitive
+    description:
+      name: inject_js
+      sha256: "849eacfd4b7e9182a7e743843a820d74bf1abcb692bdbe09e34ef0f753ad7227"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: "3df61194eb431efc39c4ceba583b95633a403f46c9fd341e550ce0bfa50e9aa5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.20.2"
+  js:
+    dependency: transitive
+    description:
+      name: js
+      sha256: f2c445dce49627136094980615a031419f7f3eb393237e4ecd97ac15dea343f3
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.7"
   leak_tracker:
     dependency: transitive
     description:
@@ -431,6 +463,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  psn_b:
+    dependency: "direct main"
+    description:
+      path: psn_b
+      relative: true
+    source: path
+    version: "0.0.1"
   psn_root:
     dependency: "direct main"
     description:
@@ -438,6 +477,14 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  rational:
+    dependency: transitive
+    description:
+      name: rational
+      sha256: cb808fb6f1a839e6fc5f7d8cb3b0a10e1db48b3be102de73938c627f0b636336
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.3"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -451,6 +498,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  spine_flutter:
+    dependency: transitive
+    description:
+      name: spine_flutter
+      sha256: "195dfd2936f6938cefb91862dab2b59ecd08d9fecf4c208d3ad5f72fe5e0715a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.36"
   sprintf:
     dependency: transitive
     description:
@@ -563,6 +618,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  web_ffi_fork:
+    dependency: transitive
+    description:
+      name: web_ffi_fork
+      sha256: "557b3008bb3c8547ee63eac6e53c0ebebb443da9d7558b3f1b98e1ed59989a11"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.5"
   webview_flutter:
     dependency: transitive
     description:
