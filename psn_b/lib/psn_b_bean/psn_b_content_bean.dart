@@ -1,6 +1,6 @@
 class PsnBContentBean {
   String content;
-  int reward;
+  double reward;
   bool win;
   PsnBContentBean({
     required this.content,

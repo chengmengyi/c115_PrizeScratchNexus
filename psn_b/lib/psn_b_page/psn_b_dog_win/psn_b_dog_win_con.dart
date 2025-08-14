@@ -8,17 +8,7 @@ import 'package:psn_root/psn_root_page/psn_root_con.dart';
 
 class PsnBDogWinCon extends PsnRootCon implements PlayListener{
   late PsnBPlayUtils playUtils;
-  List<Map<int, double>> probabilityList = [
-    {2: 26.7},
-    {3: 10},
-    {4: 20},
-    {5: 20},
-    {6: 20},
-    {7: 2},
-    {8: 1},
-    {9: 0.2},
-    {10: 0.1},
-  ];
+  List<Map<int, double>> probabilityList = PsnBValueUtils.instance.getDogPoint();
 
   @override
   void onInit() {
@@ -40,13 +30,13 @@ class PsnBDogWinCon extends PsnRootCon implements PlayListener{
     List<PsnBContentBean> contentList=[];
     var dogNum = pickByProbability();
     if(dogNum>0){
-      var reward = PsnBValueUtils.instance.getReward();
+      var reward = PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum);
       for(var index=0;index<dogNum;index++){
         contentList.add(PsnBContentBean(content: "dog7", reward: reward, win: true));
       }
     }
     while(contentList.length<15){
-      contentList.add(PsnBContentBean(content: Random().nextBool()?"dog8":"dog9", reward: PsnBValueUtils.instance.getReward(), win: false));
+      contentList.add(PsnBContentBean(content: Random().nextBool()?"dog8":"dog9", reward: PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum), win: false));
     }
     contentList.shuffle();
     playUtils.setContentList(contentList);

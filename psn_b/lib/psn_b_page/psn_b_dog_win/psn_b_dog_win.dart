@@ -55,7 +55,7 @@ class PsnBDogWin extends PsnRootPage<PsnBDogWinCon>{
       brushSize: 40,
       threshold: 40,
       color: Colors.transparent,
-      image: Image.asset('assets/images/dog6.webp',fit: BoxFit.fill,),
+      image: Image.asset('assets/images/dog10.webp',fit: BoxFit.fill,),
       onThreshold: (){
         psnCon.playUtils.onThreshold();
       },
@@ -95,7 +95,7 @@ class PsnBDogWin extends PsnRootPage<PsnBDogWinCon>{
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            PsnImageWidget(name: "icon_coins2",width: 28.w,height: 28.h,),
+                            PsnImageWidget(name: "icon_money",width: 28.w,height: 28.h,),
                             SizedBox(width: 8.w,),
                             PsnGradientText(
                               data: "${bean.reward}",

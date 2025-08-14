@@ -15,6 +15,9 @@ class PsnBHomePage extends PsnRootPage<PsnBHomeCon>{
   PsnBHomeCon onCon() => PsnBHomeCon();
 
   @override
+  resizeToAvoidBottomInset() => false;
+
+  @override
   Widget onCreate() => GetBuilder<PsnBHomeCon>(
     id: "page",
     builder: (_)=>Column(
@@ -28,7 +31,24 @@ class PsnBHomePage extends PsnRootPage<PsnBHomeCon>{
         ),
         _bottomBtnWidget(),
       ],
-    ),
+    )
+    //     Stack(
+    //   children: [
+    //     // PsnImageWidget(name: psnCon.getBg(),width: double.infinity,height: double.infinity,),
+    //     Column(
+    //       children: [
+    //         PsnBHomeTopWidget(),
+    //         Expanded(
+    //           child: IndexedStack(
+    //             index: psnCon.tabIndex,
+    //             children: psnCon.pageList,
+    //           ),
+    //         ),
+    //         _bottomBtnWidget(),
+    //       ],
+    //     )
+    //   ],
+    // ),
   );
 
   _bottomBtnWidget()=>SizedBox(

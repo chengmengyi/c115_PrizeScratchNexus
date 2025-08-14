@@ -20,9 +20,9 @@ abstract class PsnRootChild<T extends PsnRootCon> extends StatelessWidget{
   _initCon(BuildContext context){
     if(_initPage){
       psnCon=Get.put(onCon());
-      psnCon.context=context;
       onStart();
     }
+    psnCon.context=context;
     _initPage=false;
   }
 

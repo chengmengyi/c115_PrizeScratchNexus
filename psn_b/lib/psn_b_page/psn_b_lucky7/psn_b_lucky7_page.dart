@@ -55,7 +55,7 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
       brushSize: 40,
       threshold: 40,
       color: Colors.transparent,
-      image: Image.asset('assets/images/lucky3.webp',fit: BoxFit.fill,),
+      image: Image.asset('assets/images/lucky5.webp',fit: BoxFit.fill,),
       onThreshold: (){
         psnCon.playUtils.onThreshold();
       },
@@ -106,7 +106,7 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            PsnImageWidget(name: "icon_coins2",width: 28.w,height: 28.h,),
+                            PsnImageWidget(name: "icon_money",width: 28.w,height: 28.h,),
                             SizedBox(width: 8.w,),
                             PsnGradientText(
                               data: "${bean.reward}",

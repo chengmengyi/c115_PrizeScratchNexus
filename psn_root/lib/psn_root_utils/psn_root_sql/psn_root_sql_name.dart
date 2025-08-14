@@ -3,4 +3,5 @@ class PsnRootSqlName {
 
 
   static const String bCardNum="bCardNum";
+  static const String bCashTask="bCashTask";
 }

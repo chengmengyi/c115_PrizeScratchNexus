@@ -22,15 +22,16 @@ abstract class PsnRootPage<T extends PsnRootCon> extends StatelessWidget{
           ),
         ],
       ),
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset(),
     );
   }
 
   _initCon(BuildContext context){
     if(_initPage){
       psnCon=Get.put(onCon());
-      psnCon.context=context;
       onStart();
     }
+    psnCon.context=context;
     _initPage=false;
   }
 
@@ -41,4 +42,6 @@ abstract class PsnRootPage<T extends PsnRootCon> extends StatelessWidget{
   T onCon();
 
   String bgName();
+
+  resizeToAvoidBottomInset()=>true;
 }

@@ -6,6 +6,7 @@ import 'package:psn_b/psn_b_dialog/psn_b_get_more_dialog/psn_b_get_more_dialog.d
 import 'package:psn_b/psn_b_dialog/psn_b_level_up_dialog/psn_b_level_up_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_unlock_dialog/psn_b_unlock_dialog.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
+import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
@@ -77,32 +78,32 @@ class PsnBCardChildCon extends PsnRootCon{
 
   String getCardIcon(PsnBCardBean bean){
     switch(PsnBCardTypeEnum.values.byName(bean.cardType??"")){
-      case PsnBCardTypeEnum.lucky7: return "home_card_lucky";
+      case PsnBCardTypeEnum.lucky7: return "home_card_lucky2";
       case PsnBCardTypeEnum.collectorWin:
         if(bean.unlock==1){
-          return "home_card_collector_lock";
+          return "home_card_collector_lock2";
         }
-        return "home_card_collector";
+        return "home_card_collector2";
       case PsnBCardTypeEnum.dogWinning:
         if(bean.unlock==1){
-          return "home_card_dog_lock";
+          return "home_card_dog_lock2";
         }
-        return "home_card_dog";
+        return "home_card_dog2";
       case PsnBCardTypeEnum.kingOfCards:
         if(bean.unlock==1){
-          return "home_card_king_lock";
+          return "home_card_king_lock2";
         }
-        return "home_card_king";
+        return "home_card_king2";
       case PsnBCardTypeEnum.fruitLineup:
         if(bean.unlock==1){
-          return "home_card_fruit_lock";
+          return "home_card_fruit_lock2";
         }
-        return "home_card_fruit";
+        return "home_card_fruit2";
       case PsnBCardTypeEnum.numberWinner:
         if(bean.unlock==1){
-          return "home_card_number_lock";
+          return "home_card_number_lock2";
         }
-        return "home_card_number";
+        return "home_card_number2";
     }
   }
 
@@ -128,7 +129,7 @@ class PsnBCardChildCon extends PsnRootCon{
     if(!kDebugMode){
       return;
     }
-    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBLevelUpDialog(totalReward: 1, dismissCallback: (){}));
+    PsnBCashUtils.instance.updateCashTask(TaskType.lucky);
   }
 
   @override

@@ -34,6 +34,8 @@ class PsnBHomeCon extends PsnRootCon{
     update(["page"]);
   }
 
+  String getBg()=>tabIndex==0?"bg1":tabIndex==1?"wheel_bg":"cash_bg";
+
   @override
   bool initEvent() => true;
 

@@ -55,7 +55,7 @@ class PsnBFruitPage extends PsnRootPage<PsnBFruitCon>{
       brushSize: 40,
       threshold: 40,
       color: Colors.transparent,
-      image: Image.asset('assets/images/fruit4.webp',fit: BoxFit.fill,),
+      image: Image.asset('assets/images/fruit5.webp',fit: BoxFit.fill,),
       onThreshold: (){
         psnCon.playUtils.onThreshold();
       },
@@ -119,7 +119,7 @@ class PsnBFruitPage extends PsnRootPage<PsnBFruitCon>{
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                PsnImageWidget(name: "king7",width: 57.w,height: 52.h,),
+                                PsnImageWidget(name: "icon_money",width: 57.w,height: 52.h,),
                                 SizedBox(height: 2.h,),
                                 PsnGradientText(
                                   data: "${psnCon.playUtils.contentList[index*3].reward}",

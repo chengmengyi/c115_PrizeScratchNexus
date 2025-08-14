@@ -31,9 +31,9 @@ class PsnBLucky7Con extends PsnRootCon implements PlayListener{
     for(var index=0;index<15;index++){
       var lucky7point = PsnBValueUtils.instance.getLucky7Point();
       if(lucky7point){
-        list.add(PsnBContentBean(content: "lucky4", reward: PsnBValueUtils.instance.getReward(),win: true));
+        list.add(PsnBContentBean(content: "lucky4", reward: PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum),win: true));
       }else{
-        list.add(PsnBContentBean(content: "${Random().nextInt(100)}", reward: PsnBValueUtils.instance.getReward(),win: false));
+        list.add(PsnBContentBean(content: "${Random().nextInt(100)}", reward: PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum),win: false));
       }
     }
     playUtils.setContentList(list);

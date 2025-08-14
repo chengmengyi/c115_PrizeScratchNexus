@@ -6,6 +6,7 @@ import 'package:psn_a/psn_a_routers/psn_a_page_list.dart';
 import 'package:psn_a/psn_a_utils/psn_a_user_info_utils.dart';
 import 'package:psn_b/psn_b_routers/psn_b_page_list.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
+import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 
 void main() async{
@@ -25,6 +26,7 @@ void main() async{
   await PsnAUserInfoUtils.instance.initCardInfo();
 
 
+  PsnBValueUtils.instance.initValueBean();
   await initSpineFlutter();
   await PsnBUserInfoUtils.instance.initCardInfo();
 

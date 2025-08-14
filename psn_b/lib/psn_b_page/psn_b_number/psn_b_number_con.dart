@@ -10,13 +10,7 @@ import 'package:psn_root/psn_root_page/psn_root_con.dart';
 class PsnBNumberCon extends PsnRootCon implements PlayListener{
   late PsnBPlayUtils playUtils;
   List<int> specialNumbersList=[];
-  List<Map<int, double>> probabilityList = [
-    {1: 20},
-    {2: 20},
-    {3: 30},
-    {4: 20},
-    {5: 10},
-  ];
+  List<Map<int, double>> probabilityList = PsnBValueUtils.instance.getNumberPoint();
 
 
   @override
@@ -67,7 +61,7 @@ class PsnBNumberCon extends PsnRootCon implements PlayListener{
     final secondList = [...sameNumbers, ...differentNumbers]..shuffle(rand);
 
     // Step 5: 转成 PsnBContentBean 列表
-    final resultList = secondList.map((value) => PsnBContentBean(content: "$value", win: firstThree.contains(value),reward: PsnBValueUtils.instance.getReward())).toList();
+    final resultList = secondList.map((value) => PsnBContentBean(content: "$value", win: firstThree.contains(value),reward: PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum))).toList();
     return resultList;
   }
 

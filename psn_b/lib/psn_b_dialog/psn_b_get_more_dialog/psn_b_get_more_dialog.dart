@@ -80,9 +80,9 @@ class PsnBGetMoreDialog extends PsnRootDialog<PsnBGetMoreDialogCon>{
   );
 
   _btnWidget()=>PsnBBtnWidget(
-    text: "5000",
+    text: "Free",
     bgName: "btn_blue",
-    leftIcon: PsnImageWidget(name: "icon_coins",width: 40.w,height: 40.w,),
+    showVideoIcon: true,
     onTap: (){
       psnCon.clickAdd(cardTypeEnum);
     },

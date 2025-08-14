@@ -13,6 +13,7 @@ import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_scratcher/scratcher.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 
 
 abstract class PlayListener {
@@ -51,13 +52,13 @@ class PsnBPlayUtils {
     scratcherKey.currentState?.reveal();
     await Future.delayed(Duration(milliseconds: 1000));
     canClick=true;
-    var totalReward=0;
+    var totalReward=0.0;
     switch(cardTypeEnum){
       case PsnBCardTypeEnum.dogWinning:
         var winNum = contentList.where((item) => item.win).length;
         if(winNum>0){
           var contentBean = contentList.firstWhere((value)=>value.win);
-          totalReward=contentBean.reward*_getDogBeishu(winNum);
+          totalReward=twoNumMul(contentBean.reward, _getDogBeishu(winNum));
         }
         break;
       case PsnBCardTypeEnum.collectorWin:
@@ -69,16 +70,18 @@ class PsnBPlayUtils {
             uniqueList.add(item);
           }
         }
-        totalReward = uniqueList.where((item) => item.win).fold(0, (sum, item) => sum + item.reward);
+        totalReward = uniqueList.where((item) => item.win).fold(0, (sum, item) => twoNumAdd(sum, item.reward));
         break;
       case PsnBCardTypeEnum.kingOfCards:
-        totalReward = (contentList.where((item) => item.win).fold(0, (sum, item) => sum + item.reward)/2).toInt();
+        double reward = contentList.where((item) => item.win).fold(0, (sum, item) => twoNumAdd(sum, item.reward));
+        totalReward=twoNumDiv(reward, 2);
         break;
       case PsnBCardTypeEnum.fruitLineup:
-        totalReward = (contentList.where((item) => item.win).fold(0, (sum, item) => sum + item.reward)/3).toInt();
+        double reward = contentList.where((item) => item.win).fold(0, (sum, item) => twoNumAdd(sum, item.reward));
+        totalReward=twoNumDiv(reward, 3);
         break;
       default:
-        totalReward = contentList.where((item) => item.win).fold(0, (sum, item) => sum + item.reward);
+        totalReward = contentList.where((item) => item.win).fold(0, (sum, item) => twoNumAdd(sum, item.reward));
         break;
     }
     var isUpLevel = PsnBUserInfoUtils.instance.updatePlayNum();
@@ -86,7 +89,7 @@ class PsnBPlayUtils {
       PsnRootRouters.instance.router(
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBLevelUpDialog(
-          totalReward: totalReward.toDouble(),
+          totalReward: totalReward,
           dismissCallback: (){
             _levelUpResult();
           },
@@ -99,7 +102,7 @@ class PsnBPlayUtils {
           PsnRootRouters.instance.router(
             routersEnum: PsnRoutersEnum.dialog,
             content: PsnBBigWinDialog(
-              reward: totalReward.toDouble(),
+              reward: totalReward,
               dismissCallback: (){
                 resetPlay();
               },
@@ -109,7 +112,7 @@ class PsnBPlayUtils {
           PsnRootRouters.instance.router(
             routersEnum: PsnRoutersEnum.dialog,
             content: PsnBNormalWinDialog(
-              reward: totalReward.toDouble(),
+              reward: totalReward,
               dismissCallback: (){
                 resetPlay();
               },

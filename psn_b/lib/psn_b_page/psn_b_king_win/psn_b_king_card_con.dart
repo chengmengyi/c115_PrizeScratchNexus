@@ -8,12 +8,7 @@ import 'package:psn_root/psn_root_page/psn_root_con.dart';
 
 class PsnBKingCardCon extends PsnRootCon implements PlayListener{
   late PsnBPlayUtils playUtils;
-  List<Map<int, double>> probabilityList = [
-    {1: 30},
-    {2: 30},
-    {3: 30},
-    {4: 10},
-  ];
+  List<Map<int, double>> probabilityList = PsnBValueUtils.instance.getKingPoint();
 
   @override
   void onInit() {
@@ -76,7 +71,7 @@ class PsnBKingCardCon extends PsnRootCon implements PlayListener{
       } else {
         if (g[0] > g[1]) g = g.reversed.toList();
       }
-      int rewardValue = PsnBValueUtils.instance.getReward();
+      double rewardValue = PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum);
       result.add(PsnBContentBean(content: "${g[0]}", reward: rewardValue,win: isDesc));
       result.add(PsnBContentBean(content: "${g[1]}", reward: rewardValue,win: isDesc));
     }

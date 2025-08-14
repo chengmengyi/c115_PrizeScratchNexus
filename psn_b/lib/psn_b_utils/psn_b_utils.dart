@@ -2,6 +2,7 @@ import 'package:psn_b/psn_b_bean/psn_level_result_bean.dart';
 import 'package:psn_b/psn_b_routers/psn_b_page_list.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
+import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 
 int getLevelByCardType(PsnBCardTypeEnum type){
   var indexWhere = PsnBCardTypeEnum.values.indexWhere((value)=>value==type);
@@ -51,4 +52,14 @@ String getRouterNameByCardType(PsnBCardTypeEnum cardTypeEnum){
       break;
   }
   return routerName;
+}
+
+String getCashDialogImages(String cashType){
+  switch(cashType){
+    case CashType.cash: return "cash_dialog_cash";
+    case CashType.pay: return "cash_dialog_pay";
+    case CashType.pag: return "cash_dialog_pag";
+    case CashType.pix: return "cash_dialog_pix";
+    default: return "cash_dialog_pay";
+  }
 }

@@ -7,12 +7,7 @@ import 'package:psn_root/psn_root_page/psn_root_con.dart';
 
 class PsnBFruitCon extends PsnRootCon implements PlayListener{
   late PsnBPlayUtils playUtils;
-  List<Map<int, double>> probabilityList = [
-    {1: 30},
-    {2: 30},
-    {3: 30},
-    {4: 10},
-  ];
+  List<Map<int, double>> probabilityList = PsnBValueUtils.instance.getFruitPoint();
 
   List<String> iconList=["icon_fruit1","icon_fruit2","icon_fruit3",];
 
@@ -71,9 +66,9 @@ class PsnBFruitCon extends PsnRootCon implements PlayListener{
     List<PsnBContentBean> result = [];
     for (int i = 0; i < 4; i++) {
       bool isTriple = tripleGroups.contains(i);
-      int? rewardValue = PsnBValueUtils.instance.getReward();
+      var reward = PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum);
       for (String fruit in groups[i]) {
-        result.add(PsnBContentBean(content: fruit, reward: rewardValue,win: isTriple));
+        result.add(PsnBContentBean(content: fruit, reward: reward,win: isTriple));
       }
     }
 
