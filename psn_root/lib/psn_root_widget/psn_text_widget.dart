@@ -44,7 +44,7 @@ class PsnTextWidget extends StatelessWidget{
       [
         OutlinedTextStroke(
           color: outlineColor??Colors.white,
-          width: 2.w,
+          width: 4.w,
         ),
       ],
     );

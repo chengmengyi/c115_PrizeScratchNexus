@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_big_win_dialog/psn_b_big_win_dialog_con.dart';
+import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_user_guide_utils.dart';
 import 'package:psn_b/psn_b_widget/psn_b_btn_widget.dart';
 import 'package:psn_root/psn_root_page/psn_root_dialog.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
@@ -47,13 +48,16 @@ class PsnBBigWinDialog extends PsnRootDialog<PsnBBigWinDialogCon>{
         outlineColor: "#D44B01".toColor(),
       ),
       SizedBox(height: 50.h,),
-      PsnBBtnWidget(
-        text: "Double",
-        bgName: "btn_green",
-        showVideoIcon: true,
-        onTap: (){
-          psnCon.clickDouble(reward,dismissCallback);
-        },
+      Visibility(
+        visible: !PsnBUserGuideUtils.instance.checkShowStep3(),
+        child: PsnBBtnWidget(
+          text: "Double",
+          bgName: "btn_green",
+          showVideoIcon: true,
+          onTap: (){
+            psnCon.clickDouble(reward,dismissCallback);
+          },
+        ),
       ),
       SizedBox(height: 36.h,),
       PsnBBtnWidget(

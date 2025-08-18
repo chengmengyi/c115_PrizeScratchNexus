@@ -5,4 +5,8 @@ class PsnBEventCode {
   static const int updateHomeCard=103;
   static const int showHomeIndex=104;
   static const int updateCashList=105;
+  static const int updateWheelNum=106;
+  static const int startLuckyCardFlipAnimator=107;
+  static const int flipOtherLuckyCard=108;
+  static const int showTopMoneyFinger=109;
 }

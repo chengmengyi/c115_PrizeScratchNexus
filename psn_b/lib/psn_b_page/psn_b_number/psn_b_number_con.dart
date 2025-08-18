@@ -61,7 +61,7 @@ class PsnBNumberCon extends PsnRootCon implements PlayListener{
     final secondList = [...sameNumbers, ...differentNumbers]..shuffle(rand);
 
     // Step 5: 转成 PsnBContentBean 列表
-    final resultList = secondList.map((value) => PsnBContentBean(content: "$value", win: firstThree.contains(value),reward: PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum))).toList();
+    final resultList = secondList.map((value) => PsnBContentBean(content: "$value", win: firstThree.contains(value),reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum))).toList();
     return resultList;
   }
 

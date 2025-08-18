@@ -71,7 +71,7 @@ class PsnBKingCardCon extends PsnRootCon implements PlayListener{
       } else {
         if (g[0] > g[1]) g = g.reversed.toList();
       }
-      double rewardValue = PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum);
+      double rewardValue = PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum);
       result.add(PsnBContentBean(content: "${g[0]}", reward: rewardValue,win: isDesc));
       result.add(PsnBContentBean(content: "${g[1]}", reward: rewardValue,win: isDesc));
     }

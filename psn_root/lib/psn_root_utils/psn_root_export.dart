@@ -7,4 +7,3 @@ export 'package:carousel_slider/carousel_slider.dart';
 export 'package:webview_flutter/webview_flutter.dart';
 export 'package:flutter_tba_info/flutter_tba_info.dart';
 export 'package:audioplayers/audioplayers.dart';
-export 'package:spine_flutter/spine_flutter.dart';

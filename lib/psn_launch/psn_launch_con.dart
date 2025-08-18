@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:psn_a/psn_a_routers/psn_a_page_list.dart';
 import 'package:psn_b/psn_b_routers/psn_b_page_list.dart';
+import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_ad_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 
 class PsnLaunchCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
@@ -23,7 +25,22 @@ class PsnLaunchCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
       })..forward();
   }
 
+  checkUser(){
+    if(bShowOpenAd.getData()){
+      PsnAdUtils.instance.showAdBBBBBB(
+        isOpen: true,
+        closeCallback: (){
+          toHome();
+        },
+      );
+    }else{
+      bShowOpenAd.saveData(true);
+      toHome();
+    }
+  }
+
   toHome(){
+
     // PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.offNamed, content: PsnAPageName.home);
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.offNamed, content: PsnBPageName.home);
   }

@@ -16,6 +16,7 @@ class PsnACoinsWidgetState extends PsnRootStatefulState<PsnBCoinsWidget>{
   @override
   Widget build(BuildContext context) => SizedBox(
     width: double.infinity,
+    height: 85.h,
     child: Stack(
       alignment: Alignment.centerLeft,
       children: [

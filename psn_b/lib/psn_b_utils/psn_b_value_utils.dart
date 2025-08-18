@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:psn_b/psn_b_bean/psb_b_value_bean.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
+import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_local_info.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 
@@ -77,7 +78,8 @@ class PsnBValueUtils {
     {5: _valueBean?.numberWinnerReward?.point4??10},
   ];
 
-  double getReward(PsnBCardTypeEnum type){
+  //获取刮卡奖励
+  double getCardReward(PsnBCardTypeEnum type){
     switch(type){
       case PsnBCardTypeEnum.collectorWin:
         return _getReward(_valueBean?.collectorWinReward?.reward??[]);
@@ -152,6 +154,24 @@ class PsnBValueUtils {
       return null;
     }catch(e){
       return null;
+    }
+  }
+
+  double getWheelReward()=>_getReward(_valueBean?.spinWheelPrizes??[]);
+
+  double getLuckyCardReward()=>_getReward(_valueBean?.luckyCardPrizes??[]);
+
+  int getUpLevelReward(){
+    try{
+      var bean = calculateLevel();
+      var list = _valueBean?.levelUpPrizes??[];
+      return list[bean.level-1];
+    }catch(e){
+      var list = _valueBean?.levelUpPrizes??[];
+      if(list.isEmpty){
+        return 0;
+      }
+      return list.last;
     }
   }
 }

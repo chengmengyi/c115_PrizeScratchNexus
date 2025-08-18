@@ -30,13 +30,13 @@ class PsnBDogWinCon extends PsnRootCon implements PlayListener{
     List<PsnBContentBean> contentList=[];
     var dogNum = pickByProbability();
     if(dogNum>0){
-      var reward = PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum);
+      var reward = PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum);
       for(var index=0;index<dogNum;index++){
         contentList.add(PsnBContentBean(content: "dog7", reward: reward, win: true));
       }
     }
     while(contentList.length<15){
-      contentList.add(PsnBContentBean(content: Random().nextBool()?"dog8":"dog9", reward: PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum), win: false));
+      contentList.add(PsnBContentBean(content: Random().nextBool()?"dog8":"dog9", reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: false));
     }
     contentList.shuffle();
     playUtils.setContentList(contentList);

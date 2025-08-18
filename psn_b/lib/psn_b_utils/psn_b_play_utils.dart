@@ -4,11 +4,14 @@ import 'package:psn_b/psn_b_dialog/psn_b_big_win_dialog/psn_b_big_win_dialog.dar
 import 'package:psn_b/psn_b_dialog/psn_b_fail_dialog/psn_b_fail_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_get_more_dialog/psn_b_get_more_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_level_up_dialog/psn_b_level_up_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_lucky_card_dialog/psn_b_lucky_card_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_normal_win_dialog/psn_b_normal_win_dialog.dart';
+import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_music_utils.dart';
+import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_user_guide_utils.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_scratcher/scratcher.dart';
@@ -84,52 +87,78 @@ class PsnBPlayUtils {
         totalReward = contentList.where((item) => item.win).fold(0, (sum, item) => twoNumAdd(sum, item.reward));
         break;
     }
+    bGuaKaNum.saveData(bGuaKaNum.getData()+1);
+    _checkUpLevel(totalReward);
+  }
+
+  _checkUpLevel(double totalReward){
     var isUpLevel = PsnBUserInfoUtils.instance.updatePlayNum();
     if(isUpLevel){
       PsnRootRouters.instance.router(
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBLevelUpDialog(
-          totalReward: totalReward,
-          dismissCallback: (){
-            _levelUpResult();
+          dismissCallback: ()async{
+            var resultBean = calculateLevel();
+            var psnACardTypeEnum = PsnBCardTypeEnum.values[resultBean.level-1];
+            await PsnBUserInfoUtils.instance.unlockCard(psnACardTypeEnum);
+            _checkLuckyCard(totalReward);
           },
         ),
       );
     }else{
-      if(totalReward>0){
-        PsnMusicUtils.instance.playVoice(VoiceEnum.play_win);
-        if(totalReward>=60){
-          PsnRootRouters.instance.router(
-            routersEnum: PsnRoutersEnum.dialog,
-            content: PsnBBigWinDialog(
-              reward: totalReward,
-              dismissCallback: (){
-                resetPlay();
-              },
-            ),
-          );
-        }else{
-          PsnRootRouters.instance.router(
-            routersEnum: PsnRoutersEnum.dialog,
-            content: PsnBNormalWinDialog(
-              reward: totalReward,
-              dismissCallback: (){
-                resetPlay();
-              },
-            ),
-          );
-        }
-      }else{
-        PsnMusicUtils.instance.playVoice(VoiceEnum.play_fail);
+      _checkLuckyCard(totalReward);
+    }
+  }
+
+  _checkLuckyCard(double totalReward){
+    if(bGuaKaNum.getData()%3==0){
+      PsnRootRouters.instance.router(
+        routersEnum: PsnRoutersEnum.dialog,
+        content: PsnBLuckyCardDialog(
+          dismissCallback: (){
+            _checkWinOrFail(totalReward);
+          },
+        ),
+      );
+    }else{
+      _checkWinOrFail(totalReward);
+    }
+  }
+
+  _checkWinOrFail(double totalReward){
+    if(totalReward>0){
+      PsnMusicUtils.instance.playVoice(VoiceEnum.play_win);
+      if(totalReward>=60){
         PsnRootRouters.instance.router(
           routersEnum: PsnRoutersEnum.dialog,
-          content: PsnBFailDialog(
+          content: PsnBBigWinDialog(
+            reward: totalReward,
+            dismissCallback: (){
+              resetPlay();
+            },
+          ),
+        );
+      }else{
+        PsnRootRouters.instance.router(
+          routersEnum: PsnRoutersEnum.dialog,
+          content: PsnBNormalWinDialog(
+            reward: totalReward,
             dismissCallback: (){
               resetPlay();
             },
           ),
         );
       }
+    }else{
+      PsnMusicUtils.instance.playVoice(VoiceEnum.play_fail);
+      PsnRootRouters.instance.router(
+        routersEnum: PsnRoutersEnum.dialog,
+        content: PsnBFailDialog(
+          dismissCallback: (){
+            resetPlay();
+          },
+        ),
+      );
     }
   }
 
@@ -168,14 +197,8 @@ class PsnBPlayUtils {
     }
   }
 
-  _levelUpResult()async{
-    var resultBean = calculateLevel();
-    var psnACardTypeEnum = PsnBCardTypeEnum.values[resultBean.level-1];
-    await PsnBUserInfoUtils.instance.unlockCard(psnACardTypeEnum);
-    resetPlay();
-  }
-
   resetPlay()async{
+    PsnBUserGuideUtils.instance.setGuideStep4();
     _stopScratchAuto=false;
     scratcherKey.currentState?.reset();
     playListener.resetPlay();

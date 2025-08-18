@@ -3,8 +3,10 @@ import 'package:psn_b/psn_b_page/psn_b_home/psn_b_home_con.dart';
 import 'package:psn_b/psn_b_widget/psn_b_home_top_widget.dart';
 import 'package:psn_root/psn_root_page/psn_root_page.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_widget/psn_click.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
+import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
 class PsnBHomePage extends PsnRootPage<PsnBHomeCon>{
 
@@ -88,6 +90,23 @@ class PsnBHomePage extends PsnRootPage<PsnBHomeCon>{
                           PsnImageWidget(name: bean.icon,width: 109.w,height: 103.h,),
                           PsnImageWidget(name: bean.text,height: 39.h,boxFit: BoxFit.fitHeight,),
                         ],
+                      ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: Visibility(
+                        visible: index==1,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            PsnImageWidget(name: "wheel5",width: 46.w,height: 46.w,),
+                            GetBuilder<PsnBHomeCon>(
+                              id: "wheel_num",
+                              builder: (_)=>PsnTextWidget(text: "${psnCon.wheelNum}", size: 30.sp, color: "#FFFFFF".toColor(),),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],

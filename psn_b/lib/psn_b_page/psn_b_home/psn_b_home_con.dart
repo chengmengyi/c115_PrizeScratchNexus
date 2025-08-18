@@ -5,10 +5,11 @@ import 'package:psn_b/psn_b_page/psn_b_home/psn_b_cash_child/psn_b_cash_child.da
 import 'package:psn_b/psn_b_page/psn_b_home/psn_b_wheel_child/psn_b_wheel_child.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_music_utils.dart';
+import 'package:psn_b/psn_b_utils/psn_wheel_utils.dart';
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 
 class PsnBHomeCon extends PsnRootCon{
-  var tabIndex=0;
+  var tabIndex=0,wheelNum=0;
   List<Widget> pageList=[
     PsnBCardChild(),
     PsnBWheelChild(),
@@ -45,6 +46,15 @@ class PsnBHomeCon extends PsnRootCon{
       case PsnBEventCode.showHomeIndex:
         clickBottomBtn(intValue??0);
         break;
+      case PsnBEventCode.updateWheelNum:
+        _updateWheelNum();
+        break;
     }
+  }
+
+
+  _updateWheelNum()async{
+    wheelNum=await PsnWheelUtils.instance.getWheelNum();
+    update(["wheel_num"]);
   }
 }

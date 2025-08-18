@@ -66,7 +66,7 @@ class PsnBFruitCon extends PsnRootCon implements PlayListener{
     List<PsnBContentBean> result = [];
     for (int i = 0; i < 4; i++) {
       bool isTriple = tripleGroups.contains(i);
-      var reward = PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum);
+      var reward = PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum);
       for (String fruit in groups[i]) {
         result.add(PsnBContentBean(content: fruit, reward: reward,win: isTriple));
       }

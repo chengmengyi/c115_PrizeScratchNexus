@@ -9,10 +9,8 @@ import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
 class PsnBLevelUpDialog extends PsnRootDialog<PsnBLevelUpDialogCon>{
-  double totalReward;
   Function() dismissCallback;
   PsnBLevelUpDialog({
-    required this.totalReward,
     required this.dismissCallback,
   });
   @override
@@ -49,7 +47,7 @@ class PsnBLevelUpDialog extends PsnRootDialog<PsnBLevelUpDialogCon>{
         ],
       ),
       PsnGradientText(
-        data: "+$totalReward",
+        data: "+${psnCon.upLevelReward}",
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -64,7 +62,7 @@ class PsnBLevelUpDialog extends PsnRootDialog<PsnBLevelUpDialogCon>{
         bgName: "btn_green",
         showVideoIcon: true,
         onTap: (){
-          psnCon.clickDouble(totalReward,dismissCallback);
+          psnCon.clickDouble(dismissCallback);
         },
       ),
       SizedBox(height: 36.h,),
@@ -72,7 +70,7 @@ class PsnBLevelUpDialog extends PsnRootDialog<PsnBLevelUpDialogCon>{
         text: "Claim",
         bgName: "btn_blue",
         onTap: (){
-          psnCon.clickClaim(totalReward,dismissCallback);
+          psnCon.clickClaim(dismissCallback);
         },
       ),
     ],

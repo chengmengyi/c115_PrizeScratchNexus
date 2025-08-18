@@ -1,5 +1,4 @@
-import 'package:psn_root/psn_root_utils/psn_root_export.dart';
-
+import 'package:spine_flutter/spine_flutter.dart';
 class PsnBBoxBean{
   double reward;
   bool open;

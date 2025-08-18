@@ -5,9 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:psn_a/psn_a_routers/psn_a_page_list.dart';
 import 'package:psn_a/psn_a_utils/psn_a_user_info_utils.dart';
 import 'package:psn_b/psn_b_routers/psn_b_page_list.dart';
+import 'package:psn_b/psn_b_utils/psn_wheel_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+import 'package:spine_flutter/spine_flutter.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +31,7 @@ void main() async{
   PsnBValueUtils.instance.initValueBean();
   await initSpineFlutter();
   await PsnBUserInfoUtils.instance.initCardInfo();
+  PsnWheelUtils.instance.initWheelInfo();
 
   runApp(const MyApp());
 }

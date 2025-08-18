@@ -73,3 +73,9 @@ extension Strint2Double on String{
     }
   }
 }
+
+
+String getTodayTimeStr(){
+  var dateTime = DateTime.now();
+  return "${dateTime.year}-${dateTime.month}-${dateTime.day}";
+}

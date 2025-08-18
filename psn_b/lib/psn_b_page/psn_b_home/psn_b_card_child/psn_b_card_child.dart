@@ -135,6 +135,7 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
     },
     child: Stack(
       alignment: Alignment.topCenter,
+      key: psnCon.playBtnGlobalKey,
       children: [
         PsnImageWidget(name: "home2",width: 357.w,height: 107.h,),
         Container(

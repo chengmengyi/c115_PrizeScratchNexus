@@ -34,19 +34,19 @@ class PsnBCollectorWinCon extends PsnRootCon implements PlayListener{
     List<String> availableIcons = List.from(iconList);
     if(PsnBValueUtils.instance.getCollectorPoint1()){
       String first = availableIcons.removeAt(random.nextInt(availableIcons.length));
-      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum), win: true)));
+      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true)));
     }
     if(PsnBValueUtils.instance.getCollectorPoint2()){
       String first = availableIcons.removeAt(random.nextInt(availableIcons.length));
-      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum), win: true)));
+      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true)));
     }
     if(PsnBValueUtils.instance.getCollectorPoint3()){
       String first = availableIcons.removeAt(random.nextInt(availableIcons.length));
-      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum), win: true)));
+      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true)));
     }
     if(PsnBValueUtils.instance.getCollectorPoint4()){
       String first = availableIcons.removeAt(random.nextInt(availableIcons.length));
-      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum), win: true)));
+      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true)));
     }
     int remaining = 20 - contentList.length;
     Map<String, int> counts = {};
@@ -55,7 +55,7 @@ class PsnBCollectorWinCon extends PsnRootCon implements PlayListener{
       counts[pick] = (counts[pick] ?? 0) + 1;
 
       if (counts[pick]! <= 2) {
-        contentList.add(PsnBContentBean(content: pick, reward: PsnBValueUtils.instance.getReward(playUtils.cardTypeEnum), win: false));
+        contentList.add(PsnBContentBean(content: pick, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: false));
       } else {
         counts[pick] = 2;
       }

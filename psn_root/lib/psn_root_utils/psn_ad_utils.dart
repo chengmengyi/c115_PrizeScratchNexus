@@ -4,6 +4,7 @@ class PsnAdUtils{
 
   showAdBBBBBB({
     required Function() closeCallback,
+    bool isOpen=false,
   }){
     closeCallback.call();
   }

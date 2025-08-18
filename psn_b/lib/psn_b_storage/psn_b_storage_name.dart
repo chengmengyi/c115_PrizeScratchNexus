@@ -4,4 +4,7 @@ class PsnBStorageName {
   static final String bBackMusicSwitch="bBackMusicSwitch";
   static final String bVoiceMusicSwitch="bVoiceMusicSwitch";
   static final String bLastBoxTimer="bLastBoxTimer";
+  static final String bGuaKaNum="bGuaKaNum";
+  static final String bShowOpenAd="bShowOpenAd";
+  static final String bShowNewUserGuide="bShowNewUserGuide";
 }

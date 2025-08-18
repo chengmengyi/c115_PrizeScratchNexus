@@ -35,13 +35,13 @@ class PsbBValueBean {
     if (json['spin_wheel_prizes'] != null) {
       spinWheelPrizes = [];
       json['spin_wheel_prizes'].forEach((v) {
-        spinWheelPrizes?.add(SpinWheelPrizes.fromJson(v));
+        spinWheelPrizes?.add(Reward.fromJson(v));
       });
     }
     if (json['lucky_card_prizes'] != null) {
       luckyCardPrizes = [];
       json['lucky_card_prizes'].forEach((v) {
-        luckyCardPrizes?.add(LuckyCardPrizes.fromJson(v));
+        luckyCardPrizes?.add(Reward.fromJson(v));
       });
     }
     levelUpPrizes = json['level_up_prizes'] != null ? json['level_up_prizes'].cast<int>() : [];
@@ -60,8 +60,8 @@ class PsbBValueBean {
   CardKingReward? cardKingReward;
   FruitLineupReward? fruitLineupReward;
   NumberWinnerReward? numberWinnerReward;
-  List<SpinWheelPrizes>? spinWheelPrizes;
-  List<LuckyCardPrizes>? luckyCardPrizes;
+  List<Reward>? spinWheelPrizes;
+  List<Reward>? luckyCardPrizes;
   List<int>? levelUpPrizes;
   List<WithdrawTask>? withdrawTask;
 
@@ -127,56 +127,6 @@ class WithdrawTask {
     map['type'] = type;
     map['count'] = count;
     map['id'] = id;
-    return map;
-  }
-
-}
-
-class LuckyCardPrizes {
-  LuckyCardPrizes({
-      this.lowerBound, 
-      this.reward, 
-      this.upperBound,});
-
-  LuckyCardPrizes.fromJson(dynamic json) {
-    lowerBound = json['lower_bound'];
-    reward = json['reward'] != null ? json['reward'].cast<int>() : [];
-    upperBound = json['upper_bound'];
-  }
-  int? lowerBound;
-  List<int>? reward;
-  int? upperBound;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['lower_bound'] = lowerBound;
-    map['reward'] = reward;
-    map['upper_bound'] = upperBound;
-    return map;
-  }
-
-}
-
-class SpinWheelPrizes {
-  SpinWheelPrizes({
-      this.lowerBound, 
-      this.reward, 
-      this.upperBound,});
-
-  SpinWheelPrizes.fromJson(dynamic json) {
-    lowerBound = json['lower_bound'];
-    reward = json['reward'] != null ? json['reward'].cast<int>() : [];
-    upperBound = json['upper_bound'];
-  }
-  int? lowerBound;
-  List<int>? reward;
-  int? upperBound;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['lower_bound'] = lowerBound;
-    map['reward'] = reward;
-    map['upper_bound'] = upperBound;
     return map;
   }
 
