@@ -1,5 +1,7 @@
-import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+
+StorageData<bool> bBackMusicSwitch=StorageData<bool>(key: "bBackMusicSwitch", defaultValue: true);
+StorageData<bool> bVoiceMusicSwitch=StorageData<bool>(key: "bVoiceMusicSwitch", defaultValue: true);
 
 enum VoiceEnum{
   no_card,play_fail,play_win

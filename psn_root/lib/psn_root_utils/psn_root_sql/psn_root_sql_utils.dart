@@ -23,5 +23,6 @@ class PsnRootSqlUtils {
     db.execute('CREATE TABLE ${PsnRootSqlName.bCardNum} (id INTEGER PRIMARY KEY AUTOINCREMENT, cardType TEXT, cardNum INTEGER, unlock INTEGER)');
     db.execute('CREATE TABLE ${PsnRootSqlName.bCashTask} (id INTEGER PRIMARY KEY AUTOINCREMENT, cashType TEXT, cashMoney INTEGER, completed INTEGER, cashTaskId INTEGER, currentProgress INTEGER, totalProgress INTEGER)');
     db.execute('CREATE TABLE ${PsnRootSqlName.bWheelInfo} (id INTEGER PRIMARY KEY AUTOINCREMENT, timer TEXT, wheelNum INTEGER)');
+    db.execute('CREATE TABLE ${PsnRootSqlName.bTbaSql} (id INTEGER PRIMARY KEY AUTOINCREMENT, jsonMap TEXT)');
   }
 }

@@ -7,3 +7,6 @@ export 'package:carousel_slider/carousel_slider.dart';
 export 'package:webview_flutter/webview_flutter.dart';
 export 'package:flutter_tba_info/flutter_tba_info.dart';
 export 'package:audioplayers/audioplayers.dart';
+export 'package:flutter_ad_ios_plugins/hep/ad_type.dart';
+export 'package:connectivity_plus/connectivity_plus.dart';
+

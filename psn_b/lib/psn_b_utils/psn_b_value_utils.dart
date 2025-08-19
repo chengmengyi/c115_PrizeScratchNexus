@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:psn_b/psn_b_bean/psb_b_value_bean.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_firebase_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_local_info.dart';
+import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 
 class PsnBValueUtils {
@@ -14,13 +17,47 @@ class PsnBValueUtils {
 
   PsbBValueBean? _valueBean;
 
-  initValueBean(){
+  setCallbackAndInit(){
+    PsnFirebaseUtils.instance.valueCallback=(){
+      initValue();
+    };
+    initValue();
+  }
+
+  initValue(){
     try{
-      var str = PsnLocalInfo.valueStr.base64();
-      _valueBean=PsbBValueBean.fromJson(jsonDecode(str));
+      var data = psnValueConfigStr.getData();
+      if(data.isEmpty){
+        data = PsnLocalInfo.valueStr.base64();
+      }
+      _valueBean=PsbBValueBean.fromJson(jsonDecode(data));
     }catch(e){
       _valueBean=PsbBValueBean.fromJson(jsonDecode(PsnLocalInfo.valueStr.base64()));
     }
+  }
+
+  bool showAd(AdType type){
+    if(kDebugMode){
+      return false;
+    }
+    if(type==AdType.reward){
+      return true;
+    }
+    var list = _valueBean?.adIncentives??[];
+    if(list.isEmpty){
+      return false;
+    }
+    var last = list.last;
+    var coinsNum = bUserCoins.getData();
+    if(coinsNum>=(last.upperBound??1000)){
+      return Random().nextInt(100)<(last.points??60);
+    }
+    for (var value in list) {
+      if(coinsNum>=(value.lowerBound??0)&&coinsNum<(value.upperBound??0)){
+        return Random().nextInt(100)<(value.points??60);
+      }
+    }
+    return true;
   }
 
   List<int> getCashList()=>[1000,2000,3000,5000,10000];
@@ -101,12 +138,12 @@ class PsnBValueUtils {
       return 0.0;
     }
     var last = list.last;
-    var playNum = bUserCoins.getData();
-    if(playNum>=(last.upperBound??1000)){
+    var coinsNum = bUserCoins.getData();
+    if(coinsNum>=(last.upperBound??1000)){
       return _getRandomDouble(last.reward??[]);
     }
     for (var value in list) {
-      if(playNum>=(value.lowerBound??0)&&playNum<(value.upperBound??0)){
+      if(coinsNum>=(value.lowerBound??0)&&coinsNum<(value.upperBound??0)){
         return _getRandomDouble(value.reward??[]);
       }
     }

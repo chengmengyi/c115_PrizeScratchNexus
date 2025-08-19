@@ -1,0 +1,17 @@
+enum PsnAdEventEnum{
+  apwxi_launch,
+  apwxi_update_rv,
+  apwxi_update_int,
+  apwxi_unlock_rv,
+  apwxi_box_rv,
+  apwxi_boxgetpop_rv,
+  apwxi_boxgetpop_int,
+  apwxi_scr_rv,
+  apwxi_scrgetpop_rv,
+  apwxi_scrgetpop_int,
+  apwxi_flop_int,
+  apwxi_flopgetpop_rv,
+  apwxi_flopgetpop_int,
+  apwxi_wheel_rv,
+  apwxi_wheel_int,
+}

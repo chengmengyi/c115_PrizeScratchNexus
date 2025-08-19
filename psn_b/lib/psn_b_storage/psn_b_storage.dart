@@ -6,9 +6,6 @@ StorageData<int> bUserPlayNum=StorageData<int>(key: PsnBStorageName.bUserPlayNum
 StorageData<int> bLastBoxTimer=StorageData<int>(key: PsnBStorageName.bLastBoxTimer, defaultValue: 0);
 StorageData<int> bGuaKaNum=StorageData<int>(key: PsnBStorageName.bGuaKaNum, defaultValue: 0);
 
-
-StorageData<bool> bBackMusicSwitch=StorageData<bool>(key: PsnBStorageName.bBackMusicSwitch, defaultValue: true);
-StorageData<bool> bVoiceMusicSwitch=StorageData<bool>(key: PsnBStorageName.bVoiceMusicSwitch, defaultValue: true);
 StorageData<bool> bShowOpenAd=StorageData<bool>(key: PsnBStorageName.bShowOpenAd, defaultValue: false);
 StorageData<bool> bShowNewUserGuide=StorageData<bool>(key: PsnBStorageName.bShowNewUserGuide, defaultValue: true);
 

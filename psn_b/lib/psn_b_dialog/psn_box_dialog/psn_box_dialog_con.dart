@@ -5,7 +5,9 @@ import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:spine_flutter/spine_flutter.dart';
 
@@ -51,6 +53,8 @@ class PsnBoxDialogCon extends PsnRootCon{
       routersEnum: PsnRoutersEnum.dialog,
       content: PsnBGetMoneyDialog(
         reward: bean.reward,
+        adEventEnumDouble: PsnAdEventEnum.apwxi_boxgetpop_rv,
+        adEventEnumClose: PsnAdEventEnum.apwxi_boxgetpop_int,
         dismissCallback: (){
           showGetAllBtn=true;
           update(["btn"]);
@@ -64,6 +68,9 @@ class PsnBoxDialogCon extends PsnRootCon{
       return;
     }
     PsnAdUtils.instance.showAdBBBBBB(
+      adType: AdType.reward,
+      evnetEnum: PsnAdEventEnum.apwxi_box_rv,
+      showAd: PsnBValueUtils.instance.showAd(AdType.reward),
       closeCallback: (){
         canClick=false;
         var allReward = boxList.where((e) => e.open == false).fold(0.0, (prev, e) => twoNumAdd(prev, e));

@@ -8,13 +8,14 @@ import 'package:psn_b/psn_b_dialog/psn_b_lucky_card_dialog/psn_b_lucky_card_dial
 import 'package:psn_b/psn_b_dialog/psn_b_normal_win_dialog/psn_b_normal_win_dialog.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
+import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
-import 'package:psn_b/psn_b_utils/psn_music_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_user_guide_utils.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_scratcher/scratcher.dart';
+import 'package:psn_root/psn_root_utils/psn_music_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 
@@ -53,6 +54,7 @@ class PsnBPlayUtils {
     canClick=false;
     _stopScratchAuto=true;
     scratcherKey.currentState?.reveal();
+    PsnBCashUtils.instance.updateCashTask(TaskType.card);
     await Future.delayed(Duration(milliseconds: 1000));
     canClick=true;
     var totalReward=0.0;

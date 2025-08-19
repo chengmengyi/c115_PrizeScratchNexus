@@ -1,0 +1,47 @@
+import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter/foundation.dart';
+import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+
+StorageData<String> psnAdConfigStr=StorageData<String>(key: "psnAdConfigStr", defaultValue: "");
+StorageData<String> psnValueConfigStr=StorageData<String>(key: "psnValueConfigStr", defaultValue: "");
+
+class PsnFirebaseUtils{
+  static final PsnFirebaseUtils _utils = PsnFirebaseUtils();
+  static PsnFirebaseUtils get instance => _utils;
+  Function()? valueCallback;
+
+  FirebaseRemoteConfig? _remoteConfig;
+
+  initFirebase()async{
+    if(kDebugMode&&Platform.isAndroid){
+      return;
+    }
+    try{
+      await Firebase.initializeApp();
+      _remoteConfig=FirebaseRemoteConfig.instance;
+      await _remoteConfig?.setConfigSettings(RemoteConfigSettings(
+        fetchTimeout: const Duration(seconds: 10),
+        minimumFetchInterval: const Duration(seconds: 1),
+      ));
+      await _remoteConfig?.fetchAndActivate();
+      _getFirebaseConfig();
+    }catch(e){
+      await Future.delayed(const Duration(milliseconds: 1000));
+      initFirebase();
+    }
+  }
+
+  _getFirebaseConfig(){
+    var br_numbers_us = _remoteConfig?.getString("br_numbers_us")??"";
+    if(br_numbers_us.isNotEmpty&&psnValueConfigStr.getData().isEmpty){
+      psnValueConfigStr.saveData(br_numbers_us);
+      valueCallback?.call();
+    }
+    var apwxi_ad_config = _remoteConfig?.getString("apwxi_ad_config")??"";
+    if(apwxi_ad_config.isNotEmpty){
+      psnAdConfigStr.saveData(apwxi_ad_config);
+    }
+  }
+}

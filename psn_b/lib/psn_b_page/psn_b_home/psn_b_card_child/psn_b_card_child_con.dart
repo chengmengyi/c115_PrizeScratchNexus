@@ -6,6 +6,7 @@ import 'package:psn_b/psn_b_bean/psn_b_card_bean.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_get_more_dialog/psn_b_get_more_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_level_up_dialog/psn_b_level_up_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_lucky_card_dialog/psn_b_lucky_card_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_no_net_dialog/psn_b_no_net_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_unlock_dialog/psn_b_unlock_dialog.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
@@ -13,9 +14,12 @@ import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_user_guide_utils.dart';
+import 'package:psn_root/psn_b_dialog/psn_b_ad_fail_dialog/psn_b_ad_fail_dialog.dart';
+import 'package:psn_root/psn_b_dialog/psn_b_ad_limit_dialog/psn_b_ad_limit_dialog.dart';
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 
 class PsnBCardChildCon extends PsnRootCon{
   var currentIndex=0;
@@ -140,13 +144,15 @@ class PsnBCardChildCon extends PsnRootCon{
     if(!kDebugMode){
       return;
     }
-    PsnBUserGuideUtils.instance.showPlayGuideStep1(
-      context: context,
-      key: playBtnGlobalKey,
-      clickCallback: (){
-        toPlay();
-      },
-    );
+    // PsnBUserGuideUtils.instance.showPlayGuideStep1(
+    //   context: context,
+    //   key: playBtnGlobalKey,
+    //   clickCallback: (){
+    //     toPlay();
+    //   },
+    // );
+    
+    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBNoNetDialog());
   }
 
   @override

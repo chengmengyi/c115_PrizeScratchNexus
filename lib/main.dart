@@ -8,7 +8,9 @@ import 'package:psn_b/psn_b_routers/psn_b_page_list.dart';
 import 'package:psn_b/psn_b_utils/psn_wheel_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_ad_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 import 'package:spine_flutter/spine_flutter.dart';
 
 void main() async{
@@ -28,10 +30,15 @@ void main() async{
   await PsnAUserInfoUtils.instance.initCardInfo();
 
 
-  PsnBValueUtils.instance.initValueBean();
+  PsnBValueUtils.instance.setCallbackAndInit();
   await initSpineFlutter();
   await PsnBUserInfoUtils.instance.initCardInfo();
   PsnWheelUtils.instance.initWheelInfo();
+  PsnBTbaUtils.instance.installEvent();
+  PsnBTbaUtils.instance.sessionEvent();
+  PsnBTbaUtils.instance.uploadSqlTbaInfo();
+
+  PsnAdUtils.instance.initAd();
 
   runApp(const MyApp());
 }

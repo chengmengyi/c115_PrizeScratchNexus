@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_bean/psn_b_wheel_bean.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_get_money_dialog/psn_b_get_money_dialog.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
+import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_wheel_utils.dart';
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 
@@ -43,6 +45,7 @@ class PsnBWheelChildCon extends PsnRootCon with GetSingleTickerProviderStateMixi
       return;
     }
     canClick=false;
+    PsnBCashUtils.instance.updateCashTask(TaskType.wheel);
     _wheelAnimationController..reset()..forward();
   }
 
@@ -54,7 +57,10 @@ class PsnBWheelChildCon extends PsnRootCon with GetSingleTickerProviderStateMixi
     if(indexWhere>=0){
       PsnRootRouters.instance.router(
         routersEnum: PsnRoutersEnum.dialog,
-        content: PsnBGetMoneyDialog(reward: wheelList[indexWhere].reward,
+        content: PsnBGetMoneyDialog(
+          reward: wheelList[indexWhere].reward,
+          adEventEnumDouble: PsnAdEventEnum.apwxi_wheel_rv,
+          adEventEnumClose: PsnAdEventEnum.apwxi_wheel_int,
           dismissCallback: (){
             _initWheelList();
           },
