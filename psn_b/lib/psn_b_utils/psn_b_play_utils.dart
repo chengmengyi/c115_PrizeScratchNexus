@@ -18,6 +18,8 @@ import 'package:psn_root/psn_root_scratcher/scratcher.dart';
 import 'package:psn_root/psn_root_utils/psn_music_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 
 abstract class PlayListener {
@@ -37,7 +39,9 @@ class PsnBPlayUtils {
   PsnBPlayUtils({
     required this.cardTypeEnum,
     required this.playListener,
-  });
+  }){
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.card_detail_page,params: {"page_from":cardTypeEnum.name});
+  }
 
   initScratchWidthHeight(){
     var renderBox = scratchGlobalKey.currentContext!.findRenderObject() as RenderBox;
@@ -135,6 +139,7 @@ class PsnBPlayUtils {
           routersEnum: PsnRoutersEnum.dialog,
           content: PsnBBigWinDialog(
             reward: totalReward,
+            cardTypeEnum: cardTypeEnum,
             dismissCallback: (){
               resetPlay();
             },
@@ -145,6 +150,7 @@ class PsnBPlayUtils {
           routersEnum: PsnRoutersEnum.dialog,
           content: PsnBNormalWinDialog(
             reward: totalReward,
+            cardTypeEnum: cardTypeEnum,
             dismissCallback: (){
               resetPlay();
             },

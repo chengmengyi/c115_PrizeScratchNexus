@@ -5,7 +5,9 @@ StorageData<double> bUserCoins=StorageData<double>(key: PsnBStorageName.bUserCoi
 StorageData<int> bUserPlayNum=StorageData<int>(key: PsnBStorageName.bUserPlayNum, defaultValue: 0);
 StorageData<int> bLastBoxTimer=StorageData<int>(key: PsnBStorageName.bLastBoxTimer, defaultValue: 0);
 StorageData<int> bGuaKaNum=StorageData<int>(key: PsnBStorageName.bGuaKaNum, defaultValue: 0);
+StorageData<int> bLastCoinsLevel=StorageData<int>(key: PsnBStorageName.bLastCoinsLevel, defaultValue: 0);
 
 StorageData<bool> bShowOpenAd=StorageData<bool>(key: PsnBStorageName.bShowOpenAd, defaultValue: false);
 StorageData<bool> bShowNewUserGuide=StorageData<bool>(key: PsnBStorageName.bShowNewUserGuide, defaultValue: true);
+StorageData<bool> bAlreadyShowCashTipsDialog=StorageData<bool>(key: PsnBStorageName.bAlreadyShowCashTipsDialog, defaultValue: false);
 

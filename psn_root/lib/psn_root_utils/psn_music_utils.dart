@@ -34,6 +34,12 @@ class PsnMusicUtils {
     }
   }
 
+  pauseBackMp3(){
+    if(_backPlayer.state==PlayerState.playing){
+      _backPlayer.pause();
+    }
+  }
+
   clickBackBtn(){
     if(bBackMusicSwitch.getData()){
       bBackMusicSwitch.saveData(false);

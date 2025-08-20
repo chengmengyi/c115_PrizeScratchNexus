@@ -23,7 +23,7 @@ abstract class PsnRootPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
+  Future<void> openPsnH() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 }

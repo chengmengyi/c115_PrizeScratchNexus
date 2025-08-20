@@ -7,4 +7,6 @@ class PsnBStorageName {
   static final String bGuaKaNum="bGuaKaNum";
   static final String bShowOpenAd="bShowOpenAd";
   static final String bShowNewUserGuide="bShowNewUserGuide";
+  static final String bLastCoinsLevel="bLastCoinsLevel";
+  static final String bAlreadyShowCashTipsDialog="bAlreadyShowCashTipsDialog";
 }

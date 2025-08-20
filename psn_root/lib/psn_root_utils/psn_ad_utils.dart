@@ -6,23 +6,29 @@ import 'package:flutter_ad_ios_plugins/flutter_ios_ad_hep.dart';
 import 'package:flutter_ad_ios_plugins/hep/ad_type.dart';
 import 'package:flutter_ad_ios_plugins/hep/ios_ad_callback.dart';
 import 'package:flutter_ad_ios_plugins/hep/ios_load_ad_result_callback.dart';
+import 'package:flutter_check_af/flutter_check_af.dart';
 import 'package:psn_root/psn_b_dialog/psn_b_ad_fail_dialog/psn_b_ad_fail_dialog.dart';
 import 'package:psn_root/psn_b_dialog/psn_b_ad_limit_dialog/psn_b_ad_limit_dialog.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
-import 'package:psn_root/psn_root_utils/psn_b_fk_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_firebase_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_local_info.dart';
 import 'package:psn_root/psn_root_utils/psn_music_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+import 'package:psn_root/psn_root_utils/psn_root_storage.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
+
+
 class PsnAdUtils{
   static final PsnAdUtils _utils=PsnAdUtils();
   static PsnAdUtils get instance => _utils;
+
+  Function()? lookAdCallback;
 
   initAd(){
     FlutterIosAdHep.instance.initMax(
@@ -31,7 +37,7 @@ class PsnAdUtils{
       topOnAppKey: PsnLocalInfo.topOnAppKey.base64(),
       data: _createAdData(),
       fengKongLogic: (){
-        return false;
+        return PsnFengkUtils.instance.isFk();
       },
       iosLoadAdResultCallback: IosLoadAdResultCallback(
         startLoadAdCallback: (info){
@@ -54,7 +60,7 @@ class PsnAdUtils{
       closeCallback.call();
       return;
     }
-    if(AdNumHep.instance.notLoad()||PsnBFkUtils.instance.isFk()){
+    if(AdNumHep.instance.notLoad()||PsnFengkUtils.instance.isFk()){
       if(isOpen){
         closeCallback.call();
         return;
@@ -99,17 +105,17 @@ class PsnAdUtils{
       adType: adType,
       iosAdCallback: IosAdCallback(
         showSuccess: (ad,info){
-          // _handleTwoShowAdTime(adType);
+          _checkRewardShowTime(adType);
           // // FlutterCustomFacebook.instance.logPurchase(amount: ad?.revenue??0, currency: "USD");
-          // FlutterCheckAf.instance.uploadAdRevenue(ad?.networkName??"", ad?.revenue??0, ad?.adUnitId??"", adPosId.name);
-          // TTTTUtils.instance.adEvent(ad: ad, adPosId: adPosId, adInfoData: info);
-          // VoicePlayUtils.instance.pauseBg();
-          // p2LookAdNum.saveData(p2LookAdNum.getData()+1);
-          // var adLevel = p2LastAdLevel.getData()+5;
-          // if(p2LookAdNum.getData()>=adLevel){
-          //   TTTTUtils.instance.pointEvent(customId: CustomId.cash_ad_detail,params: {"ad":adLevel});
-          //   p2LastAdLevel.saveData(adLevel);
-          // }
+          FlutterCheckAf.instance.uploadAdRevenue(ad?.networkName??"", ad?.revenue??0, ad?.adUnitId??"", evnetEnum.name);
+          PsnBTbaUtils.instance.adEvent(ad: ad, adEventEnum: evnetEnum, adInfoData: info);
+          PsnMusicUtils.instance.pauseBackMp3();
+          psnAdWatchNum.saveData(psnAdWatchNum.getData()+1);
+          var adLevel = psnLastAdLevel.getData()+5;
+          if(psnAdWatchNum.getData()>=adLevel){
+            PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_ad_detail,params: {"ad":adLevel});
+            psnLastAdLevel.saveData(adLevel);
+          }
         },
         showFail: (){
           PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.apwxi_ad_impression_fail,params: {"ad_pos_id":evnetEnum.name});
@@ -124,16 +130,41 @@ class PsnAdUtils{
           }
         },
         closeAd: (){
+          _checkRewardCloseTime(adType);
+          lookAdCallback?.call();
           PsnMusicUtils.instance.playBackMp3();
           closeAd.call();
         },
         revenuePaid: (ad,info){
-          // _handleRvLookCount(adType);
+          _checkRevenuePaid(adType);
         },
       ),
     );
   }
 
+  _checkRewardShowTime(AdType adType){
+    if(adType==AdType.reward){
+      psnShowRewardAdTime.saveData(DateTime.now().millisecondsSinceEpoch);
+      if((DateTime.now().millisecondsSinceEpoch-psnLastShowRewardAdTime.getData())<((PsnFengkUtils.instance.getAdShortShow()?.duration??30)*1000)){
+        psnTwoRewardAdTimeNum.saveData(psnTwoRewardAdTimeNum.getData()+1);
+      }
+      psnLastShowRewardAdTime.saveData(DateTime.now().millisecondsSinceEpoch);
+    }
+  }
+
+  _checkRewardCloseTime(AdType adType){
+    if(adType==AdType.reward){
+      if((DateTime.now().millisecondsSinceEpoch-psnShowRewardAdTime.getData())<((PsnFengkUtils.instance.getAdShortClose()?.duration??20)*1000)){
+        psnCloseRewardAdTimeNum.saveData(psnCloseRewardAdTimeNum.getData()+1);
+      }
+    }
+  }
+
+  _checkRevenuePaid(AdType adType){
+    if(adType==AdType.reward){
+      psnRewardRevenuePaidNum.saveData(psnRewardRevenuePaidNum.getData()+1);
+    }
+  }
 
   ConfigAdData _createAdData(){
     var data = psnAdConfigStr.getData();

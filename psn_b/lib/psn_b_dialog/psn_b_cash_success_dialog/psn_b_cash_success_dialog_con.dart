@@ -5,6 +5,7 @@ import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 
 class PsnBCashSuccessDialogCon extends PsnRootCon{
+
   clickClose(){
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
   }
@@ -13,4 +14,5 @@ class PsnBCashSuccessDialogCon extends PsnRootCon{
     await PsnBCashUtils.instance.deleteCashTask(cashTaskBean);
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
   }
+
 }

@@ -41,14 +41,18 @@ class PsnBoxDialog extends PsnRootDialog<PsnBoxDialogCon>{
             ],
           ),
         ),
-        Visibility(
-          child: PsnBBtnWidget(
-            text: "Double",
-            bgName: "btn_green",
-            showVideoIcon: true,
-            onTap: (){
-              psnCon.clickGetAll(dismissCallback);
-            },
+        GetBuilder<PsnBoxDialogCon>(
+          id: "btn",
+          builder: (_)=>Visibility(
+            visible: psnCon.showGetAllBtn,
+            child: PsnBBtnWidget(
+              text: "Double",
+              bgName: "btn_green",
+              showVideoIcon: true,
+              onTap: (){
+                psnCon.clickGetAll(dismissCallback);
+              },
+            ),
           ),
         ),
         SizedBox(height: 30.h,),

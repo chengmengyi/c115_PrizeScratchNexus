@@ -12,6 +12,7 @@ import 'package:psn_a/psn_a_utils/psn_a_utils.dart';
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_b_check_user_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_music_utils.dart';
 
 class PsnAHomeCon extends PsnRootCon{
@@ -24,6 +25,9 @@ class PsnAHomeCon extends PsnRootCon{
     super.onInit();
     _startAddNumTimer();
     PsnMusicUtils.instance.initPlayer();
+    PsnBCheckUserUtils.instance.aPackageCallback=(){
+      PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.offAllNamed, content: "/b/home");
+    };
   }
 
   @override
@@ -137,6 +141,7 @@ class PsnAHomeCon extends PsnRootCon{
   void onClose() {
     _timer?.cancel();
     _timer=null;
+    PsnBCheckUserUtils.instance.aPackageCallback=null;
     super.onClose();
   }
 }

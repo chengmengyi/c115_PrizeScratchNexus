@@ -1,3 +1,3 @@
 enum PsnRoutersEnum {
-  toNamed,dialog,back,offNamed,
+  toNamed,dialog,back,offNamed,offAllNamed,
 }

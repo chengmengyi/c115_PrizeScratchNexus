@@ -349,6 +349,14 @@ packages:
       relative: false
     source: path
     version: "0.1.5"
+  flutter_app_lifecycle:
+    dependency: transitive
+    description:
+      name: flutter_app_lifecycle
+      sha256: "083d8cd646655a962f4db9d585d24a9b80402daaff15cb5a8a76da0df53f7f6f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   flutter_check_af:
     dependency: transitive
     description:
@@ -702,6 +710,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
+  psn:
+    dependency: transitive
+    description:
+      path: "psn_root/plugins/psn"
+      relative: true
+    source: path
+    version: "0.0.1"
   psn_a:
     dependency: "direct main"
     description:

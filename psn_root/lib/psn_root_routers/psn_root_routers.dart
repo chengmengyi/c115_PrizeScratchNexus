@@ -28,6 +28,9 @@ class PsnRootRouters {
           barrierDismissible: false,
         );
         break;
+      case PsnRoutersEnum.offAllNamed:
+        Get.offAllNamed(content as String);
+        break;
     }
   }
 

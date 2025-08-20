@@ -5,6 +5,8 @@ import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_sql/psn_root_sql_name.dart';
 import 'package:psn_root/psn_root_utils/psn_root_sql/psn_root_sql_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class CashType{
   static const String pay="pay";
@@ -69,6 +71,7 @@ class PsnBCashUtils{
       if(withdrawTask?.type==taskType){
         cashTaskBean.currentProgress=(cashTaskBean.currentProgress??0)+1;
         if((cashTaskBean.currentProgress??0)>=(cashTaskBean.totalProgress??0)){
+          PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_task_complete,params: {"task_from":withdrawTask?.type});
           var nextCashTaskConfig = PsnBValueUtils.instance.getNextCashTaskConfigByID(cashTaskBean.cashTaskId);
           if(null==nextCashTaskConfig){
             cashTaskBean.completed=1;

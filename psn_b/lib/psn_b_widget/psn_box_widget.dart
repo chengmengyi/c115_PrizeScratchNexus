@@ -8,6 +8,8 @@ import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 import 'package:psn_root/psn_root_widget/psn_click.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_lottie_widget.dart';
@@ -64,6 +66,7 @@ class PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidget>{
   );
 
   _clickBox(){
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.treasure_icon_c);
     if(currentTimer>0){
       "Cooling down—wait a few mins.".showToast();
       return;

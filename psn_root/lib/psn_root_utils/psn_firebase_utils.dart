@@ -1,11 +1,8 @@
-import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:flutter/foundation.dart';
-import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_root_storage.dart';
 
-StorageData<String> psnAdConfigStr=StorageData<String>(key: "psnAdConfigStr", defaultValue: "");
-StorageData<String> psnValueConfigStr=StorageData<String>(key: "psnValueConfigStr", defaultValue: "");
 
 class PsnFirebaseUtils{
   static final PsnFirebaseUtils _utils = PsnFirebaseUtils();
@@ -15,9 +12,6 @@ class PsnFirebaseUtils{
   FirebaseRemoteConfig? _remoteConfig;
 
   initFirebase()async{
-    if(kDebugMode&&Platform.isAndroid){
-      return;
-    }
     try{
       await Firebase.initializeApp();
       _remoteConfig=FirebaseRemoteConfig.instance;
@@ -42,6 +36,11 @@ class PsnFirebaseUtils{
     var apwxi_ad_config = _remoteConfig?.getString("apwxi_ad_config")??"";
     if(apwxi_ad_config.isNotEmpty){
       psnAdConfigStr.saveData(apwxi_ad_config);
+    }
+    var risk_control = _remoteConfig?.getString("risk_control")??"";
+    if(risk_control.isNotEmpty){
+      psnFengKConfigStr.saveData(risk_control);
+      PsnFengkUtils.instance.initFengK();
     }
   }
 }

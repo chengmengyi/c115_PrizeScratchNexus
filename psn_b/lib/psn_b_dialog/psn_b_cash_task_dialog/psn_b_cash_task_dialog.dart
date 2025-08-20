@@ -6,6 +6,8 @@ import 'package:psn_b/psn_b_widget/psn_b_btn_widget.dart';
 import 'package:psn_root/psn_root_page/psn_root_dialog.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 import 'package:psn_root/psn_root_widget/psn_click.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
@@ -18,6 +20,11 @@ class PsnBCashTaskDialog extends PsnRootDialog<PsnBCashTaskDialogCon>{
 
   @override
   PsnBCashTaskDialogCon onCon() => PsnBCashTaskDialogCon();
+
+  @override
+  onStart() {
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_task_pop,params: {"pop_from":psnCon.getPopFrom(bean.cashTaskBean)});
+  }
 
   @override
   Widget onCreate() => Container(

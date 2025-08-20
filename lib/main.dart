@@ -9,7 +9,11 @@ import 'package:psn_b/psn_b_utils/psn_wheel_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_b_check_user_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_firebase_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_local_info.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 import 'package:spine_flutter/spine_flutter.dart';
 
@@ -29,7 +33,9 @@ void main() async{
   await GetStorage.init();
   await PsnAUserInfoUtils.instance.initCardInfo();
 
-
+  PsnFirebaseUtils.instance.initFirebase();
+  Psn.instance.initNumberUnit(apiKey: decrypt(PsnLocalInfo.shuMengKeyPwd, 115));
+  PsnBCheckUserUtils.instance.initCheck();
   PsnBValueUtils.instance.setCallbackAndInit();
   await initSpineFlutter();
   await PsnBUserInfoUtils.instance.initCardInfo();

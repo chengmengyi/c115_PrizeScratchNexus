@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_big_win_dialog/psn_b_big_win_dialog_con.dart';
+import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_user_guide_utils.dart';
 import 'package:psn_b/psn_b_widget/psn_b_btn_widget.dart';
 import 'package:psn_root/psn_root_page/psn_root_dialog.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 import 'package:psn_root/psn_root_widget/psn_gradient_text.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
 
 class PsnBBigWinDialog extends PsnRootDialog<PsnBBigWinDialogCon>{
   double reward;
+  PsnBCardTypeEnum cardTypeEnum;
   Function() dismissCallback;
   PsnBBigWinDialog({
     required this.reward,
+    required this.cardTypeEnum,
     required this.dismissCallback,
 });
 
   @override
   PsnBBigWinDialogCon onCon() => PsnBBigWinDialogCon();
+
+  @override
+  onStart() {
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop,params: {"source_from":cardTypeEnum.name});
+  }
 
   @override
   Widget onCreate() => Column(
@@ -55,7 +65,7 @@ class PsnBBigWinDialog extends PsnRootDialog<PsnBBigWinDialogCon>{
           bgName: "btn_green",
           showVideoIcon: true,
           onTap: (){
-            psnCon.clickDouble(reward,dismissCallback);
+            psnCon.clickDouble(cardTypeEnum,reward,dismissCallback);
           },
         ),
       ),
@@ -64,7 +74,7 @@ class PsnBBigWinDialog extends PsnRootDialog<PsnBBigWinDialogCon>{
         text: "Claim",
         bgName: "btn_blue",
         onTap: (){
-          psnCon.clickClaim(reward,dismissCallback);
+          psnCon.clickClaim(cardTypeEnum,reward,dismissCallback);
         },
       ),
     ],

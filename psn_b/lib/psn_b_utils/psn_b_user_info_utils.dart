@@ -1,11 +1,19 @@
 import 'package:psn_b/psn_b_bean/psn_b_card_bean.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_cash_tips_dialog/psn_b_cash_tips_dialog.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
+import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
+import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
+import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_sql/psn_root_sql_name.dart';
 import 'package:psn_root/psn_root_utils/psn_root_sql/psn_root_sql_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_root_storage.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBUserInfoUtils {
   static final PsnBUserInfoUtils _utils = PsnBUserInfoUtils();
@@ -120,6 +128,37 @@ class PsnBUserInfoUtils {
     }
     bUserCoins.saveData(twoNumAdd(bUserCoins.getData(), addNum));
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCoins);
+    if(addNum>0){
+      var moneyLevel = bLastCoinsLevel.getData()+100;
+      var data = bUserCoins.getData();
+      if(data>=moneyLevel){
+        var max = ((bUserCoins.getData()-moneyLevel)~/100)+1;
+        for(var index=0; index<max; index++){
+          PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_money_detail,params: {"money":moneyLevel});
+          bLastCoinsLevel.saveData(moneyLevel);
+          moneyLevel+=100;
+        }
+      }
+
+      var first = PsnBValueUtils.instance.getCashList().first;
+      var getRewardNum = psnRewardRevenuePaidNum.getData();
+      var wrongDeemAdLess = PsnFengkUtils.instance.getWrongDeemAdLess();
+      if(data>=first&&getRewardNum<wrongDeemAdLess){
+        psnDeemAdLess.saveData(true);
+      }
+      var wrongDeemAdMore = PsnFengkUtils.instance.getWrongDeemAdMore();
+      if(data<first&&getRewardNum>=wrongDeemAdMore){
+        psnDeemAdMore.saveData(true);
+      }
+
+      if(data>=first&&!bAlreadyShowCashTipsDialog.getData()){
+        bAlreadyShowCashTipsDialog.saveData(true);
+        PsnRootRouters.instance.router(
+          routersEnum: PsnRoutersEnum.dialog,
+          content:  PsnBCashTipsDialog(),
+        );
+      }
+    }
   }
 
   bool updatePlayNum(){

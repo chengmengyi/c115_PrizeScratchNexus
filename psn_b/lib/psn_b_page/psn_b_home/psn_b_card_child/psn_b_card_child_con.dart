@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_bean/psn_b_card_bean.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_cash_tips_dialog/psn_b_cash_tips_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_get_more_dialog/psn_b_get_more_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_level_up_dialog/psn_b_level_up_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_lucky_card_dialog/psn_b_lucky_card_dialog.dart';
@@ -19,7 +20,11 @@ import 'package:psn_root/psn_b_dialog/psn_b_ad_limit_dialog/psn_b_ad_limit_dialo
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_firebase_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBCardChildCon extends PsnRootCon{
   var currentIndex=0;
@@ -31,6 +36,7 @@ class PsnBCardChildCon extends PsnRootCon{
   void onInit() {
     super.onInit();
     _startAddNumTimer();
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.home_page);
   }
 
   @override
@@ -152,7 +158,7 @@ class PsnBCardChildCon extends PsnRootCon{
     //   },
     // );
     
-    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBNoNetDialog());
+    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBCashTipsDialog());
   }
 
   @override

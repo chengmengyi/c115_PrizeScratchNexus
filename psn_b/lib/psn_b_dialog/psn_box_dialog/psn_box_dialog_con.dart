@@ -9,6 +9,8 @@ import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 import 'package:spine_flutter/spine_flutter.dart';
 
 class PsnBoxDialogCon extends PsnRootCon{
@@ -35,6 +37,7 @@ class PsnBoxDialogCon extends PsnRootCon{
     if(bean.open||!canClick){
       return;
     }
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.treasure_c);
     canClick=false;
     bean.controller.animationState.setListener((type, trackEntry, event) {
       if (type == EventType.complete) {
@@ -67,6 +70,7 @@ class PsnBoxDialogCon extends PsnRootCon{
     if(!canClick){
       return;
     }
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.treasure_c);
     PsnAdUtils.instance.showAdBBBBBB(
       adType: AdType.reward,
       evnetEnum: PsnAdEventEnum.apwxi_box_rv,

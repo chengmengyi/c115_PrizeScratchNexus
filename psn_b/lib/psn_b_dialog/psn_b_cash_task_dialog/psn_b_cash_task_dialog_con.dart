@@ -5,6 +5,8 @@ import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBCashTaskDialogCon extends PsnRootCon{
   clickClose(){
@@ -12,6 +14,7 @@ class PsnBCashTaskDialogCon extends PsnRootCon{
   }
 
   clickCashOut(){
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_task_pop_c);
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showHomeIndex,intValue: 0);
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
   }
@@ -29,6 +32,11 @@ class PsnBCashTaskDialogCon extends PsnRootCon{
       case "ad": return "Watch ${withdrawTask.count??0} video ads";
       default: return "";
     }
+  }
+
+  String getPopFrom(PsnCashTaskBean? bean){
+    var withdrawTask = PsnBValueUtils.instance.getCashTaskConfigByID(bean?.cashTaskId);
+    return withdrawTask?.type??"";
   }
 
   double getCashTaskPro(PsnCashTaskBean? bean){

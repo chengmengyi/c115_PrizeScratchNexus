@@ -11,6 +11,8 @@ import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBLucky7Con extends PsnRootCon implements PlayListener{
   late PsnBPlayUtils playUtils;
@@ -81,6 +83,7 @@ class PsnBLucky7Con extends PsnRootCon implements PlayListener{
       case PsnBEventCode.showTopMoneyFinger:
         showTopFinger=true;
         update(["top_finger"]);
+        PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.newuser_guide,params: {"pop_step":"pop4"});
         break;
     }
   }

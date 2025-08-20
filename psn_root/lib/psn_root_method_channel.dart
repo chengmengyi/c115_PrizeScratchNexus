@@ -10,8 +10,7 @@ class MethodChannelPsnRoot extends PsnRootPlatform {
   final methodChannel = const MethodChannel('psn_root');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  Future<void> openPsnH() async {
+    await methodChannel.invokeMethod<String>('openPsnH');
   }
 }

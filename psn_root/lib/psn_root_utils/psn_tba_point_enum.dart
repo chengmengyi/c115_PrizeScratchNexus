@@ -31,6 +31,7 @@ enum PsnTbaPointEnum{
   cash_not_pop,
   cash_not_pop_c,
   inform_c,
+  inform_show,
   push_status,
   cash_out_c,
   cash_confirm_pop,
@@ -40,4 +41,8 @@ enum PsnTbaPointEnum{
   apwxi_ad_chance,
   apwxi_ad_no_chance,
   apwxi_ad_impression_fail,
+  treasure_icon_c,
+  treasure_c,
+  session_custom,
+  risk_chance,
 }
