@@ -20,7 +20,7 @@ packages:
   anythink_sdk:
     dependency: transitive
     description:
-      path: "../flutter_ad_ios_plugins/plugins/anythink_sdk"
+      path: "psn_root/plugins/flutter_ad_ios_plugins/plugins/anythink_sdk"
       relative: true
     source: path
     version: "1.0.5"
@@ -344,8 +344,8 @@ packages:
   flutter_ad_ios_plugins:
     dependency: transitive
     description:
-      path: "/Users/chengmengyi/testbird/flutter_ad_ios_plugins"
-      relative: false
+      path: "psn_root/plugins/flutter_ad_ios_plugins"
+      relative: true
     source: path
     version: "0.1.5"
   flutter_app_lifecycle:
