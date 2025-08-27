@@ -14,7 +14,7 @@ import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 import 'package:spine_flutter/spine_flutter.dart';
 
 class PsnBoxDialogCon extends PsnRootCon{
-  var canClick=true,showGetAllBtn=false;
+  var canClick=true,showGetAllBtn=false,itemCanClick=true;
   List<PsnBBoxBean> boxList=[
     PsnBBoxBean(
       reward: PsnBValueUtils.instance.getBoxReward(),
@@ -34,9 +34,10 @@ class PsnBoxDialogCon extends PsnRootCon{
   ];
 
   clickBox(PsnBBoxBean bean){
-    if(bean.open||!canClick){
+    if(bean.open||!canClick||!itemCanClick){
       return;
     }
+    itemCanClick=false;
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.treasure_c);
     canClick=false;
     bean.controller.animationState.setListener((type, trackEntry, event) {

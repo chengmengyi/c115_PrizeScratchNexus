@@ -40,6 +40,22 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
           ),
         ),
       ),
+      Positioned(
+        right: 10.w,
+        bottom: 30.h,
+        child: PsnClick(
+          onTap: (){
+            psnCon.toMoreGame();
+          },
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              PsnImageWidget(name: "more_game",width: 133.w,height: 133.w,),
+              PsnTextWidget(text: "More Fun", size: 30.sp, color: "#FFFFFF".toColor(),outlineColor: "#160068".toColor(),)
+            ],
+          ),
+        ),
+      ),
     ],
   );
 

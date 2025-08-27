@@ -12,6 +12,7 @@ import 'package:psn_root/psn_b_dialog/psn_b_ad_limit_dialog/psn_b_ad_limit_dialo
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_fb_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_firebase_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_local_info.dart';
@@ -108,7 +109,7 @@ class PsnAdUtils{
       iosAdCallback: IosAdCallback(
         showSuccess: (ad,info){
           _checkRewardShowTime(adType);
-          // // FlutterCustomFacebook.instance.logPurchase(amount: ad?.revenue??0, currency: "USD");
+          PsnFbUtils.instance.logPurchase(ad?.revenue??0.0,);
           FlutterCheckAf.instance.uploadAdRevenue(ad?.networkName??"", ad?.revenue??0, ad?.adUnitId??"", evnetEnum.name);
           PsnBTbaUtils.instance.adEvent(ad: ad, adEventEnum: evnetEnum, adInfoData: info);
           PsnMusicUtils.instance.pauseBackMp3();

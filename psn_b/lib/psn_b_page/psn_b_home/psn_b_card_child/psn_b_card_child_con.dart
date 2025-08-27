@@ -21,8 +21,10 @@ import 'package:psn_root/psn_b_dialog/psn_b_ad_limit_dialog/psn_b_ad_limit_dialo
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_fb_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_firebase_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_local_info.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
@@ -147,6 +149,14 @@ class PsnBCardChildCon extends PsnRootCon{
     });
   }
 
+  toMoreGame(){
+    PsnRootRouters.instance.router(
+      routersEnum: PsnRoutersEnum.toNamed,
+      content: "/root/web",
+      params: {"url": PsnLocalInfo.moreGame,"title":"More Fun"},
+    );
+  }
+
   test(){
     if(!kDebugMode){
       return;
@@ -164,6 +174,7 @@ class PsnBCardChildCon extends PsnRootCon{
     // PsnBCashUtils.instance.updateCashTask(TaskType.ad);
 
     PsnBUserInfoUtils.instance.updateUserCoins(200);
+
   }
 
   @override

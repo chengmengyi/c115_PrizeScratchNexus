@@ -1,6 +1,7 @@
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 
 StorageData<String> psnAlreadyFengKSource=StorageData<String>(key: "psnAlreadyFengKSource", defaultValue: "");
+StorageData<String> psnFacebookConfig=StorageData<String>(key: "psnFacebookConfig", defaultValue: "");
 StorageData<int> psnLastAdLevel=StorageData<int>(key: "psnLastAdLevel", defaultValue: 0);
 StorageData<int> psnAdWatchNum=StorageData<int>(key: "psnAdWatchNum", defaultValue: 0);
 

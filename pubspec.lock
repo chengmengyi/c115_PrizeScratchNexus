@@ -364,6 +364,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.7"
+  flutter_custom_facebook:
+    dependency: transitive
+    description:
+      name: flutter_custom_facebook
+      sha256: aeb860bb550cd3926a6258efd9c08700accd89aec942bf3b95e31f66cbe028ba
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   flutter_lints:
     dependency: "direct dev"
     description:

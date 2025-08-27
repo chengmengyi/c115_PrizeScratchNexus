@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:psn_root/psn_root_utils/psn_fb_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_storage.dart';
 
@@ -24,6 +25,7 @@ class PsnFirebaseUtils{
     }catch(e){
       await Future.delayed(const Duration(milliseconds: 1000));
       initFirebase();
+      PsnFbUtils.instance.initFb();
     }
   }
 
@@ -41,6 +43,11 @@ class PsnFirebaseUtils{
     if(risk_control.isNotEmpty){
       psnFengKConfigStr.saveData(risk_control);
       PsnFengkUtils.instance.initFengK();
+    }
+    var prizescratch_fb_inform = _remoteConfig?.getString("prizescratch_fb_inform")??"";
+    if(prizescratch_fb_inform.isNotEmpty){
+      psnFacebookConfig.saveData(prizescratch_fb_inform);
+      PsnFbUtils.instance.initFb();
     }
   }
 }

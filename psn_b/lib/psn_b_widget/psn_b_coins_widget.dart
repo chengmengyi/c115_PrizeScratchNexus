@@ -33,7 +33,7 @@ class PsnACoinsWidgetState extends PsnRootStatefulState<PsnBCoinsWidget>{
               color: "#000000".toColor()
             ),
           ),
-          child: PsnTextWidget(text: "\$${bUserCoins.getData()}", size: 36.sp, color: "#FFFFFF".toColor(),outlineColor: "#2B1E55".toColor(),),
+          child: PsnTextWidget(text: "\$${bUserCoins.getData()}", size: 28.sp, color: "#FFFFFF".toColor(),outlineColor: "#2B1E55".toColor(),),
         ),
         PsnImageWidget(name: "icon_money",width: 85.w,height: 85.w,),
       ],
