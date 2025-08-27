@@ -20,6 +20,9 @@ class PsnBValueUtils {
 
   setCallbackAndInit(){
     PsnFirebaseUtils.instance.valueCallback=(){
+      if(kDebugMode){
+        return;
+      }
       initValue();
     };
     initValue();

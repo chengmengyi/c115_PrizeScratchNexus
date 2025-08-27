@@ -13,6 +13,8 @@ import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBWheelChildCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
   var canClick=true,wheelNum=0;
@@ -45,6 +47,7 @@ class PsnBWheelChildCon extends PsnRootCon with GetSingleTickerProviderStateMixi
       return;
     }
     canClick=false;
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.wheel_page_c);
     PsnBCashUtils.instance.updateCashTask(TaskType.wheel);
     _wheelAnimationController..reset()..forward();
   }

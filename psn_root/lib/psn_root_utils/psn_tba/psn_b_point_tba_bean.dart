@@ -6,9 +6,7 @@ class PsnBPointTbaBean{
     var baseMap = await PsnBBaseTbaBean().getBaseMap();
     baseMap["oneill"]=pointEnum.name;
     if(null!=map){
-      for (var value in map.keys) {
-        baseMap[value]=map[value];
-      }
+      baseMap[pointEnum.name]=map;
     }
     return baseMap;
   }

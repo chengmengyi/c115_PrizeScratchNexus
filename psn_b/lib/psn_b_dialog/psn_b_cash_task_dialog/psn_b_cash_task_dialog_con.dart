@@ -1,3 +1,4 @@
+import 'package:psn_b/psn_b_bean/psb_cash_list_bean.dart';
 import 'package:psn_b/psn_b_bean/psn_cash_task_bean.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
@@ -13,8 +14,8 @@ class PsnBCashTaskDialogCon extends PsnRootCon{
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
   }
 
-  clickCashOut(){
-    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_task_pop_c);
+  clickCashOut(PsbCashListBean bean){
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_task_pop_c,params: {"pop_from":getPopFrom(bean.cashTaskBean)});
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showHomeIndex,intValue: 0);
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
   }

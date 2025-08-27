@@ -43,6 +43,9 @@ enum PsnTbaPointEnum{
   apwxi_ad_impression_fail,
   treasure_icon_c,
   treasure_c,
+  treasure_reward_c,
   session_custom,
   risk_chance,
+  flip_card_page,
+  card_c,
 }

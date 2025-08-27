@@ -42,6 +42,12 @@ class PsnBHomeCon extends PsnRootCon{
     };
   }
 
+  @override
+  void onReady() {
+    super.onReady();
+    _updateWheelNum();
+  }
+
   clickBottomBtn(index){
     if(tabIndex==index){
       return;

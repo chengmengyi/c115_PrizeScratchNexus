@@ -12,6 +12,7 @@ import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_user_guide_utils.dart';
+import 'package:psn_b/psn_b_utils/psn_wheel_utils.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_scratcher/scratcher.dart';
@@ -118,6 +119,7 @@ class PsnBPlayUtils {
 
   _checkLuckyCard(double totalReward){
     if(bGuaKaNum.getData()%3==0){
+      PsnWheelUtils.instance.updateWheelNum(1);
       PsnRootRouters.instance.router(
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBLuckyCardDialog(

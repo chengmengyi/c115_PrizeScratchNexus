@@ -46,7 +46,7 @@ class PsnBoxDialog extends PsnRootDialog<PsnBoxDialogCon>{
           builder: (_)=>Visibility(
             visible: psnCon.showGetAllBtn,
             child: PsnBBtnWidget(
-              text: "Double",
+              text: "Get All",
               bgName: "btn_green",
               showVideoIcon: true,
               onTap: (){
@@ -86,7 +86,7 @@ class PsnBoxDialog extends PsnRootDialog<PsnBoxDialogCon>{
           ),
           Visibility(
             visible: bean.open,
-            child: PsnTextWidget(text: "+\$100", size: 50.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),),
+            child: PsnTextWidget(text: "+\$${bean.reward}", size: 50.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),),
           ),
         ],
       ),

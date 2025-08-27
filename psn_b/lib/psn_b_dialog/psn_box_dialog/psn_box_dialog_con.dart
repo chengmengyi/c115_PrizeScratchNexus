@@ -70,7 +70,7 @@ class PsnBoxDialogCon extends PsnRootCon{
     if(!canClick){
       return;
     }
-    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.treasure_c);
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.treasure_reward_c);
     PsnAdUtils.instance.showAdBBBBBB(
       adType: AdType.reward,
       evnetEnum: PsnAdEventEnum.apwxi_box_rv,
@@ -87,6 +87,9 @@ class PsnBoxDialogCon extends PsnRootCon{
           });
         }
         for (var value in boxList) {
+          if(value.open){
+            continue;
+          }
           value.controller.animationState.setAnimationByName(0, "animation", false);
         }
       },

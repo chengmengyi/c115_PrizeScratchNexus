@@ -105,7 +105,7 @@ class PsnBCashTaskDialog extends PsnRootDialog<PsnBCashTaskDialogCon>{
                 text: "Cash out",
                 bgName: "btn_green",
                 onTap: (){
-                  psnCon.clickCashOut();
+                  psnCon.clickCashOut(bean);
                 },
               ),
             ],

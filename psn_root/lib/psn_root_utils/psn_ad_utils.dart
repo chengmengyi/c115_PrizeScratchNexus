@@ -82,7 +82,9 @@ class PsnAdUtils{
               clickTryCallback: (){
                 var data = FlutterIosAdHep.instance.getCacheResultData(adType);
                 if(null==data){
-                  closeCallback.call();
+                  if(adType==AdType.interstitial){
+                    closeCallback.call();
+                  }
                 }else{
                   _show(adType: adType, evnetEnum: evnetEnum, closeAd: closeCallback);
                 }

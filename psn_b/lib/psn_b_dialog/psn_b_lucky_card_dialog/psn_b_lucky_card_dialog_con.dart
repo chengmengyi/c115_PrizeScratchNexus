@@ -7,11 +7,20 @@ import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBLuckyCardDialogCon extends PsnRootCon{
   var canClick=true;
 
+  @override
+  void onInit() {
+    super.onInit();
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.flip_card_page);
+  }
+
   startLuckyCardFlipAnimator(){
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.card_c);
     canClick=false;
   }
 

@@ -20,11 +20,10 @@ packages:
   anythink_sdk:
     dependency: transitive
     description:
-      name: anythink_sdk
-      sha256: "993b5e718ae48a20d54f07d1d4779225f465b3a782088e5e3289f55cbcb63f6a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.7"
+      path: "../flutter_ad_ios_plugins/plugins/anythink_sdk"
+      relative: true
+    source: path
+    version: "1.0.5"
   applovin_max:
     dependency: transitive
     description:

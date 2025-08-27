@@ -9,6 +9,7 @@ import 'package:psn_b/psn_b_dialog/psn_b_level_up_dialog/psn_b_level_up_dialog.d
 import 'package:psn_b/psn_b_dialog/psn_b_lucky_card_dialog/psn_b_lucky_card_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_no_net_dialog/psn_b_no_net_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_unlock_dialog/psn_b_unlock_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_box_dialog/psn_box_dialog.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
@@ -158,7 +159,11 @@ class PsnBCardChildCon extends PsnRootCon{
     //   },
     // );
     
-    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBCashTipsDialog());
+    // PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBLuckyCardDialog(dismissCallback: (){}));
+
+    // PsnBCashUtils.instance.updateCashTask(TaskType.ad);
+
+    PsnBUserInfoUtils.instance.updateUserCoins(200);
   }
 
   @override
