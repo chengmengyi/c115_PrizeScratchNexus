@@ -32,6 +32,10 @@ class PsnBLevelUpDialogCon extends PsnRootCon{
         PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
         dismissCallback.call();
       },
+      closeDialogNotGiveMoney: (){
+        PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+        dismissCallback.call();
+      },
     );
   }
 
@@ -45,6 +49,7 @@ class PsnBLevelUpDialogCon extends PsnRootCon{
         PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
         dismissCallback.call();
       },
+      closeDialogNotGiveMoney: (){},
     );
   }
 }

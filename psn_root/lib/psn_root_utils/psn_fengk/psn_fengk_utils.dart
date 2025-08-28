@@ -120,9 +120,10 @@ class PsnFengkUtils{
     if(dioResult.success){
       try{
         var result = decrypt(dioResult.msg, 13);
+        print("kk==_checkIpDevice===${result}");
         var bfrog = jsonDecode(result)["data"]["bfrog"];
         if(bfrog&&_checkHasDevice("ip")){
-          saveAlreadyFengKTag("ip");
+          tbaUploadFengkTag("ip");
         }
       }catch(e){}
     }
@@ -130,12 +131,8 @@ class PsnFengkUtils{
 
   bool _checkHasDevice(String type)=>_fengkBean?.device?.contains(type)==true;
 
-  saveAlreadyFengKTag(String source){
-    tbaUploadFengkTag(source);
-    psnAlreadyFengKSource.saveData(source);
-  }
-
   tbaUploadFengkTag(String source){
+    psnAlreadyFengKSource.saveData(source);
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.risk_chance,params: {"risk_from":source});
   }
 

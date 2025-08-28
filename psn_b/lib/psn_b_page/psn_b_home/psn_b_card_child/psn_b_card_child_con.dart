@@ -175,6 +175,8 @@ class PsnBCardChildCon extends PsnRootCon{
 
     PsnBUserInfoUtils.instance.updateUserCoins(200);
 
+    // print("kk=====${PsnFengkUtils.instance.isFk()}");
+
   }
 
   @override

@@ -8,6 +8,10 @@ import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
 class PsnBAdLimitDialog extends PsnRootDialog<PsnBAdLimitDialogCon>{
+  Function() dismissCallback;
+  PsnBAdLimitDialog({
+    required this.dismissCallback,
+});
 
   @override
   PsnBAdLimitDialogCon onCon() => PsnBAdLimitDialogCon();
@@ -32,7 +36,7 @@ class PsnBAdLimitDialog extends PsnRootDialog<PsnBAdLimitDialogCon>{
           right: 29.w,
           child: PsnClick(
             onTap: (){
-              psnCon.clickClose();
+              psnCon.clickClose(dismissCallback);
             },
             child: PsnImageWidget(name: "icon_close2",width: 40.w,height: 40.w,),
           ),
@@ -51,7 +55,7 @@ class PsnBAdLimitDialog extends PsnRootDialog<PsnBAdLimitDialogCon>{
               SizedBox(height: 56.h,),
               PsnClick(
                 onTap: (){
-                  psnCon.clickClose();
+                  psnCon.clickClose(dismissCallback);
                 },
                 child: SizedBox(
                   width: 297.w,

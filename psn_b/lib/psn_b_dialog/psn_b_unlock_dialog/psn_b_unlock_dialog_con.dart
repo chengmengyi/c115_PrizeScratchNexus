@@ -23,6 +23,7 @@ class PsnBUnlockDialogCon extends PsnRootCon{
         await PsnBUserInfoUtils.instance.unlockCard(typeEnum);
         clickClose();
       },
+      closeDialogNotGiveMoney: (){},
     );
   }
 }

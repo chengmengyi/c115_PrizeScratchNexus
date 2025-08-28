@@ -106,7 +106,7 @@ class PsnBTbaUtils{
       data: pointMap,
       header: headerMap,
     );
-    "psn tba ad ---> result--->${dioResult.success}--->params--->$pointMap".log();
+    "psn tba point ---> result--->${dioResult.success}--->params--->$pointMap".log();
     if(!dioResult.success){
       if(tryNum>0){
         await Future.delayed(Duration(milliseconds: 1000));

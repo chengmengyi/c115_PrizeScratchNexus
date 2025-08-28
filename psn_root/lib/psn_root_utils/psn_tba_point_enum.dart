@@ -48,4 +48,5 @@ enum PsnTbaPointEnum{
   risk_chance,
   flip_card_page,
   card_c,
+  see_you_tommorow,
 }

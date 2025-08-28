@@ -11,7 +11,7 @@ import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBLuckyCardDialogCon extends PsnRootCon{
-  var canClick=true;
+  var canClick=true,showFinger=true;
 
   @override
   void onInit() {
@@ -22,6 +22,8 @@ class PsnBLuckyCardDialogCon extends PsnRootCon{
   startLuckyCardFlipAnimator(){
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.card_c);
     canClick=false;
+    showFinger=false;
+    update(["finger"]);
   }
 
   clickCardAnimatorEnd(double reward, Function() dismissCallback)async{
@@ -50,6 +52,10 @@ class PsnBLuckyCardDialogCon extends PsnRootCon{
       evnetEnum: PsnAdEventEnum.apwxi_flop_int,
       showAd: PsnBValueUtils.instance.showAd(AdType.interstitial),
       closeCallback: (){
+        PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+        dismissCallback.call();
+      },
+      closeDialogNotGiveMoney: (){
         PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
         dismissCallback.call();
       },

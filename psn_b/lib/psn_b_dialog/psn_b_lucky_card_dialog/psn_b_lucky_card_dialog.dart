@@ -6,6 +6,7 @@ import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_widget/psn_click.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
+import 'package:psn_root/psn_root_widget/psn_lottie_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
 class PsnBLuckyCardDialog extends PsnRootDialog<PsnBLuckyCardDialogCon>{
@@ -68,23 +69,40 @@ class PsnBLuckyCardDialog extends PsnRootDialog<PsnBLuckyCardDialogCon>{
       color: "#757A7A".toColor().withOpacity(0.2),
       borderRadius: BorderRadius.circular(24.w),
     ),
-    child: MasonryGridView.count(
-      padding: const EdgeInsets.all(0),
-      itemCount: 6,
-      shrinkWrap: true,
-      crossAxisCount: 3,
-      mainAxisSpacing: 11.h,
-      crossAxisSpacing: 18.w,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context,index)=>PsnBLuckyCardWidget(
-        index: index,
-        startLuckyCardFlipAnimator: (){
-          psnCon.startLuckyCardFlipAnimator();
-        },
-        clickCardAnimatorEnd: (reward){
-          psnCon.clickCardAnimatorEnd(reward,dismissCallback);
-        },
-      ),
+    child: Stack(
+      children: [
+        MasonryGridView.count(
+          padding: const EdgeInsets.all(0),
+          itemCount: 6,
+          shrinkWrap: true,
+          crossAxisCount: 3,
+          mainAxisSpacing: 11.h,
+          crossAxisSpacing: 18.w,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context,index)=>PsnBLuckyCardWidget(
+            index: index,
+            startLuckyCardFlipAnimator: (){
+              psnCon.startLuckyCardFlipAnimator();
+            },
+            clickCardAnimatorEnd: (reward){
+              psnCon.clickCardAnimatorEnd(reward,dismissCallback);
+            },
+          ),
+        ),
+        Positioned(
+          top: 100.h,
+          left: 50.w,
+          child: GetBuilder<PsnBLuckyCardDialogCon>(
+            id: "finger",
+            builder: (_)=>Visibility(
+              visible: psnCon.showFinger,
+              child: IgnorePointer(
+                child: PsnLottieWidget(name: "finger",width: 90.w,height: 90.w,),
+              ),
+            ),
+          ),
+        )
+      ],
     ),
   );
 }

@@ -24,6 +24,10 @@ class PsnBBigWinDialogCon extends PsnRootCon{
         PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
         dismissCallback.call();
       },
+      closeDialogNotGiveMoney: (){
+        PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+        dismissCallback.call();
+      },
     );
   }
 
@@ -37,6 +41,9 @@ class PsnBBigWinDialogCon extends PsnRootCon{
         PsnBUserInfoUtils.instance.updateUserCoins(twoNumMul(totalReward, 2));
         PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
         dismissCallback.call();
+      },
+      closeDialogNotGiveMoney: (){
+
       },
     );
   }

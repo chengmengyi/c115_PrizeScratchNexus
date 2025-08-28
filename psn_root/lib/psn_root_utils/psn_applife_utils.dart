@@ -55,6 +55,7 @@ class PsnApplifeUtils{
                   showAd: true,
                   isOpen: true,
                   closeCallback: (){},
+                  closeDialogNotGiveMoney: (){},
                 );
               }
               _isBackPsn=false;

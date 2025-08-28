@@ -38,6 +38,7 @@ class PsnLaunchCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
         closeCallback: (){
           toHome();
         },
+        closeDialogNotGiveMoney: (){},
       );
     }else{
       bShowOpenAd.saveData(true);

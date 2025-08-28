@@ -15,10 +15,14 @@ abstract class PsnRootPage<T extends PsnRootCon> extends StatelessWidget{
         alignment: Alignment.topCenter,
         children: [
           bgName().isEmpty?Container():PsnImageWidget(name: bgName(), width: double.infinity, height: double.infinity),
-          SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: onCreate(),
+          SafeArea(
+            top: false,
+            bottom: true,
+            child: SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: onCreate(),
+            ),
           ),
         ],
       ),

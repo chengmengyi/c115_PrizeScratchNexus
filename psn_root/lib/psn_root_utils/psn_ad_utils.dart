@@ -37,6 +37,7 @@ class PsnAdUtils{
       topOnAppId: PsnLocalInfo.topOnAppId.base64(),
       topOnAppKey: PsnLocalInfo.topOnAppKey.base64(),
       data: _createAdData(),
+      showMediationDebugger: true,
       fengKongLogic: (){
         return PsnFengkUtils.instance.isFk();
       },
@@ -55,18 +56,35 @@ class PsnAdUtils{
     required PsnAdEventEnum evnetEnum,
     required bool showAd,
     required Function() closeCallback,
+    required Function() closeDialogNotGiveMoney,
     bool isOpen=false,
   }){
     if(!showAd){
       closeCallback.call();
       return;
     }
-    if(AdNumHep.instance.notLoad()||PsnFengkUtils.instance.isFk()){
+    if(AdNumHep.instance.notLoad()){
       if(isOpen){
         closeCallback.call();
         return;
       }
-      PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBAdLimitDialog());
+      PsnRootRouters.instance.router(
+        routersEnum: PsnRoutersEnum.dialog,
+        content: PsnBAdLimitDialog(
+          dismissCallback: (){
+            closeDialogNotGiveMoney.call();
+          },
+        ),
+      );
+      return;
+    }
+    if(PsnFengkUtils.instance.isFk()){
+      if(isOpen){
+        closeCallback.call();
+        return;
+      }
+      "The advertisement cannot be loaded".showToast();
+      closeDialogNotGiveMoney.call();
       return;
     }
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.apwxi_ad_chance,params: {"ad_pos_id":evnetEnum.name});

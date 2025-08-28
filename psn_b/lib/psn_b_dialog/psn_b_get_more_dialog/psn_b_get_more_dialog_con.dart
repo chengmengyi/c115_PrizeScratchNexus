@@ -19,6 +19,10 @@ class PsnBGetMoreDialogCon extends PsnRootCon{
         PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
         clickClose?.call();
       },
+      closeDialogNotGiveMoney: (){
+        PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+        clickClose?.call();
+      },
     );
   }
 
@@ -30,6 +34,9 @@ class PsnBGetMoreDialogCon extends PsnRootCon{
       closeCallback: ()async{
         await PsnBUserInfoUtils.instance.updateCardNum(cardTypeEnum, 5);
         PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+      },
+      closeDialogNotGiveMoney: (){
+
       },
     );
   }

@@ -95,7 +95,7 @@ class PsnBPlayUtils {
         break;
     }
     bGuaKaNum.saveData(bGuaKaNum.getData()+1);
-    _checkUpLevel(totalReward);
+    _checkWinOrFail(totalReward);
   }
 
   _checkUpLevel(double totalReward){
@@ -124,12 +124,12 @@ class PsnBPlayUtils {
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBLuckyCardDialog(
           dismissCallback: (){
-            _checkWinOrFail(totalReward);
+            resetPlay();
           },
         ),
       );
     }else{
-      _checkWinOrFail(totalReward);
+      resetPlay();
     }
   }
 
@@ -143,7 +143,7 @@ class PsnBPlayUtils {
             reward: totalReward,
             cardTypeEnum: cardTypeEnum,
             dismissCallback: (){
-              resetPlay();
+              _checkUpLevel(totalReward);
             },
           ),
         );
@@ -154,7 +154,7 @@ class PsnBPlayUtils {
             reward: totalReward,
             cardTypeEnum: cardTypeEnum,
             dismissCallback: (){
-              resetPlay();
+              _checkUpLevel(totalReward);
             },
           ),
         );

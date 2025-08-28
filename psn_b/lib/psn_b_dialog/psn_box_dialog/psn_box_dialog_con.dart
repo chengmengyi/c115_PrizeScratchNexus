@@ -94,6 +94,7 @@ class PsnBoxDialogCon extends PsnRootCon{
           value.controller.animationState.setAnimationByName(0, "animation", false);
         }
       },
+      closeDialogNotGiveMoney: (){},
     );
   }
 
