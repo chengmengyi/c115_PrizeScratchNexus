@@ -45,8 +45,13 @@ class PsnAdUtils{
         startLoadAdCallback: (info){
 
         },
-        loadAdSuccessCallback: (maxAd,info){},
+        loadAdSuccessCallback: (maxAd,info,loadTime){
+          PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.zuytu_ad_return,params: {"ad_code_id":info?.adId,"ad_format":info?.adType.name,"ad_platform":info?.adPlat,"ad_request_time":loadTime});
+        },
         loadAdFailCallback: (info){},
+        initSdkSuccess: (time,platform){
+          PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.zuytu_ad_initsuc,params: {"ad_platform":platform,"oxrsl_ad_init_time":time});
+        },
       ),
     );
   }

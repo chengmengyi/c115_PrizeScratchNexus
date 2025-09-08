@@ -21,7 +21,7 @@
             android:id="@+id/fln_beauty_notify_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="12sp"
             tools:text="This is title" />
 
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:maxLines="3"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 tools:text="This is body" />

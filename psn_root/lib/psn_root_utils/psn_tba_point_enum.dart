@@ -49,4 +49,7 @@ enum PsnTbaPointEnum{
   flip_card_page,
   card_c,
   see_you_tommorow,
+  scratch_count,
+  zuytu_ad_return,
+  zuytu_ad_initsuc,
 }

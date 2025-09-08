@@ -33,6 +33,13 @@ class PsnBAndroidNotificationUtils{
     NotificationBean(title: "Grand Prize Arrives", content: "A new round of massive prizes is ready—unveil your moment of luck now!"),
   ];
 
+  final List<NotificationBean> _lockNotificationList=[
+    NotificationBean(title: "Scratch & Cash! 🎯", content: "\$500 instant win—cash out today!"),
+    NotificationBean(title: "Jackpot Scratch! 🎰", content: "\$1,000 prize revealed—claim your cash!"),
+    NotificationBean(title: "Cash Blast! 💥", content: "Scratch now for \$200 instant payout!"),
+    NotificationBean(title: "Win & Withdraw! 💰", content: "\$300 waiting—scrape to claim!"),
+  ];
+
   initNotification()async{
     if(Platform.isIOS){
       return;
@@ -85,12 +92,12 @@ class PsnBAndroidNotificationUtils{
   }
 
   _showLockNotification()async{
-    NotificationBean bean = _list.random();
+    NotificationBean bean = _lockNotificationList.random();
     await plugin.showBroadcastNotification(
       66,
       bean.title,
       bean.content,
-      Duration(minutes: 30),
+      Duration(seconds: 1),
       'android.intent.action.USER_PRESENT',
       AndroidNotificationDetails(
         'psn_channel_lock',

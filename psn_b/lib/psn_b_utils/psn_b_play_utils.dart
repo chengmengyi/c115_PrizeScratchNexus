@@ -60,6 +60,7 @@ class PsnBPlayUtils {
     _stopScratchAuto=true;
     scratcherKey.currentState?.reveal();
     PsnBCashUtils.instance.updateCashTask(TaskType.card);
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.scratch_count);
     await Future.delayed(Duration(milliseconds: 1000));
     canClick=true;
     var totalReward=0.0;

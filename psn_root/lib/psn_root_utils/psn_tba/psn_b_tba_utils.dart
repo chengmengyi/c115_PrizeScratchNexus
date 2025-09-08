@@ -6,6 +6,7 @@ import 'package:flutter_ad_ios_plugins/data/ad_money_info_bean.dart';
 import 'package:flutter_ad_ios_plugins/hep/ad_num_hep.dart';
 import 'package:flutter_ad_ios_plugins/hep/hep.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_local_info.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_sql/psn_root_sql_name.dart';
@@ -26,6 +27,12 @@ StorageData<bool> installEventStatus=StorageData<bool>(key: "installEventStatus"
 class PsnBTbaUtils{
   static final PsnBTbaUtils _utils=PsnBTbaUtils();
   static PsnBTbaUtils get instance => _utils;
+
+  final List<PsnTbaPointEnum> _filterFkPointList=[
+    PsnTbaPointEnum.coin_pop,
+    PsnTbaPointEnum.coin_pop_c,
+    PsnTbaPointEnum.coin_pop_close,
+  ];
 
   installEvent({int tryNum=5})async{
     if(installEventStatus.getData()){
@@ -97,6 +104,9 @@ class PsnBTbaUtils{
   }
 
   pointEvent({required PsnTbaPointEnum pointEnum,Map<String,dynamic>? params,int tryNum=5})async{
+    if(_filterFkPointList.contains(pointEnum)||PsnFengkUtils.instance.isFk()){
+      return;
+    }
     var pointMap = await PsnBPointTbaBean().getPointMap(pointEnum, params);
     var headerMap = await PsnBHeaderBean().getHeaderMap();
     var queryStr = await PsnBQueryBean().getQueryStr();

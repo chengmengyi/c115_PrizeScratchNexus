@@ -41,14 +41,12 @@ class PsnLaunchCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
         closeDialogNotGiveMoney: (){},
       );
     }else{
-      bShowOpenAd.saveData(true);
       toHome();
     }
   }
 
   toHome(){
-
-    // PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.offNamed, content: PsnAPageName.home);
+    bShowOpenAd.saveData(true);
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.offNamed, content: PsnBPageName.home);
   }
 
