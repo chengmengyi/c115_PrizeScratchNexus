@@ -16,13 +16,18 @@ class PsnLaunchPage extends PsnRootPage<PsnLaunchCon>{
   PsnLaunchCon onCon() => PsnLaunchCon();
 
   @override
-  Widget onCreate() => Column(
-    children: [
-      SizedBox(height: 280.h,),
-      _logoWidget(),
-      Spacer(),
-      _progressWidget(),
-    ],
+  Widget onCreate() => WillPopScope(
+    child: Column(
+      children: [
+        SizedBox(height: 280.h,),
+        _logoWidget(),
+        Spacer(),
+        _progressWidget(),
+      ],
+    ),
+    onWillPop: ()async{
+      return false;
+    },
   );
 
   _progressWidget()=>Column(

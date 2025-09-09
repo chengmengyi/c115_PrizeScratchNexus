@@ -52,4 +52,5 @@ enum PsnTbaPointEnum{
   scratch_count,
   zuytu_ad_return,
   zuytu_ad_initsuc,
+  zuytu_ad_imp_close,
 }

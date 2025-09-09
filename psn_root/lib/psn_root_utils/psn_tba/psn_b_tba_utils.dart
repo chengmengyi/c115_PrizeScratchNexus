@@ -104,7 +104,7 @@ class PsnBTbaUtils{
   }
 
   pointEvent({required PsnTbaPointEnum pointEnum,Map<String,dynamic>? params,int tryNum=5})async{
-    if(_filterFkPointList.contains(pointEnum)||PsnFengkUtils.instance.isFk()){
+    if(_filterFkPointList.contains(pointEnum)&&PsnFengkUtils.instance.isFk()){
       return;
     }
     var pointMap = await PsnBPointTbaBean().getPointMap(pointEnum, params);

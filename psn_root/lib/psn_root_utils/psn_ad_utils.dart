@@ -96,7 +96,7 @@ class PsnAdUtils{
     var resultData = FlutterIosAdHep.instance.getCacheResultData(adType);
     if(null==resultData){
       FlutterIosAdHep.instance.loadAdWhenNoCache(adType);
-      PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.apwxi_ad_no_chance,params: {"ad_pos_id":evnetEnum.name});
+      PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.apwxi_ad_impression_fail,params: {"ad_pos_id":evnetEnum.name,"reason":"ad_nocache"});
       if(isOpen){
         closeCallback.call();
       }else{
@@ -144,7 +144,7 @@ class PsnAdUtils{
           }
         },
         showFail: (){
-          PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.apwxi_ad_impression_fail,params: {"ad_pos_id":evnetEnum.name});
+          PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.apwxi_ad_impression_fail,params: {"ad_pos_id":evnetEnum.name,"reason":"impfail"});
           if(isOpen){
             closeAd.call();
           }else{
@@ -155,7 +155,17 @@ class PsnAdUtils{
             }
           }
         },
-        closeAd: (){
+        closeAd: (ad,info,hasReward){
+          //ad_pos_id、msg、ad_code_id、ad_format
+          PsnBTbaUtils.instance.pointEvent(
+            pointEnum: PsnTbaPointEnum.zuytu_ad_imp_close,
+            params: {
+              "ad_pos_id":evnetEnum.name,
+              "ad_code_id":info?.adId,
+              "ad_format":info?.adType.name,
+              "msg":hasReward?"impsus":"impfail",
+            },
+          );
           _checkRewardCloseTime(adType);
           lookAdCallback?.call();
           PsnMusicUtils.instance.playBackMp3();

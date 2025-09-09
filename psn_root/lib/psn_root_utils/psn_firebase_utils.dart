@@ -50,4 +50,9 @@ class PsnFirebaseUtils{
       PsnFbUtils.instance.initFb();
     }
   }
+
+  test(){
+    var risk_control = _remoteConfig?.getString("risk_control")??"";
+    print("kk====${risk_control}");
+  }
 }

@@ -23,7 +23,7 @@ class PsnLaunchCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
       })
       ..addStatusListener((status) {
         if(status==AnimationStatus.completed){
-          toHome();
+          checkUser();
         }
       })..forward();
   }

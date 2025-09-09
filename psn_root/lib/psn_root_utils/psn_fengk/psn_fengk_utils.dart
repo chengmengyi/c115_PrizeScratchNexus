@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_ad_ios_plugins/flutter_ios_ad_hep.dart';
 import 'package:flutter_check_af/dio/dio_hep.dart';
 import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_bean.dart';
@@ -157,6 +158,9 @@ class PsnFengkUtils{
   AdShortClose? getAdShortClose()=>_fengkBean?.behavior?.adShortClose;
 
   bool isFk(){
+    if(kDebugMode){
+      return false;
+    }
     var data = psnAlreadyFengKSource.getData();
     if(data.isNotEmpty){
       tbaUploadFengkTag(data);

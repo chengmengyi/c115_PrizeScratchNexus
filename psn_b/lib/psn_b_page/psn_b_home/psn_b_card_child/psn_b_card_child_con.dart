@@ -173,10 +173,11 @@ class PsnBCardChildCon extends PsnRootCon{
 
     // PsnBCashUtils.instance.updateCashTask(TaskType.ad);
 
-    PsnBUserInfoUtils.instance.updateUserCoins(200);
+    // PsnBUserInfoUtils.instance.updateUserCoins(200);
 
     // print("kk=====${PsnFengkUtils.instance.isFk()}");
 
+    PsnFirebaseUtils.instance.test();
   }
 
   @override

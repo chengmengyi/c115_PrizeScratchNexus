@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_page/psn_b_home/psn_b_home_con.dart';
 import 'package:psn_b/psn_b_widget/psn_b_home_top_widget.dart';
@@ -20,37 +22,26 @@ class PsnBHomePage extends PsnRootPage<PsnBHomeCon>{
   resizeToAvoidBottomInset() => false;
 
   @override
-  Widget onCreate() => GetBuilder<PsnBHomeCon>(
-    id: "page",
-    builder: (_)=>Column(
-      children: [
-        PsnBHomeTopWidget(),
-        Expanded(
-          child: IndexedStack(
-            index: psnCon.tabIndex,
-            children: psnCon.pageList,
+  Widget onCreate() => WillPopScope(
+    child: GetBuilder<PsnBHomeCon>(
+      id: "page",
+      builder: (_)=>Column(
+        children: [
+          PsnBHomeTopWidget(),
+          Expanded(
+            child: IndexedStack(
+              index: psnCon.tabIndex,
+              children: psnCon.pageList,
+            ),
           ),
-        ),
-        _bottomBtnWidget(),
-      ],
-    )
-    //     Stack(
-    //   children: [
-    //     // PsnImageWidget(name: psnCon.getBg(),width: double.infinity,height: double.infinity,),
-    //     Column(
-    //       children: [
-    //         PsnBHomeTopWidget(),
-    //         Expanded(
-    //           child: IndexedStack(
-    //             index: psnCon.tabIndex,
-    //             children: psnCon.pageList,
-    //           ),
-    //         ),
-    //         _bottomBtnWidget(),
-    //       ],
-    //     )
-    //   ],
-    // ),
+          _bottomBtnWidget(),
+        ],
+      ),
+    ),
+    onWillPop: ()async{
+      exit(0);
+      return false;
+    },
   );
 
   _bottomBtnWidget()=>SizedBox(
