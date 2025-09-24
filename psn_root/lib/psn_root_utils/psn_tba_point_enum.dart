@@ -51,6 +51,7 @@ enum PsnTbaPointEnum{
   see_you_tommorow,
   scratch_count,
   zuytu_ad_return,
+  ad_request,
   zuytu_ad_initsuc,
   zuytu_ad_imp_close,
 }

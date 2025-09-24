@@ -13,6 +13,7 @@ import 'package:psn_b/psn_b_dialog/psn_box_dialog/psn_box_dialog.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
+import 'package:psn_b/psn_b_utils/psn_b_play_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_user_guide_utils.dart';
@@ -177,7 +178,7 @@ class PsnBCardChildCon extends PsnRootCon{
 
     // print("kk=====${PsnFengkUtils.instance.isFk()}");
 
-    PsnFirebaseUtils.instance.test();
+    // PsnFirebaseUtils.instance.test();
   }
 
   @override

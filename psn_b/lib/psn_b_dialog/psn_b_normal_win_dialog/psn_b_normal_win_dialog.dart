@@ -8,8 +8,10 @@ import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
+import 'package:psn_root/psn_root_widget/psn_click.dart';
 import 'package:psn_root/psn_root_widget/psn_gradient_text.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
+import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
 class PsnBNormalWinDialog extends PsnRootDialog<PsnBNormalWinDialogCon>{
   double reward;
@@ -33,7 +35,10 @@ class PsnBNormalWinDialog extends PsnRootDialog<PsnBNormalWinDialogCon>{
   Widget onCreate() => Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      PsnImageWidget(name: "get1",width: 418.w,height: 230.h,),
+      ScaleTransition(
+        scale: psnCon.animation,
+        child: PsnImageWidget(name: "get1",width: 418.w,height: 230.h,),
+      ),
       Stack(
         alignment: Alignment.center,
         children: [
@@ -55,7 +60,8 @@ class PsnBNormalWinDialog extends PsnRootDialog<PsnBNormalWinDialogCon>{
       Visibility(
         visible: !PsnBUserGuideUtils.instance.checkShowStep3(),
         child: PsnBBtnWidget(
-          text: "Double",
+          width: 370.w,
+          text: "Claim \$${twoNumMul(reward, 2)}",
           bgName: "btn_green",
           showVideoIcon: true,
           onTap: (){
@@ -64,12 +70,23 @@ class PsnBNormalWinDialog extends PsnRootDialog<PsnBNormalWinDialogCon>{
         ),
       ),
       SizedBox(height: 36.h,),
-      PsnBBtnWidget(
-        text: "Claim",
-        bgName: "btn_blue",
-        onTap: (){
-          psnCon.clickClaim(cardTypeEnum,reward,dismissCallback);
-        },
+      GetBuilder<PsnBNormalWinDialogCon>(
+        id: "single_btn",
+        builder: (_)=>Visibility(
+          visible: psnCon.showSingleBtn,
+          child: PsnClick(
+            onTap: (){
+              psnCon.clickClaim(cardTypeEnum,reward,dismissCallback);
+            },
+            child: PsnTextWidget(
+              text: "Claim \$$reward",
+              size: 36.sp,
+              color: "#D4DEE2".toColor(),
+              textDecoration: TextDecoration.underline,
+              decorationColor: "#D4DEE2".toColor(),
+            ),
+          ),
+        ),
       ),
     ],
   );

@@ -36,6 +36,8 @@ class PsnWheelUtils{
     var wheelNum = map["wheelNum"] as int;
     map["wheelNum"]=wheelNum+updateNum;
     await database.update(PsnRootSqlName.bWheelInfo,map,where: '"id" = ?',whereArgs: [map["id"]]);
+    PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showWheelAnimator);
+    await Future.delayed(Duration(milliseconds: 800));
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateWheelNum);
   }
 }

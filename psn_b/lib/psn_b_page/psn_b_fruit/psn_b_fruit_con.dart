@@ -7,6 +7,7 @@ import 'package:psn_root/psn_root_page/psn_root_con.dart';
 
 class PsnBFruitCon extends PsnRootCon implements PlayListener{
   late PsnBPlayUtils playUtils;
+  var showGuaKaAnimator=true;
   List<Map<int, double>> probabilityList = PsnBValueUtils.instance.getFruitPoint();
 
   List<String> iconList=["icon_fruit1","icon_fruit2","icon_fruit3",];
@@ -25,6 +26,13 @@ class PsnBFruitCon extends PsnRootCon implements PlayListener{
     super.onReady();
     _initList();
     playUtils.initScratchWidthHeight();
+  }
+
+  onScratchStart(){
+    if(showGuaKaAnimator){
+      showGuaKaAnimator=false;
+      update(["guaka_animator"]);
+    }
   }
 
   _initList(){
@@ -95,5 +103,7 @@ class PsnBFruitCon extends PsnRootCon implements PlayListener{
   @override
   resetPlay() {
     _initList();
+    showGuaKaAnimator=true;
+    update(["guaka_animator"]);
   }
 }

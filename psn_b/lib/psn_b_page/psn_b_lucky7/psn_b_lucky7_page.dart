@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_page/psn_b_lucky7/psn_b_lucky7_con.dart';
 import 'package:psn_b/psn_b_widget/psn_b_guaka_animator_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_play_base_widget.dart';
+import 'package:psn_b/psn_b_widget/psn_play_logo_animator_widget.dart';
 import 'package:psn_root/psn_root_page/psn_root_page.dart';
 import 'package:psn_root/psn_root_scratcher/scratcher.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
@@ -11,7 +12,6 @@ import 'package:psn_root/psn_root_widget/psn_click.dart';
 import 'package:psn_root/psn_root_widget/psn_gradient_text.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_lottie_widget.dart';
-import 'package:psn_root/psn_root_widget/psn_spine_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
 class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
@@ -48,6 +48,13 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
             SizedBox(height: 6.h,),
             _guaWidget(),
           ],
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            margin: EdgeInsets.only(top: 40.h),
+            child: PsnPlayLogoAnimatorWidget(image: "lucky6", width: 508.w, height: 217.h),
+          ),
         ),
       ],
     ),

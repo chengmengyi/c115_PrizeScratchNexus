@@ -122,6 +122,17 @@ class PsnBUserInfoUtils {
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateHomeCard,anyValue: cardType);
   }
 
+  Future<bool> checkUnlock(PsnBCardTypeEnum cardType)async{
+    var database = await PsnRootSqlUtils.instance.initSql();
+    var list = await database.query(PsnRootSqlName.bCardNum,where: '"cardType" = ?',whereArgs: [cardType.name]);
+    if(list.isEmpty){
+      return false;
+    }
+    var first = list.first;
+    var cardBean = PsnBCardBean.fromJson(first);
+    return cardBean.unlock==0;
+  }
+
   updateUserCoins(double addNum){
     if(addNum==0){
       return;

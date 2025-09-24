@@ -8,8 +8,10 @@ import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
+import 'package:psn_root/psn_root_widget/psn_click.dart';
 import 'package:psn_root/psn_root_widget/psn_gradient_text.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
+import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
 class PsnBBigWinDialog extends PsnRootDialog<PsnBBigWinDialogCon>{
   double reward;
@@ -33,12 +35,15 @@ class PsnBBigWinDialog extends PsnRootDialog<PsnBBigWinDialogCon>{
   Widget onCreate() => Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          PsnImageWidget(name: "big1",width: 474.w,height: 260.h,),
-          PsnImageWidget(name: "big2",width: 326.w,height: 263.h,),
-        ],
+      ScaleTransition(
+        scale: psnCon.animation,
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            PsnImageWidget(name: "big1",width: 474.w,height: 260.h,),
+            PsnImageWidget(name: "big2",width: 326.w,height: 263.h,),
+          ],
+        ),
       ),
       Stack(
         alignment: Alignment.center,
@@ -61,7 +66,8 @@ class PsnBBigWinDialog extends PsnRootDialog<PsnBBigWinDialogCon>{
       Visibility(
         visible: !PsnBUserGuideUtils.instance.checkShowStep3(),
         child: PsnBBtnWidget(
-          text: "Double",
+          width: 370.w,
+          text: "Claim \$${twoNumMul(reward, 2)}",
           bgName: "btn_green",
           showVideoIcon: true,
           onTap: (){
@@ -70,12 +76,23 @@ class PsnBBigWinDialog extends PsnRootDialog<PsnBBigWinDialogCon>{
         ),
       ),
       SizedBox(height: 36.h,),
-      PsnBBtnWidget(
-        text: "Claim",
-        bgName: "btn_blue",
-        onTap: (){
-          psnCon.clickClaim(cardTypeEnum,reward,dismissCallback);
-        },
+      GetBuilder<PsnBBigWinDialogCon>(
+        id: "single_btn",
+        builder: (_)=>Visibility(
+          visible: psnCon.showSingleBtn,
+          child: PsnClick(
+            onTap: (){
+              psnCon.clickClaim(cardTypeEnum,reward,dismissCallback);
+            },
+            child: PsnTextWidget(
+              text: "Claim \$$reward",
+              size: 36.sp,
+              color: "#D4DEE2".toColor(),
+              textDecoration: TextDecoration.underline,
+              decorationColor: "#D4DEE2".toColor(),
+            ),
+          ),
+        ),
       ),
     ],
   );

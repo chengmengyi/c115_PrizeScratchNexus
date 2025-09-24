@@ -8,6 +8,7 @@ import 'package:psn_root/psn_root_page/psn_root_con.dart';
 
 class PsnBCollectorWinCon extends PsnRootCon implements PlayListener{
   late PsnBPlayUtils playUtils;
+  var showGuaKaAnimator=true;
 
   List<String> iconList=[];
 
@@ -26,6 +27,13 @@ class PsnBCollectorWinCon extends PsnRootCon implements PlayListener{
     super.onReady();
     _initContentList();
     playUtils.initScratchWidthHeight();
+  }
+
+  onScratchStart(){
+    if(showGuaKaAnimator){
+      showGuaKaAnimator=false;
+      update(["guaka_animator"]);
+    }
   }
 
   _initContentList(){
@@ -75,5 +83,7 @@ class PsnBCollectorWinCon extends PsnRootCon implements PlayListener{
   @override
   resetPlay() {
     _initContentList();
+    showGuaKaAnimator=true;
+    update(["guaka_animator"]);
   }
 }

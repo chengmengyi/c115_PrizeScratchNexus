@@ -29,7 +29,7 @@ class PsnApplifeUtils{
           }else{
             PsnMusicUtils.instance.playBackMp3();
             PsnBTbaUtils.instance.sessionEvent();
-            PsnBAndroidNotificationUtils.instance.checkNotificationShowNum();
+            // PsnBAndroidNotificationUtils.instance.checkNotificationShowNum();
             _psnTimer?.cancel();
             Future.delayed(const Duration(milliseconds: 100),(){
               // if(isToOpenNotifi){

@@ -9,4 +9,5 @@ class PsnBEventCode {
   static const int startLuckyCardFlipAnimator=107;
   static const int flipOtherLuckyCard=108;
   static const int showTopMoneyFinger=109;
+  static const int showWheelAnimator=110;
 }

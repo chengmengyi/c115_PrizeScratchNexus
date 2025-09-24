@@ -46,7 +46,9 @@ class PsnBUserGuideUtils{
   }
 
   setGuideStep3(){
-    _newUserGuideStep=3;
+    if(_newUserGuideStep==2){
+      _newUserGuideStep=3;
+    }
   }
 
   bool checkShowStep3(){

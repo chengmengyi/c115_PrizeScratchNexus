@@ -35,9 +35,11 @@ dependencies:
   flutter_app_lifecycle: 0.0.3
   flutter_custom_facebook: 0.0.5
   flutter_ad_ios_plugins:
-    path: plugins/flutter_ad_ios_plugins
-  flutter_local_notifications:
-    path: plugins/common_notifications-master
+    git:
+      url: https://github.com/Li-Xiang-Lan/flutter_ad_ios_plugins.git
+      ref: 0.1.7
+  birdsong:
+    path: plugins/common_push-output
   psn:
     path: plugins/psn
 

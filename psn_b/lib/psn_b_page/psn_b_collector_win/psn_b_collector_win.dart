@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_page/psn_b_collector_win/psn_b_collector_win_con.dart';
+import 'package:psn_b/psn_b_widget/psn_b_guaka_animator_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_play_base_widget.dart';
+import 'package:psn_b/psn_b_widget/psn_play_logo_animator_widget.dart';
 import 'package:psn_root/psn_root_page/psn_root_page.dart';
 import 'package:psn_root/psn_root_scratcher/scratcher.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
@@ -40,6 +42,13 @@ class PsnBCollectorWin extends PsnRootPage<PsnBCollectorWinCon>{
             _guaWidget(),
           ],
         ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            margin: EdgeInsets.only(top: 40.h),
+            child: PsnPlayLogoAnimatorWidget(image: "collector6", width: 478.w, height: 200.h),
+          ),
+        ),
       ],
     ),
   );
@@ -49,75 +58,87 @@ class PsnBCollectorWin extends PsnRootPage<PsnBCollectorWinCon>{
     height: 626.h,
     key: psnCon.playUtils.scratchGlobalKey,
     margin: EdgeInsets.only(left: 30.w,right: 30.w,bottom: 46.h),
-    child: Scratcher(
-      key: psnCon.playUtils.scratcherKey,
-      enabled: true,
-      brushSize: 40,
-      threshold: 40,
-      color: Colors.transparent,
-      image: Image.asset('assets/images/collector5.webp',fit: BoxFit.fill,),
-      onThreshold: (){
-        psnCon.playUtils.onThreshold();
-      },
-      onScratchUpdate: (details){
-        // smController.updateIconOffset(details);
-      },
-      onScratchStart: (){
-        // luckyController.onScratchStart();
-        // VoicePlayUtils.instance.playGua();
-      },
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          PsnImageWidget(name: "collector4",width: double.infinity,height: double.infinity,),
-          GetBuilder<PsnBCollectorWinCon>(
-            id: "list",
-            builder: (_)=>MasonryGridView.count(
-              padding: const EdgeInsets.all(0),
-              itemCount: psnCon.playUtils.contentList.length,
-              shrinkWrap: true,
-              crossAxisCount: 4,
-              mainAxisSpacing: 0,
-              crossAxisSpacing: 0,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context,index){
-                var bean = psnCon.playUtils.contentList[index];
-                return Container(
-                  width: double.infinity,
-                  height: 125.h,
-                  alignment: Alignment.center,
-                  child: PsnBreathingWidget(
-                    startAnimator: bean.win,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        PsnImageWidget(name: bean.content,height: 68.h,boxFit: BoxFit.fitHeight,),
-                        Row(
+    child: Stack(
+      children: [
+        Scratcher(
+          key: psnCon.playUtils.scratcherKey,
+          enabled: true,
+          brushSize: 40,
+          threshold: 40,
+          color: Colors.transparent,
+          image: Image.asset('assets/images/collector5.webp',fit: BoxFit.fill,),
+          onThreshold: (){
+            psnCon.playUtils.onThreshold();
+          },
+          onScratchUpdate: (details){
+            // smController.updateIconOffset(details);
+          },
+          onScratchStart: (){
+            psnCon.onScratchStart();
+          },
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              PsnImageWidget(name: "collector4",width: double.infinity,height: double.infinity,),
+              GetBuilder<PsnBCollectorWinCon>(
+                id: "list",
+                builder: (_)=>MasonryGridView.count(
+                  padding: const EdgeInsets.all(0),
+                  itemCount: psnCon.playUtils.contentList.length,
+                  shrinkWrap: true,
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 0,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context,index){
+                    var bean = psnCon.playUtils.contentList[index];
+                    return Container(
+                      width: double.infinity,
+                      height: 125.h,
+                      alignment: Alignment.center,
+                      child: PsnBreathingWidget(
+                        startAnimator: bean.win,
+                        child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            PsnImageWidget(name: "icon_money",width: 28.w,height: 28.h,),
-                            SizedBox(width: 8.w,),
-                            PsnGradientText(
-                              data: "${bean.reward}",
-                              gradient: LinearGradient(
-                                  colors: ["#FFFFFF".toColor(),"#F6D72A".toColor()],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter
-                              ),
-                              size: 26.sp,
-                              outlineColor: "#0C0D0E".toColor(),
-                            ),
+                            PsnImageWidget(name: bean.content,height: 68.h,boxFit: BoxFit.fitHeight,),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                PsnImageWidget(name: "icon_money",width: 28.w,height: 28.h,),
+                                SizedBox(width: 8.w,),
+                                PsnGradientText(
+                                  data: "${bean.reward}",
+                                  gradient: LinearGradient(
+                                      colors: ["#FFFFFF".toColor(),"#F6D72A".toColor()],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter
+                                  ),
+                                  size: 26.sp,
+                                  outlineColor: "#0C0D0E".toColor(),
+                                ),
+                              ],
+                            )
                           ],
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              },
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
+        GetBuilder<PsnBCollectorWinCon>(
+          id: "guaka_animator",
+          builder: (_)=>Visibility(
+            visible: psnCon.showGuaKaAnimator,
+            child: IgnorePointer(
+              child: PsnBGuakaAnimatorWidget(),
             ),
-          )
-        ],
-      ),
+          ),
+        ),
+      ],
     ),
   );
 

@@ -9,6 +9,7 @@ class PsnBBtnWidget extends StatelessWidget{
   String text;
   String bgName;
   bool showVideoIcon;
+  double? width;
   Widget? leftIcon;
   Function()? onTap;
   PsnBBtnWidget({
@@ -17,6 +18,7 @@ class PsnBBtnWidget extends StatelessWidget{
     this.leftIcon,
     this.showVideoIcon=false,
     this.onTap,
+    this.width,
 });
 
   @override
@@ -25,7 +27,7 @@ class PsnBBtnWidget extends StatelessWidget{
       onTap?.call();
     },
     child: SizedBox(
-      width: 297.w,
+      width: width??297.w,
       height: 107.h,
       child: Stack(
         children: [

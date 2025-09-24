@@ -106,10 +106,7 @@ class PsnBPlayUtils {
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBLevelUpDialog(
           dismissCallback: ()async{
-            var resultBean = calculateLevel();
-            var psnACardTypeEnum = PsnBCardTypeEnum.values[resultBean.level-1];
-            await PsnBUserInfoUtils.instance.unlockCard(psnACardTypeEnum);
-            _checkLuckyCard(totalReward);
+            _checkToNextPlay(totalReward);
           },
         ),
       );
@@ -117,20 +114,36 @@ class PsnBPlayUtils {
       _checkLuckyCard(totalReward);
     }
   }
-
   _checkLuckyCard(double totalReward){
     if(bGuaKaNum.getData()%3==0){
-      PsnWheelUtils.instance.updateWheelNum(1);
       PsnRootRouters.instance.router(
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBLuckyCardDialog(
           dismissCallback: (){
+            PsnWheelUtils.instance.updateWheelNum(1);
             resetPlay();
           },
         ),
       );
     }else{
       resetPlay();
+    }
+  }
+
+  _checkToNextPlay(double totalReward)async{
+    var resultBean = calculateLevel();
+    var psnACardTypeEnum = PsnBCardTypeEnum.values[resultBean.level-1];
+    var unlock = await PsnBUserInfoUtils.instance.checkUnlock(psnACardTypeEnum);
+    if(unlock){
+      _checkLuckyCard(totalReward);
+    }else{
+      await PsnBUserInfoUtils.instance.unlockCard(psnACardTypeEnum);
+      var routerName = getRouterNameByCardType(psnACardTypeEnum);
+      if(routerName.isEmpty){
+        _checkLuckyCard(totalReward);
+      }else{
+        PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.offNamed, content: routerName);
+      }
     }
   }
 

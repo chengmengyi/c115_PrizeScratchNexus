@@ -16,7 +16,7 @@ import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBLucky7Con extends PsnRootCon implements PlayListener{
   late PsnBPlayUtils playUtils;
-  var showGuaKaAnimator=false,showTopFinger=false;
+  var showGuaKaAnimator=true,showTopFinger=false;
 
   @override
   void onInit() {
@@ -67,6 +67,8 @@ class PsnBLucky7Con extends PsnRootCon implements PlayListener{
   @override
   resetPlay() {
     _initList();
+    showGuaKaAnimator=true;
+    update(["guaka_animator"]);
   }
 
   clickCash(){

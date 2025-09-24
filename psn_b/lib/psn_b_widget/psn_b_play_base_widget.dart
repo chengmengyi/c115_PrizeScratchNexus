@@ -4,12 +4,19 @@ import 'package:psn_b/psn_b_widget/psn_b_bottom_btn_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_card_num_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_level_content_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_top_widget.dart';
+import 'package:psn_b/psn_b_widget/psn_box_widget.dart';
+import 'package:psn_b/psn_b_widget/psn_box_widget_copy.dart';
+import 'package:psn_b/psn_b_widget/psn_wheel_animator_widget.dart';
+import 'package:psn_b/psn_b_widget/psn_wheel_widget.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 
 class PsnBPlayBaseWidget extends StatelessWidget{
   Widget child;
   PsnBPlayUtils playUtils;
   EdgeInsets? margin;
+
+  GlobalKey globalKey=GlobalKey();
+
   PsnBPlayBaseWidget({
     required this.child,
     required this.playUtils,
@@ -36,6 +43,23 @@ class PsnBPlayBaseWidget extends StatelessWidget{
                 child: PsnBCardNumWidget(
                   cardTypeEnum: playUtils.cardTypeEnum,
                 ),
+              ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    PsnBoxWidgetCopy(),
+                    SizedBox(
+                      key: globalKey,
+                      child: PsnWheelWidget(),
+                    ),
+                  ],
+                ),
+              ),
+              PsnWheelAnimatorWidget(
+                endGlobalKey: globalKey,
               ),
             ],
           ),

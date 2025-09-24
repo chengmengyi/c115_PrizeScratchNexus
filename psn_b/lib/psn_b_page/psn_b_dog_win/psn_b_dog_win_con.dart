@@ -8,6 +8,7 @@ import 'package:psn_root/psn_root_page/psn_root_con.dart';
 
 class PsnBDogWinCon extends PsnRootCon implements PlayListener{
   late PsnBPlayUtils playUtils;
+  var showGuaKaAnimator=true;
   List<Map<int, double>> probabilityList = PsnBValueUtils.instance.getDogPoint();
 
   @override
@@ -24,6 +25,14 @@ class PsnBDogWinCon extends PsnRootCon implements PlayListener{
     super.onReady();
     _initContentList();
     playUtils.initScratchWidthHeight();
+  }
+
+
+  onScratchStart(){
+    if(showGuaKaAnimator){
+      showGuaKaAnimator=false;
+      update(["guaka_animator"]);
+    }
   }
 
   _initContentList(){
@@ -62,5 +71,7 @@ class PsnBDogWinCon extends PsnRootCon implements PlayListener{
   @override
   resetPlay() {
     _initContentList();
+    showGuaKaAnimator=true;
+    update(["guaka_animator"]);
   }
 }
