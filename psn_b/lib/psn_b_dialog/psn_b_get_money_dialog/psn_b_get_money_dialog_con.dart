@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_no_net_dialog/psn_b_no_net_dialog.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
@@ -10,7 +12,18 @@ import 'package:psn_root/psn_root_utils/psn_ad_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 
-class PsnBGetMoneyDialogCon extends PsnRootCon{
+class PsnBGetMoneyDialogCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
+  Timer? _timer;
+  var showSingleBtn=false;
+  late AnimationController _controller;
+  late Animation<double> animation;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _initAnimator();
+  }
+
   clickClaim(PsnAdEventEnum adEventEnum,double totalReward,Function() dismissCallback)async{
     PsnAdUtils.instance.showAdBBBBBB(
       adType: AdType.interstitial,
@@ -48,5 +61,31 @@ class PsnBGetMoneyDialogCon extends PsnRootCon{
 
       },
     );
+  }
+
+  _initAnimator(){
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
+
+    animation = Tween<double>(begin: 0.8, end: 1.0)
+        .animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+    _controller.repeat(reverse: true);
+
+    _timer=Timer(Duration(milliseconds: 2000), (){
+      showSingleBtn=true;
+      update(["single_btn"]);
+    });
+  }
+  @override
+  void onClose() {
+    _timer?.cancel();
+    _timer=null;
+    _controller.dispose();
+    super.onClose();
   }
 }

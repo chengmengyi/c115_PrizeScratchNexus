@@ -32,7 +32,7 @@ class PsnSpineWidget extends StatelessWidget{
           controller.animationState.setAnimationByName(0, animatorName, true);
         },
       ),
-      fit: fit??BoxFit.fill,
+      // fit: fit??BoxFit.fill,
     ),
   );
 }

@@ -14,7 +14,7 @@ import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBNormalWinDialogCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
-  Timer? _timer;
+  // Timer? _timer;
   var showSingleBtn=false;
   late AnimationController _controller;
   late Animation<double> animation;
@@ -74,15 +74,15 @@ class PsnBNormalWinDialogCon extends PsnRootCon with GetSingleTickerProviderStat
     ));
     _controller.repeat(reverse: true);
 
-    _timer=Timer(Duration(milliseconds: 2000), (){
-      showSingleBtn=true;
-      update(["single_btn"]);
-    });
+    // _timer=Timer(Duration(milliseconds: 2000), (){
+    //   showSingleBtn=true;
+    //   update(["single_btn"]);
+    // });
   }
   @override
   void onClose() {
-    _timer?.cancel();
-    _timer=null;
+    // _timer?.cancel();
+    // _timer=null;
     _controller.dispose();
     super.onClose();
   }
