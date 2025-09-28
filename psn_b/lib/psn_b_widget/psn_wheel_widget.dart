@@ -52,6 +52,9 @@ class _PsnWheelWidgetState extends PsnRootStatefulState<PsnWheelWidget>{
   }
 
   @override
+  bool initEvent() => true;
+
+  @override
   receivedEventBus(int code, int? intValue, String? strValue, anyValue) {
     switch(code){
       case PsnBEventCode.updateWheelNum:

@@ -34,6 +34,9 @@ class PsnBValueUtils {
       if(data.isEmpty){
         data = PsnLocalInfo.valueStr.base64();
       }
+      if(kDebugMode){
+        data = PsnLocalInfo.valueStr.base64();
+      }
       _valueBean=PsbBValueBean.fromJson(jsonDecode(data));
     }catch(e){
       _valueBean=PsbBValueBean.fromJson(jsonDecode(PsnLocalInfo.valueStr.base64()));
@@ -215,4 +218,8 @@ class PsnBValueUtils {
       return list.last;
     }
   }
+
+  AllRank? getAllRank()=>_valueBean?.allRank??AllRank(intAll: 468,intAllDelete: [10,15]);
+
+  CurrentRank? getCurrentRank()=>_valueBean?.currentRank??CurrentRank(intCurrent: 99,intCurrentDelete: [3,5]);
 }

@@ -1,5 +1,8 @@
 
+import 'dart:math';
+
 import 'package:psn_b/psn_b_bean/psn_cash_task_bean.dart';
+import 'package:psn_b/psn_b_bean/psn_rank_bean.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
@@ -36,7 +39,7 @@ class PsnBCashUtils{
     return PsnCashTaskBean.fromJson(list.first);
   }
 
-  Future<bool> createCashTask(int cashMoney,String cashType)async{
+  Future<bool> createCashTask(int cashMoney,String cashType,String account)async{
     var database = await PsnRootSqlUtils.instance.initSql();
     var list = await database.query(PsnRootSqlName.bCashTask,where: '"cashType" = ? AND "cashMoney" = ?',whereArgs: [cashType,cashMoney]);
     if(list.isNotEmpty){
@@ -55,8 +58,22 @@ class PsnBCashUtils{
       totalProgress: cashTaskConfig.count,
     );
     await database.insert(PsnRootSqlName.bCashTask, cashTaskBean.toJson());
+    await database.insert(PsnRootSqlName.bCashAccount, {"cashType":cashType,"cashMoney":cashMoney,"account":account});
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCashList);
     return true;
+  }
+
+  Future<String> queryAccount(int cashMoney,String cashType,)async{
+    var database = await PsnRootSqlUtils.instance.initSql();
+    var list = await database.query(PsnRootSqlName.bCashAccount,where: '"cashType" = ? AND "cashMoney" = ?',whereArgs: [cashType,cashMoney]);
+    if(list.isEmpty){
+      return "";
+    }
+    var account = list.first["account"] as String;
+    if(account.length<=2){
+      return account;
+    }
+    return "${account.substring(0,2)}***";
   }
 
   updateCashTask(String taskType)async{
@@ -96,6 +113,74 @@ class PsnBCashUtils{
     for (var value in list) {
       await database.delete(PsnRootSqlName.bCashTask,where: '"id" = ?',whereArgs: [value["id"]]);
     }
+  }
+
+  Future<PsnRankBean?> queryRankProgress(int cashMoney,String cashType)async{
+    var database = await PsnRootSqlUtils.instance.initSql();
+    var list = await database.query(PsnRootSqlName.bCashRank,where: '"cashType" = ? AND "cashMoney" = ?',whereArgs: [cashType,cashMoney]);
+    if(list.isEmpty){
+      return null;
+    }
+    var rankBean = PsnRankBean.fromJson(list.first);
+    return rankBean;
+  }
+
+  createRankProgress(int cashMoney,String cashType)async{
+    var database = await PsnRootSqlUtils.instance.initSql();
+    var list = await database.query(PsnRootSqlName.bCashRank,where: '"cashType" = ? AND "cashMoney" = ?',whereArgs: [cashType,cashMoney]);
+    if(list.isNotEmpty){
+      return;
+    }
+    var rankBean = PsnRankBean(
+      cashMoney: cashMoney,
+      cashType: cashType,
+      currentRank: PsnBValueUtils.instance.getCurrentRank()?.intCurrent,
+      totalRank: PsnBValueUtils.instance.getAllRank()?.intAll,
+    );
+    await database.insert(PsnRootSqlName.bCashRank, rankBean.toJson());
+  }
+
+  Future<PsnRankBean?> updateRankProgress(PsnRankBean? bean)async{
+    var database = await PsnRootSqlUtils.instance.initSql();
+    var list = await database.query(PsnRootSqlName.bCashRank,where: '"cashType" = ? AND "cashMoney" = ?',whereArgs: [bean?.cashType,bean?.cashMoney]);
+    if(list.isEmpty){
+      return bean;
+    }
+    var reduceCurrent = randomInRange(PsnBValueUtils.instance.getCurrentRank()?.intCurrentDelete??[]);
+    var reduceAll = randomInRange(PsnBValueUtils.instance.getAllRank()?.intAllDelete??[]);
+    bean?.currentRank=(bean.currentRank??0)-reduceCurrent;
+    bean?.totalRank=(bean.totalRank??0)-reduceAll;
+    if((bean?.currentRank??0)<=0){
+      bean?.currentRank=1;
+    }
+    if((bean?.totalRank??0)<=0){
+      bean?.totalRank=1;
+    }
+    await database.update(PsnRootSqlName.bCashRank, bean?.toJson()??{},where: '"id" = ?',whereArgs: [list.first["id"]]);
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCashList);
+    return bean;
+  }
+
+  deleteRankProgress(PsnRankBean bean)async{
+    var database = await PsnRootSqlUtils.instance.initSql();
+    var list = await database.query(PsnRootSqlName.bCashRank,where: '"cashType" = ? AND "cashMoney" = ?',whereArgs: [bean.cashType,bean.cashMoney]);
+    if(list.isEmpty){
+      return;
+    }
+    await database.delete(PsnRootSqlName.bCashRank,where: '"id" = ?',whereArgs: [list.first["id"]]);
+    PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCashList);
+  }
+
+  int randomInRange(List<int> list) {
+    if(list.isEmpty){
+      return 0;
+    }
+    if(list.length==1){
+      return list.first;
+    }
+    var min = list.first;
+    var max = list.last;
+    final random = Random();
+    return min + random.nextInt(max - min + 1);
   }
 }

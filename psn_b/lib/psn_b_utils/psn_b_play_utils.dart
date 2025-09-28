@@ -9,10 +9,12 @@ import 'package:psn_b/psn_b_dialog/psn_b_normal_win_dialog/psn_b_normal_win_dial
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
+import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_user_guide_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_wheel_utils.dart';
+import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_scratcher/scratcher.dart';
@@ -95,7 +97,7 @@ class PsnBPlayUtils {
         totalReward = contentList.where((item) => item.win).fold(0, (sum, item) => twoNumAdd(sum, item.reward));
         break;
     }
-    bGuaKaNum.saveData(bGuaKaNum.getData()+1);
+    bCardProgress.saveData(bCardProgress.getData()+1);
     _checkWinOrFail(totalReward);
   }
 
@@ -114,8 +116,11 @@ class PsnBPlayUtils {
       _checkLuckyCard(totalReward);
     }
   }
-  _checkLuckyCard(double totalReward){
-    if(bGuaKaNum.getData()%3==0){
+  _checkLuckyCard(double totalReward)async{
+    PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCardProgress);
+    if(bCardProgress.getData()>=3){
+      PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showBottomLeftCardAnimator);
+      await Future.delayed(Duration(milliseconds: 700));
       PsnRootRouters.instance.router(
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBLuckyCardDialog(

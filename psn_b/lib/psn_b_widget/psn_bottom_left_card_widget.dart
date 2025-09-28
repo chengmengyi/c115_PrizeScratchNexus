@@ -1,0 +1,89 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
+import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
+import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
+import 'package:psn_root/psn_root_page/psn_root_statefull.dart';
+import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+import 'package:psn_root/psn_root_widget/psn_click.dart';
+import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
+
+class PsnBottomLeftCardWidget extends PsnRootStateful{
+  @override
+  State<StatefulWidget> createState() => _PsnBottomLeftCardWidgetState();
+}
+
+class _PsnBottomLeftCardWidgetState extends PsnRootStatefulState<PsnBottomLeftCardWidget>{
+  var currentIndex=0;
+  GlobalKey globalKey=GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    _getProgress();
+  }
+
+  @override
+  Widget build(BuildContext context) => Stack(
+    alignment: Alignment.bottomLeft,
+    children: [
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            key: globalKey,
+            child: PsnImageWidget(name: currentIndex>=2?"card6":"card5",width: 141.w,height: 136.h,),
+          ),
+          SizedBox(width: 10.w,),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _circleItemWidget(0),
+              SizedBox(height: 16.h,),
+              Container(
+                margin: EdgeInsets.only(left: 25.w),
+                child: _circleItemWidget(1),
+              ),
+              SizedBox(height: 16.h,),
+              _circleItemWidget(2),
+            ],
+          ),
+        ],
+      ),
+      PsnImageWidget(name: "card7",height: 30.h,boxFit: BoxFit.fitHeight,),
+    ],
+  );
+
+  _circleItemWidget(index)=>PsnImageWidget(name: currentIndex>index?"card9":"card8",width: 22.w,height: 22.w,);
+
+  @override
+  bool initEvent() => true;
+
+  @override
+  receivedEventBus(int code, int? intValue, String? strValue, anyValue) {
+    switch(code){
+      case PsnBEventCode.updateCardProgress:
+        _getProgress();
+        break;
+    }
+  }
+
+  _getProgress()async{
+    setState(() {
+      currentIndex = bCardProgress.getData();
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) async{
+      if(currentIndex>=3){
+        var renderBox = globalKey.currentContext?.findRenderObject() as RenderBox;
+        var offset = renderBox.localToGlobal(Offset.zero);
+        PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showBottomLeftCardAnimator,anyValue: offset);
+        await Future.delayed(Duration(milliseconds: 700));
+        bCardProgress.saveData(0);
+        setState(() {
+          currentIndex=0;
+        });
+      }
+    });
+  }
+}

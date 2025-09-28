@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_bean/psn_b_card_bean.dart';
+import 'package:psn_b/psn_b_bean/psn_rank_bean.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_cash_tips_dialog/psn_b_cash_tips_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_get_more_dialog/psn_b_get_more_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_level_up_dialog/psn_b_level_up_dialog.dart';
@@ -10,12 +11,16 @@ import 'package:psn_b/psn_b_dialog/psn_b_lucky_card_dialog/psn_b_lucky_card_dial
 import 'package:psn_b/psn_b_dialog/psn_b_no_net_dialog/psn_b_no_net_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_unlock_dialog/psn_b_unlock_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_box_dialog/psn_box_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_rank_dialog/psn_rank_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_rank_tips_animator_dialog/psn_rank_tips_animator_dialog.dart';
+import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_b_play_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
+import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_user_guide_utils.dart';
 import 'package:psn_root/psn_b_dialog/psn_b_ad_fail_dialog/psn_b_ad_fail_dialog.dart';
 import 'package:psn_root/psn_b_dialog/psn_b_ad_limit_dialog/psn_b_ad_limit_dialog.dart';
@@ -179,6 +184,21 @@ class PsnBCardChildCon extends PsnRootCon{
     // print("kk=====${PsnFengkUtils.instance.isFk()}");
 
     // PsnFirebaseUtils.instance.test();
+
+    // bAlreadyShowCashTipsDialog.saveData(false);
+    // PsnBUserInfoUtils.instance.updateUserCoins(-200);
+
+    PsnBUserInfoUtils.instance.updateUserCoins(200);
+    // PsnBCashUtils.instance.updateCashTask(TaskType.lucky);
+    // PsnBValueUtils.instance.initValue();
+
+    // PsnBCashUtils.instance.queryRankProgress(1000, CashType.pay);
+    // PsnBCashUtils.instance.createRankProgress(1000, CashType.pay);
+
+    // PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnRankDialog(
+    //   rankBean: PsnRankBean(currentRank: 111,totalRank: 222),
+    // ));
+
   }
 
   @override

@@ -11,7 +11,10 @@ class PsbBValueBean {
       this.spinWheelPrizes, 
       this.luckyCardPrizes, 
       this.levelUpPrizes, 
-      this.withdrawTask,});
+      this.withdrawTask,
+      this.allRank,
+      this.currentRank,
+  });
 
   PsbBValueBean.fromJson(dynamic json) {
     if (json['ad_incentives'] != null) {
@@ -32,6 +35,8 @@ class PsbBValueBean {
     cardKingReward = json['card_king_reward'] != null ? CardKingReward.fromJson(json['card_king_reward']) : null;
     fruitLineupReward = json['fruit_lineup_reward'] != null ? FruitLineupReward.fromJson(json['fruit_lineup_reward']) : null;
     numberWinnerReward = json['number_winner_reward'] != null ? NumberWinnerReward.fromJson(json['number_winner_reward']) : null;
+    allRank = json['all_rank'] != null ? AllRank.fromJson(json['all_rank']) : null;
+    currentRank = json['current_rank'] != null ? CurrentRank.fromJson(json['current_rank']) : null;
     if (json['spin_wheel_prizes'] != null) {
       spinWheelPrizes = [];
       json['spin_wheel_prizes'].forEach((v) {
@@ -64,6 +69,8 @@ class PsbBValueBean {
   List<Reward>? luckyCardPrizes;
   List<int>? levelUpPrizes;
   List<WithdrawTask>? withdrawTask;
+  AllRank? allRank;
+  CurrentRank? currentRank;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -100,6 +107,12 @@ class PsbBValueBean {
     map['level_up_prizes'] = levelUpPrizes;
     if (withdrawTask != null) {
       map['withdraw_task'] = withdrawTask?.map((v) => v.toJson()).toList();
+    }
+    if (allRank != null) {
+      map['all_rank'] = allRank?.toJson();
+    }
+    if (currentRank != null) {
+      map['current_rank'] = currentRank?.toJson();
     }
     return map;
   }
@@ -426,6 +439,48 @@ class AdIncentives {
     map['lower_bound'] = lowerBound;
     map['points'] = points;
     map['upper_bound'] = upperBound;
+    return map;
+  }
+
+}
+
+class AllRank {
+  AllRank({
+    this.intAll,
+    this.intAllDelete,});
+
+  AllRank.fromJson(dynamic json) {
+    intAll = json['int_all'];
+    intAllDelete = json['int_all_delete'] != null ? json['int_all_delete'].cast<int>() : [];
+  }
+  int? intAll;
+  List<int>? intAllDelete;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['int_all'] = intAll;
+    map['int_all_delete'] = intAllDelete;
+    return map;
+  }
+
+}
+
+class CurrentRank {
+  CurrentRank({
+    this.intCurrent,
+    this.intCurrentDelete,});
+
+  CurrentRank.fromJson(dynamic json) {
+    intCurrent = json['int_current'];
+    intCurrentDelete = json['int_current_delete'] != null ? json['int_current_delete'].cast<int>() : [];
+  }
+  int? intCurrent;
+  List<int>? intCurrentDelete;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['int_current'] = intCurrent;
+    map['int_current_delete'] = intCurrentDelete;
     return map;
   }
 

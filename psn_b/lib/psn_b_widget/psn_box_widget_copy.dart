@@ -108,6 +108,9 @@ class _PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidgetCopy>{
   }
 
   String formatMsToMinSec(int milliseconds) {
+    if(milliseconds<=0){
+      return "Claim";
+    }
     int totalSeconds = (milliseconds / 1000).floor();
     int minutes = totalSeconds ~/ 60;
     int seconds = totalSeconds % 60;

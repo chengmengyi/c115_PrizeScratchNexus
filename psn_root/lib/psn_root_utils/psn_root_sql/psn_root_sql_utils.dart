@@ -7,14 +7,17 @@ class PsnRootSqlUtils {
 
   Future<Database> initSql() async => await openDatabase(
       "psn.db",
-      version: 2,
+      version: 3,
       onCreate: (db,version)async{
         db.execute('CREATE TABLE ${PsnRootSqlName.aCardNum} (id INTEGER PRIMARY KEY AUTOINCREMENT, cardType TEXT, cardNum INTEGER, unlock INTEGER)');
         _createVersion2DB(db);
+        _createVersion3DB(db);
       },
       onUpgrade: (db,oldVersion,newVersion){
         if(newVersion==2){
           _createVersion2DB(db);
+        }else if(newVersion==3){
+          _createVersion3DB(db);
         }
       }
   );
@@ -24,5 +27,10 @@ class PsnRootSqlUtils {
     db.execute('CREATE TABLE ${PsnRootSqlName.bCashTask} (id INTEGER PRIMARY KEY AUTOINCREMENT, cashType TEXT, cashMoney INTEGER, completed INTEGER, cashTaskId INTEGER, currentProgress INTEGER, totalProgress INTEGER)');
     db.execute('CREATE TABLE ${PsnRootSqlName.bWheelInfo} (id INTEGER PRIMARY KEY AUTOINCREMENT, timer TEXT, wheelNum INTEGER)');
     db.execute('CREATE TABLE ${PsnRootSqlName.bTbaSql} (id INTEGER PRIMARY KEY AUTOINCREMENT, jsonMap TEXT)');
+  }
+
+  _createVersion3DB(Database db){
+    db.execute('CREATE TABLE ${PsnRootSqlName.bCashAccount} (id INTEGER PRIMARY KEY AUTOINCREMENT, cashType TEXT, cashMoney INTEGER, account TEXT)');
+    db.execute('CREATE TABLE ${PsnRootSqlName.bCashRank} (id INTEGER PRIMARY KEY AUTOINCREMENT, cashType TEXT, cashMoney INTEGER, currentRank INTEGER, totalRank INTEGER)');
   }
 }

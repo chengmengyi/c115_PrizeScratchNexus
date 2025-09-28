@@ -74,7 +74,7 @@ class PsnBCashChild extends PsnRootChild<PsnBCashChildCon>{
                       right: 40.w,
                       bottom: 0,
                       child: Visibility(
-                        visible: null==bean.cashTaskBean||bean.cashTaskBean?.completed==1,
+                        visible: (null==bean.cashTaskBean||bean.cashTaskBean?.completed==1)&&null==bean.rankProgress,
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
@@ -87,13 +87,13 @@ class PsnBCashChild extends PsnRootChild<PsnBCashChildCon>{
                     Align(
                       alignment: Alignment.centerRight,
                       child: Visibility(
-                        visible: null!=bean.cashTaskBean&&bean.cashTaskBean?.completed!=1,
+                        visible: (null!=bean.cashTaskBean&&bean.cashTaskBean?.completed!=1)||null!=bean.rankProgress,
                         child: Container(
                           margin: EdgeInsets.only(right: 40.w),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              PsnTextWidget(text: psnCon.getCaskTaskStr(bean.cashTaskBean), size: 34.sp, color: "#252525".toColor(),),
+                              PsnTextWidget(text: psnCon.getCaskTaskStr(bean), size: 34.sp, color: "#252525".toColor(),),
                               SizedBox(height: 20.h,),
                               SizedBox(
                                 width: 342.w,
@@ -113,7 +113,7 @@ class PsnBCashChild extends PsnRootChild<PsnBCashChildCon>{
                                       child: ClipRRect(
                                         child: Align(
                                           alignment: Alignment.centerLeft,
-                                          widthFactor: psnCon.getCashTaskPro(bean.cashTaskBean),
+                                          widthFactor: psnCon.getCashTaskPro(bean),
                                           child: PsnImageWidget(name: "cash1",width: double.infinity,height: 20.h,),
                                         ),
                                       ),
@@ -129,7 +129,7 @@ class PsnBCashChild extends PsnRootChild<PsnBCashChildCon>{
                     Positioned(
                       right: 0,
                       child: Visibility(
-                        visible: null!=bean.cashTaskBean&&bean.cashTaskBean?.completed!=1,
+                        visible: (null!=bean.cashTaskBean&&bean.cashTaskBean?.completed!=1)||null!=bean.rankProgress,
                         child: Container(
                           padding: EdgeInsets.only(left: 16.w,right: 16.w,top: 10.h,bottom: 11.h,),
                           decoration: BoxDecoration(

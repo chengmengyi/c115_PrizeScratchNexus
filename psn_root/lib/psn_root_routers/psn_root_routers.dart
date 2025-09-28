@@ -26,6 +26,7 @@ class PsnRootRouters {
         Get.dialog(
           content as Widget,
           barrierDismissible: false,
+          barrierColor: Colors.black.withOpacity(0.8),
         );
         break;
       case PsnRoutersEnum.offAllNamed:

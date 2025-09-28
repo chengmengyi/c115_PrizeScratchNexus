@@ -1,18 +1,25 @@
 import 'package:psn_b/psn_b_bean/psn_cash_task_bean.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
+import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
+import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBCashSuccessDialogCon extends PsnRootCon{
 
-  clickClose(){
-    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
-  }
+  // clickClose(){
+  //   PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+  // }
 
-  clickSure(PsnCashTaskBean? cashTaskBean)async{
+  clickSure(PsnCashTaskBean? cashTaskBean, Function() callback)async{
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.request_congra_c);
     await PsnBCashUtils.instance.deleteCashTask(cashTaskBean);
+    await PsnBCashUtils.instance.createRankProgress(cashTaskBean?.cashMoney??0, cashTaskBean?.cashType??"");
+    PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCashList);
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+    callback.call();
   }
-
 }

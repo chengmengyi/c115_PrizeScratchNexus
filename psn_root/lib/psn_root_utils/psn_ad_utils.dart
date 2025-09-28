@@ -37,7 +37,6 @@ class PsnAdUtils{
       topOnAppId: PsnLocalInfo.topOnAppId.base64(),
       topOnAppKey: PsnLocalInfo.topOnAppKey.base64(),
       data: _createAdData(),
-      showMediationDebugger: true,
       fengKongLogic: (){
         return PsnFengkUtils.instance.isFk();
       },

@@ -11,6 +11,7 @@ class PsnTextWidget extends StatelessWidget{
   TextDecoration? textDecoration;
   Color? decorationColor;
   TextAlign? textAlign;
+  String? fontFamily;
 
   PsnTextWidget({
     required this.text,
@@ -21,6 +22,7 @@ class PsnTextWidget extends StatelessWidget{
     this.textDecoration,
     this.decorationColor,
     this.textAlign,
+    this.fontFamily="bold",
   });
 
   @override
@@ -32,7 +34,7 @@ class PsnTextWidget extends StatelessWidget{
           fontSize: size,
           color: color,
           fontWeight: fontWeight,
-          fontFamily: "bold",
+          fontFamily: fontFamily,
           height: 1,
           decoration: textDecoration,
           decorationColor: decorationColor,

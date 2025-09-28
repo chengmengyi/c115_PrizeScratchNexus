@@ -54,4 +54,9 @@ enum PsnTbaPointEnum{
   ad_request,
   zuytu_ad_initsuc,
   zuytu_ad_imp_close,
+  payment_failed_c,
+  request_congra_c,
+  queue_page,
+  queue_c,
+  funds_received,
 }

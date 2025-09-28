@@ -25,7 +25,7 @@ class PsnBInputPixAccountDialogCon extends PsnRootCon{
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
   }
 
-  clickSubmit(String cashType,int cashMoney)async{
+  clickSubmit(String cashType,int cashMoney, Function(String account) inputCallback)async{
     var cpf = cpfEditingController.text.trim();
     var account = accountEditingController.text.trim();
     var name = nameEditingController.text.trim();
@@ -66,13 +66,15 @@ class PsnBInputPixAccountDialogCon extends PsnRootCon{
         return;
       }
     }
-    var result = await PsnBCashUtils.instance.createCashTask(cashMoney, cashType);
-    if(result){
-      PsnBUserInfoUtils.instance.updateUserCoins((-cashMoney).toDouble());
-      PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
-    }else{
-      "Operation failed, please try again".showToast();
-    }
+    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+    inputCallback.call(account);
+    // var result = await PsnBCashUtils.instance.createCashTask(cashMoney, cashType);
+    // if(result){
+    //   PsnBUserInfoUtils.instance.updateUserCoins((-cashMoney).toDouble());
+    //   PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+    // }else{
+    //   "Operation failed, please try again".showToast();
+    // }
   }
 
   bool _is36CharsWithDash(String input) {

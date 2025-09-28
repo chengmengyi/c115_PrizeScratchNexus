@@ -4,6 +4,7 @@ import 'package:psn_b/psn_b_widget/psn_b_bottom_btn_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_card_num_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_level_content_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_top_widget.dart';
+import 'package:psn_b/psn_b_widget/psn_bottom_left_card_animator_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_box_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_box_widget_copy.dart';
 import 'package:psn_b/psn_b_widget/psn_wheel_animator_widget.dart';
@@ -24,50 +25,55 @@ class PsnBPlayBaseWidget extends StatelessWidget{
 });
   @override
   Widget build(BuildContext context) => WillPopScope(
-    child: Column(
+    child: Stack(
       children: [
-        PsnBTopWidget(
-          clickBack: (){
-            playUtils.clickBack();
-          },
-        ),
-        SizedBox(height: 20.h,),
-        PsnBLevelContentWidget(cardTypeEnum: playUtils.cardTypeEnum,),
-        SizedBox(height: 30.h,),
-        Expanded(
-          child: Stack(
-            children: [
-              child,
-              Container(
-                margin: margin,
-                child: PsnBCardNumWidget(
-                  cardTypeEnum: playUtils.cardTypeEnum,
-                ),
-              ),
-              Positioned(
-                top: 0,
-                right: 0,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    PsnBoxWidgetCopy(),
-                    SizedBox(
-                      key: globalKey,
-                      child: PsnWheelWidget(),
+        Column(
+          children: [
+            PsnBTopWidget(
+              clickBack: (){
+                playUtils.clickBack();
+              },
+            ),
+            SizedBox(height: 20.h,),
+            PsnBLevelContentWidget(cardTypeEnum: playUtils.cardTypeEnum,),
+            SizedBox(height: 30.h,),
+            Expanded(
+              child: Stack(
+                children: [
+                  child,
+                  Container(
+                    margin: margin,
+                    child: PsnBCardNumWidget(
+                      cardTypeEnum: playUtils.cardTypeEnum,
                     ),
-                  ],
-                ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        PsnBoxWidgetCopy(),
+                        SizedBox(
+                          key: globalKey,
+                          child: PsnWheelWidget(),
+                        ),
+                      ],
+                    ),
+                  ),
+                  PsnWheelAnimatorWidget(
+                    endGlobalKey: globalKey,
+                  ),
+                ],
               ),
-              PsnWheelAnimatorWidget(
-                endGlobalKey: globalKey,
-              ),
-            ],
-          ),
+            ),
+            PsnBBottomBtnWidget(
+              playUtils: playUtils,
+            ),
+            SizedBox(height: 20.h,),
+          ],
         ),
-        PsnBBottomBtnWidget(
-          playUtils: playUtils,
-        ),
-        SizedBox(height: 20.h,),
+        PsnBottomLeftCardAnimatorWidget(),
       ],
     ),
     onWillPop: ()async{

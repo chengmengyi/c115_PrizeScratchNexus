@@ -14,4 +14,5 @@ enum PsnAdEventEnum{
   apwxi_flopgetpop_int,
   apwxi_wheel_rv,
   apwxi_wheel_int,
+  apwxi_rank_rv,
 }

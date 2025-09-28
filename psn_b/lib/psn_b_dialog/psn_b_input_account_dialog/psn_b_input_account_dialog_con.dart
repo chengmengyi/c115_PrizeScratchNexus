@@ -13,7 +13,7 @@ class PsnBInputAccountDialogCon extends PsnRootCon{
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
   }
 
-  clickSubmit(String cashType,int cashMoney)async{
+  clickSubmit(String cashType,int cashMoney, Function(String account) inputCallback)async{
     var account = editingController.text.trim();
     if(account.isEmpty){
       return;
@@ -30,13 +30,15 @@ class PsnBInputAccountDialogCon extends PsnRootCon{
         return;
       }
     }
-    var result = await PsnBCashUtils.instance.createCashTask(cashMoney, cashType);
-    if(result){
-      PsnBUserInfoUtils.instance.updateUserCoins((-cashMoney).toDouble());
-      PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
-    }else{
-      "Operation failed, please try again".showToast();
-    }
+    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+    inputCallback.call(account);
+    // var result = await PsnBCashUtils.instance.createCashTask(cashMoney, cashType);
+    // if(result){
+    //   PsnBUserInfoUtils.instance.updateUserCoins((-cashMoney).toDouble());
+    //   PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+    // }else{
+    //   "Operation failed, please try again".showToast();
+    // }
   }
 
   bool _isEmail(String input) {

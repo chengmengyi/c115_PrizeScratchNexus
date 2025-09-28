@@ -12,9 +12,12 @@ import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 class PsnBInputAccountDialog extends PsnRootDialog<PsnBInputAccountDialogCon>{
   String cashType;
   int cashMoney;
+  Function(String account) inputCallback;
+
   PsnBInputAccountDialog({
     required this.cashType,
     required this.cashMoney,
+    required this.inputCallback,
 });
 
   @override
@@ -98,7 +101,7 @@ class PsnBInputAccountDialog extends PsnRootDialog<PsnBInputAccountDialogCon>{
                 text: "Submit",
                 bgName: "btn_green",
                 onTap: (){
-                  psnCon.clickSubmit(cashType, cashMoney);
+                  psnCon.clickSubmit(cashType, cashMoney,inputCallback);
                 },
               ),
             ],
