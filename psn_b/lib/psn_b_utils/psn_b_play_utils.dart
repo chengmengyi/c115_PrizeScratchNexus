@@ -61,7 +61,6 @@ class PsnBPlayUtils {
     canClick=false;
     _stopScratchAuto=true;
     scratcherKey.currentState?.reveal();
-    PsnBCashUtils.instance.updateCashTask(TaskType.card);
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.scratch_count);
     await Future.delayed(Duration(milliseconds: 1000));
     canClick=true;
@@ -99,6 +98,7 @@ class PsnBPlayUtils {
     }
     bCardProgress.saveData(bCardProgress.getData()+1);
     _checkWinOrFail(totalReward);
+    PsnBCashUtils.instance.updateCashTask(TaskType.card);
   }
 
   _checkUpLevel(double totalReward){
@@ -120,7 +120,7 @@ class PsnBPlayUtils {
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCardProgress);
     if(bCardProgress.getData()>=3){
       PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showBottomLeftCardAnimator);
-      await Future.delayed(Duration(milliseconds: 700));
+      await Future.delayed(Duration(milliseconds: 1000));
       PsnRootRouters.instance.router(
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBLuckyCardDialog(

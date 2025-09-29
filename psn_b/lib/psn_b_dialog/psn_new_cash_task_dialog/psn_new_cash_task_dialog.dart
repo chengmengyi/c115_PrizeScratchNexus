@@ -11,7 +11,8 @@ import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
 class PsnNewCashTaskDialog extends PsnRootDialog<PsnNewCashTaskDialogCon>{
   PsnCashTaskBean bean;
-  PsnNewCashTaskDialog({required this.bean});
+  Function()? dismissDialog;
+  PsnNewCashTaskDialog({required this.bean,this.dismissDialog});
 
   @override
   PsnNewCashTaskDialogCon onCon() => PsnNewCashTaskDialogCon();
@@ -43,7 +44,7 @@ class PsnNewCashTaskDialog extends PsnRootDialog<PsnNewCashTaskDialogCon>{
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(height: 35.h,),
-        PsnTextWidget(text: "Request", size: 38.sp, color: "#000000".toColor(),),
+        PsnTextWidget(text: "Review", size: 38.sp, color: "#000000".toColor(),),
         SizedBox(height: 50.h,),
         _progressWidget(),
         PsnTextWidget(text: "Complete 3 tasks to verify you’re human.", size: 30.sp, color: "#000000".toColor()),
@@ -125,11 +126,11 @@ class PsnNewCashTaskDialog extends PsnRootDialog<PsnNewCashTaskDialogCon>{
           children: [
             Align(
               alignment: Alignment.topLeft,
-              child: PsnTextWidget(text: "Request", size: 25.sp, color: "#067000".toColor()),
+              child: PsnTextWidget(text: "Review", size: 25.sp, color: "#067000".toColor()),
             ),
             Align(
               alignment: Alignment.topCenter,
-              child: PsnTextWidget(text: "Review", size: 25.sp, color: "#8D8D8D".toColor()),
+              child: PsnTextWidget(text: "Queue", size: 25.sp, color: "#8D8D8D".toColor()),
             ),
             Align(
               alignment: Alignment.topRight,
@@ -187,7 +188,7 @@ class PsnNewCashTaskDialog extends PsnRootDialog<PsnNewCashTaskDialogCon>{
 
   _btnWidget()=>PsnClick(
     onTap: (){
-      psnCon.clickGo(bean);
+      psnCon.clickGo(bean,dismissDialog);
     },
     child: Container(
       width: double.infinity,

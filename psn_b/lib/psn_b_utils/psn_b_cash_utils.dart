@@ -3,13 +3,21 @@ import 'dart:math';
 
 import 'package:psn_b/psn_b_bean/psn_cash_task_bean.dart';
 import 'package:psn_b/psn_b_bean/psn_rank_bean.dart';
+import 'package:psn_b/psn_b_dialog/psn_cash_last_step_success_dialog/psn_cash_last_step_success_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_rank_dialog/psn_rank_dialog.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
+import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
+import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_root_sql/psn_root_sql_name.dart';
 import 'package:psn_root/psn_root_utils/psn_root_sql/psn_root_sql_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
+
+import '../psn_b_dialog/psn_b_cash_success_dialog/psn_b_cash_success_dialog.dart';
+import '../psn_b_dialog/psn_new_cash_task_dialog/psn_new_cash_task_dialog.dart';
+import '../psn_b_dialog/psn_rank_tips_animator_dialog/psn_rank_tips_animator_dialog.dart';
 
 class CashType{
   static const String pay="pay";
@@ -80,8 +88,9 @@ class PsnBCashUtils{
     var database = await PsnRootSqlUtils.instance.initSql();
     var list = await database.query(PsnRootSqlName.bCashTask);
     if(list.isEmpty){
-      return;
+      return null;
     }
+    PsnCashTaskBean? nextTaskBean;
     for (var value in list) {
       var cashTaskBean = PsnCashTaskBean.fromJson(value);
       var withdrawTask = PsnBValueUtils.instance.getCashTaskConfigByID(cashTaskBean.cashTaskId);
@@ -97,11 +106,15 @@ class PsnBCashUtils{
             cashTaskBean.cashTaskId=nextCashTaskConfig.id;
             cashTaskBean.totalProgress=nextCashTaskConfig.count??0;
           }
+          nextTaskBean ??= cashTaskBean;
         }
         await database.update(PsnRootSqlName.bCashTask, cashTaskBean.toJson(),where: '"id" = ?',whereArgs: [value["id"]]);
       }
     }
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCashList);
+    if(null!=nextTaskBean){
+      clickCashItem(nextTaskBean);
+    }
   }
 
   deleteCashTask(PsnCashTaskBean? cashTaskBean)async{
@@ -182,5 +195,75 @@ class PsnBCashUtils{
     var max = list.last;
     final random = Random();
     return min + random.nextInt(max - min + 1);
+  }
+
+  clickCashItem(PsnCashTaskBean cashTaskBean){
+    if(cashTaskBean.completed==1){
+      PsnRootRouters.instance.router(
+        routersEnum: PsnRoutersEnum.dialog,
+        content: PsnBCashSuccessDialog(
+          cashTaskBean: cashTaskBean,
+          callback: (){
+            _showRankTipsAnimatorDialog(cashTaskBean);
+          },
+        ),
+      );
+      return;
+    }
+    showCashTaskDialog(cashTaskBean);
+  }
+
+
+  _showRankTipsAnimatorDialog(PsnCashTaskBean? cashTaskBean){
+    PsnRootRouters.instance.router(
+      routersEnum: PsnRoutersEnum.dialog,
+      content: PsnRankTipsAnimatorDialog(
+        callback: ()async{
+          var rankBean = await PsnBCashUtils.instance.queryRankProgress(cashTaskBean?.cashMoney??0, cashTaskBean?.cashType??"");
+          if(null==rankBean){
+            return;
+          }
+          showRankDialog(rankBean);
+        },
+      ),
+    );
+  }
+
+  showCashTaskDialog(PsnCashTaskBean? psnCashTaskBean){
+    if(null==psnCashTaskBean){
+      return;
+    }
+    PsnRootRouters.instance.router(
+      routersEnum: PsnRoutersEnum.dialog,
+      content: PsnNewCashTaskDialog(
+        bean: psnCashTaskBean,
+      ),
+    );
+  }
+
+
+  showRankDialog(PsnRankBean rankBean){
+    if((rankBean.currentRank??0)<=1){
+      _showLastStepCashSuccessDialog(rankBean);
+      return;
+    }
+    PsnRootRouters.instance.router(
+      routersEnum: PsnRoutersEnum.dialog,
+      content: PsnRankDialog(
+        rankBean: rankBean,
+        successCallback: (){
+          _showLastStepCashSuccessDialog(rankBean);
+        },
+      ),
+    );
+  }
+
+  _showLastStepCashSuccessDialog(PsnRankBean rankBean){
+    PsnRootRouters.instance.router(
+      routersEnum: PsnRoutersEnum.dialog,
+      content: PsnCashLastStepSuccessDialog(
+        rankBean: rankBean,
+      ),
+    );
   }
 }

@@ -21,7 +21,7 @@ class _PsnBottomLeftCardAnimatorWidgetState extends PsnRootStatefulState<PsnBott
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 700),
+      duration: Duration(milliseconds: 1000),
     );
   }
 

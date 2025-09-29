@@ -1,6 +1,6 @@
 import 'dart:math';
-
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_bean/psn_rank_bean.dart';
 import 'package:psn_b/psn_b_bean/psn_rank_list_bean.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
@@ -19,6 +19,7 @@ class PsnRankDialogCon extends PsnRootCon{
   PsnRankBean? rankBean;
   Function()? successCallback;
   List<PsnRankListBean> ranList=[];
+  ScrollController scrollController=ScrollController();
 
   @override
   void onInit() {
@@ -33,6 +34,10 @@ class PsnRankDialogCon extends PsnRootCon{
   }
 
   clickSkip(){
+    if(kDebugMode){
+      _reduceRank();
+      return;
+    }
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.queue_c);
     PsnAdUtils.instance.showAdBBBBBB(
       adType: AdType.reward,
@@ -80,6 +85,18 @@ class PsnRankDialogCon extends PsnRootCon{
     if(indexWhere==0){
       PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
       successCallback?.call();
+    }else if(indexWhere>8){
+      scrollController.animateTo(
+        (50.h)*(indexWhere-4),
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    }else if(indexWhere<=8){
+      scrollController.animateTo(
+        0,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
     }
   }
 
@@ -104,5 +121,11 @@ class PsnRankDialogCon extends PsnRootCon{
     }else{
       return "$index";
     }
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    super.onClose();
   }
 }

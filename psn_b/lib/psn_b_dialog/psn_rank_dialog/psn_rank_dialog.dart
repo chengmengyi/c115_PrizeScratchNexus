@@ -22,6 +22,7 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
   @override
   onStart() {
     psnCon.rankBean=rankBean;
+    psnCon.successCallback=successCallback;
   }
 
   @override
@@ -56,7 +57,7 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(height: 35.h,),
-        PsnTextWidget(text: "Under Review", size: 38.sp, color: "#000000".toColor(),fontFamily: null,),
+        PsnTextWidget(text: "Payment in progress", size: 38.sp, color: "#000000".toColor(),fontFamily: null,),
         SizedBox(height: 35.h,),
         _progressWidget(),
         PsnTextWidget(text: "One Last Step", size: 38.sp, color: "#000000".toColor(),fontFamily: null,),
@@ -89,7 +90,7 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
 
   _rankListWidget()=>Container(
     width: double.infinity,
-    height: 460.h,
+    height: 470.h,
     decoration: BoxDecoration(
       color: "#F7F7F7".toColor(),
       borderRadius: BorderRadius.circular(16.w),
@@ -124,12 +125,13 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
             id: "list",
             builder: (_)=>ListView.builder(
               itemCount: psnCon.ranList.length,
+              controller: psnCon.scrollController,
               itemBuilder: (context,index){
                 var bean = psnCon.ranList[index];
                 return Container(
                   width: double.infinity,
                   height: 50.h,
-                  color: index%2==0?"#ECECEC".toColor():"#F7F7F7".toColor(),
+                  color: bean.isMe?"#FFF5E8".toColor():index%2==0?"#ECECEC".toColor():"#F7F7F7".toColor(),
                   child: Row(
                     children: [
                       Expanded(
@@ -282,11 +284,11 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
           children: [
             Align(
               alignment: Alignment.topLeft,
-              child: PsnTextWidget(text: "Request", size: 25.sp, color: "#067000".toColor()),
+              child: PsnTextWidget(text: "Review", size: 25.sp, color: "#067000".toColor()),
             ),
             Align(
               alignment: Alignment.topCenter,
-              child: PsnTextWidget(text: "Review", size: 25.sp, color: "#067000".toColor()),
+              child: PsnTextWidget(text: "Queue", size: 25.sp, color: "#067000".toColor()),
             ),
             Align(
               alignment: Alignment.topRight,

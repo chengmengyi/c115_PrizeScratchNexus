@@ -157,11 +157,11 @@ class PsnCashLastStepSuccessDialog extends PsnRootDialog<PsnCashLastStepSuccessD
           children: [
             Align(
               alignment: Alignment.topLeft,
-              child: PsnTextWidget(text: "Request", size: 25.sp, color: "#067000".toColor()),
+              child: PsnTextWidget(text: "Review", size: 25.sp, color: "#067000".toColor()),
             ),
             Align(
               alignment: Alignment.topCenter,
-              child: PsnTextWidget(text: "Review", size: 25.sp, color: "#067000".toColor()),
+              child: PsnTextWidget(text: "Queue", size: 25.sp, color: "#067000".toColor()),
             ),
             Align(
               alignment: Alignment.topRight,

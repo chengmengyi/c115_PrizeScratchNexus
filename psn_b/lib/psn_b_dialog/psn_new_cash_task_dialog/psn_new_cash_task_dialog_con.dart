@@ -14,10 +14,11 @@ class PsnNewCashTaskDialogCon extends PsnRootCon{
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
   }
 
-  clickGo(PsnCashTaskBean bean){
+  clickGo(PsnCashTaskBean bean, Function()? dismissDialog){
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_task_pop_c,params: {"pop_from":getPopFrom(bean)});
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showHomeIndex,intValue: 0);
+    dismissDialog?.call();
   }
 
   String getCaskTaskStr(PsnCashTaskBean? bean){
@@ -25,11 +26,12 @@ class PsnNewCashTaskDialogCon extends PsnRootCon{
     if(null==withdrawTask){
       return "";
     }
+    var start="Task${withdrawTask.id}:";
     switch(withdrawTask.type){
-      case "card": return "Scratch ${bean?.currentProgress??0}/${withdrawTask.count??0} Card";
-      case "wheel": return "Play ${bean?.currentProgress??0}/${withdrawTask.count??0} Spins";
-      case "lucky": return "Play ${bean?.currentProgress??0}/${withdrawTask.count??0} luck cards";
-      case "ad": return "Watch ${bean?.currentProgress??0}/${withdrawTask.count??0} video ads";
+      case "card": return "${start}Scratch ${bean?.currentProgress??0}/${withdrawTask.count??0} Card";
+      case "wheel": return "${start}Play ${bean?.currentProgress??0}/${withdrawTask.count??0} Spins";
+      case "lucky": return "${start}Play ${bean?.currentProgress??0}/${withdrawTask.count??0} luck cards";
+      case "ad": return "${start}Watch ${bean?.currentProgress??0}/${withdrawTask.count??0} video ads";
       default: return "";
     }
   }

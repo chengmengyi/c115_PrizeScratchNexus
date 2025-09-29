@@ -48,7 +48,6 @@ class PsnBWheelChildCon extends PsnRootCon with GetSingleTickerProviderStateMixi
     }
     canClick=false;
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.wheel_page_c);
-    PsnBCashUtils.instance.updateCashTask(TaskType.wheel);
     _wheelAnimationController..reset()..forward();
   }
 
@@ -69,6 +68,7 @@ class PsnBWheelChildCon extends PsnRootCon with GetSingleTickerProviderStateMixi
           },
         ),
       );
+      PsnBCashUtils.instance.updateCashTask(TaskType.wheel);
     }else{
       _initWheelList();
     }

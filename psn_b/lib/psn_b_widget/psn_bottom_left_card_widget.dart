@@ -5,6 +5,7 @@ import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
 import 'package:psn_root/psn_root_page/psn_root_statefull.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
+import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_widget/psn_click.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
 
@@ -13,13 +14,16 @@ class PsnBottomLeftCardWidget extends PsnRootStateful{
   State<StatefulWidget> createState() => _PsnBottomLeftCardWidgetState();
 }
 
-class _PsnBottomLeftCardWidgetState extends PsnRootStatefulState<PsnBottomLeftCardWidget>{
+class _PsnBottomLeftCardWidgetState extends PsnRootStatefulState<PsnBottomLeftCardWidget> with SingleTickerProviderStateMixin{
   var currentIndex=0;
   GlobalKey globalKey=GlobalKey();
+  late AnimationController _controller;
+  late Animation<double> _offsetAnimation;
 
   @override
   void initState() {
     super.initState();
+    _initAnimator();
     _getProgress();
   }
 
@@ -33,7 +37,21 @@ class _PsnBottomLeftCardWidgetState extends PsnRootStatefulState<PsnBottomLeftCa
         children: [
           SizedBox(
             key: globalKey,
-            child: PsnImageWidget(name: currentIndex>=2?"card6":"card5",width: 141.w,height: 136.h,),
+            child: AnimatedBuilder(
+              animation: _offsetAnimation,
+              builder: (context, child) {
+                return Transform.translate(
+                  offset: Offset(_offsetAnimation.value, 0),
+                  child: child,
+                );
+              },
+              child: PsnClick(
+                onTap: (){
+                  _startShake();
+                },
+                child: PsnImageWidget(name: currentIndex>=2?"card6":"card5",width: 141.w,height: 136.h,),
+              ),
+            ),
           ),
           SizedBox(width: 10.w,),
           Column(
@@ -57,6 +75,14 @@ class _PsnBottomLeftCardWidgetState extends PsnRootStatefulState<PsnBottomLeftCa
 
   _circleItemWidget(index)=>PsnImageWidget(name: currentIndex>index?"card9":"card8",width: 22.w,height: 22.w,);
 
+  _startShake() {
+    if(currentIndex>=2){
+      return;
+    }
+    "Scratching 3 cards will trigger the lucky card flip.".showToast();
+    _controller.forward(from: 0);
+  }
+
   @override
   bool initEvent() => true;
 
@@ -69,6 +95,22 @@ class _PsnBottomLeftCardWidgetState extends PsnRootStatefulState<PsnBottomLeftCa
     }
   }
 
+  _initAnimator(){
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+
+    _offsetAnimation = TweenSequence<double>([
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: -10.0), weight: 1),
+      TweenSequenceItem(tween: Tween(begin: -10.0, end: 10.0), weight: 2),
+      TweenSequenceItem(tween: Tween(begin: 10.0, end: -10.0), weight: 2),
+      TweenSequenceItem(tween: Tween(begin: -10.0, end: 10.0), weight: 2),
+      TweenSequenceItem(tween: Tween(begin: 10.0, end: -10.0), weight: 2),
+      TweenSequenceItem(tween: Tween(begin: -10.0, end: 0.0), weight: 1),
+    ]).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+  }
+
   _getProgress()async{
     setState(() {
       currentIndex = bCardProgress.getData();
@@ -78,12 +120,18 @@ class _PsnBottomLeftCardWidgetState extends PsnRootStatefulState<PsnBottomLeftCa
         var renderBox = globalKey.currentContext?.findRenderObject() as RenderBox;
         var offset = renderBox.localToGlobal(Offset.zero);
         PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showBottomLeftCardAnimator,anyValue: offset);
-        await Future.delayed(Duration(milliseconds: 700));
+        await Future.delayed(Duration(milliseconds: 1000));
         bCardProgress.saveData(0);
         setState(() {
           currentIndex=0;
         });
       }
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

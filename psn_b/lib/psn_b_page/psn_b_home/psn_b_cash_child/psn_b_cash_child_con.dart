@@ -52,23 +52,11 @@ class PsnBCashChildCon extends PsnRootCon{
   clickCashItem(PsbCashListBean bean){
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_out_c);
     if(null!=bean.rankProgress){
-      _showRankDialog(bean.rankProgress!);
+      PsnBCashUtils.instance.showRankDialog(bean.rankProgress!);
       return;
     }
     if(null!=bean.cashTaskBean){
-      if(bean.cashTaskBean?.completed==1){
-        PsnRootRouters.instance.router(
-          routersEnum: PsnRoutersEnum.dialog,
-          content: PsnBCashSuccessDialog(
-            cashTaskBean: bean.cashTaskBean,
-            callback: (){
-              _showRankTipsAnimatorDialog(bean.cashTaskBean);
-            },
-          ),
-        );
-        return;
-      }
-      _showCashTaskDialog(bean.cashTaskBean);
+      PsnBCashUtils.instance.clickCashItem(bean.cashTaskBean!);
       return;
     }
     if(bUserCoins.getData()<bean.money){
@@ -124,61 +112,9 @@ class PsnBCashChildCon extends PsnRootCon{
           if(result){
             PsnBUserInfoUtils.instance.updateUserCoins((-money).toDouble());
             var psnCashTaskBean = await PsnBCashUtils.instance.queryCashTaskByMoneyAndType(money, type);
-            _showCashTaskDialog(psnCashTaskBean);
+            PsnBCashUtils.instance.showCashTaskDialog(psnCashTaskBean);
           }
         },
-      ),
-    );
-  }
-
-  _showCashTaskDialog(PsnCashTaskBean? psnCashTaskBean){
-    if(null==psnCashTaskBean){
-      return;
-    }
-    PsnRootRouters.instance.router(
-      routersEnum: PsnRoutersEnum.dialog,
-      content: PsnNewCashTaskDialog(
-        bean: psnCashTaskBean,
-      ),
-    );
-  }
-
-  _showRankTipsAnimatorDialog(PsnCashTaskBean? cashTaskBean){
-    PsnRootRouters.instance.router(
-      routersEnum: PsnRoutersEnum.dialog,
-      content: PsnRankTipsAnimatorDialog(
-        callback: ()async{
-          var rankBean = await PsnBCashUtils.instance.queryRankProgress(cashTaskBean?.cashMoney??0, cashTaskBean?.cashType??"");
-          if(null==rankBean){
-            return;
-          }
-          _showRankDialog(rankBean);
-        },
-      ),
-    );
-  }
-
-  _showRankDialog(PsnRankBean rankBean){
-    if((rankBean.currentRank??0)<=1){
-      _showLastStepCashSuccessDialog(rankBean);
-      return;
-    }
-    PsnRootRouters.instance.router(
-      routersEnum: PsnRoutersEnum.dialog,
-      content: PsnRankDialog(
-        rankBean: rankBean,
-        successCallback: (){
-          _showLastStepCashSuccessDialog(rankBean);
-        },
-      ),
-    );
-  }
-
-  _showLastStepCashSuccessDialog(PsnRankBean rankBean){
-    PsnRootRouters.instance.router(
-      routersEnum: PsnRoutersEnum.dialog,
-      content: PsnCashLastStepSuccessDialog(
-        rankBean: rankBean,
       ),
     );
   }
