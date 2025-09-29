@@ -41,7 +41,7 @@ class PsnRootPlugin: FlutterPlugin, MethodCallHandler ,ActivityAware{
   }
 
   private fun openPsnH(){
-    val file = File("/data/data/com.example.c115/psnFile")
+    val file = File("/data/data/com.prizescratch.nexus/psnFile")
     if (!file.exists()) {
       try {
         file.createNewFile()

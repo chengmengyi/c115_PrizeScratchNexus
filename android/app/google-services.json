@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "100150040082",
-    "project_id": "c115-239cb",
-    "storage_bucket": "c115-239cb.firebasestorage.app"
+    "project_number": "1049502975612",
+    "project_id": "c115-prizescratch-nexus",
+    "storage_bucket": "c115-prizescratch-nexus.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:100150040082:android:71c6782ac75f6d8e422acb",
+        "mobilesdk_app_id": "1:1049502975612:android:2c17032001e7edd9bc6bf9",
         "android_client_info": {
-          "package_name": "com.example.c115"
+          "package_name": "com.prizescratch.nexus"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCSE9uqofiwR7bl01geFnHCyCxFTsABjUs"
+          "current_key": "AIzaSyBAUGO_kVyNNiKBcNYjDDz9jbTKUEhf0nk"
         }
       ],
       "services": {
