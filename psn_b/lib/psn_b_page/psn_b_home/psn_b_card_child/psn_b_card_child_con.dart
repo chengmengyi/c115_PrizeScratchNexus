@@ -24,6 +24,7 @@ import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_user_guide_utils.dart';
 import 'package:psn_root/psn_b_dialog/psn_b_ad_fail_dialog/psn_b_ad_fail_dialog.dart';
 import 'package:psn_root/psn_b_dialog/psn_b_ad_limit_dialog/psn_b_ad_limit_dialog.dart';
+import 'package:psn_root/psn_b_dialog/psn_b_no_notification_permission_dialog/psn_b_no_notification_permission_dialog.dart';
 import 'package:psn_root/psn_root_page/psn_root_con.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
@@ -196,6 +197,7 @@ class PsnBCardChildCon extends PsnRootCon{
     // PsnBCashUtils.instance.createRankProgress(1000, CashType.pay);
 
 
+    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBNoNotificationPermissionDialog());
 
   }
 

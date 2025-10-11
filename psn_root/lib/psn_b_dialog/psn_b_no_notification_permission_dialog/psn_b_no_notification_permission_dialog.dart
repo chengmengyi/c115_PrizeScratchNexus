@@ -42,11 +42,55 @@ class PsnBNoNotificationPermissionDialog extends PsnRootDialog<PsnBNoNotificatio
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PsnImageWidget(name: "no_per2",height: 226.h,boxFit: BoxFit.fitHeight,),
+              SizedBox(
+                width: 417.w,
+                height: 266.h,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      left: 0,
+                      bottom: 38.h,
+                      child: PsnImageWidget(name: "no_per3",width: 172.w,height: 120.h,),
+                    ),
+                    Positioned(
+                      right: 0,
+                      bottom: 0,
+                      child: PsnImageWidget(name: "no_per4",width: 172.w,height: 120.h,),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: PsnImageWidget(name: "no_per2",width: 222.w,height: 222.h,),
+                    ),
+                    Positioned(
+                      top: 26.h,
+                      right: 60.w,
+                      child: Container(
+                        width: 80.w,
+                        height: 80.w,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40.w),
+                          color: "#FFFFFF".toColor(),
+                        ),
+                        child: Container(
+                          width: 62.w,
+                          height: 62.w,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: "#FF4747".toColor(),
+                            borderRadius: BorderRadius.circular(31.w),
+                          ),
+                          child: PsnTextWidget(text: "1", size: 48.sp, color: "#FFFFFF".toColor(),),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: 30.h,),
               Container(
                 margin: EdgeInsets.only(left: 35.w,right: 35.w),
-                child: PsnTextWidget(text: "You've watched all  available ads for today.Try again tomorrow.", size: 34.sp, color: "#535F75".toColor(),),
+                child: PsnTextWidget(text: "Enable permissions for instant cash alerts – huge rewards waiting! Act now!", size: 34.sp, color: "#535F75".toColor(),),
               ),
               SizedBox(height: 56.h,),
               Row(
