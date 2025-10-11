@@ -32,6 +32,13 @@ class PsnBTbaUtils{
     PsnTbaPointEnum.coin_pop,
     PsnTbaPointEnum.coin_pop_c,
     PsnTbaPointEnum.coin_pop_close,
+    PsnTbaPointEnum.coin_pop_s,
+    PsnTbaPointEnum.coin_spop_close,
+    PsnTbaPointEnum.coin_pop_sclaim,
+    PsnTbaPointEnum.coin_pop_b,
+    PsnTbaPointEnum.coin_pop_d,
+    PsnTbaPointEnum.coin_pop_bclaim,
+    PsnTbaPointEnum.coin_bpop_close,
   ];
 
   installEvent({int tryNum=5})async{

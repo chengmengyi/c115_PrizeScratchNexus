@@ -29,7 +29,7 @@ class PsnBNormalWinDialog extends PsnRootDialog<PsnBNormalWinDialogCon>{
   
   @override
   onStart() {
-    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop,params: {"source_from":cardTypeEnum.name});
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop_s,params: {"source_from":cardTypeEnum.name});
   }
 
   @override

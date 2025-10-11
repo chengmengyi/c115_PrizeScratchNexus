@@ -31,23 +31,12 @@ class PsnApplifeUtils{
             PsnBTbaUtils.instance.sessionEvent();
             // PsnBAndroidNotificationUtils.instance.checkNotificationShowNum();
             _psnTimer?.cancel();
-            Future.delayed(const Duration(milliseconds: 100),(){
-              // if(isToOpenNotifi){
-              //   LocationNotificationUtils.instance.init(showOpenNotificationDialog: false);
-              //   PsnBAndroidNotificationUtils.instance.initNotification();
-              // }else{
-              //   if(_isBack&&!FlutterIosAdHep.instance.adShowing()){
-              //     LuckyAdUtils.instance.showP2Ad(
-              //       adType: AdType.interstitial,
-              //       adPosId: AdPosId.skerk_launch,
-              //       showAd: true,
-              //       isOpen: true,
-              //       closeAd: (){
-              //       },
-              //     );
-              //   }
-              // }
-              // isToOpenNotification=false;
+            Future.delayed(const Duration(milliseconds: 100),()async{
+              if(isToOpenNotifi){
+                await Future.delayed(Duration(milliseconds: 1000));
+                PsnBAndroidNotificationUtils.instance.initNotification();
+                isToOpenNotifi=false;
+              }
               if(_isBackPsn&&!FlutterIosAdHep.instance.adShowing()){
                 PsnAdUtils.instance.showAdBBBBBB(
                   adType: AdType.interstitial,

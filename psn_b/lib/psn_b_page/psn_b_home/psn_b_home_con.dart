@@ -33,13 +33,13 @@ class PsnBHomeCon extends PsnRootCon{
   void onInit() {
     super.onInit();
     PsnMusicUtils.instance.initPlayer();
-    PsnBAndroidNotificationUtils.instance.initNotification();
     PsnApplifeUtils.instance.addLife();
     PsnFengkUtils.instance.initFengK();
     PsnRoot.instance.openPsnH();
     PsnAdUtils.instance.lookAdCallback=(){
       PsnBCashUtils.instance.updateCashTask(TaskType.ad);
     };
+    PsnBAndroidNotificationUtils.instance.checkHasNotificationPermission();
   }
 
   @override

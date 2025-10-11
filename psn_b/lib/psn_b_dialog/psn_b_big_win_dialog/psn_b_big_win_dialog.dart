@@ -29,7 +29,7 @@ class PsnBBigWinDialog extends PsnRootDialog<PsnBBigWinDialogCon>{
 
   @override
   onStart() {
-    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop,params: {"source_from":cardTypeEnum.name});
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop_b,params: {"source_from":cardTypeEnum.name});
   }
 
   @override

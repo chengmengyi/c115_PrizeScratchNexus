@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:birdsong/birdsong.dart';
 import 'package:flutter/foundation.dart';
+import 'package:psn_root/psn_b_dialog/psn_b_no_notification_permission_dialog/psn_b_no_notification_permission_dialog.dart';
+import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
+import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
@@ -51,6 +54,13 @@ class PsnBAndroidNotificationUtils{
     _showFcmNotification();
     _showListener();
     _clickListener();
+  }
+
+  checkHasNotificationPermission()async{
+    final status = await Permission.notification.status;
+    if (!status.isGranted) {
+      PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBNoNotificationPermissionDialog());
+    }
   }
 
   _showLocalNotification()async{

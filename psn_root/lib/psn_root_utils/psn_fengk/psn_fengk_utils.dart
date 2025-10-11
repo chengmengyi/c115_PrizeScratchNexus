@@ -121,9 +121,8 @@ class PsnFengkUtils{
     if(dioResult.success){
       try{
         var result = decrypt(dioResult.msg, 13);
-        print("kk==_checkIpDevice===${result}");
         var bfrog = jsonDecode(result)["data"]["bfrog"];
-        if(bfrog&&_checkHasDevice("ip")){
+        if(bfrog&&_fengkBean?.ui?.device!=0&&_checkHasDevice("ip")){
           tbaUploadFengkTag("ip");
         }
       }catch(e){}

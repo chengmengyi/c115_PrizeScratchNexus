@@ -175,6 +175,6 @@ class PsnBUserInfoUtils {
   bool updatePlayNum(){
     bUserPlayNum.saveData(bUserPlayNum.getData()+1);
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updatePlayNum);
-    return [5, 15, 25, 35, 45].contains(bUserPlayNum.getData());
+    return [5, 10, 15, 20, 25].contains(bUserPlayNum.getData());
   }
 }

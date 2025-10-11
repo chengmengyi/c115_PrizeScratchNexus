@@ -47,7 +47,7 @@ class PsnBLevelUpDialog extends PsnRootDialog<PsnBLevelUpDialogCon>{
         ],
       ),
       PsnGradientText(
-        data: "+${psnCon.upLevelReward}",
+        data: "+\$${psnCon.upLevelReward}",
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,

@@ -155,7 +155,7 @@ class PsnBPlayUtils {
   _checkWinOrFail(double totalReward){
     if(totalReward>0){
       PsnMusicUtils.instance.playVoice(VoiceEnum.play_win);
-      if(totalReward>=60){
+      if(totalReward>=50){
         PsnRootRouters.instance.router(
           routersEnum: PsnRoutersEnum.dialog,
           content: PsnBBigWinDialog(
@@ -227,6 +227,7 @@ class PsnBPlayUtils {
   }
 
   resetPlay()async{
+    canClick=true;
     PsnBUserGuideUtils.instance.setGuideStep4();
     _stopScratchAuto=false;
     scratcherKey.currentState?.reset();

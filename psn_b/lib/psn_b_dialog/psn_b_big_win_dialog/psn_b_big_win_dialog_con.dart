@@ -27,7 +27,7 @@ class PsnBBigWinDialogCon extends PsnRootCon with GetSingleTickerProviderStateMi
   }
 
   clickClaim(PsnBCardTypeEnum cardTypeEnum,double totalReward,Function() dismissCallback)async{
-    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop_close,params: {"source_from":cardTypeEnum.name});
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop_bclaim,params: {"source_from":cardTypeEnum.name});
     PsnAdUtils.instance.showAdBBBBBB(
       adType: AdType.interstitial,
       showAd: PsnBValueUtils.instance.showAd(AdType.interstitial),
@@ -45,7 +45,7 @@ class PsnBBigWinDialogCon extends PsnRootCon with GetSingleTickerProviderStateMi
   }
 
   clickDouble(PsnBCardTypeEnum cardTypeEnum,double totalReward,Function() dismissCallback){
-    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop_c,params: {"source_from":cardTypeEnum.name});
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop_d,params: {"source_from":cardTypeEnum.name});
     PsnAdUtils.instance.showAdBBBBBB(
       adType: AdType.reward,
       showAd: PsnBValueUtils.instance.showAd(AdType.reward),

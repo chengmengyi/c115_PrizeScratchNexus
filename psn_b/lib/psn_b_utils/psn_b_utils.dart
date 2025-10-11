@@ -13,7 +13,7 @@ int getLevelByCardType(PsnBCardTypeEnum type){
 }
 
 PsnLevelResultBean calculateLevel() {
-  List<int> levelCosts = [5, 10, 10, 10, 10];
+  List<int> levelCosts = [5, 5, 5, 5, 5];
   int level = 1;
   int remaining = bUserPlayNum.getData();
 

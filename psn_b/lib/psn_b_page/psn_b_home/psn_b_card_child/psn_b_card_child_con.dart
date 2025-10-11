@@ -195,9 +195,7 @@ class PsnBCardChildCon extends PsnRootCon{
     // PsnBCashUtils.instance.queryRankProgress(1000, CashType.pay);
     // PsnBCashUtils.instance.createRankProgress(1000, CashType.pay);
 
-    // PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnRankDialog(
-    //   rankBean: PsnRankBean(currentRank: 111,totalRank: 222),
-    // ));
+
 
   }
 

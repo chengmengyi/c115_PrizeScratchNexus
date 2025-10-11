@@ -26,6 +26,7 @@ class PsnLaunchCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
           checkUser();
         }
       })..forward();
+    PsnBAndroidNotificationUtils.instance.initNotification();
   }
 
   checkUser(){

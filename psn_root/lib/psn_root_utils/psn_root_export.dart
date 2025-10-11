@@ -11,5 +11,6 @@ export 'package:flutter_ad_ios_plugins/hep/ad_type.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:permission_handler/permission_handler.dart';
 export 'package:psn/psn.dart';
+export 'package:app_settings/app_settings.dart';
 
 
