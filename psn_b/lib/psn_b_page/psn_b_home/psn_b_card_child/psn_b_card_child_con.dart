@@ -197,7 +197,7 @@ class PsnBCardChildCon extends PsnRootCon{
     // PsnBCashUtils.instance.createRankProgress(1000, CashType.pay);
 
 
-    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBNoNotificationPermissionDialog());
+    // PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBNoNotificationPermissionDialog());
 
   }
 
