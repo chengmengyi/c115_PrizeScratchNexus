@@ -81,7 +81,7 @@ class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
               ),
             ],
           ),
-          reward>=60?
+          reward>=50?
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
