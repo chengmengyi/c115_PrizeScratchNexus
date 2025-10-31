@@ -19,9 +19,9 @@ class PsnBWheelChild extends PsnRootChild<PsnBWheelChildCon>{
   Widget onCreate() => Column(
     children: [
       _topWidget(),
-      SizedBox(height: 30.h,),
+      SizedBox(height: 15.h,),
       _wheelWidget(),
-      SizedBox(height: 30.h,),
+      SizedBox(height: 15.h,),
       PsnBBtnWidget(
         text: "Spin",
         bgName: "btn_green",
@@ -34,11 +34,11 @@ class PsnBWheelChild extends PsnRootChild<PsnBWheelChildCon>{
 
   _wheelWidget()=>Container(
     width: double.infinity,
-    margin: EdgeInsets.only(left: 52.w,right: 52.w),
+    margin: EdgeInsets.only(left: 26.w,right: 26.w),
     child: LayoutBuilder(
       builder: (context,bc){
         var size = bc.maxWidth;
-        final radius = (size / 2 - 30)*0.8;
+        final radius = (size / 2 - 15)*0.7;
         return AspectRatio(
           aspectRatio: 1,
           child: Stack(
@@ -59,7 +59,7 @@ class PsnBWheelChild extends PsnRootChild<PsnBWheelChildCon>{
                         alignment: Alignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(46.w),
+                            padding: EdgeInsets.all(23.w),
                             child: PsnImageWidget(name: "wheel3",width: double.infinity,height: double.infinity,),
                           ),
                           ...List.generate(
@@ -82,17 +82,17 @@ class PsnBWheelChild extends PsnRootChild<PsnBWheelChildCon>{
                 },
                 child: Stack(
                   children: [
-                    PsnImageWidget(name: "wheel4",width: 163.w,height: 213.h,),
+                    PsnImageWidget(name: "wheel4",width: 82.w,height: 106.h,),
                     Positioned(
-                      top: 60.h,
+                      top: 30.h,
                       right: 0,
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          PsnImageWidget(name: "wheel5",width: 46.w,height: 46.w,),
+                          PsnImageWidget(name: "wheel5",width: 23.w,height: 23.w,),
                           GetBuilder<PsnBWheelChildCon>(
                             id: "wheel_num",
-                            builder: (_)=>PsnTextWidget(text: "${psnCon.wheelNum}", size: 30.sp, color: "#FFFFFF".toColor(),),
+                            builder: (_)=>PsnTextWidget(text: "${psnCon.wheelNum}", size: 15.sp, color: "#FFFFFF".toColor(),),
                           )
                         ],
                       ),
@@ -127,8 +127,8 @@ class PsnBWheelChild extends PsnRootChild<PsnBWheelChildCon>{
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            PsnImageWidget(name: "icon_money3",width: 94.w,height: 64.h,),
-            PsnTextWidget(text: "\$${bean.reward}", size: 28.sp, color: "#FFD52C".toColor(),outlineColor: "#000000".toColor(),)
+            PsnImageWidget(name: "icon_money3",width: 47.w,height: 32.h,),
+            PsnTextWidget(text: "\$${bean.reward}", size: 14.sp, color: "#FFD52C".toColor(),outlineColor: "#000000".toColor(),)
           ],
         ),
       ),
@@ -138,18 +138,18 @@ class PsnBWheelChild extends PsnRootChild<PsnBWheelChildCon>{
   _topWidget()=>Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      SizedBox(height: 60.h,),
-      PsnImageWidget(name: "wheel1",height: 90.h,boxFit: BoxFit.fitHeight,),
-      SizedBox(height: 10.h,),
+      SizedBox(height: 30.h,),
+      PsnImageWidget(name: "wheel1",height: 45.h,boxFit: BoxFit.fitHeight,),
+      SizedBox(height: 5.h,),
       Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          PsnTextWidget(text: "Just ", size: 36.sp, color: "#F7FCFF".toColor(),outlineColor: "#000000".toColor(),),
+          PsnTextWidget(text: "Just ", size: 18.sp, color: "#F7FCFF".toColor(),outlineColor: "#000000".toColor(),),
           GetBuilder<PsnBWheelChildCon>(
             id: "top_text",
-            builder: (_)=>PsnTextWidget(text: "${psnCon.getCashMoney()}", size: 36.sp, color: "#FFFA21".toColor(),outlineColor: "#000000".toColor()),
+            builder: (_)=>PsnTextWidget(text: "${psnCon.getCashMoney()}", size: 18.sp, color: "#FFFA21".toColor(),outlineColor: "#000000".toColor()),
           ),
-          PsnTextWidget(text: " to Pagbank withdrawal", size: 36.sp, color: "#F7FCFF".toColor(),outlineColor: "#000000".toColor()),
+          PsnTextWidget(text: " to Pagbank withdrawal", size: 18.sp, color: "#F7FCFF".toColor(),outlineColor: "#000000".toColor()),
         ],
       ),
     ],

@@ -65,21 +65,21 @@ class PsnBLuckyCardWidgetState extends PsnRootStatefulState<PsnBLuckyCardWidget>
     ),
   );
 
-  _backgroundWidget()=>PsnImageWidget(name: "card2",width: double.infinity,height: 209.h,);
+  _backgroundWidget()=>PsnImageWidget(name: "card2",width: double.infinity,height: 104.h,);
 
   _frontWidget()=>SizedBox(
     width: double.infinity,
-    height: 209.h,
+    height: 104.h,
     child: Stack(
       children: [
-        PsnImageWidget(name: "card3",width: double.infinity,height: 209.h,),
+        PsnImageWidget(name: "card3",width: double.infinity,height: 104.h,),
         Align(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PsnImageWidget(name: "icon_money3",width: 116.w,height: 80.h,),
-              SizedBox(height: 10.h,),
-              PsnTextWidget(text: "\$$reward", size: 28.sp, color: "#FFD52C".toColor(),outlineColor: "#000000".toColor(),),
+              PsnImageWidget(name: "icon_money3",width: 58.w,height: 40.h,),
+              SizedBox(height: 5.h,),
+              PsnTextWidget(text: "\$$reward", size: 14.sp, color: "#FFD52C".toColor(),outlineColor: "#000000".toColor(),),
             ],
           ),
         ),
@@ -88,8 +88,8 @@ class PsnBLuckyCardWidgetState extends PsnRootStatefulState<PsnBLuckyCardWidget>
           child: Visibility(
             visible: showMissIcon,
             child: Container(
-              margin: EdgeInsets.only(top: 10.h),
-              child: PsnImageWidget(name: "card4",width: 120.w,height: 34.h,),
+              margin: EdgeInsets.only(top: 5.h),
+              child: PsnImageWidget(name: "card4",width: 60.w,height: 17.h,),
             ),
           ),
         )

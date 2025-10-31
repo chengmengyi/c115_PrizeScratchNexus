@@ -31,18 +31,18 @@ class PsnBGuide1Overlay extends StatelessWidget{
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [
-                  PsnImageWidget(name: "home2",width: 357.w,height: 107.h,),
+                  PsnImageWidget(name: "home2",width: 178.w,height: 53.h,),
                   Container(
-                    margin: EdgeInsets.only(top: 26.h),
-                    child: PsnImageWidget(name: "home3",width: 191.w,height: 40.h,),
+                    margin: EdgeInsets.only(top: 13.h),
+                    child: PsnImageWidget(name: "home3",width: 95.w,height: 20.h,),
                   ),
                 ],
               ),
             ),
             Positioned(
-              top: offset.dy+50.h,
-              left: offset.dx+170.w,
-              child: PsnLottieWidget(name: "finger",width: 100.w,height: 100.w,),
+              top: offset.dy+25.h,
+              left: offset.dx+85.w,
+              child: PsnLottieWidget(name: "finger",width: 50.w,height: 50.w,),
             )
           ],
         ),

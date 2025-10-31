@@ -28,23 +28,23 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
   @override
   Widget onCreate() => Container(
     width: double.infinity,
-    margin: EdgeInsets.only(left: 98.w,right: 98.w),
+    margin: EdgeInsets.only(left: 49.w,right: 49.w),
     decoration: BoxDecoration(
       color: "#FFFFFF".toColor(),
-      borderRadius: BorderRadius.circular(30.w),
+      borderRadius: BorderRadius.circular(15.w),
     ),
     child: Stack(
       alignment: Alignment.topCenter,
       children: [
         _contentWidget(),
         Positioned(
-          top: 20.h,
-          right: 20.w,
+          top: 10.h,
+          right: 10.w,
           child: PsnClick(
             onTap: (){
               psnCon.clickClose();
             },
-            child: PsnImageWidget(name: "icon_close3",width: 50.w,height: 50.w,),
+            child: PsnImageWidget(name: "icon_close3",width: 25.w,height: 25.w,),
           ),
         ),
       ],
@@ -52,69 +52,69 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
   );
 
   _contentWidget()=>Container(
-    margin: EdgeInsets.only(left: 35.w,right: 35.w),
+    margin: EdgeInsets.only(left: 17.w,right: 17.w),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(height: 35.h,),
-        PsnTextWidget(text: "Payment in progress", size: 38.sp, color: "#000000".toColor(),fontFamily: null,),
-        SizedBox(height: 35.h,),
+        SizedBox(height: 17.h,),
+        PsnTextWidget(text: "Payment in progress", size: 19.sp, color: "#000000".toColor(),fontFamily: null,),
+        SizedBox(height: 17.h,),
         _progressWidget(),
-        PsnTextWidget(text: "One Last Step", size: 38.sp, color: "#000000".toColor(),fontFamily: null,),
-        SizedBox(height: 50.h,),
+        PsnTextWidget(text: "One Last Step", size: 19.sp, color: "#000000".toColor(),fontFamily: null,),
+        SizedBox(height: 25.h,),
         _rankTextWidget(),
-        SizedBox(height: 6.h,),
+        SizedBox(height: 3.h,),
         _rankListWidget(),
+        SizedBox(height: 10.h,),
+        PsnTextWidget(text: "We have secured the bank's VIP channel，no need to wait to watch ads, \$${rankBean.cashMoney??0} Cash out faster！", size: 15.sp, color: "#000000".toColor(),fontFamily: null,),
         SizedBox(height: 20.h,),
-        PsnTextWidget(text: "We have secured the bank's VIP channel，no need to wait to watch ads, \$${rankBean.cashMoney??0} Cash out faster！", size: 30.sp, color: "#000000".toColor(),fontFamily: null,),
-        SizedBox(height: 40.h,),
         PsnClick(
           onTap: (){
             psnCon.clickSkip();
           },
           child: Container(
             width: double.infinity,
-            height: 96.h,
+            height: 48.h,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: "#356ECA".toColor(),
-              borderRadius: BorderRadius.circular(25.w),
+              borderRadius: BorderRadius.circular(12.w),
             ),
-            child: PsnTextWidget(text: "Skip Wait", size: 33.sp, color: "#FFFFFF".toColor(),fontFamily: null,),
+            child: PsnTextWidget(text: "Skip Wait", size: 16.sp, color: "#FFFFFF".toColor(),fontFamily: null,),
           ),
         ),
-        SizedBox(height: 40.h,),
+        SizedBox(height: 20.h,),
       ],
     ),
   );
 
   _rankListWidget()=>Container(
     width: double.infinity,
-    height: 470.h,
+    height: 235.h,
     decoration: BoxDecoration(
       color: "#F7F7F7".toColor(),
-      borderRadius: BorderRadius.circular(16.w),
+      borderRadius: BorderRadius.circular(8.w),
     ),
     child: Column(
       children: [
         SizedBox(
           width: double.infinity,
-          height: 70.h,
+          height: 35.h,
           child: Row(
             children: [
               Expanded(
                 child: Center(
-                  child: PsnTextWidget(text: "User ID", size: 25.sp, color: "#000000".toColor(),fontFamily: null,),
+                  child: PsnTextWidget(text: "User ID", size: 12.sp, color: "#000000".toColor(),fontFamily: null,),
                 ),
               ),
               Expanded(
                 child: Center(
-                  child: PsnTextWidget(text: "Account", size: 25.sp, color: "#000000".toColor(),fontFamily: null,),
+                  child: PsnTextWidget(text: "Account", size: 12.sp, color: "#000000".toColor(),fontFamily: null,),
                 ),
               ),
               Expanded(
                 child: Center(
-                  child: PsnTextWidget(text: "Amount", size: 25.sp, color: "#000000".toColor(),fontFamily: null,),
+                  child: PsnTextWidget(text: "Amount", size: 12.sp, color: "#000000".toColor(),fontFamily: null,),
                 ),
               ),
             ],
@@ -130,23 +130,23 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
                 var bean = psnCon.ranList[index];
                 return Container(
                   width: double.infinity,
-                  height: 50.h,
+                  height: 25.h,
                   color: bean.isMe?"#FFF5E8".toColor():index%2==0?"#ECECEC".toColor():"#F7F7F7".toColor(),
                   child: Row(
                     children: [
                       Expanded(
                         child: Center(
-                          child: PsnTextWidget(text: psnCon.getUserId(index+1), size: 28.sp, color: bean.isMe?"#DA4500".toColor():"#000000".toColor(),fontFamily: null,),
+                          child: PsnTextWidget(text: psnCon.getUserId(index+1), size: 14.sp, color: bean.isMe?"#DA4500".toColor():"#000000".toColor(),fontFamily: null,),
                         ),
                       ),
                       Expanded(
                         child: Center(
-                          child: PsnTextWidget(text: bean.account, size: 28.sp, color: bean.isMe?"#DA4500".toColor():"#000000".toColor(),fontFamily: null,),
+                          child: PsnTextWidget(text: bean.account, size: 14.sp, color: bean.isMe?"#DA4500".toColor():"#000000".toColor(),fontFamily: null,),
                         ),
                       ),
                       Expanded(
                         child: Center(
-                          child: PsnTextWidget(text: "\$${bean.amount}", size: 28.sp, color: bean.isMe?"#DA4500".toColor():"#000000".toColor(),fontFamily: null,),
+                          child: PsnTextWidget(text: "\$${bean.amount}", size: 14.sp, color: bean.isMe?"#DA4500".toColor():"#000000".toColor(),fontFamily: null,),
                         ),
                       ),
                     ],
@@ -169,7 +169,7 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
             TextSpan(
               text: "${rankBean.totalRank??400}",
               style: TextStyle(
-                  fontSize: 27.sp,
+                  fontSize: 13.sp,
                   color: "#067000".toColor(),
                   fontWeight: FontWeight.bold
               ),
@@ -177,7 +177,7 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
             TextSpan(
               text: " in queue,Your Current rank ",
               style: TextStyle(
-                  fontSize: 27.sp,
+                  fontSize: 13.sp,
                   color: "#000000".toColor(),
                   fontWeight: FontWeight.bold
               ),
@@ -185,7 +185,7 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
             TextSpan(
               text: "${rankBean.currentRank??1}",
               style: TextStyle(
-                  fontSize: 27.sp,
+                  fontSize: 13.sp,
                   color: "#067000".toColor(),
                   fontWeight: FontWeight.bold
               ),
@@ -200,21 +200,21 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
     children: [
       SizedBox(
         width: double.infinity,
-        height: 28.w,
+        height: 14.w,
         child: Stack(
           alignment: Alignment.centerLeft,
           children: [
             Container(
               width: double.infinity,
-              height: 14.h,
+              height: 7.h,
               color: "#EFEFEF".toColor(),
-              margin: EdgeInsets.only(left: 14.w,right: 14.w),
+              margin: EdgeInsets.only(left: 7.w,right: 7.w),
               child: Row(
                 children: [
                   Expanded(
                     child: Container(
                       width: double.infinity,
-                      height: 14.h,
+                      height: 7.h,
                       color: "#00C220".toColor(),
                     ),
                   ),
@@ -225,19 +225,19 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
-                width: 28.w,
-                height: 28.w,
+                width: 14.w,
+                height: 14.w,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14.w),
+                  borderRadius: BorderRadius.circular(7.w),
                   color: "#EFEFEF".toColor(),
                 ),
                 child: Container(
-                  width: 18.w,
-                  height: 18.w,
+                  width: 9.w,
+                  height: 9.w,
                   decoration: BoxDecoration(
                     color: "#00C220".toColor(),
-                    borderRadius: BorderRadius.circular(9.w),
+                    borderRadius: BorderRadius.circular(4.w),
                   ),
                 ),
               ),
@@ -245,19 +245,19 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
             Align(
               alignment: Alignment.center,
               child: Container(
-                width: 28.w,
-                height: 28.w,
+                width: 14.w,
+                height: 14.w,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14.w),
+                  borderRadius: BorderRadius.circular(7.w),
                   color: "#EFEFEF".toColor(),
                 ),
                 child: Container(
-                  width: 18.w,
-                  height: 18.w,
+                  width: 9.w,
+                  height: 9.w,
                   decoration: BoxDecoration(
                     color: "#00C220".toColor(),
-                    borderRadius: BorderRadius.circular(9.w),
+                    borderRadius: BorderRadius.circular(4.w),
                   ),
                 ),
               ),
@@ -265,11 +265,11 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
             Align(
               alignment: Alignment.centerRight,
               child: Container(
-                width: 28.w,
-                height: 28.w,
+                width: 14.w,
+                height: 14.w,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14.w),
+                  borderRadius: BorderRadius.circular(7.w),
                   color: "#EFEFEF".toColor(),
                 ),
               ),
@@ -279,20 +279,20 @@ class PsnRankDialog extends PsnRootDialog<PsnRankDialogCon>{
       ),
       SizedBox(
         width: double.infinity,
-        height: 100.h,
+        height: 50.h,
         child: Stack(
           children: [
             Align(
               alignment: Alignment.topLeft,
-              child: PsnTextWidget(text: "Review", size: 25.sp, color: "#067000".toColor()),
+              child: PsnTextWidget(text: "Review", size: 12.sp, color: "#067000".toColor()),
             ),
             Align(
               alignment: Alignment.topCenter,
-              child: PsnTextWidget(text: "Queue", size: 25.sp, color: "#067000".toColor()),
+              child: PsnTextWidget(text: "Queue", size: 12.sp, color: "#067000".toColor()),
             ),
             Align(
               alignment: Alignment.topRight,
-              child: PsnTextWidget(text: "Funds\nreceived", size: 25.sp, color: "#8D8D8D".toColor(),textAlign: TextAlign.end,),
+              child: PsnTextWidget(text: "Funds\nreceived", size: 12.sp, color: "#8D8D8D".toColor(),textAlign: TextAlign.end,),
             ),
           ],
         ),

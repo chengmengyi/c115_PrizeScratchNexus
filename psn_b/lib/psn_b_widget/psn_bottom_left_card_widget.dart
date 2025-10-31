@@ -49,31 +49,31 @@ class _PsnBottomLeftCardWidgetState extends PsnRootStatefulState<PsnBottomLeftCa
                 onTap: (){
                   _startShake();
                 },
-                child: PsnImageWidget(name: currentIndex>=2?"card6":"card5",width: 141.w,height: 136.h,),
+                child: PsnImageWidget(name: currentIndex>=2?"card6":"card5",width: 70.w,height: 68.h,),
               ),
             ),
           ),
-          SizedBox(width: 10.w,),
+          SizedBox(width: 5.w,),
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               _circleItemWidget(0),
-              SizedBox(height: 16.h,),
+              SizedBox(height: 8.h,),
               Container(
-                margin: EdgeInsets.only(left: 25.w),
+                margin: EdgeInsets.only(left: 12.w),
                 child: _circleItemWidget(1),
               ),
-              SizedBox(height: 16.h,),
+              SizedBox(height: 8.h,),
               _circleItemWidget(2),
             ],
           ),
         ],
       ),
-      PsnImageWidget(name: "card7",height: 30.h,boxFit: BoxFit.fitHeight,),
+      PsnImageWidget(name: "card7",height: 15.h,boxFit: BoxFit.fitHeight,),
     ],
   );
 
-  _circleItemWidget(index)=>PsnImageWidget(name: currentIndex>index?"card9":"card8",width: 22.w,height: 22.w,);
+  _circleItemWidget(index)=>PsnImageWidget(name: currentIndex>index?"card9":"card8",width: 11.w,height: 11.w,);
 
   _startShake() {
     if(currentIndex>=2){

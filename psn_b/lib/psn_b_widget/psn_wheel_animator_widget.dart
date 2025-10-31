@@ -60,17 +60,17 @@ class _PsnWheelAnimatorWidgetState extends PsnRootStatefulState<PsnWheelAnimator
               final pos = _posAnim!.value;
               final scale = _scaleAnim!.value;
               return Positioned(
-                left: pos.dx-143.w,
+                left: pos.dx-71.w,
                 top: pos.dy,
-                width: 143.w,
-                height: 134.h,
+                width: 71.w,
+                height: 67.h,
                 child: Transform.scale(
                   scale: scale,
                   child: child,
                 ),
               );
             },
-            child: PsnImageWidget(name: "icon_wheel",width: 143.w,height: 134.h,),
+            child: PsnImageWidget(name: "icon_wheel",width: 71.w,height: 67.h,),
           ),
         ],
       ),

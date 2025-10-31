@@ -24,8 +24,8 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
         child: _sliderWidget(),
       ),
       Positioned(
-        top: 13.h,
-        left: 22.w,
+        top: 6.h,
+        left: 11.w,
         child: PsnBoxWidget(),
       ),
       Align(
@@ -41,8 +41,8 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
         ),
       ),
       Positioned(
-        right: 10.w,
-        bottom: 30.h,
+        right: 5.w,
+        bottom: 15.h,
         child: PsnClick(
           onTap: (){
             psnCon.toMoreGame();
@@ -50,8 +50,8 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              PsnImageWidget(name: "more_game",width: 133.w,height: 133.w,),
-              PsnTextWidget(text: "More Fun", size: 30.sp, color: "#FFFFFF".toColor(),outlineColor: "#160068".toColor(),)
+              PsnImageWidget(name: "more_game",width: 66.w,height: 66.w,),
+              PsnTextWidget(text: "More Fun", size: 15.sp, color: "#FFFFFF".toColor(),outlineColor: "#160068".toColor(),)
             ],
           ),
         ),
@@ -64,12 +64,12 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
     mainAxisSize: MainAxisSize.min,
     children: [
       _indicatorWidget(),
-      SizedBox(height: 36.h,),
+      SizedBox(height: 19.h,),
       GetBuilder<PsnBCardChildCon>(
         id: "list",
         builder: (_)=>CarouselSlider(
           options: CarouselOptions(
-              height: 780.h,
+              height: 390.h,
               autoPlay: false,
               enlargeCenterPage: true,
               viewportFraction: 0.65,
@@ -81,14 +81,14 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
           items: psnCon.cardList.map((value)=>_sliderItemWidget(value)).toList(),
         ),
       ),
-      SizedBox(height: 60.h,),
+      SizedBox(height: 30.h,),
       _btnWidget(),
     ],
   );
 
   Widget _sliderItemWidget(PsnBCardBean value) => Stack(
     children: [
-      PsnImageWidget(name: psnCon.getCardIcon(value),width: double.infinity,height: 780.h,),
+      PsnImageWidget(name: psnCon.getCardIcon(value),width: double.infinity,height: 390.h,),
       PsnBCardNumWidget(cardTypeEnum: PsnBCardTypeEnum.values.byName(value.cardType??"")),
       Align(
         child: Visibility(
@@ -96,27 +96,27 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PsnImageWidget(name: "icon_lock",width: 107.w,height: 136.h,),
-              SizedBox(height: 20.h,),
+              PsnImageWidget(name: "icon_lock",width: 53.w,height: 68.h,),
+              SizedBox(height: 10.h,),
               PsnTextWidget(
                 text: "Unlock thid game mode at",
-                size: 24.sp,
+                size: 12.sp,
                 color: "#FFFFFF".toColor(),
                 outlineColor: "#000000".toColor(),
               ),
-              SizedBox(height: 20.h,),
+              SizedBox(height: 10.h,),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   PsnTextWidget(
                     text: "Level",
-                    size: 24.sp,
+                    size: 12.sp,
                     color: "#FFFFFF".toColor(),
                     outlineColor: "#000000".toColor(),
                   ),
                   PsnTextWidget(
                     text: " ${getLevelByCardType(PsnBCardTypeEnum.values.byName(value.cardType??""))}",
-                    size: 24.sp,
+                    size: 12.sp,
                     color: "#FFE400".toColor(),
                     outlineColor: "#000000".toColor(),
                   ),
@@ -130,7 +130,7 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
   );
 
   _indicatorWidget()=>SizedBox(
-    height: 26.w,
+    height: 13.w,
     child: GetBuilder<PsnBCardChildCon>(
       id: "indicator",
       builder: (_)=>ListView.builder(
@@ -138,8 +138,8 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context,index)=>Container(
-          margin: EdgeInsets.only(left: 11.w,right: 11.w),
-          child: PsnImageWidget(name: index==psnCon.currentIndex?"indicator_sel":"indicator_uns",width: 26.w,height: 26.w,),
+          margin: EdgeInsets.only(left: 5.w,right: 5.w),
+          child: PsnImageWidget(name: index==psnCon.currentIndex?"indicator_sel":"indicator_uns",width: 13.w,height: 13.w,),
         ),
       ),
     ),
@@ -153,10 +153,10 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
       alignment: Alignment.topCenter,
       key: psnCon.playBtnGlobalKey,
       children: [
-        PsnImageWidget(name: "home2",width: 357.w,height: 107.h,),
+        PsnImageWidget(name: "home2",width: 178.w,height: 54.h,),
         Container(
-          margin: EdgeInsets.only(top: 26.h),
-          child: PsnImageWidget(name: "home3",width: 191.w,height: 40.h,),
+          margin: EdgeInsets.only(top: 13.h),
+          child: PsnImageWidget(name: "home3",width: 96.w,height: 20.h,),
         ),
       ],
     ),

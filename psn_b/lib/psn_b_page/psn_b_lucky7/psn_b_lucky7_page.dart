@@ -27,7 +27,7 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
       PsnBPlayBaseWidget(
         child: _contentWidget(),
         playUtils: psnCon.playUtils,
-        margin: EdgeInsets.only(left: 66.w),
+        margin: EdgeInsets.only(left: 33.w),
       ),
       _topMoneyFingerWidget(),
     ],
@@ -35,8 +35,8 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
 
   _contentWidget()=>Container(
     width: double.infinity,
-    height: 974.h,
-    margin: EdgeInsets.only(left: 66.w,right: 66.w),
+    height: 487.h,
+    margin: EdgeInsets.only(left: 33.w,right: 33.w),
     child: Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -45,15 +45,15 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
           mainAxisSize: MainAxisSize.min,
           children: [
             _textWidget(),
-            SizedBox(height: 6.h,),
+            SizedBox(height: 3.h,),
             _guaWidget(),
           ],
         ),
         Align(
           alignment: Alignment.topCenter,
           child: Container(
-            margin: EdgeInsets.only(top: 40.h),
-            child: PsnPlayLogoAnimatorWidget(image: "lucky6", width: 508.w, height: 217.h),
+            margin: EdgeInsets.only(top: 20.h),
+            child: PsnPlayLogoAnimatorWidget(image: "lucky6", width: 254.w, height: 108.h),
           ),
         ),
       ],
@@ -62,9 +62,9 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
 
   _guaWidget()=>Container(
     width: double.infinity,
-    height: 626.h,
+    height: 313.h,
     key: psnCon.playUtils.scratchGlobalKey,
-    margin: EdgeInsets.only(left: 30.w,right: 30.w,bottom: 46.h),
+    margin: EdgeInsets.only(left: 15.w,right: 15.w,bottom: 23.h),
     child: Stack(
       children: [
         Scratcher(
@@ -102,7 +102,7 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
                     var bean = psnCon.playUtils.contentList[index];
                     return Container(
                       width: double.infinity,
-                      height: 125.h,
+                      height: 62.h,
                       alignment: Alignment.center,
                       child: PsnBreathingWidget(
                         startAnimator: bean.win,
@@ -110,7 +110,7 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             bean.win?
-                            PsnImageWidget(name: bean.content,width: 60.w,height: 55.h,):
+                            PsnImageWidget(name: bean.content,width: 30.w,height: 27.h,):
                             PsnGradientText(
                               data: bean.content,
                               gradient: LinearGradient(
@@ -118,14 +118,14 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
                                   end: Alignment.bottomCenter,
                                   colors: ["#FBFF00".toColor(),"#FEAC02".toColor()]
                               ),
-                              size: 60.sp,
+                              size: 30.sp,
                               outlineColor: "#000000".toColor(),
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                PsnImageWidget(name: "icon_money",width: 28.w,height: 28.h,),
-                                SizedBox(width: 8.w,),
+                                PsnImageWidget(name: "icon_money",width: 14.w,height: 14.h,),
+                                SizedBox(width: 4.w,),
                                 PsnGradientText(
                                   data: "${bean.reward}",
                                   gradient: LinearGradient(
@@ -133,7 +133,7 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter
                                   ),
-                                  size: 26.sp,
+                                  size: 13.sp,
                                   outlineColor: "#0C0D0E".toColor(),
                                 ),
                               ],
@@ -163,30 +163,30 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
 
   _textWidget()=>Container(
     width: double.infinity,
-    height: 41.h,
+    height: 20.h,
     alignment: Alignment.center,
-    margin: EdgeInsets.only(left: 34.w,right: 34.w),
+    margin: EdgeInsets.only(left: 17.w,right: 17.w),
     decoration: BoxDecoration(
       color: "#E96208".toColor(),
-      borderRadius: BorderRadius.circular(20.w),
+      borderRadius: BorderRadius.circular(10.w),
       border: Border.all(
-        width: 2.w,
+        width: 1.w,
         color: "#FF9C00".toColor(),
       ),
     ),
     child: Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        PsnTextWidget(text: "Scratch More ", size: 24.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
-        PsnTextWidget(text: "7s", size: 24.sp, color: "#F9DC04".toColor(),outlineColor: "#000000".toColor(),),
-        PsnTextWidget(text: " For Bigger Bonuses! ", size: 24.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
+        PsnTextWidget(text: "Scratch More ", size: 12.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
+        PsnTextWidget(text: "7s", size: 12.sp, color: "#F9DC04".toColor(),outlineColor: "#000000".toColor(),),
+        PsnTextWidget(text: " For Bigger Bonuses! ", size: 12.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
       ],
     ),
   );
 
   _topMoneyFingerWidget()=>Positioned(
-    top: 50.h,
-    left: 300.w,
+    top: 25.h,
+    left: 150.w,
     child: GetBuilder<PsnBLucky7Con>(
       id: "top_finger",
       builder: (_)=>Visibility(
@@ -197,7 +197,7 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
             onTap: (){
               psnCon.clickCash();
             },
-            child: PsnLottieWidget(name: "finger",width: 90.w,height: 90.w,),
+            child: PsnLottieWidget(name: "finger",width: 45.w,height: 45.w,),
           ),
         ),
       ),

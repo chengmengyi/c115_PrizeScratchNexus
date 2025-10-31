@@ -46,7 +46,7 @@ class PsnBHomePage extends PsnRootPage<PsnBHomeCon>{
 
   _bottomBtnWidget()=>SizedBox(
     width: double.infinity,
-    height: 138.h,
+    height: 69.h,
     child: Stack(
       children: [
         PsnImageWidget(name: "home4",width: double.infinity,height: double.infinity,),
@@ -66,7 +66,7 @@ class PsnBHomePage extends PsnRootPage<PsnBHomeCon>{
               },
               child: SizedBox(
                 width: double.infinity,
-                height: 138.h,
+                height: 69.h,
                 child: Stack(
                   children: [
                     Visibility(
@@ -78,8 +78,8 @@ class PsnBHomePage extends PsnRootPage<PsnBHomeCon>{
                       child: Stack(
                         alignment: Alignment.bottomCenter,
                         children: [
-                          PsnImageWidget(name: bean.icon,width: 109.w,height: 103.h,),
-                          PsnImageWidget(name: bean.text,height: 39.h,boxFit: BoxFit.fitHeight,),
+                          PsnImageWidget(name: bean.icon,width: 54.w,height: 51.h,),
+                          PsnImageWidget(name: bean.text,height: 19.h,boxFit: BoxFit.fitHeight,),
                         ],
                       ),
                     ),
@@ -91,10 +91,10 @@ class PsnBHomePage extends PsnRootPage<PsnBHomeCon>{
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
-                            PsnImageWidget(name: "wheel5",width: 46.w,height: 46.w,),
+                            PsnImageWidget(name: "wheel5",width: 23.w,height: 23.w,),
                             GetBuilder<PsnBHomeCon>(
                               id: "wheel_num",
-                              builder: (_)=>PsnTextWidget(text: "${psnCon.wheelNum}", size: 30.sp, color: "#FFFFFF".toColor(),),
+                              builder: (_)=>PsnTextWidget(text: "${psnCon.wheelNum}", size: 15.sp, color: "#FFFFFF".toColor(),),
                             )
                           ],
                         ),

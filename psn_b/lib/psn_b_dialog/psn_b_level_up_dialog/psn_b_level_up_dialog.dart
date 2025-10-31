@@ -21,7 +21,7 @@ class PsnBLevelUpDialog extends PsnRootDialog<PsnBLevelUpDialogCon>{
     mainAxisSize: MainAxisSize.min,
     children: [
       _titleWidget(),
-      SizedBox(height: 25.h,),
+      SizedBox(height: 12.h,),
       _levelWidget(),
     ],
   );
@@ -36,14 +36,14 @@ class PsnBLevelUpDialog extends PsnRootDialog<PsnBLevelUpDialogCon>{
           end: Alignment.bottomCenter,
           colors: ["#FFFED5".toColor(),"#FDFC07".toColor()],
         ),
-        size: 60.sp,
+        size: 30.sp,
         outlineColor: "#D44B01".toColor(),
       ),
       Stack(
         alignment: Alignment.center,
         children: [
-          PsnImageWidget(name: "win3",width: double.infinity,height: 500.h,),
-          PsnImageWidget(name: "icon_money2",width: 300.w,height: 285.h,),
+          PsnImageWidget(name: "win3",width: double.infinity,height: 250.h,),
+          PsnImageWidget(name: "icon_money2",width: 150.w,height: 142.h,),
         ],
       ),
       PsnGradientText(
@@ -53,10 +53,10 @@ class PsnBLevelUpDialog extends PsnRootDialog<PsnBLevelUpDialogCon>{
           end: Alignment.bottomCenter,
           colors: ["#FFFED5".toColor(),"#FDFC07".toColor()],
         ),
-        size: 60.sp,
+        size: 30.sp,
         outlineColor: "#D44B01".toColor(),
       ),
-      SizedBox(height: 50.h,),
+      SizedBox(height: 25.h,),
       PsnBBtnWidget(
         text: "Double",
         bgName: "btn_green",
@@ -65,7 +65,7 @@ class PsnBLevelUpDialog extends PsnRootDialog<PsnBLevelUpDialogCon>{
           psnCon.clickDouble(dismissCallback);
         },
       ),
-      SizedBox(height: 36.h,),
+      SizedBox(height: 18.h,),
       PsnBBtnWidget(
         text: "Claim",
         bgName: "btn_blue",
@@ -77,12 +77,12 @@ class PsnBLevelUpDialog extends PsnRootDialog<PsnBLevelUpDialogCon>{
   );
 
   _titleWidget()=>Container(
-    margin: EdgeInsets.only(left: 30.w,right: 30.w),
+    margin: EdgeInsets.only(left: 30.15,right: 15.w),
     child: Stack(
       alignment: Alignment.center,
       children: [
-        PsnImageWidget(name: "win1",width: double.infinity,height: 128.h,),
-        PsnTextWidget(text: "Level Up", size: 60.sp, color: "#FDFC07".toColor(),outlineColor: "#D44B01".toColor(),)
+        PsnImageWidget(name: "win1",width: double.infinity,height: 64.h,),
+        PsnTextWidget(text: "Level Up", size: 30.sp, color: "#FDFC07".toColor(),outlineColor: "#D44B01".toColor(),)
       ],
     ),
   );

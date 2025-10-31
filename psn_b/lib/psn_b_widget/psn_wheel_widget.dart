@@ -34,12 +34,12 @@ class _PsnWheelWidgetState extends PsnRootStatefulState<PsnWheelWidget>{
     child: Stack(
       alignment: Alignment.topRight,
       children: [
-        PsnImageWidget(name: "icon_wheel",width: 143.w,height: 134.h,),
+        PsnImageWidget(name: "icon_wheel",width: 71.w,height: 67.h,),
         Stack(
           alignment: Alignment.center,
           children: [
-            PsnImageWidget(name: "icon_yuan",width: 46.w,height: 46.w,),
-            PsnTextWidget(text: "$wheelNum", size: 30.sp, color: "#FFFFFF".toColor(),),
+            PsnImageWidget(name: "icon_yuan",width: 23.w,height: 23.w,),
+            PsnTextWidget(text: "$wheelNum", size: 15.sp, color: "#FFFFFF".toColor(),),
           ],
         ),
       ],

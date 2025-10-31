@@ -15,7 +15,7 @@ class PsnBBottomBtnWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) => Row(
     children: [
-      SizedBox(width: 34.w,),
+      SizedBox(width: 17.w,),
       // PsnClick(
       //   onTap: (){
       //     PsnRootRouters.instance.router(
@@ -33,9 +33,9 @@ class PsnBBottomBtnWidget extends StatelessWidget{
         onTap: (){
           playUtils.startAutoScratch();
         },
-        child: PsnImageWidget(name: "bottom2",width: 325.w,height: 107.h,),
+        child: PsnImageWidget(name: "bottom2",width: 162.w,height: 53.h,),
       ),
-      SizedBox(width: 34.w,),
+      SizedBox(width: 17.w,),
     ],
   );
 }

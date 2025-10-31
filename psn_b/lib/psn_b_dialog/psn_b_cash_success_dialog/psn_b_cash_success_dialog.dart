@@ -22,23 +22,23 @@ class PsnBCashSuccessDialog extends PsnRootDialog<PsnBCashSuccessDialogCon>{
   @override
   Widget onCreate() => Container(
     width: double.infinity,
-    margin: EdgeInsets.only(left: 98.w,right: 98.w),
+    margin: EdgeInsets.only(left: 49.w,right: 49.w),
     decoration: BoxDecoration(
       color: "#FFFFFF".toColor(),
-      borderRadius: BorderRadius.circular(30.w),
+      borderRadius: BorderRadius.circular(15.w),
     ),
     child: Stack(
       alignment: Alignment.topCenter,
       children: [
         _contentWidget(),
         Positioned(
-          top: 20.h,
-          right: 20.w,
+          top: 10.h,
+          right: 10.w,
           child: PsnClick(
             onTap: (){
               psnCon.clickSure(cashTaskBean,callback);
             },
-            child: PsnImageWidget(name: "icon_close3",width: 50.w,height: 50.w,),
+            child: PsnImageWidget(name: "icon_close3",width: 25.w,height: 25.w,),
           ),
         ),
       ],
@@ -48,94 +48,38 @@ class PsnBCashSuccessDialog extends PsnRootDialog<PsnBCashSuccessDialogCon>{
   _contentWidget()=>Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      SizedBox(height: 35.h,),
-      PsnTextWidget(text: "Congratulations!", size: 36.sp, color: "#000000".toColor()),
-      PsnImageWidget(name: "success2",width: 325.w,height: 325.h,),
+      SizedBox(height: 17.h,),
+      PsnTextWidget(text: "Congratulations!", size: 13.sp, color: "#000000".toColor()),
+      PsnImageWidget(name: "success2",width: 162.w,height: 162.h,),
       Container(
         width: double.infinity,
-        margin: EdgeInsets.only(left: 30.w,right: 30.w),
+        margin: EdgeInsets.only(left: 15.w,right: 15.w),
         child: PsnTextWidget(
           text: "Congratulations! Your withdrawal request has been successful",
-          size: 30.sp,
+          size: 15.sp,
           color: "#000000".toColor(),
           textAlign: TextAlign.center,
           fontFamily: null,
         ),
       ),
-      SizedBox(height: 35.h,),
+      SizedBox(height: 17.h,),
       PsnClick(
         onTap: (){
           psnCon.clickSure(cashTaskBean,callback);
         },
         child: Container(
           width: double.infinity,
-          height: 95.h,
+          height: 47.h,
           alignment: Alignment.center,
-          margin: EdgeInsets.only(left: 75.w,right: 75.w),
+          margin: EdgeInsets.only(left: 37.w,right: 37.w),
           decoration: BoxDecoration(
             color: "#356ECA".toColor(),
-            borderRadius: BorderRadius.circular(25.w),
+            borderRadius: BorderRadius.circular(12.w),
           ),
-          child: PsnTextWidget(text: "Confirm", size: 33.sp, color: "#FFFFFF".toColor(),),
+          child: PsnTextWidget(text: "Confirm", size: 16.sp, color: "#FFFFFF".toColor(),),
         ),
       ),
-      SizedBox(height: 40.h,),
+      SizedBox(height: 20.h,),
     ],
   );
-  //     Container(
-  //   width: double.infinity,
-  //   height: 560.h,
-  //   margin: EdgeInsets.only(left: 58.w,right: 58.w),
-  //   child: Stack(
-  //     children: [
-  //       PsnImageWidget(name: "success1",width: double.infinity,height: double.infinity,),
-  //       Align(
-  //         alignment: Alignment.topCenter,
-  //         child: Container(
-  //           margin: EdgeInsets.only(top: 32.h),
-  //           child: PsnTextWidget(text: "Congratulations!", size: 48.sp, color: "#FFFFFF".toColor(),),
-  //         ),
-  //       ),
-  //       Positioned(
-  //         top: 29.h,
-  //         right: 29.w,
-  //         child: PsnClick(
-  //           onTap: (){
-  //             psnCon.clickClose();
-  //           },
-  //           child: PsnImageWidget(name: "icon_close2",width: 40.w,height: 40.w,),
-  //         ),
-  //       ),
-  //       Align(
-  //         alignment: Alignment.bottomCenter,
-  //         child: Column(
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: [
-  //             PsnTextWidget(text: "We have completed the", size: 36.sp, color: "#535F75".toColor(),),
-  //             SizedBox(height: 20.h,),
-  //             PsnTextWidget(text: "payment.And the funds will be", size: 36.sp, color: "#535F75".toColor(),),
-  //             SizedBox(height: 20.h,),
-  //             PsnTextWidget(text: "creadited to your bank account", size: 36.sp, color: "#535F75".toColor(),),
-  //             SizedBox(height: 20.h,),
-  //             PsnTextWidget(text: "within 7 business days.", size: 36.sp, color: "#535F75".toColor(),),
-  //             SizedBox(height: 60.h,),
-  //             PsnClick(
-  //               onTap: (){
-  //                 psnCon.clickSure(cashTaskBean);
-  //               },
-  //               child: Stack(
-  //                 alignment: Alignment.center,
-  //                 children: [
-  //                   PsnImageWidget(name: "no_money2",width: 458.w,height: 88.h,),
-  //                   PsnTextWidget(text: "Instantly Credited", size: 36.sp, color: "#FFFFFF".toColor(),outlineColor: "#0A361C".toColor(),)
-  //                 ],
-  //               ),
-  //             ),
-  //             SizedBox(height: 40.h,),
-  //           ],
-  //         ),
-  //       ),
-  //     ],
-  //   ),
-  // );
 }

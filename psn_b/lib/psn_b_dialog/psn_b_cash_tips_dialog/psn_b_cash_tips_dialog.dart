@@ -17,103 +17,42 @@ class PsnBCashTipsDialog extends PsnRootDialog<PsnBCashTipsDialogCon>{
   Widget onCreate() => Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      PsnTextWidget(text: "Congratulations!", size: 42.sp, color: "#FFFFFF".toColor(),),
-      SizedBox(height: 20.h,),
+      PsnTextWidget(text: "Congratulations!", size: 21.sp, color: "#FFFFFF".toColor(),),
+      SizedBox(height: 10.h,),
       Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          PsnTextWidget(text: "Account Reaches ", size: 31.sp, color: "#FFFFFF".toColor()),
-          PsnTextWidget(text: "\$${psnCon.getFirstMoney()}", size: 31.sp, color: "#3DF329".toColor()),
+          PsnTextWidget(text: "Account Reaches ", size: 15.sp, color: "#FFFFFF".toColor()),
+          PsnTextWidget(text: "\$${psnCon.getFirstMoney()}", size: 15.sp, color: "#3DF329".toColor()),
         ],
       ),
-      SizedBox(height: 70.h,),
+      SizedBox(height: 35.h,),
       Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          PsnImageWidget(name: getCashDialogImages(psnCon.cashType),width: 308.w,height: 165.h,),
+          PsnImageWidget(name: getCashDialogImages(psnCon.cashType),width: 154.w,height: 82.h,),
           Container(
-            margin: EdgeInsets.only(bottom: 50.h),
-            child: PsnTextWidget(text: "\$${psnCon.getFirstMoney()}", size: 50.sp, color: "#252525".toColor(),),
+            margin: EdgeInsets.only(bottom: 25.h),
+            child: PsnTextWidget(text: "\$${psnCon.getFirstMoney()}", size: 25.sp, color: "#252525".toColor(),),
           ),
         ],
       ),
-      SizedBox(height: 100.h,),
+      SizedBox(height: 50.h,),
       PsnClick(
         onTap: (){
           psnCon.clickCon();
         },
         child: Container(
-          width: 400.w,
-          height: 96.h,
+          width: 200.w,
+          height: 48.h,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: "#356ECA".toColor(),
-            borderRadius: BorderRadius.circular(25.w),
+            borderRadius: BorderRadius.circular(12.w),
           ),
-          child: PsnTextWidget(text: "Cash Out", size: 33.sp, color: "#FFFFFF".toColor(),),
+          child: PsnTextWidget(text: "Cash Out", size: 16.sp, color: "#FFFFFF".toColor(),),
         ),
       )
-      // PsnImageWidget(name: "tips1",width: double.infinity,height: double.infinity,),
-      // Align(
-      //   alignment: Alignment.topCenter,
-      //   child: Container(
-      //     margin: EdgeInsets.only(top: 32.h),
-      //     child: PsnTextWidget(text: "Account Reaches \$${psnCon.getFirstMoney()}", size: 36.sp, color: "#FFFFFF".toColor(),),
-      //   ),
-      // ),
-      // Positioned(
-      //   top: 29.h,
-      //   right: 29.w,
-      //   child: PsnClick(
-      //     onTap: (){
-      //       psnCon.clickClose();
-      //     },
-      //     child: PsnImageWidget(name: "icon_close2",width: 40.w,height: 40.w,),
-      //   ),
-      // ),
-      // Align(
-      //   alignment: Alignment.bottomCenter,
-      //   child: Column(
-      //     mainAxisSize: MainAxisSize.min,
-      //     children: [
-      //       Stack(
-      //         alignment: Alignment.bottomCenter,
-      //         children: [
-      //           PsnImageWidget(name: getCashDialogImages(psnCon.cashType),width: 496.w,height: 237.h,),
-      //           Container(
-      //             margin: EdgeInsets.only(bottom: 50.h),
-      //             child: PsnTextWidget(text: "\$${psnCon.getFirstMoney()}", size: 70.sp, color: "#252525".toColor(),),
-      //           ),
-      //         ],
-      //       ),
-      //       SizedBox(height: 30.h,),
-      //       Container(
-      //         margin: EdgeInsets.only(left: 55.w,right: 55.w),
-      //         child: PsnTextWidget(text: "Congrats! You're in the top 1%-persistence  pays off! Hurry up and withdraw your \$${psnCon.getFirstMoney()} now!", size: 34.sp, color: "#535F75".toColor()),
-      //       ),
-      //       SizedBox(height: 40.h,),
-      //       PsnClick(
-      //         onTap: (){
-      //           psnCon.clickCon();
-      //         },
-      //         child: SizedBox(
-      //           width: 297.w,
-      //           height: 107.h,
-      //           child: Stack(
-      //             children: [
-      //               PsnImageWidget(name: "btn_blue",width: double.infinity,height: double.infinity,),
-      //               Align(
-      //                 alignment: Alignment.center,
-      //                 child: PsnTextWidget(text: "Confirm", size: 42.sp, color: "#F2F3F3".toColor(),outlineColor: "#090733".toColor(),),
-      //               ),
-      //             ],
-      //           ),
-      //         ),
-      //       ),
-      //       SizedBox(height: 40.h,),
-      //     ],
-      //   ),
-      // ),
     ],
   );
 }

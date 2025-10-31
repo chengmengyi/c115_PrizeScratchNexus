@@ -21,26 +21,26 @@ class PsnBLuckyCardDialog extends PsnRootDialog<PsnBLuckyCardDialogCon>{
   @override
   Widget onCreate() => Container(
     width: double.infinity,
-    height: 770.h,
-    margin: EdgeInsets.only(left: 58.w,right: 58.w),
+    height: 385.h,
+    margin: EdgeInsets.only(left: 29.w,right: 29.w),
     child: Stack(
       children: [
         PsnImageWidget(name: "card1",width: double.infinity,height: double.infinity,),
         Align(
           alignment: Alignment.topCenter,
           child: Container(
-            margin: EdgeInsets.only(top: 32.h),
-            child: PsnTextWidget(text: "Lucky Crad", size: 48.sp, color: "#FDEC59".toColor(),outlineColor: "#000000".toColor(),),
+            margin: EdgeInsets.only(top: 16.h),
+            child: PsnTextWidget(text: "Lucky Crad", size: 24.sp, color: "#FDEC59".toColor(),outlineColor: "#000000".toColor(),),
           ),
         ),
         Positioned(
-          top: 29.h,
-          right: 29.w,
+          top: 15.h,
+          right: 15.w,
           child: PsnClick(
             onTap: (){
               psnCon.clickClose(dismissCallback);
             },
-            child: PsnImageWidget(name: "icon_close2",width: 40.w,height: 40.w,),
+            child: PsnImageWidget(name: "icon_close2",width: 20.w,height: 20.w,),
           ),
         ),
         Align(
@@ -48,12 +48,12 @@ class PsnBLuckyCardDialog extends PsnRootDialog<PsnBLuckyCardDialogCon>{
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PsnTextWidget(text: "Jackpot Time!", size: 32.sp, color: "#FDEF5F".toColor(),outlineColor: "#110F0F".toColor(),),
-              SizedBox(height: 12.h,),
-              PsnTextWidget(text: "Your Big Prize Awaits", size: 32.sp, color: "#F8F2F2".toColor(),outlineColor: "#110F0F".toColor(),),
-              SizedBox(height: 30.h,),
+              PsnTextWidget(text: "Jackpot Time!", size: 16.sp, color: "#FDEF5F".toColor(),outlineColor: "#110F0F".toColor(),),
+              SizedBox(height: 6.h,),
+              PsnTextWidget(text: "Your Big Prize Awaits", size: 16.sp, color: "#F8F2F2".toColor(),outlineColor: "#110F0F".toColor(),),
+              SizedBox(height: 15.h,),
               _cardListWidget(),
-              SizedBox(height: 30.h,),
+              SizedBox(height: 15.h,),
             ],
           ),
         ),
@@ -63,11 +63,11 @@ class PsnBLuckyCardDialog extends PsnRootDialog<PsnBLuckyCardDialogCon>{
 
   _cardListWidget()=>Container(
     width: double.infinity,
-    padding: EdgeInsets.all(26.w),
-    margin: EdgeInsets.only(left: 30.w,right: 30.w),
+    padding: EdgeInsets.all(13.w),
+    margin: EdgeInsets.only(left: 15.w,right: 15.w),
     decoration: BoxDecoration(
       color: "#757A7A".toColor().withOpacity(0.2),
-      borderRadius: BorderRadius.circular(24.w),
+      borderRadius: BorderRadius.circular(12.w),
     ),
     child: Stack(
       children: [
@@ -90,14 +90,14 @@ class PsnBLuckyCardDialog extends PsnRootDialog<PsnBLuckyCardDialogCon>{
           ),
         ),
         Positioned(
-          top: 100.h,
-          left: 50.w,
+          top: 50.h,
+          left: 25.w,
           child: GetBuilder<PsnBLuckyCardDialogCon>(
             id: "finger",
             builder: (_)=>Visibility(
               visible: psnCon.showFinger,
               child: IgnorePointer(
-                child: PsnLottieWidget(name: "finger",width: 90.w,height: 90.w,),
+                child: PsnLottieWidget(name: "finger",width: 45.w,height: 45.w,),
               ),
             ),
           ),

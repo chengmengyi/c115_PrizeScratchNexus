@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
-    designSize: const Size(750, 1624),
+    designSize: const Size(375, 812),
     builder: (c,child)=>GetMaterialApp(
       title: 'PrizeScratch Nexus',
       enableLog: true,

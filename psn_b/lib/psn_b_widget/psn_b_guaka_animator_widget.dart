@@ -33,10 +33,10 @@ class _PsnBGuakaAnimatorWidgetState extends State<PsnBGuakaAnimatorWidget> with 
   Widget build(BuildContext context) {
     // final width = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.only(top: 100.h),
+      margin: EdgeInsets.only(top: 50.h),
       child: LayoutBuilder(
         builder: (context,bc){
-          var width = bc.maxWidth-110.w;
+          var width = bc.maxWidth-55.w;
           return AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
@@ -71,7 +71,7 @@ class _PsnBGuakaAnimatorWidgetState extends State<PsnBGuakaAnimatorWidget> with 
                 child: child!,
               );
             },
-            child: PsnLottieWidget(name: "finger",width: 110.w,height: 110.w,),
+            child: PsnLottieWidget(name: "finger",width: 55.w,height: 55.w,),
           );
         },
       ),

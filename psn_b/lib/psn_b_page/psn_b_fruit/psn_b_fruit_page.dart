@@ -23,13 +23,13 @@ class PsnBFruitPage extends PsnRootPage<PsnBFruitCon>{
   Widget onCreate() => PsnBPlayBaseWidget(
     child: _contentWidget(),
     playUtils: psnCon.playUtils,
-    margin: EdgeInsets.only(left: 66.w),
+    margin: EdgeInsets.only(left: 33.w),
   );
 
   _contentWidget()=>Container(
     width: double.infinity,
-    height: 974.h,
-    margin: EdgeInsets.only(left: 66.w,right: 66.w),
+    height: 487.h,
+    margin: EdgeInsets.only(left: 33.w,right: 33.w),
     child: Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -37,15 +37,15 @@ class PsnBFruitPage extends PsnRootPage<PsnBFruitCon>{
         Align(
           alignment: Alignment.topCenter,
           child: Container(
-            margin: EdgeInsets.only(top: 40.h),
-            child: PsnPlayLogoAnimatorWidget(image: "fruit6", width: 322.w, height: 222.h),
+            margin: EdgeInsets.only(top: 20.h),
+            child: PsnPlayLogoAnimatorWidget(image: "fruit6", width: 161.w, height: 111.h),
           ),
         ),
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             _textWidget(),
-            SizedBox(height: 6.h,),
+            SizedBox(height: 3.h,),
             _guaWidget(),
           ],
         ),
@@ -55,9 +55,9 @@ class PsnBFruitPage extends PsnRootPage<PsnBFruitCon>{
 
   _guaWidget()=>Container(
     width: double.infinity,
-    height: 626.h,
+    height: 313.h,
     key: psnCon.playUtils.scratchGlobalKey,
-    margin: EdgeInsets.only(left: 30.w,right: 30.w,bottom: 46.h),
+    margin: EdgeInsets.only(left: 15.w,right: 15.w,bottom: 23.h),
     child: Stack(
       children: [
         Scratcher(
@@ -104,16 +104,16 @@ class PsnBFruitPage extends PsnRootPage<PsnBFruitCon>{
                               startAnimator: bean.win,
                               child: Container(
                                 width: double.infinity,
-                                height: 146.h,
+                                height: 73.h,
                                 alignment: Alignment.center,
-                                child: PsnImageWidget(name: bean.content,height: 101.h,boxFit: BoxFit.fitHeight,),
+                                child: PsnImageWidget(name: bean.content,height: 55.h,boxFit: BoxFit.fitHeight,),
                               ),
                             );
                           },
                         ),
                       ),
                       SizedBox(
-                        width: 124.w,
+                        width: 62.w,
                         child: MediaQuery.removePadding(
                           context: psnCon.context,
                           removeTop: true,
@@ -123,14 +123,14 @@ class PsnBFruitPage extends PsnRootPage<PsnBFruitCon>{
                             shrinkWrap: true,
                             itemBuilder: (context,index){
                               return Container(
-                                width: 124.w,
-                                height: 148.h,
+                                width: 62.w,
+                                height: 74.h,
                                 alignment: Alignment.center,
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    PsnImageWidget(name: "icon_money",width: 57.w,height: 52.h,),
-                                    SizedBox(height: 2.h,),
+                                    PsnImageWidget(name: "icon_money",width: 28.w,height: 26.h,),
+                                    SizedBox(height: 1.h,),
                                     PsnGradientText(
                                       data: "${psnCon.playUtils.contentList[index*3].reward}",
                                       gradient: LinearGradient(
@@ -138,7 +138,7 @@ class PsnBFruitPage extends PsnRootPage<PsnBFruitCon>{
                                           begin: Alignment.topCenter,
                                           end: Alignment.bottomCenter
                                       ),
-                                      size: 26.sp,
+                                      size: 13.sp,
                                       outlineColor: "#0C0D0E".toColor(),
                                     ),
                                   ],
@@ -170,18 +170,18 @@ class PsnBFruitPage extends PsnRootPage<PsnBFruitCon>{
 
   _textWidget()=>Container(
     width: double.infinity,
-    height: 41.h,
-    margin: EdgeInsets.only(left: 34.w,right: 34.w),
+    height: 20.h,
+    margin: EdgeInsets.only(left: 17.w,right: 17.w),
     child: Stack(
       alignment: Alignment.center,
       children: [
-        PsnImageWidget(name: "fruit2",width: double.infinity,height: 41.h,),
+        PsnImageWidget(name: "fruit2",width: double.infinity,height: 20.h,),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            PsnTextWidget(text: "FIND ", size: 24.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
-            PsnTextWidget(text: "3", size: 24.sp, color: "#F9DC04".toColor(),outlineColor: "#000000".toColor(),),
-            PsnTextWidget(text: " IDENTICAL SYMBOLS IN SAME ROW", size: 24.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
+            PsnTextWidget(text: "FIND ", size: 12.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
+            PsnTextWidget(text: "3", size: 12.sp, color: "#F9DC04".toColor(),outlineColor: "#000000".toColor(),),
+            PsnTextWidget(text: " IDENTICAL SYMBOLS IN SAME ROW", size: 12.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
           ],
         ),
       ],

@@ -19,7 +19,7 @@ class PsnLaunchPage extends PsnRootPage<PsnLaunchCon>{
   Widget onCreate() => WillPopScope(
     child: Column(
       children: [
-        SizedBox(height: 280.h,),
+        SizedBox(height: 140.h,),
         _logoWidget(),
         Spacer(),
         _progressWidget(),
@@ -35,25 +35,25 @@ class PsnLaunchPage extends PsnRootPage<PsnLaunchCon>{
     children: [
       GetBuilder<PsnLaunchCon>(
         id: "pro_text",
-        builder: (_)=>PsnTextWidget(text: "LOADING...${(psnCon.progressAnimationController.value*100).toInt()}%", size: 31.sp, color: "#FFFFFF".toColor(),outlineColor: "#1D2525".toColor(),),
+        builder: (_)=>PsnTextWidget(text: "LOADING...${(psnCon.progressAnimationController.value*100).toInt()}%", size: 15.sp, color: "#FFFFFF".toColor(),outlineColor: "#1D2525".toColor(),),
       ),
-      SizedBox(height: 20.h,),
+      SizedBox(height: 10.h,),
       Container(
         width: double.infinity,
-        margin: EdgeInsets.only(left: 37.w,right: 37.w),
+        margin: EdgeInsets.only(left: 18.w,right: 18.w),
         child: Stack(
           alignment: Alignment.centerLeft,
           children: [
-            PsnImageWidget(name: "launch2",width: double.infinity,height: 48.h,),
+            PsnImageWidget(name: "launch2",width: double.infinity,height: 24.h,),
             Container(
-              margin: EdgeInsets.only(left: 4.w,right: 4.w),
+              margin: EdgeInsets.only(left: 2.w,right: 2.w),
               child: GetBuilder<PsnLaunchCon>(
                 id: "pro",
                 builder: (_)=>ClipRRect(
                   child: Align(
                     alignment: Alignment.centerLeft,
                     widthFactor: psnCon.progressAnimationController.value,
-                    child: PsnImageWidget(name: "launch3",width: double.infinity,height: 36.h,),
+                    child: PsnImageWidget(name: "launch3",width: double.infinity,height: 18.h,),
                   ),
                 ),
               ),
@@ -61,17 +61,17 @@ class PsnLaunchPage extends PsnRootPage<PsnLaunchCon>{
           ],
         ),
       ),
-      SizedBox(height: 20.h,),
-      PsnTextWidget(text: "Top winners are waiting for you...   ", size: 28.sp, color: "#FFFFFF".toColor(),outlineColor: "#1D2525".toColor(),),
-      SizedBox(height: 350.h,),
+      SizedBox(height: 10.h,),
+      PsnTextWidget(text: "Top winners are waiting for you...   ", size: 14.sp, color: "#FFFFFF".toColor(),outlineColor: "#1D2525".toColor(),),
+      SizedBox(height: 170.h,),
     ],
   );
 
   _logoWidget()=>Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      PsnImageWidget(name: "logo",width: 256.w,height: 256.w,),
-      SizedBox(height: 36.h,),
+      PsnImageWidget(name: "logo",width: 128.w,height: 128.w,),
+      SizedBox(height: 18.h,),
       PsnGradientText(
         data: "Prize Scratch Nexus",
         gradient: LinearGradient(
@@ -79,7 +79,7 @@ class PsnLaunchPage extends PsnRootPage<PsnLaunchCon>{
           end: Alignment.bottomCenter,
           colors: ["#FFEF00".toColor(),"#FFFFFF".toColor()],
         ),
-        size: 48.sp,
+        size: 24.sp,
       ),
     ],
   );

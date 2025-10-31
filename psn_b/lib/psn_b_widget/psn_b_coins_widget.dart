@@ -16,26 +16,26 @@ class PsnACoinsWidgetState extends PsnRootStatefulState<PsnBCoinsWidget>{
   @override
   Widget build(BuildContext context) => SizedBox(
     width: double.infinity,
-    height: 85.h,
+    height: 42.h,
     child: Stack(
       alignment: Alignment.centerLeft,
       children: [
         Container(
           width: double.infinity,
-          height: 64.h,
+          height: 32.h,
           alignment: Alignment.center,
-          padding: EdgeInsets.only(left: 70.w),
+          padding: EdgeInsets.only(left: 35.w),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30.w),
+            borderRadius: BorderRadius.circular(15.w),
             color: "#2B2F51".toColor(),
             border: Border.all(
               width: 1.w,
               color: "#000000".toColor()
             ),
           ),
-          child: PsnTextWidget(text: "\$${bUserCoins.getData()}", size: 28.sp, color: "#FFFFFF".toColor(),outlineColor: "#2B1E55".toColor(),),
+          child: PsnTextWidget(text: "\$${bUserCoins.getData()}", size: 14.sp, color: "#FFFFFF".toColor(),outlineColor: "#2B1E55".toColor(),),
         ),
-        PsnImageWidget(name: "icon_money",width: 85.w,height: 85.w,),
+        PsnImageWidget(name: "icon_money",width: 42.w,height: 42.w,),
       ],
     ),
   );

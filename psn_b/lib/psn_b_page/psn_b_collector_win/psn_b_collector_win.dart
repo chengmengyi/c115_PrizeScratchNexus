@@ -23,13 +23,13 @@ class PsnBCollectorWin extends PsnRootPage<PsnBCollectorWinCon>{
   Widget onCreate() => PsnBPlayBaseWidget(
     child: _contentWidget(),
     playUtils: psnCon.playUtils,
-    margin: EdgeInsets.only(left: 66.w),
+    margin: EdgeInsets.only(left: 33.w),
   );
 
   _contentWidget()=>Container(
     width: double.infinity,
-    height: 974.h,
-    margin: EdgeInsets.only(left: 66.w,right: 66.w),
+    height: 487.h,
+    margin: EdgeInsets.only(left: 33.w,right: 33.w),
     child: Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -38,15 +38,15 @@ class PsnBCollectorWin extends PsnRootPage<PsnBCollectorWinCon>{
           mainAxisSize: MainAxisSize.min,
           children: [
             _textWidget(),
-            SizedBox(height: 6.h,),
+            SizedBox(height: 3.h,),
             _guaWidget(),
           ],
         ),
         Align(
           alignment: Alignment.topCenter,
           child: Container(
-            margin: EdgeInsets.only(top: 40.h),
-            child: PsnPlayLogoAnimatorWidget(image: "collector6", width: 478.w, height: 200.h),
+            margin: EdgeInsets.only(top: 20.h),
+            child: PsnPlayLogoAnimatorWidget(image: "collector6", width: 239.w, height: 100.h),
           ),
         ),
       ],
@@ -55,9 +55,9 @@ class PsnBCollectorWin extends PsnRootPage<PsnBCollectorWinCon>{
 
   _guaWidget()=>Container(
     width: double.infinity,
-    height: 626.h,
+    height: 313.h,
     key: psnCon.playUtils.scratchGlobalKey,
-    margin: EdgeInsets.only(left: 30.w,right: 30.w,bottom: 46.h),
+    margin: EdgeInsets.only(left: 15.w,right: 15.w,bottom: 23.h),
     child: Stack(
       children: [
         Scratcher(
@@ -94,19 +94,19 @@ class PsnBCollectorWin extends PsnRootPage<PsnBCollectorWinCon>{
                     var bean = psnCon.playUtils.contentList[index];
                     return Container(
                       width: double.infinity,
-                      height: 125.h,
+                      height: 62.h,
                       alignment: Alignment.center,
                       child: PsnBreathingWidget(
                         startAnimator: bean.win,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            PsnImageWidget(name: bean.content,height: 68.h,boxFit: BoxFit.fitHeight,),
+                            PsnImageWidget(name: bean.content,height: 34.h,boxFit: BoxFit.fitHeight,),
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                PsnImageWidget(name: "icon_money",width: 28.w,height: 28.h,),
-                                SizedBox(width: 8.w,),
+                                PsnImageWidget(name: "icon_money",width: 14.w,height: 14.h,),
+                                SizedBox(width: 4.w,),
                                 PsnGradientText(
                                   data: "${bean.reward}",
                                   gradient: LinearGradient(
@@ -114,7 +114,7 @@ class PsnBCollectorWin extends PsnRootPage<PsnBCollectorWinCon>{
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter
                                   ),
-                                  size: 26.sp,
+                                  size: 13.sp,
                                   outlineColor: "#0C0D0E".toColor(),
                                 ),
                               ],
@@ -144,18 +144,18 @@ class PsnBCollectorWin extends PsnRootPage<PsnBCollectorWinCon>{
 
   _textWidget()=>Container(
     width: double.infinity,
-    height: 41.h,
-    margin: EdgeInsets.only(left: 34.w,right: 34.w),
+    height: 20.h,
+    margin: EdgeInsets.only(left: 17.w,right: 17.w),
     child: Stack(
       alignment: Alignment.center,
       children: [
-        PsnImageWidget(name: "collector2",width: double.infinity,height: 41.h,),
+        PsnImageWidget(name: "collector2",width: double.infinity,height: 20.h,),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            PsnTextWidget(text: "Find ", size: 24.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
-            PsnTextWidget(text: "3", size: 24.sp, color: "#F9DC04".toColor(),outlineColor: "#000000".toColor(),),
-            PsnTextWidget(text: " Identical Collectibles", size: 24.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
+            PsnTextWidget(text: "Find ", size: 12.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
+            PsnTextWidget(text: "3", size: 12.sp, color: "#F9DC04".toColor(),outlineColor: "#000000".toColor(),),
+            PsnTextWidget(text: " Identical Collectibles", size: 12.sp, color: "#E9F9F6".toColor(),outlineColor: "#000000".toColor(),),
           ],
         ),
       ],

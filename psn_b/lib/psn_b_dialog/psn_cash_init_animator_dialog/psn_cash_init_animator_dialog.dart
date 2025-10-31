@@ -24,18 +24,18 @@ class PsnCashInitAnimatorDialog extends PsnRootDialog<PsnCashInitAnimatorDialogC
   Widget onCreate() => Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      PsnTextWidget(text: "Processing payment", size: 46.sp, color: "#FFFFFF".toColor()),
-      SizedBox(height: 120.h,),
+      PsnTextWidget(text: "Processing payment", size: 23.sp, color: "#FFFFFF".toColor()),
+      SizedBox(height: 60.h,),
       Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              PsnImageWidget(name: getCashDialogImages(cashType),width: 220.w,height: 120.h,),
+              PsnImageWidget(name: getCashDialogImages(cashType),width: 110.w,height: 60.h,),
               Container(
-                margin: EdgeInsets.only(bottom: 12.h),
-                child: PsnTextWidget(text: "\$$cashMoney", size: 38.sp, color: "#252525".toColor(),),
+                margin: EdgeInsets.only(bottom: 6.h),
+                child: PsnTextWidget(text: "\$$cashMoney", size: 19.sp, color: "#252525".toColor(),),
               ),
             ],
           ),
@@ -44,15 +44,15 @@ class PsnCashInitAnimatorDialog extends PsnRootDialog<PsnCashInitAnimatorDialogC
             builder: (_){
               if(psnCon.showFail){
                 return Container(
-                  width: 160.w,
-                  height: 110.w,
+                  width: 80.w,
+                  height: 55.w,
                   alignment: Alignment.center,
-                  child: PsnImageWidget(name: "cash4",width: 68.w,height: 68.w,),
+                  child: PsnImageWidget(name: "cash4",width: 34.w,height: 34.w,),
                 );
               }
               return Container(
-                width: 160.w,
-                height: 110.w,
+                width: 80.w,
+                height: 55.w,
                 alignment: Alignment.centerLeft,
                 child: AnimatedBuilder(
                   animation: psnCon.animation,
@@ -62,31 +62,31 @@ class PsnCashInitAnimatorDialog extends PsnRootDialog<PsnCashInitAnimatorDialogC
                       child: child,
                     );
                   },
-                  child: PsnImageWidget(name: "cash2",width: 110.w,height: 110.w,),
+                  child: PsnImageWidget(name: "cash2",width: 55.w,height: 55.w,),
                 ),
               );
             },
           ),
-          PsnImageWidget(name: "cash3",width: 208.w,height: 208.w,),
+          PsnImageWidget(name: "cash3",width: 104.w,height: 104.w,),
         ],
       ),
-      SizedBox(height: 60.h,),
+      SizedBox(height: 30.h,),
       GetBuilder<PsnCashInitAnimatorDialogCon>(
         id: "text",
         builder: (_)=>Visibility(
           visible: psnCon.showFail,
           child: Container(
-            margin: EdgeInsets.only(left: 66.w,right: 66.w),
+            margin: EdgeInsets.only(left: 33.w,right: 33.w),
             child: PsnTextWidget(
               text: "The bank requires you to verify that you are not a robot",
-              size: 32.sp,
+              size: 16.sp,
               color: "#FFFFFF".toColor(),
               textAlign: TextAlign.center,
             ),
           ),
         ),
       ),
-      SizedBox(height: 60.h,),
+      SizedBox(height: 30.h,),
       GetBuilder<PsnCashInitAnimatorDialogCon>(
         id: "btn",
         builder: (_)=>Visibility(
@@ -96,14 +96,14 @@ class PsnCashInitAnimatorDialog extends PsnRootDialog<PsnCashInitAnimatorDialogC
               psnCon.clickConfirm(clickCallback);
             },
             child: Container(
-              width: 400.w,
-              height: 96.h,
+              width: 200.w,
+              height: 48.h,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: "#356ECA".toColor(),
-                borderRadius: BorderRadius.circular(25.w),
+                borderRadius: BorderRadius.circular(12.w),
               ),
-              child: PsnTextWidget(text: "Confirm", size: 33.sp, color: "#FFFFFF".toColor(),),
+              child: PsnTextWidget(text: "Confirm", size: 16.sp, color: "#FFFFFF".toColor(),),
             ),
           ),
         ),

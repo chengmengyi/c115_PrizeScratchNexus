@@ -34,9 +34,9 @@ class PsnBPlayBaseWidget extends StatelessWidget{
                 playUtils.clickBack();
               },
             ),
-            SizedBox(height: 20.h,),
+            SizedBox(height: 10.h,),
             PsnBLevelContentWidget(cardTypeEnum: playUtils.cardTypeEnum,),
-            SizedBox(height: 30.h,),
+            SizedBox(height: 15.h,),
             Expanded(
               child: Stack(
                 children: [

@@ -26,14 +26,14 @@ class PsnBGetMoreDialog extends PsnRootDialog<PsnBGetMoreDialogCon>{
     children: [
       _titleWidget(),
       _coinsWidget(),
-      SizedBox(height: 90.h,),
+      SizedBox(height: 45.h,),
       _btnWidget(),
     ],
   );
 
   _titleWidget()=>Container(
     width: double.infinity,
-    margin: EdgeInsets.only(left: 30.w,right: 30.w),
+    margin: EdgeInsets.only(left: 15.w,right: 15.w),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -42,14 +42,14 @@ class PsnBGetMoreDialog extends PsnRootDialog<PsnBGetMoreDialogCon>{
           onTap: (){
             psnCon.clickClose(clickClose);
           },
-          child: PsnImageWidget(name: "icon_close",width: 71.w,height: 71.w,),
+          child: PsnImageWidget(name: "icon_close",width: 35.w,height: 35.w,),
         ),
-        SizedBox(height: 42.h,),
+        SizedBox(height: 21.h,),
         Stack(
           alignment: Alignment.center,
           children: [
-            PsnImageWidget(name: "win1",width: double.infinity,height: 128.h,),
-            PsnImageWidget(name: "fail1",height: 60.h,boxFit: BoxFit.fitHeight,),
+            PsnImageWidget(name: "win1",width: double.infinity,height: 64.h,),
+            PsnImageWidget(name: "fail1",height: 30.h,boxFit: BoxFit.fitHeight,),
           ],
         ),
       ],
@@ -62,8 +62,8 @@ class PsnBGetMoreDialog extends PsnRootDialog<PsnBGetMoreDialogCon>{
       Stack(
         alignment: Alignment.center,
         children: [
-          PsnImageWidget(name: "win3",width: double.infinity,height: 500.h,),
-          PsnImageWidget(name: "fail2",width: 380.w,height: 358.h,),
+          PsnImageWidget(name: "win3",width: double.infinity,height: 250.h,),
+          PsnImageWidget(name: "fail2",width: 190.w,height: 179.h,),
         ],
       ),
       PsnGradientText(
@@ -73,7 +73,7 @@ class PsnBGetMoreDialog extends PsnRootDialog<PsnBGetMoreDialogCon>{
           end: Alignment.bottomCenter,
           colors: ["#FFFED5".toColor(),"#FDFC07".toColor(),],
         ),
-        size: 60.sp,
+        size: 30.sp,
         outlineColor: "#FFD52C".toColor(),
       )
     ],

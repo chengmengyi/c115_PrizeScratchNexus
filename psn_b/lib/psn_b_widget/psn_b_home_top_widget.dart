@@ -13,7 +13,7 @@ class PsnBHomeTopWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) => Container(
     width: double.infinity,
-    padding: EdgeInsets.only(bottom: 36.h),
+    padding: EdgeInsets.only(bottom: 18.h),
     decoration: BoxDecoration(
       image: DecorationImage(
         image: AssetImage('assets/images/top_bg.webp'),
@@ -24,7 +24,7 @@ class PsnBHomeTopWidget extends StatelessWidget{
       top: true,
       child: Row(
         children: [
-          SizedBox(width: 18.w,),
+          SizedBox(width: 9.w,),
           Expanded(
             child: PsnClick(
               onTap: (){
@@ -33,11 +33,11 @@ class PsnBHomeTopWidget extends StatelessWidget{
               child: PsnBCoinsWidget(),
             ),
           ),
-          SizedBox(width: 18.w,),
+          SizedBox(width: 9.w,),
           Expanded(child: PsnBLevelWidget(),),
-          SizedBox(width: 100.w,),
+          SizedBox(width: 50.w,),
           PsnBSetWidget(),
-          SizedBox(width: 18.w,),
+          SizedBox(width: 9.w,),
         ],
       ),
     ),

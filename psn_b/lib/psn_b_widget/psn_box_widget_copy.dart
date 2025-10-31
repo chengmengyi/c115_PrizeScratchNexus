@@ -36,16 +36,16 @@ class _PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidgetCopy>{
       _clickBox();
     },
     child: SizedBox(
-      width: 143.w,
-      height: 143.h,
+      width: 72.w,
+      height: 72.h,
       child: Stack(
         children: [
           PsnImageWidget(name: "icon_box2",width: double.infinity,height: double.infinity,),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              margin: EdgeInsets.only(bottom: 14.h),
-              child: PsnTextWidget(text: formatMsToMinSec(currentTimer), size: 25.sp, color: "#FFFFFF".toColor(),outlineColor: "#A71A1A".toColor(),),
+              margin: EdgeInsets.only(bottom: 7.h),
+              child: PsnTextWidget(text: formatMsToMinSec(currentTimer), size: 12.sp, color: "#FFFFFF".toColor(),outlineColor: "#A71A1A".toColor(),),
             ),
           ),
           Align(
@@ -56,7 +56,7 @@ class _PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidgetCopy>{
                 onTap: (){
                   _clickBox();
                 },
-                child: PsnLottieWidget(name: "finger",width: 90.w,height: 90.w,),
+                child: PsnLottieWidget(name: "finger",width: 45.w,height: 45.w,),
               ),
             ),
           )

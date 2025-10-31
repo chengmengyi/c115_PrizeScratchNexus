@@ -19,10 +19,10 @@ class PsnDontWorryDialog extends PsnRootDialog<PsnDontWorryDialogCon>{
   @override
   Widget onCreate() => Container(
     width: double.infinity,
-    margin: EdgeInsets.only(left: 98.w,right: 98.w),
+    margin: EdgeInsets.only(left: 49.w,right: 49.w),
     decoration: BoxDecoration(
       color: "#FFFFFF".toColor(),
-      borderRadius: BorderRadius.circular(30.w),
+      borderRadius: BorderRadius.circular(15.w),
     ),
     child: Stack(
       alignment: Alignment.topCenter,
@@ -30,47 +30,47 @@ class PsnDontWorryDialog extends PsnRootDialog<PsnDontWorryDialogCon>{
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(height: 34.h,),
-            PsnTextWidget(text: "Don't Worry", size: 38.sp, color: "#000000".toColor(),),
-            SizedBox(height: 14.h,),
-            PsnImageWidget(name: "worry1",width: 240.w,height: 240.h,),
+            SizedBox(height: 17.h,),
+            PsnTextWidget(text: "Don't Worry", size: 19.sp, color: "#000000".toColor(),),
+            SizedBox(height: 7.h,),
+            PsnImageWidget(name: "worry1",width: 120.w,height: 120.h,),
             Container(
-              margin: EdgeInsets.only(left: 40.w,right: 40.w),
+              margin: EdgeInsets.only(left: 20.w,right: 20.w),
               child: PsnTextWidget(
                 text: "We will assist you with completing your withdrawal—simply follow the steps below to finalize the process.",
-                size: 31.sp,
+                size: 15.sp,
                 color: "#000000".toColor(),
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 40.h,),
+            SizedBox(height: 20.h,),
             PsnClick(
               onTap: (){
                 psnCon.clickGo(clickCallback);
               },
               child: Container(
                 width: double.infinity,
-                height: 95.h,
+                height: 47.h,
                 alignment: Alignment.center,
-                margin: EdgeInsets.only(left: 75.w,right: 75.w),
+                margin: EdgeInsets.only(left: 37.w,right: 37.w),
                 decoration: BoxDecoration(
                   color: "#356ECA".toColor(),
-                  borderRadius: BorderRadius.circular(25.w),
+                  borderRadius: BorderRadius.circular(12.w),
                 ),
-                child: PsnTextWidget(text: "Go", size: 33.sp, color: "#FFFFFF".toColor(),),
+                child: PsnTextWidget(text: "Go", size: 16.sp, color: "#FFFFFF".toColor(),),
               ),
             ),
-            SizedBox(height: 60.h,),
+            SizedBox(height: 30.h,),
           ],
         ),
         Positioned(
-          top: 20.h,
-          right: 20.w,
+          top: 10.h,
+          right: 10.w,
           child: PsnClick(
             onTap: (){
               psnCon.clickGo(clickCallback);
             },
-            child: PsnImageWidget(name: "icon_close3",width: 50.w,height: 50.w,),
+            child: PsnImageWidget(name: "icon_close3",width: 25.w,height: 25.w,),
           ),
         ),
       ],

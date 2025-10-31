@@ -12,7 +12,7 @@ class PsnBSetWidget extends StatelessWidget{
     onTap: (){
       PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBSetDialog());
     },
-    child: PsnImageWidget(name: "icon_set",width: 88.w,height: 88.h,),
+    child: PsnImageWidget(name: "icon_set",width: 44.w,height: 44.h,),
   );
 
 }

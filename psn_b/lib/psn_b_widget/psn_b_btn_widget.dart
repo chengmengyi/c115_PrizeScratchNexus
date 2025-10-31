@@ -27,8 +27,8 @@ class PsnBBtnWidget extends StatelessWidget{
       onTap?.call();
     },
     child: SizedBox(
-      width: width??297.w,
-      height: 107.h,
+      width: width??148.w,
+      height: 53.h,
       child: Stack(
         children: [
           PsnImageWidget(name: bgName,width: double.infinity,height: double.infinity,),
@@ -38,7 +38,7 @@ class PsnBBtnWidget extends StatelessWidget{
               mainAxisSize: MainAxisSize.min,
               children: [
                 leftIcon??Container(),
-                PsnTextWidget(text: text, size: 42.sp, color: "#F2F3F3".toColor(),outlineColor: "#090733".toColor(),),
+                PsnTextWidget(text: text, size: 21.sp, color: "#F2F3F3".toColor(),outlineColor: "#090733".toColor(),),
               ],
             ),
           ),
@@ -46,7 +46,7 @@ class PsnBBtnWidget extends StatelessWidget{
             alignment: Alignment.topRight,
             child: Visibility(
               visible: showVideoIcon,
-              child: PsnImageWidget(name: "icon_video",width: 53.w,height: 53.w,),
+              child: PsnImageWidget(name: "icon_video",width: 26.w,height: 26.w,),
             ),
           )
         ],

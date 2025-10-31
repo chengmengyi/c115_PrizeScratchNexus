@@ -26,26 +26,26 @@ class PsnBInputAccountDialog extends PsnRootDialog<PsnBInputAccountDialogCon>{
   @override
   Widget onCreate() => Container(
     width: double.infinity,
-    height: 640.h,
-    margin: EdgeInsets.only(left: 58.w,right: 58.w),
+    height: 320.h,
+    margin: EdgeInsets.only(left: 29.w,right: 29.w),
     child: Stack(
       children: [
         PsnImageWidget(name: "input1",width: double.infinity,height: double.infinity,),
         Align(
           alignment: Alignment.topCenter,
           child: Container(
-            margin: EdgeInsets.only(top: 32.h),
-            child: PsnTextWidget(text: "Cash Out", size: 48.sp, color: "#FFFFFF".toColor(),),
+            margin: EdgeInsets.only(top: 16.h),
+            child: PsnTextWidget(text: "Cash Out", size: 24.sp, color: "#FFFFFF".toColor(),),
           ),
         ),
         Positioned(
-          top: 29.h,
-          right: 29.w,
+          top: 15.h,
+          right: 15.w,
           child: PsnClick(
             onTap: (){
               psnCon.clickClose();
             },
-            child: PsnImageWidget(name: "icon_close2",width: 40.w,height: 40.w,),
+            child: PsnImageWidget(name: "icon_close2",width: 20.w,height: 20.w,),
           ),
         ),
         Align(
@@ -53,24 +53,24 @@ class PsnBInputAccountDialog extends PsnRootDialog<PsnBInputAccountDialogCon>{
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(height: 130.h,),
+              SizedBox(height: 65.h,),
               Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
-                  PsnImageWidget(name: getCashDialogImages(cashType),width: 496.w,height: 237.h,),
+                  PsnImageWidget(name: getCashDialogImages(cashType),width: 248.w,height: 118.h,),
                   Container(
-                    margin: EdgeInsets.only(bottom: 50.h),
-                    child: PsnTextWidget(text: "\$$cashMoney", size: 70.sp, color: "#252525".toColor(),),
+                    margin: EdgeInsets.only(bottom: 25.h),
+                    child: PsnTextWidget(text: "\$$cashMoney", size: 35.sp, color: "#252525".toColor(),),
                   ),
                 ],
               ),
               Container(
                 width: double.infinity,
-                height: 68.h,
+                height: 34.h,
                 alignment: Alignment.centerLeft,
-                margin: EdgeInsets.only(left: 44.w,right: 44.w,top: 40.h),
+                margin: EdgeInsets.only(left: 22.w,right: 22.w,top: 20.h),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.w),
+                  borderRadius: BorderRadius.circular(6.w),
                   color: "#DADFEB".toColor(),
                 ),
                 child: TextField(
@@ -80,7 +80,7 @@ class PsnBInputAccountDialog extends PsnRootDialog<PsnBInputAccountDialogCon>{
                   controller: psnCon.editingController,
                   textInputAction: TextInputAction.done,
                   style: TextStyle(
-                    fontSize: 32.sp,
+                    fontSize: 16.sp,
                     color: "#000000".toColor(),
                     fontWeight: FontWeight.bold,
                   ),
@@ -89,14 +89,14 @@ class PsnBInputAccountDialog extends PsnRootDialog<PsnBInputAccountDialogCon>{
                     isCollapsed: true,
                     hintText: "Please enter your account ID",
                     hintStyle: TextStyle(
-                      fontSize: 32.sp,
+                      fontSize: 16.sp,
                       color: "#8E98AB".toColor(),
                     ),
                     border: InputBorder.none,
                   ),
                 ),
               ),
-              SizedBox(height: 29.h,),
+              SizedBox(height: 15.h,),
               PsnBBtnWidget(
                 text: "Submit",
                 bgName: "btn_green",

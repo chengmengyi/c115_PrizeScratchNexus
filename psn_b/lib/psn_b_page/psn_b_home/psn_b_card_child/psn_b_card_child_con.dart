@@ -2,15 +2,31 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:psn_b/psn_b_bean/psb_cash_list_bean.dart';
 import 'package:psn_b/psn_b_bean/psn_b_card_bean.dart';
+import 'package:psn_b/psn_b_bean/psn_cash_task_bean.dart';
 import 'package:psn_b/psn_b_bean/psn_rank_bean.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_big_win_dialog/psn_b_big_win_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_cash_success_dialog/psn_b_cash_success_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_cash_task_dialog/psn_b_cash_task_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_cash_tips_dialog/psn_b_cash_tips_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_fail_dialog/psn_b_fail_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_get_money_dialog/psn_b_get_money_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_get_more_dialog/psn_b_get_more_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_input_account_dialog/psn_b_input_account_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_input_pix_account_dialog/psn_b_input_pix_account_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_level_up_dialog/psn_b_level_up_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_lucky_card_dialog/psn_b_lucky_card_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_no_money_dialog/psn_b_no_money_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_no_net_dialog/psn_b_no_net_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_normal_win_dialog/psn_b_normal_win_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_set_dialog/psn_b_set_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_unlock_dialog/psn_b_unlock_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_box_dialog/psn_box_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_cash_init_animator_dialog/psn_cash_init_animator_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_cash_last_step_success_dialog/psn_cash_last_step_success_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_dont_worry_dialog/psn_dont_worry_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_new_cash_task_dialog/psn_new_cash_task_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_rank_dialog/psn_rank_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_rank_tips_animator_dialog/psn_rank_tips_animator_dialog.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
@@ -68,6 +84,14 @@ class PsnBCardChildCon extends PsnRootCon{
     }
     var cardBean = cardList[currentIndex];
     var cardTypeEnum = PsnBCardTypeEnum.values.byName(cardBean.cardType??"");
+    if(kDebugMode){
+      var routerName = getRouterNameByCardType(cardTypeEnum);
+      if(routerName.isEmpty){
+        return;
+      }
+      PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.toNamed, content: routerName);
+      return;
+    }
     if(cardBean.unlock==1){
       PsnRootRouters.instance.router(
         routersEnum: PsnRoutersEnum.dialog,
@@ -189,7 +213,7 @@ class PsnBCardChildCon extends PsnRootCon{
     // bAlreadyShowCashTipsDialog.saveData(false);
     // PsnBUserInfoUtils.instance.updateUserCoins(-200);
 
-    PsnBUserInfoUtils.instance.updateUserCoins(200);
+    // PsnBUserInfoUtils.instance.updateUserCoins(200);
     // PsnBCashUtils.instance.updateCashTask(TaskType.lucky);
     // PsnBValueUtils.instance.initValue();
 
@@ -197,7 +221,8 @@ class PsnBCardChildCon extends PsnRootCon{
     // PsnBCashUtils.instance.createRankProgress(1000, CashType.pay);
 
 
-    // PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBNoNotificationPermissionDialog());
+    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnRankTipsAnimatorDialog(callback: () {  },));
+
 
   }
 

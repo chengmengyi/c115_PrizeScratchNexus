@@ -29,26 +29,26 @@ class PsnBCashTaskDialog extends PsnRootDialog<PsnBCashTaskDialogCon>{
   @override
   Widget onCreate() => Container(
     width: double.infinity,
-    height: 780.h,
-    margin: EdgeInsets.only(left: 58.w,right: 58.w),
+    height: 390.h,
+    margin: EdgeInsets.only(left: 29.w,right: 29.w),
     child: Stack(
       children: [
         PsnImageWidget(name: "task1",width: double.infinity,height: double.infinity,),
         Align(
           alignment: Alignment.topCenter,
           child: Container(
-            margin: EdgeInsets.only(top: 32.h),
-            child: PsnTextWidget(text: "Cash Out", size: 48.sp, color: "#FFFFFF".toColor(),),
+            margin: EdgeInsets.only(top: 16.h),
+            child: PsnTextWidget(text: "Cash Out", size: 24.sp, color: "#FFFFFF".toColor(),),
           ),
         ),
         Positioned(
-          top: 29.h,
-          right: 29.w,
+          top: 15.h,
+          right: 15.w,
           child: PsnClick(
             onTap: (){
               psnCon.clickClose();
             },
-            child: PsnImageWidget(name: "icon_close2",width: 40.w,height: 40.w,),
+            child: PsnImageWidget(name: "icon_close2",width: 20.w,height: 20.w,),
           ),
         ),
         Align(
@@ -56,51 +56,51 @@ class PsnBCashTaskDialog extends PsnRootDialog<PsnBCashTaskDialogCon>{
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(height: 130.h,),
+              SizedBox(height: 65.h,),
               Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
-                  PsnImageWidget(name: getCashDialogImages(bean.cashTaskBean?.cashType??""),width: 496.w,height: 237.h,),
+                  PsnImageWidget(name: getCashDialogImages(bean.cashTaskBean?.cashType??""),width: 248.w,height: 118.h,),
                   Container(
-                    margin: EdgeInsets.only(bottom: 50.h),
-                    child: PsnTextWidget(text: "\$${bean.money}", size: 70.sp, color: "#252525".toColor(),),
+                    margin: EdgeInsets.only(bottom: 25.h),
+                    child: PsnTextWidget(text: "\$${bean.money}", size: 35.sp, color: "#252525".toColor(),),
                   ),
                 ],
               ),
-              SizedBox(height: 20.h,),
-              PsnTextWidget(text: "Cash out as soon as you complete", size: 36.sp, color: "#535F75".toColor(),),
-              SizedBox(height: 20.h,),
-              PsnTextWidget(text: "the following tasks.", size: 36.sp, color: "#535F75".toColor(),),
-              SizedBox(height: 29.h,),
-              PsnTextWidget(text: psnCon.getCaskTaskStr(bean.cashTaskBean), size: 34.sp, color: "#252525".toColor(),),
-              SizedBox(height: 20.h,),
+              SizedBox(height: 10.h,),
+              PsnTextWidget(text: "Cash out as soon as you complete", size: 18.sp, color: "#535F75".toColor(),),
+              SizedBox(height: 10.h,),
+              PsnTextWidget(text: "the following tasks.", size: 18.sp, color: "#535F75".toColor(),),
+              SizedBox(height: 15.h,),
+              PsnTextWidget(text: psnCon.getCaskTaskStr(bean.cashTaskBean), size: 17.sp, color: "#252525".toColor(),),
+              SizedBox(height: 10.h,),
               SizedBox(
-                width: 342.w,
-                height: 30.h,
+                width: 171.w,
+                height: 15.h,
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
                       width: double.infinity,
-                      height: 30.h,
+                      height: 15.h,
                       alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.only(left: 5.w,right: 5.w),
+                      padding: EdgeInsets.only(left: 2.w,right: 2.w),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.w),
+                        borderRadius: BorderRadius.circular(7.w),
                         color: "#042E53".toColor(),
                       ),
                       child: ClipRRect(
                         child: Align(
                           alignment: Alignment.centerLeft,
                           widthFactor: psnCon.getCashTaskPro(bean.cashTaskBean),
-                          child: PsnImageWidget(name: "cash1",width: double.infinity,height: 20.h,),
+                          child: PsnImageWidget(name: "cash1",width: double.infinity,height: 10.h,),
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 50.h,),
+              SizedBox(height: 25.h,),
               PsnBBtnWidget(
                 text: "Cash out",
                 bgName: "btn_green",

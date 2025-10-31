@@ -20,11 +20,11 @@ class PsnBoxDialog extends PsnRootDialog<PsnBoxDialogCon>{
   @override
   Widget onCreate() => Container(
     width: double.infinity,
-    margin: EdgeInsets.only(left: 15.w,right: 15.w),
+    margin: EdgeInsets.only(left: 7.w,right: 7.w),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        PsnImageWidget(name: "box1",width: double.infinity,height: 122.h,),
+        PsnImageWidget(name: "box1",width: double.infinity,height: 61.h,),
         GetBuilder<PsnBoxDialogCon>(
           id: "box",
           builder: (_)=>Column(
@@ -55,12 +55,12 @@ class PsnBoxDialog extends PsnRootDialog<PsnBoxDialogCon>{
             ),
           ),
         ),
-        SizedBox(height: 30.h,),
+        SizedBox(height: 15.h,),
         PsnClick(
           onTap: (){
             psnCon.clickClose(dismissCallback);
           },
-          child: PsnImageWidget(name: "icon_close",width: 70.w,height: 70.w,),
+          child: PsnImageWidget(name: "icon_close",width: 35.w,height: 35.w,),
         )
       ],
     ),
@@ -80,13 +80,13 @@ class PsnBoxDialog extends PsnRootDialog<PsnBoxDialogCon>{
             skeletonFile: "skeleton",
             animatorName: "animation",
             folder: "box",
-            width: 300.w,
-            height: 270.w,
+            width: 150.w,
+            height: 135.w,
             controller: bean.controller,
           ),
           Visibility(
             visible: bean.open,
-            child: PsnTextWidget(text: "+\$${bean.reward}", size: 50.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),),
+            child: PsnTextWidget(text: "+\$${bean.reward}", size: 25.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),),
           ),
         ],
       ),

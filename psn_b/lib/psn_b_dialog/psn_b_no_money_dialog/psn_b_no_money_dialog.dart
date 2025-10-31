@@ -14,26 +14,26 @@ class PsnBNoMoneyDialog extends PsnRootDialog<PsnBNoMoneyDialogCon>{
   @override
   Widget onCreate() => Container(
     width: double.infinity,
-    height: 490.h,
-    margin: EdgeInsets.only(left: 58.w,right: 58.w),
+    height: 245.h,
+    margin: EdgeInsets.only(left: 29.w,right: 29.w),
     child: Stack(
       children: [
         PsnImageWidget(name: "no_money1",width: double.infinity,height: double.infinity,),
         Align(
           alignment: Alignment.topCenter,
           child: Container(
-            margin: EdgeInsets.only(top: 32.h),
-            child: PsnTextWidget(text: "NOT ENOUGH", size: 48.sp, color: "#FFFFFF".toColor(),),
+            margin: EdgeInsets.only(top: 16.h),
+            child: PsnTextWidget(text: "NOT ENOUGH", size: 24.sp, color: "#FFFFFF".toColor(),),
           ),
         ),
         Positioned(
-          top: 29.h,
-          right: 29.w,
+          top: 15.h,
+          right: 15.w,
           child: PsnClick(
             onTap: (){
               psnCon.clickClose();
             },
-            child: PsnImageWidget(name: "icon_close2",width: 40.w,height: 40.w,),
+            child: PsnImageWidget(name: "icon_close2",width: 20.w,height: 20.w,),
           ),
         ),
         Align(
@@ -41,12 +41,12 @@ class PsnBNoMoneyDialog extends PsnRootDialog<PsnBNoMoneyDialogCon>{
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PsnTextWidget(text: "Now you can spin the wheel", size: 36.sp, color: "#535F75".toColor(),),
-              SizedBox(height: 20.h,),
-              PsnTextWidget(text: "or smash golden eggs to", size: 36.sp, color: "#535F75".toColor(),),
-              SizedBox(height: 20.h,),
-              PsnTextWidget(text: "earn extra  cash!", size: 36.sp, color: "#535F75".toColor(),),
-              SizedBox(height: 60.h,),
+              PsnTextWidget(text: "Now you can spin the wheel", size: 18.sp, color: "#535F75".toColor(),),
+              SizedBox(height: 10.h,),
+              PsnTextWidget(text: "or smash golden eggs to", size: 18.sp, color: "#535F75".toColor(),),
+              SizedBox(height: 10.h,),
+              PsnTextWidget(text: "earn extra  cash!", size: 18.sp, color: "#535F75".toColor(),),
+              SizedBox(height: 30.h,),
               PsnClick(
                 onTap: (){
                   psnCon.clickPlayNow();
@@ -54,12 +54,12 @@ class PsnBNoMoneyDialog extends PsnRootDialog<PsnBNoMoneyDialogCon>{
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    PsnImageWidget(name: "no_money2",width: 458.w,height: 88.h,),
-                    PsnTextWidget(text: "Play Now", size: 36.sp, color: "#FFFFFF".toColor(),outlineColor: "#0A361C".toColor(),)
+                    PsnImageWidget(name: "no_money2",width: 229.w,height: 44.h,),
+                    PsnTextWidget(text: "Play Now", size: 18.sp, color: "#FFFFFF".toColor(),outlineColor: "#0A361C".toColor(),)
                   ],
                 ),
               ),
-              SizedBox(height: 40.h,),
+              SizedBox(height: 20.h,),
             ],
           ),
         ),

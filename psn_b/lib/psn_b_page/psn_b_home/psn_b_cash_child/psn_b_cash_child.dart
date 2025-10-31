@@ -14,29 +14,29 @@ class PsnBCashChild extends PsnRootChild<PsnBCashChildCon>{
   @override
   Widget onCreate() => Column(
     children: [
-      SizedBox(height: 42.h,),
+      SizedBox(height: 21.h,),
       _cashTypeWidget(),
-      SizedBox(height: 30.h,),
+      SizedBox(height: 15.h,),
       _cashListWidget(),
     ],
   );
 
   _cashTypeWidget()=>Container(
     width: double.infinity,
-    height: 124.h,
-    margin: EdgeInsets.only(left: 10.w),
+    height: 62.h,
+    margin: EdgeInsets.only(left: 5.w),
     child: ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: psnCon.cashTypeList.length,
       itemBuilder: (context,index){
         var bean = psnCon.cashTypeList[index];
         return Container(
-          margin: EdgeInsets.only(right: 10.w),
+          margin: EdgeInsets.only(right: 5.w),
           child: PsnClick(
             onTap: (){
               psnCon.clickCashType(index);
             },
-            child: PsnImageWidget(name: bean.icon,width: 222.w,height: 124.h,),
+            child: PsnImageWidget(name: bean.icon,width: 111.w,height: 62.h,),
           ),
         );
       },
@@ -59,27 +59,27 @@ class PsnBCashChild extends PsnRootChild<PsnBCashChildCon>{
               },
               child: Container(
                 width: double.infinity,
-                height: 218.h,
-                margin: EdgeInsets.only(left: 26.w,right: 26.w,bottom: 20.h),
+                height: 109.h,
+                margin: EdgeInsets.only(left: 13.w,right: 13.w,bottom: 10.h),
                 child: Stack(
                   children: [
                     PsnImageWidget(name: psnCon.getCashListBg(),width: double.infinity,height: double.infinity),
                     Positioned(
-                      left: 30.w,
-                      bottom: 40.h,
-                      child: PsnTextWidget(text: "\$${bean.money}", size: 52.sp, color: "#252525".toColor()),
+                      left: 15.w,
+                      bottom: 20.h,
+                      child: PsnTextWidget(text: "\$${bean.money}", size: 26.sp, color: "#252525".toColor()),
                     ),
                     Positioned(
                       top: 0,
-                      right: 40.w,
+                      right: 20.w,
                       bottom: 0,
                       child: Visibility(
                         visible: (null==bean.cashTaskBean||bean.cashTaskBean?.completed==1)&&null==bean.rankProgress,
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
-                            PsnImageWidget(name: "btn_green",width: 278.w,height: 88.h,),
-                            PsnTextWidget(text: bean.cashTaskBean?.completed==1?"Success":"Cash Out", size: 36.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),)
+                            PsnImageWidget(name: "btn_green",width: 139.w,height: 44.h,),
+                            PsnTextWidget(text: bean.cashTaskBean?.completed==1?"Success":"Cash Out", size: 18.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),)
                           ],
                         ),
                       ),
@@ -89,23 +89,23 @@ class PsnBCashChild extends PsnRootChild<PsnBCashChildCon>{
                       child: Visibility(
                         visible: (null!=bean.cashTaskBean&&bean.cashTaskBean?.completed!=1)||null!=bean.rankProgress,
                         child: Container(
-                          margin: EdgeInsets.only(right: 40.w),
+                          margin: EdgeInsets.only(right: 20.w),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              PsnTextWidget(text: psnCon.getCaskTaskStr(bean), size: 34.sp, color: "#252525".toColor(),),
-                              SizedBox(height: 20.h,),
+                              PsnTextWidget(text: psnCon.getCaskTaskStr(bean), size: 17.sp, color: "#252525".toColor(),),
+                              SizedBox(height: 10.h,),
                               SizedBox(
-                                width: 342.w,
-                                height: 30.h,
+                                width: 171.w,
+                                height: 15.h,
                                 child: Stack(
                                   alignment: Alignment.center,
                                   children: [
                                     Container(
                                       width: double.infinity,
-                                      height: 30.h,
+                                      height: 15.h,
                                       alignment: Alignment.centerLeft,
-                                      padding: EdgeInsets.only(left: 5.w,right: 5.w),
+                                      padding: EdgeInsets.only(left: 2.w,right: 2.w),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(15.w),
                                         color: "#042E53".toColor(),
@@ -114,7 +114,7 @@ class PsnBCashChild extends PsnRootChild<PsnBCashChildCon>{
                                         child: Align(
                                           alignment: Alignment.centerLeft,
                                           widthFactor: psnCon.getCashTaskPro(bean),
-                                          child: PsnImageWidget(name: "cash1",width: double.infinity,height: 20.h,),
+                                          child: PsnImageWidget(name: "cash1",width: double.infinity,height: 10.h,),
                                         ),
                                       ),
                                     ),
@@ -131,15 +131,15 @@ class PsnBCashChild extends PsnRootChild<PsnBCashChildCon>{
                       child: Visibility(
                         visible: (null!=bean.cashTaskBean&&bean.cashTaskBean?.completed!=1)||null!=bean.rankProgress,
                         child: Container(
-                          padding: EdgeInsets.only(left: 16.w,right: 16.w,top: 10.h,bottom: 11.h,),
+                          padding: EdgeInsets.only(left: 8.w,right: 8.w,top: 5.h,bottom: 5.5.h,),
                           decoration: BoxDecoration(
                             color: "#D7489D".toColor(),
                             borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(24.w),
-                              bottomLeft: Radius.circular(24.w),
+                              topRight: Radius.circular(12.w),
+                              bottomLeft: Radius.circular(12.w),
                             )
                           ),
-                          child: PsnTextWidget(text: "in paying process", size: 28.sp, color: "#FFFFFF".toColor(),),
+                          child: PsnTextWidget(text: "in paying process", size: 14.sp, color: "#FFFFFF".toColor(),),
                         ),
                       ),
                     )

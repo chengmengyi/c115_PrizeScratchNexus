@@ -18,7 +18,7 @@ class PsnBTopWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) => Container(
     width: double.infinity,
-    padding: EdgeInsets.only(bottom: 36.h),
+    padding: EdgeInsets.only(bottom: 18.h),
     decoration: BoxDecoration(
       image: DecorationImage(
         image: AssetImage('assets/images/top_bg.webp'),
@@ -33,9 +33,9 @@ class PsnBTopWidget extends StatelessWidget{
             onTap: (){
               clickBack.call();
             },
-            child: PsnImageWidget(name: "icon_back",width: 130.w,height: 85.h,),
+            child: PsnImageWidget(name: "icon_back",width: 65.w,height: 42.h,),
           ),
-          SizedBox(width: 18.w,),
+          SizedBox(width: 9.w,),
           Expanded(
             child: PsnClick(
               onTap: (){
@@ -45,11 +45,11 @@ class PsnBTopWidget extends StatelessWidget{
               child: PsnBCoinsWidget(),
             ),
           ),
-          SizedBox(width: 18.w,),
+          SizedBox(width: 9.w,),
           Expanded(child: PsnBLevelWidget(),),
-          SizedBox(width: 12.w,),
+          SizedBox(width: 6.w,),
           PsnBSetWidget(),
-          SizedBox(width: 18.w,),
+          SizedBox(width: 9.w,),
         ],
       ),
     ),

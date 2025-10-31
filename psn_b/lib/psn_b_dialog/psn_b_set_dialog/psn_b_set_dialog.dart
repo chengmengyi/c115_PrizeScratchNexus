@@ -18,8 +18,8 @@ class PsnBSetDialog extends PsnRootDialog<PsnBSetDialogCon>{
   @override
   Widget onCreate() => Container(
     width: double.infinity,
-    height: 578.h,
-    margin: EdgeInsets.only(left: 41.w,right: 41.w),
+    height: 289.h,
+    margin: EdgeInsets.only(left: 20.w,right: 20.w),
     child: Stack(
       children: [
         PsnImageWidget(name: "set1",width: double.infinity,height: double.infinity,),
@@ -29,21 +29,21 @@ class PsnBSetDialog extends PsnRootDialog<PsnBSetDialogCon>{
             onTap: (){
               PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
             },
-            child: PsnImageWidget(name: "icon_close",width: 65.w,height: 65.w,),
+            child: PsnImageWidget(name: "icon_close",width: 32.w,height: 32.w,),
           ),
         ),
         Align(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PsnTextWidget(text: "SETTING", size: 48.sp, color: "#FFFFFF".toColor(),outlineColor: "#76D0FF".toColor(),),
-              SizedBox(height: 40.h,),
+              PsnTextWidget(text: "SETTING", size: 24.sp, color: "#FFFFFF".toColor(),outlineColor: "#76D0FF".toColor(),),
+              SizedBox(height: 20.h,),
               _bgMusicWidget(),
-              SizedBox(height: 40.h,),
+              SizedBox(height: 20.h,),
               _voiceMusicWidget(),
-              SizedBox(height: 30.h,),
+              SizedBox(height: 15.h,),
               _contactWidget(),
-              SizedBox(height: 30.h,),
+              SizedBox(height: 15.h,),
               _privacyWidget(),
             ],
           ),
@@ -54,11 +54,11 @@ class PsnBSetDialog extends PsnRootDialog<PsnBSetDialogCon>{
 
   _bgMusicWidget()=>Row(
     children: [
-      SizedBox(width: 76.w,),
-      PsnImageWidget(name: "set2",width: 52.w,height: 58.h,),
-      SizedBox(width: 50.w,),
+      SizedBox(width: 38.w,),
+      PsnImageWidget(name: "set2",width: 26.w,height: 29.h,),
+      SizedBox(width: 25.w,),
       Expanded(
-        child: PsnTextWidget(text: "Background Music", size: 28.sp, color: "#F1EBFF".toColor(),outlineColor: "#101C76".toColor(),),
+        child: PsnTextWidget(text: "Background Music", size: 14.sp, color: "#F1EBFF".toColor(),outlineColor: "#101C76".toColor(),),
       ),
       PsnClick(
         onTap: (){
@@ -66,21 +66,21 @@ class PsnBSetDialog extends PsnRootDialog<PsnBSetDialogCon>{
         },
         child: GetBuilder<PsnBSetDialogCon>(
           id: "back",
-          builder: (_)=>PsnImageWidget(name: bBackMusicSwitch.getData()?"icon_on":"icon_off",width: 124.w,height: 45.h,),
+          builder: (_)=>PsnImageWidget(name: bBackMusicSwitch.getData()?"icon_on":"icon_off",width: 62.w,height: 22.h,),
         ),
       ),
-      SizedBox(width: 60.w,),
+      SizedBox(width: 30.w,),
     ],
   );
 
   _voiceMusicWidget()=>Row(
     mainAxisSize: MainAxisSize.min,
     children: [
-      SizedBox(width: 76.w,),
-      PsnImageWidget(name: "set3",width: 52.w,height: 46.h,),
-      SizedBox(width: 50.w,),
+      SizedBox(width: 38.w,),
+      PsnImageWidget(name: "set3",width: 26.w,height: 23.h,),
+      SizedBox(width: 25.w,),
       Expanded(
-        child: PsnTextWidget(text: "Sound Effects", size: 28.sp, color: "#F1EBFF".toColor(),outlineColor: "#101C76".toColor(),),
+        child: PsnTextWidget(text: "Sound Effects", size: 14.sp, color: "#F1EBFF".toColor(),outlineColor: "#101C76".toColor(),),
       ),
       PsnClick(
         onTap: (){
@@ -88,10 +88,10 @@ class PsnBSetDialog extends PsnRootDialog<PsnBSetDialogCon>{
         },
         child: GetBuilder<PsnBSetDialogCon>(
           id: "voice",
-          builder: (_)=>PsnImageWidget(name: bVoiceMusicSwitch.getData()?"icon_on":"icon_off",width: 124.w,height: 45.h,),
+          builder: (_)=>PsnImageWidget(name: bVoiceMusicSwitch.getData()?"icon_on":"icon_off",width: 62.w,height: 22.h,),
         ),
       ),
-      SizedBox(width: 60.w,),
+      SizedBox(width: 30.w,),
     ],
   );
 
@@ -101,15 +101,15 @@ class PsnBSetDialog extends PsnRootDialog<PsnBSetDialogCon>{
     },
     child: Container(
       width: double.infinity,
-      height: 92.h,
-      margin: EdgeInsets.only(left: 49.w,right: 49.w),
+      height: 46.h,
+      margin: EdgeInsets.only(left: 25.w,right: 25.w),
       child: Stack(
         alignment: Alignment.center,
         children: [
           PsnImageWidget(name: "set4",width: double.infinity,height: double.infinity,),
           PsnTextWidget(
             text: "Contact Us",
-            size: 42.sp,
+            size: 21.sp,
             color: "#F0E9FF".toColor(),
             outlineColor: "#1543A1".toColor(),
             textDecoration: TextDecoration.underline,
@@ -126,15 +126,15 @@ class PsnBSetDialog extends PsnRootDialog<PsnBSetDialogCon>{
     },
     child: Container(
       width: double.infinity,
-      height: 92.h,
-      margin: EdgeInsets.only(left: 49.w,right: 49.w),
+      height: 46.h,
+      margin: EdgeInsets.only(left: 25.w,right: 25.w),
       child: Stack(
         alignment: Alignment.center,
         children: [
           PsnImageWidget(name: "set4",width: double.infinity,height: double.infinity,),
           PsnTextWidget(
             text: "Privacy Poilcy",
-            size: 42.sp,
+            size: 21.sp,
             color: "#F0E9FF".toColor(),
             outlineColor: "#1543A1".toColor(),
             textDecoration: TextDecoration.underline,

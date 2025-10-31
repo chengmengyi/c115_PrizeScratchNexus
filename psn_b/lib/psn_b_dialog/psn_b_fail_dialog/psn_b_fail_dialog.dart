@@ -18,10 +18,10 @@ class PsnBFailDialog extends PsnRootDialog<PsnBFailDialogCon>{
   Widget onCreate() => Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      PsnImageWidget(name: "fail3",height: 169.h,boxFit: BoxFit.fitHeight,),
-      SizedBox(height: 57.h,),
-      PsnImageWidget(name: "fail4",width: 313.w,height: 313.w,),
-      SizedBox(height: 90.h,),
+      PsnImageWidget(name: "fail3",height: 85.h,boxFit: BoxFit.fitHeight,),
+      SizedBox(height: 28.h,),
+      PsnImageWidget(name: "fail4",width: 157.w,height: 157.w,),
+      SizedBox(height: 45.h,),
       PsnBBtnWidget(
         text: "Continue",
         bgName: "btn_blue",

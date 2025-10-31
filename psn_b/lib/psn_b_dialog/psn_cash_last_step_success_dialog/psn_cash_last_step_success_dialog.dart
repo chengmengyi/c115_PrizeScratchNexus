@@ -18,23 +18,23 @@ class PsnCashLastStepSuccessDialog extends PsnRootDialog<PsnCashLastStepSuccessD
   @override
   Widget onCreate() => Container(
     width: double.infinity,
-    margin: EdgeInsets.only(left: 98.w,right: 98.w),
+    margin: EdgeInsets.only(left: 49.w,right: 49.w),
     decoration: BoxDecoration(
       color: "#FFFFFF".toColor(),
-      borderRadius: BorderRadius.circular(30.w),
+      borderRadius: BorderRadius.circular(15.w),
     ),
     child: Stack(
       alignment: Alignment.topCenter,
       children: [
         _contentWidget(),
         Positioned(
-          top: 20.h,
-          right: 20.w,
+          top: 10.h,
+          right: 10.w,
           child: PsnClick(
             onTap: (){
               psnCon.clickSure(rankBean);
             },
-            child: PsnImageWidget(name: "icon_close3",width: 50.w,height: 50.w,),
+            child: PsnImageWidget(name: "icon_close3",width: 25.w,height: 25.w,),
           ),
         ),
       ],
@@ -42,32 +42,32 @@ class PsnCashLastStepSuccessDialog extends PsnRootDialog<PsnCashLastStepSuccessD
   );
 
   _contentWidget()=>Container(
-    margin: EdgeInsets.only(left: 35.w,right: 35.w),
+    margin: EdgeInsets.only(left: 17.w,right: 17.w),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(height: 35.h,),
-        PsnTextWidget(text: "Funds received", size: 38.sp, color: "#000000".toColor(),fontFamily: null,),
-        SizedBox(height: 50.h,),
+        SizedBox(height: 17.h,),
+        PsnTextWidget(text: "Funds received", size: 19.sp, color: "#000000".toColor(),fontFamily: null,),
+        SizedBox(height: 25.h,),
         _progressWidget(),
-        PsnTextWidget(text: "We have completed the payment.And the funds will be creadited to your bank account within 7 business days.", size: 30.sp, color: "#000000".toColor(),fontFamily: null,),
-        SizedBox(height: 40.h,),
+        PsnTextWidget(text: "We have completed the payment.And the funds will be creadited to your bank account within 7 business days.", size: 15.sp, color: "#000000".toColor(),fontFamily: null,),
+        SizedBox(height: 20.h,),
         PsnClick(
           onTap: (){
             psnCon.clickSure(rankBean);
           },
           child: Container(
             width: double.infinity,
-            height: 96.h,
+            height: 48.h,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: "#356ECA".toColor(),
-              borderRadius: BorderRadius.circular(25.w),
+              borderRadius: BorderRadius.circular(12.w),
             ),
-            child: PsnTextWidget(text: "Instantly Credited", size: 33.sp, color: "#FFFFFF".toColor(),fontFamily: null,),
+            child: PsnTextWidget(text: "Instantly Credited", size: 16.sp, color: "#FFFFFF".toColor(),fontFamily: null,),
           ),
         ),
-        SizedBox(height: 40.h,),
+        SizedBox(height: 20.h,),
       ],
     ),
   );
@@ -77,32 +77,32 @@ class PsnCashLastStepSuccessDialog extends PsnRootDialog<PsnCashLastStepSuccessD
     children: [
       SizedBox(
         width: double.infinity,
-        height: 28.w,
+        height: 14.w,
         child: Stack(
           alignment: Alignment.centerLeft,
           children: [
             Container(
               width: double.infinity,
-              height: 14.h,
+              height: 7.h,
               color: "#00C220".toColor(),
-              margin: EdgeInsets.only(left: 14.w,right: 14.w),
+              margin: EdgeInsets.only(left: 7.w,right: 7.w),
             ),
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
-                width: 28.w,
-                height: 28.w,
+                width: 14.w,
+                height: 14.w,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14.w),
+                  borderRadius: BorderRadius.circular(7.w),
                   color: "#EFEFEF".toColor(),
                 ),
                 child: Container(
-                  width: 18.w,
-                  height: 18.w,
+                  width: 9.w,
+                  height: 9.w,
                   decoration: BoxDecoration(
                     color: "#00C220".toColor(),
-                    borderRadius: BorderRadius.circular(9.w),
+                    borderRadius: BorderRadius.circular(4.w),
                   ),
                 ),
               ),
@@ -110,19 +110,19 @@ class PsnCashLastStepSuccessDialog extends PsnRootDialog<PsnCashLastStepSuccessD
             Align(
               alignment: Alignment.center,
               child: Container(
-                width: 28.w,
-                height: 28.w,
+                width: 14.w,
+                height: 14.w,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14.w),
+                  borderRadius: BorderRadius.circular(7.w),
                   color: "#EFEFEF".toColor(),
                 ),
                 child: Container(
-                  width: 18.w,
-                  height: 18.w,
+                  width: 9.w,
+                  height: 9.w,
                   decoration: BoxDecoration(
                     color: "#00C220".toColor(),
-                    borderRadius: BorderRadius.circular(9.w),
+                    borderRadius: BorderRadius.circular(4.w),
                   ),
                 ),
               ),
@@ -130,19 +130,19 @@ class PsnCashLastStepSuccessDialog extends PsnRootDialog<PsnCashLastStepSuccessD
             Align(
               alignment: Alignment.centerRight,
               child: Container(
-                width: 28.w,
-                height: 28.w,
+                width: 14.w,
+                height: 14.w,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14.w),
+                  borderRadius: BorderRadius.circular(7.w),
                   color: "#EFEFEF".toColor(),
                 ),
                 child: Container(
-                  width: 18.w,
-                  height: 18.w,
+                  width: 9.w,
+                  height: 9.w,
                   decoration: BoxDecoration(
                     color: "#00C220".toColor(),
-                    borderRadius: BorderRadius.circular(9.w),
+                    borderRadius: BorderRadius.circular(4.w),
                   ),
                 ),
               ),
@@ -152,20 +152,20 @@ class PsnCashLastStepSuccessDialog extends PsnRootDialog<PsnCashLastStepSuccessD
       ),
       SizedBox(
         width: double.infinity,
-        height: 100.h,
+        height: 50.h,
         child: Stack(
           children: [
             Align(
               alignment: Alignment.topLeft,
-              child: PsnTextWidget(text: "Review", size: 25.sp, color: "#067000".toColor()),
+              child: PsnTextWidget(text: "Review", size: 12.sp, color: "#067000".toColor()),
             ),
             Align(
               alignment: Alignment.topCenter,
-              child: PsnTextWidget(text: "Queue", size: 25.sp, color: "#067000".toColor()),
+              child: PsnTextWidget(text: "Queue", size: 12.sp, color: "#067000".toColor()),
             ),
             Align(
               alignment: Alignment.topRight,
-              child: PsnTextWidget(text: "Funds\nreceived", size: 25.sp, color: "#067000".toColor(),textAlign: TextAlign.end,),
+              child: PsnTextWidget(text: "Funds\nreceived", size: 12.sp, color: "#067000".toColor(),textAlign: TextAlign.end,),
             ),
           ],
         ),

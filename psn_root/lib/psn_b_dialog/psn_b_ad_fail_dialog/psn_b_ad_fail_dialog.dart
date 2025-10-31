@@ -17,26 +17,26 @@ class PsnBAdFailDialog extends PsnRootDialog<PsnBAdFailDialogCon>{
   @override
   Widget onCreate() => Container(
     width: double.infinity,
-    height: 660.h,
-    margin: EdgeInsets.only(left: 58.w,right: 58.w),
+    height: 330.h,
+    margin: EdgeInsets.only(left: 29.w,right: 29.w),
     child: Stack(
       children: [
         PsnImageWidget(name: "ad_fail1",width: double.infinity,height: double.infinity,),
         Align(
           alignment: Alignment.topCenter,
           child: Container(
-            margin: EdgeInsets.only(top: 32.h),
-            child: PsnTextWidget(text: "Ad loading reached", size: 48.sp, color: "#FFFFFF".toColor(),),
+            margin: EdgeInsets.only(top: 16.h),
+            child: PsnTextWidget(text: "Ad loading reached", size: 24.sp, color: "#FFFFFF".toColor(),),
           ),
         ),
         Positioned(
-          top: 29.h,
-          right: 29.w,
+          top: 15.h,
+          right: 15.w,
           child: PsnClick(
             onTap: (){
               psnCon.clickClose();
             },
-            child: PsnImageWidget(name: "icon_close2",width: 40.w,height: 40.w,),
+            child: PsnImageWidget(name: "icon_close2",width: 20.w,height: 20.w,),
           ),
         ),
         Align(
@@ -44,27 +44,27 @@ class PsnBAdFailDialog extends PsnRootDialog<PsnBAdFailDialogCon>{
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PsnImageWidget(name: "ad_fail2",width: 274.w,height: 274.h,),
-              SizedBox(height: 56.h,),
+              PsnImageWidget(name: "ad_fail2",width: 137.w,height: 137.h,),
+              SizedBox(height: 28.h,),
               PsnClick(
                 onTap: (){
                   psnCon.clickTry(clickTryCallback);
                 },
                 child: SizedBox(
-                  width: 297.w,
-                  height: 107.h,
+                  width: 137.w,
+                  height: 53.h,
                   child: Stack(
                     children: [
                       PsnImageWidget(name: "btn_blue",width: double.infinity,height: double.infinity,),
                       Align(
                         alignment: Alignment.center,
-                        child: PsnTextWidget(text: "Try Again", size: 42.sp, color: "#F2F3F3".toColor(),outlineColor: "#090733".toColor(),),
+                        child: PsnTextWidget(text: "Try Again", size: 21.sp, color: "#F2F3F3".toColor(),outlineColor: "#090733".toColor(),),
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 40.h,),
+              SizedBox(height: 20.h,),
             ],
           ),
         ),

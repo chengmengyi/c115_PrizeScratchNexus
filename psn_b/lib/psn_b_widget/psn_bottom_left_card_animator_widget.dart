@@ -40,7 +40,7 @@ class _PsnBottomLeftCardAnimatorWidgetState extends PsnRootStatefulState<PsnBott
               top: _positionAnimation.value.dy,
               child: Transform.scale(
                 scale: _scaleAnimation.value,
-                child: PsnImageWidget(name: "card6",width: 141.w,height: 136.h,),
+                child: PsnImageWidget(name: "card6",width: 70.w,height: 68.h,),
               ),
             );
           },

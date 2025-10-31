@@ -26,13 +26,13 @@ class PsnBKingCard extends PsnRootPage<PsnBKingCardCon>{
   Widget onCreate() => PsnBPlayBaseWidget(
     child: _contentWidget(),
     playUtils: psnCon.playUtils,
-    margin: EdgeInsets.only(left: 66.w),
+    margin: EdgeInsets.only(left: 33.w),
   );
 
   _contentWidget()=>Container(
     width: double.infinity,
-    height: 974.h,
-    margin: EdgeInsets.only(left: 66.w,right: 66.w),
+    height: 487.h,
+    margin: EdgeInsets.only(left: 33.w,right: 33.w),
     child: Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -40,7 +40,7 @@ class PsnBKingCard extends PsnRootPage<PsnBKingCardCon>{
         _guaWidget(),
         Align(
           alignment: Alignment.topCenter,
-          child: PsnPlayLogoAnimatorWidget(image: "king9", width: 442.w, height: 290.h),
+          child: PsnPlayLogoAnimatorWidget(image: "king9", width: 221.w, height: 145.h),
         ),
       ],
     ),
@@ -48,9 +48,9 @@ class PsnBKingCard extends PsnRootPage<PsnBKingCardCon>{
 
   _guaWidget()=>Container(
     width: double.infinity,
-    height: 626.h,
+    height: 313.h,
     key: psnCon.playUtils.scratchGlobalKey,
-    margin: EdgeInsets.only(left: 30.w,right: 30.w,bottom: 46.h),
+    margin: EdgeInsets.only(left: 15.w,right: 15.w,bottom: 23.h),
     child: Stack(
       children: [
         Scratcher(
@@ -74,7 +74,7 @@ class PsnBKingCard extends PsnRootPage<PsnBKingCardCon>{
             children: [
               PsnImageWidget(name: "king3",width: double.infinity,height: double.infinity,),
               Container(
-                margin: EdgeInsets.only(left: 14.w,right: 14.w,bottom: 14.h),
+                margin: EdgeInsets.only(left: 7.w,right: 7.w,bottom: 7.h),
                 child: GetBuilder<PsnBKingCardCon>(
                   id: "list",
                   builder: (_){
@@ -101,21 +101,21 @@ class PsnBKingCard extends PsnRootPage<PsnBKingCardCon>{
                                 startAnimator: bean.win,
                                 child: Container(
                                   width: double.infinity,
-                                  height: 110.h,
+                                  height: 55.h,
                                   alignment: Alignment.center,
                                   child: SizedBox(
-                                    width: 62.w,
-                                    height: 88.h,
+                                    width: 31.w,
+                                    height: 44.h,
                                     child: Stack(
                                       children: [
-                                        PsnImageWidget(name: "kapai$nextInt",width: 62.w,height: 88.h,),
+                                        PsnImageWidget(name: "kapai$nextInt",width: 31.w,height: 44.h,),
                                         Align(
-                                          child: PsnTextWidget(text: bean.content, size: 40.sp, color: textColor.toColor()),
+                                          child: PsnTextWidget(text: bean.content, size: 20.sp, color: textColor.toColor()),
                                         ),
                                         Positioned(
-                                          top: 10.h,
-                                          right: 10.w,
-                                          child: PsnTextWidget(text: bean.content, size: 10.sp, color: textColor.toColor()),
+                                          top: 5.h,
+                                          right: 5.w,
+                                          child: PsnTextWidget(text: bean.content, size: 4.sp, color: textColor.toColor()),
                                         )
                                       ],
                                     ),
@@ -126,7 +126,7 @@ class PsnBKingCard extends PsnRootPage<PsnBKingCardCon>{
                           ),
                         ),
                         SizedBox(
-                          width: 147.w,
+                          width: 73.w,
                           child: MediaQuery.removePadding(
                             context: psnCon.context,
                             removeTop: true,
@@ -136,14 +136,14 @@ class PsnBKingCard extends PsnRootPage<PsnBKingCardCon>{
                               shrinkWrap: true,
                               itemBuilder: (context,index){
                                 return Container(
-                                  width: 147.w,
-                                  height: 110.h,
+                                  width: 73.w,
+                                  height: 55.h,
                                   alignment: Alignment.center,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      PsnImageWidget(name: "icon_money",width: 57.w,height: 52.h,),
-                                      SizedBox(height: 2.h,),
+                                      PsnImageWidget(name: "icon_money",width: 28.w,height: 26.h,),
+                                      SizedBox(height: 1.h,),
                                       PsnGradientText(
                                         data: "${psnCon.playUtils.contentList[index*2].reward}",
                                         gradient: LinearGradient(
@@ -151,7 +151,7 @@ class PsnBKingCard extends PsnRootPage<PsnBKingCardCon>{
                                             begin: Alignment.topCenter,
                                             end: Alignment.bottomCenter
                                         ),
-                                        size: 26.sp,
+                                        size: 13.sp,
                                         outlineColor: "#0C0D0E".toColor(),
                                       ),
                                     ],

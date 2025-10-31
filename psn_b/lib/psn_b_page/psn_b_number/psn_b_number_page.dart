@@ -23,13 +23,13 @@ class PsnBNumberPage extends PsnRootPage<PsnBNumberCon>{
   Widget onCreate() => PsnBPlayBaseWidget(
     child: _contentWidget(),
     playUtils: psnCon.playUtils,
-    margin: EdgeInsets.only(left: 66.w),
+    margin: EdgeInsets.only(left: 33.w),
   );
 
   _contentWidget()=>Container(
     width: double.infinity,
-    height: 974.h,
-    margin: EdgeInsets.only(left: 66.w,right: 66.w),
+    height: 487.h,
+    margin: EdgeInsets.only(left: 33.w,right: 33.w),
     child: Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -37,15 +37,15 @@ class PsnBNumberPage extends PsnRootPage<PsnBNumberCon>{
         Align(
           alignment: Alignment.topCenter,
           child: Container(
-            margin: EdgeInsets.only(top: 40.h),
-            child: PsnPlayLogoAnimatorWidget(image: "number7", width: 350.w, height: 200.h),
+            margin: EdgeInsets.only(top: 20.h),
+            child: PsnPlayLogoAnimatorWidget(image: "number7", width: 175.w, height: 100.h),
           ),
         ),
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             _textWidget(),
-            SizedBox(height: 6.h,),
+            SizedBox(height: 3.h,),
             _guaWidget(),
           ],
         ),
@@ -55,9 +55,9 @@ class PsnBNumberPage extends PsnRootPage<PsnBNumberCon>{
 
   _guaWidget()=>Container(
     width: double.infinity,
-    height: 506.h,
+    height: 253.h,
     key: psnCon.playUtils.scratchGlobalKey,
-    margin: EdgeInsets.only(left: 30.w,right: 30.w,bottom: 46.h),
+    margin: EdgeInsets.only(left: 15.w,right: 15.w,bottom: 23.h),
     child: Stack(
       children: [
         Scratcher(
@@ -93,19 +93,19 @@ class PsnBNumberPage extends PsnRootPage<PsnBNumberCon>{
                     var bean = psnCon.playUtils.contentList[index];
                     return Container(
                       width: double.infinity,
-                      height: 126.h,
+                      height: 63.h,
                       alignment: Alignment.center,
                       child: PsnBreathingWidget(
                         startAnimator: bean.win,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            PsnTextWidget(text: bean.content, size: 50.sp, color: "#FDFF1B".toColor(),outlineColor: "#FF4E00".toColor(),),
+                            PsnTextWidget(text: bean.content, size: 25.sp, color: "#FDFF1B".toColor(),outlineColor: "#FF4E00".toColor(),),
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                PsnImageWidget(name: "icon_money",width: 28.w,height: 28.h,),
-                                SizedBox(width: 8.w,),
+                                PsnImageWidget(name: "icon_money",width: 14.w,height: 14.h,),
+                                SizedBox(width: 4.w,),
                                 PsnGradientText(
                                   data: "${bean.reward}",
                                   gradient: LinearGradient(
@@ -113,7 +113,7 @@ class PsnBNumberPage extends PsnRootPage<PsnBNumberCon>{
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter
                                   ),
-                                  size: 26.sp,
+                                  size: 13.sp,
                                   outlineColor: "#0C0D0E".toColor(),
                                 ),
                               ],
@@ -143,20 +143,20 @@ class PsnBNumberPage extends PsnRootPage<PsnBNumberCon>{
 
   _textWidget()=>Container(
     width: double.infinity,
-    margin: EdgeInsets.only(left: 47.w,right: 47.w),
+    margin: EdgeInsets.only(left: 23.w,right: 23.w),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Stack(
           alignment: Alignment.center,
           children: [
-            PsnImageWidget(name: "number4",width: double.infinity,height: 35.h,),
-            PsnTextWidget(text: "WIN NUMBER", size: 26.sp, color: "#FFFFFF".toColor(),outlineColor: "#FF7200".toColor(),)
+            PsnImageWidget(name: "number4",width: double.infinity,height: 17.h,),
+            PsnTextWidget(text: "WIN NUMBER", size: 13.sp, color: "#FFFFFF".toColor(),outlineColor: "#FF7200".toColor(),)
           ],
         ),
-        SizedBox(height: 12.h,),
+        SizedBox(height: 6.h,),
         SizedBox(
-          height: 93.h,
+          height: 46.h,
           child: GetBuilder<PsnBNumberCon>(
             id: "win",
             builder: (_)=>ListView.builder(
@@ -164,27 +164,27 @@ class PsnBNumberPage extends PsnRootPage<PsnBNumberCon>{
               scrollDirection: Axis.horizontal,
               itemCount: psnCon.specialNumbersList.length,
               itemBuilder: (context,index)=>Container(
-                margin: EdgeInsets.only(left: 16.w,right: 16.w),
+                margin: EdgeInsets.only(left: 8.w,right: 8.w),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    PsnImageWidget(name: "number5",width: 129.w,height: 93.h,),
-                    PsnTextWidget(text: "${psnCon.specialNumbersList[index]}", size: 50.sp, color: "#FDFF1B".toColor(),outlineColor: "#FF4E00".toColor(),)
+                    PsnImageWidget(name: "number5",width: 64.w,height: 46.h,),
+                    PsnTextWidget(text: "${psnCon.specialNumbersList[index]}", size: 25.sp, color: "#FDFF1B".toColor(),outlineColor: "#FF4E00".toColor(),)
                   ],
                 ),
               ),
             ),
           ),
         ),
-        SizedBox(height: 12.h,),
+        SizedBox(height: 6.h,),
         Stack(
           alignment: Alignment.center,
           children: [
-            PsnImageWidget(name: "number4",width: double.infinity,height: 35.h,),
-            PsnTextWidget(text: "YOUR NUMBER", size: 26.sp, color: "#FFFFFF".toColor(),outlineColor: "#FF7200".toColor(),)
+            PsnImageWidget(name: "number4",width: double.infinity,height: 17.h,),
+            PsnTextWidget(text: "YOUR NUMBER", size: 13.sp, color: "#FFFFFF".toColor(),outlineColor: "#FF7200".toColor(),)
           ],
         ),
-        SizedBox(height: 12.h,),
+        SizedBox(height: 6.h,),
       ],
     ),
   );

@@ -32,16 +32,16 @@ class PsnACardNumWidgetState extends PsnRootStatefulState<PsnBCardNumWidget>{
   @override
   Widget build(BuildContext context) => Stack(
     children: [
-      PsnImageWidget(name: "card_num",width: 162.w,height: 112.h,),
+      PsnImageWidget(name: "card_num",width: 81.w,height: 56.h,),
       Container(
-        margin: EdgeInsets.only(left: 30.w,top: 32.h),
+        margin: EdgeInsets.only(left: 15.w,top: 16.h),
         child: Transform.rotate(
           angle: -30 * pi / 180,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PsnTextWidget(text: "$cardNum", size: 24.sp, color: "#FDFF02".toColor(),outlineColor: "#000000".toColor(),),
-              PsnTextWidget(text: "/10", size: 24.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),),
+              PsnTextWidget(text: "$cardNum", size: 12.sp, color: "#FDFF02".toColor(),outlineColor: "#000000".toColor(),),
+              PsnTextWidget(text: "/10", size: 12.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),),
             ],
           ),
         ),

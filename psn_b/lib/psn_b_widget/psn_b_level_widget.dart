@@ -28,10 +28,10 @@ class PsnALevelWidgetState extends PsnRootStatefulState<PsnBLevelWidget>{
             children: [
               Container(
                 width: double.infinity,
-                height: 64.h,
+                height: 32.h,
                 alignment: Alignment.centerLeft,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.w),
+                  borderRadius: BorderRadius.circular(15.w),
                   color: "#2B2F51".toColor(),
                   border: Border.all(
                       width: 1.w,
@@ -42,17 +42,17 @@ class PsnALevelWidgetState extends PsnRootStatefulState<PsnBLevelWidget>{
                   child: Align(
                     alignment: Alignment.centerLeft,
                     widthFactor: getPro(bean),
-                    child: PsnImageWidget(name: "level3",width: double.infinity,height: 64.h,),
+                    child: PsnImageWidget(name: "level3",width: double.infinity,height: 32.h,),
                   ),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 80.w),
-                child: PsnTextWidget(text: "lv.${bean.level}", size: 36.sp, color: "#FFFFFF".toColor(),outlineColor: "#2B1E55".toColor(),),
+                margin: EdgeInsets.only(left: 40.w),
+                child: PsnTextWidget(text: "lv.${bean.level}", size: 18.sp, color: "#FFFFFF".toColor(),outlineColor: "#2B1E55".toColor(),),
               ),
             ],
           ),
-          PsnImageWidget(name: "level1",width: 94.w,height: 85.w,),
+          PsnImageWidget(name: "level1",width: 47.w,height: 42.w,),
         ],
       ),
     );

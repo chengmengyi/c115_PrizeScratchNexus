@@ -49,7 +49,7 @@ class PsnBNormalWinDialog extends PsnRootDialog<PsnBNormalWinDialogCon>{
         children: [
           ScaleTransition(
             scale: psnCon.animation,
-            child: PsnImageWidget(name: "get1",width: 418.w,height: 230.h,),
+            child: PsnImageWidget(name: "get1",width: 209.w,height: 115.h,),
           ),
           Stack(
             alignment: Alignment.bottomCenter,
@@ -57,12 +57,12 @@ class PsnBNormalWinDialog extends PsnRootDialog<PsnBNormalWinDialogCon>{
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  PsnImageWidget(name: "win3",height: 500.h,boxFit: BoxFit.fitHeight,),
-                  PsnImageWidget(name: "icon_money2",width: 213.w,height: 202.h,),
+                  PsnImageWidget(name: "win3",height: 250.h,boxFit: BoxFit.fitHeight,),
+                  PsnImageWidget(name: "icon_money2",width: 106.w,height: 101.h,),
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 100.h),
+                margin: EdgeInsets.only(bottom: 50.h),
                 child: PsnGradientText(
                   data: "+\$$reward",
                   gradient: LinearGradient(
@@ -70,15 +70,15 @@ class PsnBNormalWinDialog extends PsnRootDialog<PsnBNormalWinDialogCon>{
                     end: Alignment.bottomCenter,
                     colors: ["#FFFED5".toColor(),"#FDFC07".toColor()],
                   ),
-                  size: 60.sp,
+                  size: 30.sp,
                   outlineColor: "#D44B01".toColor(),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 50.h,),
+          SizedBox(height: 25.h,),
           PsnBBtnWidget(
-            width: 370.w,
+            width: 185.w,
             text: "Claim \$$reward",
             bgName: "btn_green",
             showVideoIcon: false,

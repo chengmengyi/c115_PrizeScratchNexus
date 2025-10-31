@@ -47,14 +47,14 @@ class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
             Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                PsnImageWidget(name: "big1",width: 606.w,height: 418.h,),
+                PsnImageWidget(name: "big1",width: 303.w,height: 209.h,),
                 Container(
-                  margin: EdgeInsets.only(bottom: 30.h),
-                  child: PsnImageWidget(name: "big2",width: 326.w,height: 263.h,),
+                  margin: EdgeInsets.only(bottom: 15.h),
+                  child: PsnImageWidget(name: "big2",width: 163.w,height: 131.h,),
                 ),
               ],
             ):
-            PsnImageWidget(name: "get1",width: 418.w,height: 230.h,),
+            PsnImageWidget(name: "get1",width: 209.w,height: 115.h,),
           ),
           Stack(
             alignment: Alignment.bottomCenter,
@@ -62,12 +62,12 @@ class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  PsnImageWidget(name: "win3",height: 500.h,boxFit: BoxFit.fitHeight,),
-                  PsnImageWidget(name: "icon_money2",width: 213.w,height: 202.h,),
+                  PsnImageWidget(name: "win3",height: 250.h,boxFit: BoxFit.fitHeight,),
+                  PsnImageWidget(name: "icon_money2",width: 106.w,height: 101.h,),
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 100.h),
+                margin: EdgeInsets.only(bottom: 50.h),
                 child: PsnGradientText(
                   data: "+\$$reward",
                   gradient: LinearGradient(
@@ -75,7 +75,7 @@ class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
                     end: Alignment.bottomCenter,
                     colors: ["#FFFED5".toColor(),"#FDFC07".toColor()],
                   ),
-                  size: 60.sp,
+                  size: 30.sp,
                   outlineColor: "#D44B01".toColor(),
                 ),
               ),
@@ -86,7 +86,7 @@ class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
             mainAxisSize: MainAxisSize.min,
             children: [
               PsnBBtnWidget(
-                width: 370.w,
+                width: 185.w,
                 text: "Claim \$${twoNumMul(reward, 2)}",
                 bgName: "btn_green",
                 showVideoIcon: true,
@@ -94,7 +94,7 @@ class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
                   psnCon.clickDouble(adEventEnumDouble,reward,dismissCallback);
                 },
               ),
-              SizedBox(height: 36.h,),
+              SizedBox(height: 18.h,),
               GetBuilder<PsnBGetMoneyDialogCon>(
                 id: "single_btn",
                 builder: (_)=>Visibility(
@@ -105,7 +105,7 @@ class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
                     },
                     child: PsnTextWidget(
                       text: "Claim \$$reward",
-                      size: 36.sp,
+                      size: 18.sp,
                       color: "#D4DEE2".toColor(),
                       textDecoration: TextDecoration.underline,
                       decorationColor: "#D4DEE2".toColor(),
@@ -116,7 +116,7 @@ class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
             ],
           ):
           PsnBBtnWidget(
-            width: 370.w,
+            width: 185.w,
             text: "Claim \$$reward",
             bgName: "btn_green",
             showVideoIcon: false,

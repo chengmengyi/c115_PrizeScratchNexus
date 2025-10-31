@@ -19,14 +19,14 @@ class PsnBUnlockDialog extends PsnRootDialog<PsnBUnlockDialogCon>{
     children: [
       _titleWidget(),
       _lockWidget(),
-      SizedBox(height: 90.h,),
+      SizedBox(height: 45.h,),
       _btnWidget(),
     ],
   );
 
   _titleWidget()=>Container(
     width: double.infinity,
-    margin: EdgeInsets.only(left: 30.w,right: 30.w),
+    margin: EdgeInsets.only(left: 15.w,right: 15.w),
     child: Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -35,14 +35,14 @@ class PsnBUnlockDialog extends PsnRootDialog<PsnBUnlockDialogCon>{
           onTap: (){
             psnCon.clickClose();
           },
-          child: PsnImageWidget(name: "icon_close",width: 71.w,height: 71.w,),
+          child: PsnImageWidget(name: "icon_close",width: 35.w,height: 35.w,),
         ),
-        SizedBox(height: 42.h,),
+        SizedBox(height: 21.h,),
         Stack(
           alignment: Alignment.center,
           children: [
-            PsnImageWidget(name: "win1",width: double.infinity,height: 128.h,),
-            PsnImageWidget(name: "unlock1",height: 48.h,boxFit: BoxFit.fitHeight,),
+            PsnImageWidget(name: "win1",width: double.infinity,height: 64.h,),
+            PsnImageWidget(name: "unlock1",height: 24.h,boxFit: BoxFit.fitHeight,),
           ],
         ),
       ],
@@ -52,8 +52,8 @@ class PsnBUnlockDialog extends PsnRootDialog<PsnBUnlockDialogCon>{
   _lockWidget()=>Stack(
     alignment: Alignment.center,
     children: [
-      PsnImageWidget(name: "win3",width: double.infinity,height: 500.h,),
-      PsnImageWidget(name: "unlock2",width: 190.w,height: 238.h,),
+      PsnImageWidget(name: "win3",width: double.infinity,height: 250.h,),
+      PsnImageWidget(name: "unlock2",width: 95.w,height: 119.h,),
     ],
   );
 

@@ -24,24 +24,24 @@ class PsnALevelContentWidgetState extends PsnRootStatefulState<PsnBLevelContentW
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        PsnTextWidget(text: "Level ${getLevelByCardType(widget.cardTypeEnum)}", size: 48.sp, color: "#FFFFFF".toColor(),outlineColor: "#030200".toColor(),),
-        SizedBox(height: 20.h,),
+        PsnTextWidget(text: "Level ${getLevelByCardType(widget.cardTypeEnum)}", size: 24.sp, color: "#FFFFFF".toColor(),outlineColor: "#030200".toColor(),),
+        SizedBox(height: 10.h,),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(left: 32.w,right: 32.w),
+          margin: EdgeInsets.only(left: 16.w,right: 16.w),
           child: Stack(
             alignment: Alignment.center,
             children: [
-              PsnImageWidget(name: "level_bg",width: double.infinity,height: 51.h,),
+              PsnImageWidget(name: "level_bg",width: double.infinity,height: 25.h,),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  PsnImageWidget(name: "level2",width: 42.w,height: 34.h,),
-                  SizedBox(width: 16.w,),
+                  PsnImageWidget(name: "level2",width: 21.w,height: 17.h,),
+                  SizedBox(width: 8.w,),
                   //Scratch  3  more cards to level up!
-                  PsnTextWidget(text: "Scratch  ", size: 30.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),),
-                  PsnTextWidget(text: "${bean.need-bean.currentProgress}", size: 30.sp, color: "#FFED00".toColor(),outlineColor: "#000000".toColor(),),
-                  PsnTextWidget(text: "  more cards to level up!", size: 30.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),),
+                  PsnTextWidget(text: "Scratch  ", size: 15.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),),
+                  PsnTextWidget(text: "${bean.need-bean.currentProgress}", size: 15.sp, color: "#FFED00".toColor(),outlineColor: "#000000".toColor(),),
+                  PsnTextWidget(text: "  more cards to level up!", size: 15.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),),
                 ],
               ),
             ],
