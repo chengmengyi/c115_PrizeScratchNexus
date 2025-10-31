@@ -133,6 +133,21 @@ class PsnBUserInfoUtils {
     return cardBean.unlock==0;
   }
 
+  Future<PsnBCardBean?> getHasPlayNumAndUnlockCardBean()async{
+    var database = await PsnRootSqlUtils.instance.initSql();
+    var list = await database.query(PsnRootSqlName.bCardNum);
+    if(list.isEmpty){
+      return null;
+    }
+    for (var value in list) {
+      var cardBean = PsnBCardBean.fromJson(value);
+      if(cardBean.unlock==0&&(cardBean.cardNum??0)>0){
+        return cardBean;
+      }
+    }
+    return null;
+  }
+
   updateUserCoins(double addNum){
     if(addNum==0){
       return;

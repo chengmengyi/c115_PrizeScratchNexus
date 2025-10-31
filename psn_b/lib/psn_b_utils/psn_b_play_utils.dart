@@ -6,12 +6,14 @@ import 'package:psn_b/psn_b_dialog/psn_b_get_more_dialog/psn_b_get_more_dialog.d
 import 'package:psn_b/psn_b_dialog/psn_b_level_up_dialog/psn_b_level_up_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_lucky_card_dialog/psn_b_lucky_card_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_normal_win_dialog/psn_b_normal_win_dialog.dart';
+import 'package:psn_b/psn_b_routers/psn_b_page_list.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
+import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_user_guide_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_wheel_utils.dart';
 import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
@@ -108,7 +110,9 @@ class PsnBPlayUtils {
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBLevelUpDialog(
           dismissCallback: ()async{
-            _checkToNextPlay(totalReward);
+            // _checkToNextPlay(totalReward);
+            PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.toHome, content: PsnBPageName.home);
+            PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.toNextLockTypeAndUnlock);
           },
         ),
       );
@@ -155,7 +159,7 @@ class PsnBPlayUtils {
   _checkWinOrFail(double totalReward){
     if(totalReward>0){
       PsnMusicUtils.instance.playVoice(VoiceEnum.play_win);
-      if(totalReward>=50){
+      if(totalReward>=PsnBValueUtils.instance.getBigWinValue()){
         PsnRootRouters.instance.router(
           routersEnum: PsnRoutersEnum.dialog,
           content: PsnBBigWinDialog(

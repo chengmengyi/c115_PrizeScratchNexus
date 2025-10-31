@@ -149,7 +149,7 @@ class PsnBWheelChild extends PsnRootChild<PsnBWheelChildCon>{
             id: "top_text",
             builder: (_)=>PsnTextWidget(text: "${psnCon.getCashMoney()}", size: 18.sp, color: "#FFFA21".toColor(),outlineColor: "#000000".toColor()),
           ),
-          PsnTextWidget(text: " to Pagbank withdrawal", size: 18.sp, color: "#F7FCFF".toColor(),outlineColor: "#000000".toColor()),
+          PsnTextWidget(text: " to withdrawal", size: 18.sp, color: "#F7FCFF".toColor(),outlineColor: "#000000".toColor()),
         ],
       ),
     ],

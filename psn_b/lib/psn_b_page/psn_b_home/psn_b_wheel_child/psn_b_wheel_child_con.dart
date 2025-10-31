@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_bean/psn_b_wheel_bean.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_get_money_dialog/psn_b_get_money_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_no_wheel_dialog/psn_b_no_wheel_dialog.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
@@ -43,7 +44,11 @@ class PsnBWheelChildCon extends PsnRootCon with GetSingleTickerProviderStateMixi
   }
 
   clickStart(){
-    if(!canClick||wheelNum<=0){
+    if(!canClick){
+      return;
+    }
+    if(wheelNum<=0){
+      PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBNoWheelDialog());
       return;
     }
     canClick=false;

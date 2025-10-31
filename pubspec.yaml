@@ -71,6 +71,7 @@ flutter:
     - assets/spine/box/
     - assets/spine/guaka/
     - assets/spine/caidai/
+    - assets/spine/jiesuo/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

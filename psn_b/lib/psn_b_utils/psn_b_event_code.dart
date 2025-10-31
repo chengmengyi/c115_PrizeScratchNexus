@@ -12,4 +12,7 @@ class PsnBEventCode {
   static const int showWheelAnimator=110;
   static const int updateCardProgress=111;
   static const int showBottomLeftCardAnimator=112;
+  static const int noMoneyClickPlayNow=113;
+  static const int toNextLockTypeAndUnlock=114;
+  static const int showLockAnimator=115;
 }

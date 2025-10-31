@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_get_money_dialog/psn_b_get_money_dialog_con.dart';
+import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_b/psn_b_widget/psn_b_btn_widget.dart';
 import 'package:psn_root/psn_root_page/psn_root_dialog.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
@@ -43,7 +44,7 @@ class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
         children: [
           ScaleTransition(
             scale: psnCon.animation,
-            child: reward>=60?
+            child: reward>=PsnBValueUtils.instance.getBigWinValue()?
             Stack(
               alignment: Alignment.bottomCenter,
               children: [

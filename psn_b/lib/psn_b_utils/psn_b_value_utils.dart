@@ -67,6 +67,8 @@ class PsnBValueUtils {
     return true;
   }
 
+  int getBigWinValue()=>40;
+
   List<int> getCashList()=>[1000,2000,3000,5000,10000];
 
   double getBoxReward()=>_getReward(_valueBean?.loginBonuses??[]);

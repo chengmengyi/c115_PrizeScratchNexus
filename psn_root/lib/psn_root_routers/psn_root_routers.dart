@@ -32,6 +32,9 @@ class PsnRootRouters {
       case PsnRoutersEnum.offAllNamed:
         Get.offAllNamed(content as String);
         break;
+      case PsnRoutersEnum.toHome:
+        Get.until((route)=>route.settings.name==content);
+        break;
     }
   }
 

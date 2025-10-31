@@ -6,12 +6,12 @@ import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
-class PsnBNoMoneyDialogCon extends PsnRootCon{
+class PsnBNoWheelDialogCon extends PsnRootCon{
 
   @override
   void onInit() {
     super.onInit();
-    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_not_pop);
+    // PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_not_pop);
   }
 
   clickClose(){
@@ -19,7 +19,7 @@ class PsnBNoMoneyDialogCon extends PsnRootCon{
   }
 
   clickPlayNow(){
-    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_not_pop_c);
+    // PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_not_pop_c);
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.noMoneyClickPlayNow);
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showHomeIndex,intValue: 0);

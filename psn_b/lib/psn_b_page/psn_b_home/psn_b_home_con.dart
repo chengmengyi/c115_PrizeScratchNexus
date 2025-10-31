@@ -79,9 +79,11 @@ class PsnBHomeCon extends PsnRootCon{
       case PsnBEventCode.updateWheelNum:
         _updateWheelNum();
         break;
+      case PsnBEventCode.toNextLockTypeAndUnlock:
+        clickBottomBtn(0);
+        break;
     }
   }
-
 
   _updateWheelNum()async{
     wheelNum=await PsnWheelUtils.instance.getWheelNum();

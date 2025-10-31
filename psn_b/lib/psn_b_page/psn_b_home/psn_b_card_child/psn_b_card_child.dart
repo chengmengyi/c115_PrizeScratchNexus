@@ -5,11 +5,14 @@ import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
 import 'package:psn_b/psn_b_widget/psn_b_card_num_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_box_widget.dart';
+import 'package:psn_b/psn_b_widget/psn_card_lock_widget.dart';
 import 'package:psn_root/psn_root_page/psn_root_child.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_widget/psn_click.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
+import 'package:psn_root/psn_root_widget/psn_spine_widget.dart';
+import 'package:psn_root/psn_root_widget/psn_tap_scale_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
 class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
@@ -68,6 +71,7 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
       GetBuilder<PsnBCardChildCon>(
         id: "list",
         builder: (_)=>CarouselSlider(
+          carouselController: psnCon.carouselSliderControllerImpl,
           options: CarouselOptions(
               height: 390.h,
               autoPlay: false,
@@ -86,47 +90,54 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
     ],
   );
 
-  Widget _sliderItemWidget(PsnBCardBean value) => Stack(
-    children: [
-      PsnImageWidget(name: psnCon.getCardIcon(value),width: double.infinity,height: 390.h,),
-      PsnBCardNumWidget(cardTypeEnum: PsnBCardTypeEnum.values.byName(value.cardType??"")),
-      Align(
-        child: Visibility(
-          visible: value.unlock==1,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              PsnImageWidget(name: "icon_lock",width: 53.w,height: 68.h,),
-              SizedBox(height: 10.h,),
-              PsnTextWidget(
-                text: "Unlock thid game mode at",
-                size: 12.sp,
-                color: "#FFFFFF".toColor(),
-                outlineColor: "#000000".toColor(),
-              ),
-              SizedBox(height: 10.h,),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  PsnTextWidget(
-                    text: "Level",
-                    size: 12.sp,
-                    color: "#FFFFFF".toColor(),
-                    outlineColor: "#000000".toColor(),
-                  ),
-                  PsnTextWidget(
-                    text: " ${getLevelByCardType(PsnBCardTypeEnum.values.byName(value.cardType??""))}",
-                    size: 12.sp,
-                    color: "#FFE400".toColor(),
-                    outlineColor: "#000000".toColor(),
-                  ),
-                ],
-              )
-            ],
-          ),
+  Widget _sliderItemWidget(PsnBCardBean value) => PsnTapScaleWidget(
+    onTap: (){
+      psnCon.toPlay();
+    },
+    child: Stack(
+      children: [
+        PsnImageWidget(name: psnCon.getCardIcon(value),width: double.infinity,height: 390.h,),
+        PsnBCardNumWidget(cardTypeEnum: PsnBCardTypeEnum.values.byName(value.cardType??"")),
+        Align(
+          child: PsnCardLockWidget(cardBean: value),
+          // child: Visibility(
+          //   visible: value.unlock==1,
+          //   child: Column(
+          //     mainAxisSize: MainAxisSize.min,
+          //     children: [
+          //       // PsnImageWidget(name: "icon_lock",width: 53.w,height: 68.h,),
+          //       PsnSpineWidget(atlasFile: "skeletons", skeletonFile: "skeleton", animatorName: "animation", folder: "jiesuo", width: 53.w, height: 68.w),
+          //       SizedBox(height: 10.h,),
+          //       PsnTextWidget(
+          //         text: "Unlock thid game mode at",
+          //         size: 12.sp,
+          //         color: "#FFFFFF".toColor(),
+          //         outlineColor: "#000000".toColor(),
+          //       ),
+          //       SizedBox(height: 10.h,),
+          //       Row(
+          //         mainAxisSize: MainAxisSize.min,
+          //         children: [
+          //           PsnTextWidget(
+          //             text: "Level",
+          //             size: 12.sp,
+          //             color: "#FFFFFF".toColor(),
+          //             outlineColor: "#000000".toColor(),
+          //           ),
+          //           PsnTextWidget(
+          //             text: " ${getLevelByCardType(PsnBCardTypeEnum.values.byName(value.cardType??""))}",
+          //             size: 12.sp,
+          //             color: "#FFE400".toColor(),
+          //             outlineColor: "#000000".toColor(),
+          //           ),
+          //         ],
+          //       )
+          //     ],
+          //   ),
+          // ),
         ),
-      )
-    ],
+      ],
+    ),
   );
 
   _indicatorWidget()=>SizedBox(

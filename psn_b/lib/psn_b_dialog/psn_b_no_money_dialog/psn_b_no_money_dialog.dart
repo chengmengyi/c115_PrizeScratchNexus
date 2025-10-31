@@ -41,12 +41,15 @@ class PsnBNoMoneyDialog extends PsnRootDialog<PsnBNoMoneyDialogCon>{
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PsnTextWidget(text: "Now you can spin the wheel", size: 18.sp, color: "#535F75".toColor(),),
-              SizedBox(height: 10.h,),
-              PsnTextWidget(text: "or smash golden eggs to", size: 18.sp, color: "#535F75".toColor(),),
-              SizedBox(height: 10.h,),
-              PsnTextWidget(text: "earn extra  cash!", size: 18.sp, color: "#535F75".toColor(),),
-              SizedBox(height: 30.h,),
+              Container(
+                margin: EdgeInsets.only(left: 15.w,right: 15.w),
+                child: PsnTextWidget(text: "You can scratch cards and spin the wheel to earn more cash!", size: 18.sp, color: "#535F75".toColor(),),
+              ),
+              // SizedBox(height: 10.h,),
+              // PsnTextWidget(text: "or smash golden eggs to", size: 18.sp, color: "#535F75".toColor(),),
+              // SizedBox(height: 10.h,),
+              // PsnTextWidget(text: "earn extra  cash!", size: 18.sp, color: "#535F75".toColor(),),
+              SizedBox(height: 40.h,),
               PsnClick(
                 onTap: (){
                   psnCon.clickPlayNow();
