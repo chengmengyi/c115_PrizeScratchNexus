@@ -11,8 +11,10 @@ import 'package:psn_root/psn_root_widget/psn_click.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
 
 class PsnBTopWidget extends StatelessWidget{
+  GlobalKey? topMoneyGlobalKey;
   Function() clickBack;
   PsnBTopWidget({
+    this.topMoneyGlobalKey,
     required this.clickBack,
 });
   @override
@@ -42,7 +44,7 @@ class PsnBTopWidget extends StatelessWidget{
                 PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
                 PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showHomeIndex,intValue: 2);
               },
-              child: PsnBCoinsWidget(),
+              child: PsnBCoinsWidget(topMoneyGlobalKey: topMoneyGlobalKey,),
             ),
           ),
           SizedBox(width: 9.w,),

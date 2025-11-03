@@ -13,6 +13,8 @@ import 'package:psn_b/psn_b_dialog/psn_dont_worry_dialog/psn_dont_worry_dialog.d
 import 'package:psn_b/psn_b_dialog/psn_new_cash_task_dialog/psn_new_cash_task_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_rank_dialog/psn_rank_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_rank_tips_animator_dialog/psn_rank_tips_animator_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_safe_check_dialog/psn_safe_check_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_safe_check_dialog/psn_safe_check_dialog_con.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
@@ -97,17 +99,19 @@ class PsnBCashChildCon extends PsnRootCon{
         cashType: type,
         cashMoney: money,
         clickCallback: (){
-          _showDontWorryDialog(money,type,account);
+          _showSafeCheckDialog(money,type,account);
         },
       ),
     );
   }
 
-  _showDontWorryDialog(int money, String type, String account){
+  _showSafeCheckDialog(int money, String type, String account){
     PsnRootRouters.instance.router(
       routersEnum: PsnRoutersEnum.dialog,
-      content: PsnDontWorryDialog(
-        clickCallback: ()async{
+      content: PsnSafeCheckDialog(
+        account: account,
+        safeCheckType: SafeCheckType.fail,
+        dismissCallback: ()async{
           var result = await PsnBCashUtils.instance.createCashTask(money, type,account);
           if(result){
             PsnBUserInfoUtils.instance.updateUserCoins((-money).toDouble());
@@ -118,6 +122,22 @@ class PsnBCashChildCon extends PsnRootCon{
       ),
     );
   }
+
+  // _showDontWorryDialog(int money, String type, String account){
+  //   PsnRootRouters.instance.router(
+  //     routersEnum: PsnRoutersEnum.dialog,
+  //     content: PsnDontWorryDialog(
+  //       clickCallback: ()async{
+  //         var result = await PsnBCashUtils.instance.createCashTask(money, type,account);
+  //         if(result){
+  //           PsnBUserInfoUtils.instance.updateUserCoins((-money).toDouble());
+  //           var psnCashTaskBean = await PsnBCashUtils.instance.queryCashTaskByMoneyAndType(money, type);
+  //           PsnBCashUtils.instance.showCashTaskDialog(psnCashTaskBean);
+  //         }
+  //       },
+  //     ),
+  //   );
+  // }
 
   _initCashList()async{
     cashList.clear();

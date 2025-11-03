@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:applovin_max/applovin_max.dart';
-import 'package:flutter_ad_ios_plugins/data/ad_info_data.dart';
-import 'package:flutter_ad_ios_plugins/data/ad_money_info_bean.dart';
-import 'package:flutter_ad_ios_plugins/hep/ad_num_hep.dart';
-import 'package:flutter_ad_ios_plugins/hep/hep.dart';
+import 'package:flutter_android_ad_plugins/data/ad_info_data.dart';
+import 'package:flutter_android_ad_plugins/data/ad_money_info_bean.dart';
+import 'package:flutter_android_ad_plugins/hep/ad_num_hep.dart';
+import 'package:flutter_android_ad_plugins/hep/hep.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_local_info.dart';

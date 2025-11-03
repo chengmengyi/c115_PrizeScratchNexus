@@ -8,6 +8,10 @@ import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
 class PsnBCoinsWidget extends PsnRootStateful{
+  GlobalKey? topMoneyGlobalKey;
+  PsnBCoinsWidget({
+    this.topMoneyGlobalKey,
+});
   @override
   State<StatefulWidget> createState() => PsnACoinsWidgetState();
 }
@@ -17,6 +21,7 @@ class PsnACoinsWidgetState extends PsnRootStatefulState<PsnBCoinsWidget>{
   Widget build(BuildContext context) => SizedBox(
     width: double.infinity,
     height: 42.h,
+    key: widget.topMoneyGlobalKey,
     child: Stack(
       alignment: Alignment.centerLeft,
       children: [

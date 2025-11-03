@@ -15,4 +15,5 @@ class PsnBEventCode {
   static const int noMoneyClickPlayNow=113;
   static const int toNextLockTypeAndUnlock=114;
   static const int showLockAnimator=115;
+  static const int clickBox=116;
 }

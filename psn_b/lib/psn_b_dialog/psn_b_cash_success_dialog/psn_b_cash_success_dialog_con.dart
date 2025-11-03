@@ -10,15 +10,12 @@ import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBCashSuccessDialogCon extends PsnRootCon{
 
-  // clickClose(){
-  //   PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
-  // }
+  clickClose(){
+    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+  }
 
-  clickSure(PsnCashTaskBean? cashTaskBean, Function() callback)async{
+  clickSure(Function() callback)async{
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.request_congra_c);
-    await PsnBCashUtils.instance.deleteCashTask(cashTaskBean);
-    await PsnBCashUtils.instance.createRankProgress(cashTaskBean?.cashMoney??0, cashTaskBean?.cashType??"");
-    PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCashList);
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
     callback.call();
   }

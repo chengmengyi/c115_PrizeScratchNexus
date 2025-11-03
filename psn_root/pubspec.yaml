@@ -35,10 +35,8 @@ dependencies:
   flutter_app_lifecycle: 0.0.3
   flutter_custom_facebook: 0.0.5
   app_settings: 6.1.1
-  flutter_ad_ios_plugins:
-    git:
-      url: https://github.com/Li-Xiang-Lan/flutter_ad_ios_plugins.git
-      ref: 0.1.7
+  intl: 0.20.2
+  flutter_android_ad_plugins: 0.0.1
   birdsong:
     path: plugins/common_push-output
   psn:

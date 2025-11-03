@@ -6,12 +6,14 @@ class PsnTapScaleWidget extends StatefulWidget {
   final double scale;
   final Duration duration;
   final bool enable;
+  final bool fromGuide;
 
   const PsnTapScaleWidget({
     Key? key,
     required this.child,
     this.onTap,
     this.scale = 0.95,
+    this.fromGuide=false,
     this.duration = const Duration(milliseconds: 100),
     this.enable = true,
   }) : super(key: key);
@@ -24,17 +26,17 @@ class _TapScaleWidgetState extends State<PsnTapScaleWidget> with SingleTickerPro
   double _currentScale = 1.0;
 
   void _onTapDown(TapDownDetails details) {
-    if (!widget.enable) return;
+    if (!widget.enable||widget.fromGuide) return;
     setState(() => _currentScale = widget.scale);
   }
 
   void _onTapUp(TapUpDetails details) {
-    if (!widget.enable) return;
+    if (!widget.enable||widget.fromGuide) return;
     setState(() => _currentScale = 1.0);
   }
 
   void _onTapCancel() {
-    if (!widget.enable) return;
+    if (!widget.enable||widget.fromGuide) return;
     setState(() => _currentScale = 1.0);
   }
 

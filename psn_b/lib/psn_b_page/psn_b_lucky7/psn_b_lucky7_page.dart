@@ -28,6 +28,7 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
         child: _contentWidget(),
         playUtils: psnCon.playUtils,
         margin: EdgeInsets.only(left: 33.w),
+        topMoneyGlobalKey: psnCon.topMoneyGlobalKey,
       ),
       _topMoneyFingerWidget(),
     ],

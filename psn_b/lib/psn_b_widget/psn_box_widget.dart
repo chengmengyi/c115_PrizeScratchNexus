@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_dialog/psn_box_dialog/psn_box_dialog.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
+import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_root/psn_root_page/psn_root_statefull.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
@@ -16,6 +17,10 @@ import 'package:psn_root/psn_root_widget/psn_lottie_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
 class PsnBoxWidget extends PsnRootStateful{
+  GlobalKey globalKey;
+  PsnBoxWidget({
+    required this.globalKey,
+});
   @override
   State<StatefulWidget> createState() => PsnBoxWidgetState();
 }
@@ -38,6 +43,7 @@ class PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidget>{
     child: SizedBox(
       width: 84.w,
       height: 70.h,
+      key: widget.globalKey,
       child: Stack(
         children: [
           PsnImageWidget(name: "icon_box",width: double.infinity,height: double.infinity,),
@@ -122,5 +128,17 @@ class PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidget>{
     _timer?.cancel();
     _timer=null;
     super.dispose();
+  }
+
+  @override
+  bool initEvent() => true;
+
+  @override
+  receivedEventBus(int code, int? intValue, String? strValue, anyValue) {
+    switch(code){
+      case PsnBEventCode.clickBox:
+        _clickBox();
+        break;
+    }
   }
 }

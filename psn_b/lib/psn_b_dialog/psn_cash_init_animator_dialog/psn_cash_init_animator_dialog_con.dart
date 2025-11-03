@@ -10,6 +10,9 @@ class PsnCashInitAnimatorDialogCon extends PsnRootCon with GetSingleTickerProvid
   var showFail=false;
   late AnimationController _controller;
   late Animation<double> animation;
+  late Function() clickCallback;
+
+  PsnCashInitAnimatorDialogCon(this.clickCallback);
 
   @override
   void onInit() {
@@ -17,7 +20,7 @@ class PsnCashInitAnimatorDialogCon extends PsnRootCon with GetSingleTickerProvid
     _initAnimator();
   }
 
-  clickConfirm(Function() clickCallback){
+  clickConfirm(){
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.payment_failed_c);
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
     clickCallback.call();
@@ -28,7 +31,7 @@ class PsnCashInitAnimatorDialogCon extends PsnRootCon with GetSingleTickerProvid
       vsync: this,
       duration: const Duration(milliseconds: 400),
     );
-    animation = Tween<double>(begin: 0, end: 50.w).animate(_controller)
+    animation = Tween<double>(begin: 0, end: 42.h).animate(_controller)
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           _controller.reset();
@@ -38,8 +41,7 @@ class PsnCashInitAnimatorDialogCon extends PsnRootCon with GetSingleTickerProvid
     _controller.forward();
     Future.delayed(const Duration(seconds: 4), () {
       _controller.stop();
-      showFail=true;
-      update(["icon","text","btn"]);
+      clickConfirm();
     });
   }
 

@@ -1,11 +1,12 @@
 import 'dart:convert';
 
-import 'package:flutter_ad_ios_plugins/data/ad_info_data.dart';
-import 'package:flutter_ad_ios_plugins/data/config_ad_data.dart';
-import 'package:flutter_ad_ios_plugins/flutter_ios_ad_hep.dart';
-import 'package:flutter_ad_ios_plugins/hep/ad_type.dart';
-import 'package:flutter_ad_ios_plugins/hep/ios_ad_callback.dart';
-import 'package:flutter_ad_ios_plugins/hep/ios_load_ad_result_callback.dart';
+import 'package:flutter_android_ad_plugins/data/ad_info_data.dart';
+import 'package:flutter_android_ad_plugins/data/config_ad_data.dart';
+import 'package:flutter_android_ad_plugins/flutter_android_ad_plugins.dart';
+import 'package:flutter_android_ad_plugins/hep/ad_num_hep.dart';
+import 'package:flutter_android_ad_plugins/hep/ad_type.dart';
+import 'package:flutter_android_ad_plugins/hep/ios_ad_callback.dart';
+import 'package:flutter_android_ad_plugins/hep/ios_load_ad_result_callback.dart';
 import 'package:flutter_check_af/flutter_check_af.dart';
 import 'package:psn_root/psn_b_dialog/psn_b_ad_fail_dialog/psn_b_ad_fail_dialog.dart';
 import 'package:psn_root/psn_b_dialog/psn_b_ad_limit_dialog/psn_b_ad_limit_dialog.dart';
@@ -32,7 +33,7 @@ class PsnAdUtils{
   Function()? lookAdCallback;
 
   initAd(){
-    FlutterIosAdHep.instance.initMax(
+    FlutterAndroidAdPlugins.instance.initMax(
       maxKey: PsnLocalInfo.maxKeyBase64.base64(),
       topOnAppId: PsnLocalInfo.topOnAppId.base64(),
       topOnAppKey: PsnLocalInfo.topOnAppKey.base64(),
@@ -92,9 +93,9 @@ class PsnAdUtils{
       return;
     }
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.apwxi_ad_chance,params: {"ad_pos_id":evnetEnum.name});
-    var resultData = FlutterIosAdHep.instance.getCacheResultData(adType);
+    var resultData = FlutterAndroidAdPlugins.instance.getCacheResultData(adType);
     if(null==resultData){
-      FlutterIosAdHep.instance.loadAdWhenNoCache(adType);
+      FlutterAndroidAdPlugins.instance.loadAdWhenNoCache(adType);
       PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.apwxi_ad_impression_fail,params: {"ad_pos_id":evnetEnum.name,"reason":"ad_nocache"});
       if(isOpen){
         closeCallback.call();
@@ -103,7 +104,7 @@ class PsnAdUtils{
             routersEnum: PsnRoutersEnum.dialog,
             content: PsnBAdFailDialog(
               clickTryCallback: (){
-                var data = FlutterIosAdHep.instance.getCacheResultData(adType);
+                var data = FlutterAndroidAdPlugins.instance.getCacheResultData(adType);
                 if(null==data){
                   if(adType==AdType.interstitial){
                     closeCallback.call();
@@ -126,7 +127,7 @@ class PsnAdUtils{
     required Function() closeAd,
     bool isOpen=false,
   }){
-    FlutterIosAdHep.instance.showAd(
+    FlutterAndroidAdPlugins.instance.showAd(
       adType: adType,
       iosAdCallback: IosAdCallback(
         showSuccess: (ad,info){

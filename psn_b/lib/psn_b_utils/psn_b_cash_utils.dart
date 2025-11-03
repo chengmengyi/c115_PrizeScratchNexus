@@ -5,6 +5,8 @@ import 'package:psn_b/psn_b_bean/psn_cash_task_bean.dart';
 import 'package:psn_b/psn_b_bean/psn_rank_bean.dart';
 import 'package:psn_b/psn_b_dialog/psn_cash_last_step_success_dialog/psn_cash_last_step_success_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_rank_dialog/psn_rank_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_safe_check_dialog/psn_safe_check_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_safe_check_dialog/psn_safe_check_dialog_con.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
@@ -138,11 +140,11 @@ class PsnBCashUtils{
     return rankBean;
   }
 
-  createRankProgress(int cashMoney,String cashType)async{
+  Future<PsnRankBean?> createRankProgress(int cashMoney,String cashType)async{
     var database = await PsnRootSqlUtils.instance.initSql();
     var list = await database.query(PsnRootSqlName.bCashRank,where: '"cashType" = ? AND "cashMoney" = ?',whereArgs: [cashType,cashMoney]);
     if(list.isNotEmpty){
-      return;
+      return null;
     }
     var rankBean = PsnRankBean(
       cashMoney: cashMoney,
@@ -151,6 +153,8 @@ class PsnBCashUtils{
       totalRank: PsnBValueUtils.instance.getAllRank()?.intAll,
     );
     await database.insert(PsnRootSqlName.bCashRank, rankBean.toJson());
+    PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCashList);
+    return rankBean;
   }
 
   Future<PsnRankBean?> updateRankProgress(PsnRankBean? bean)async{
@@ -202,9 +206,8 @@ class PsnBCashUtils{
       PsnRootRouters.instance.router(
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBCashSuccessDialog(
-          cashTaskBean: cashTaskBean,
           callback: (){
-            _showRankTipsAnimatorDialog(cashTaskBean);
+            _showSafeCheck2Dialog(cashTaskBean);
           },
         ),
       );
@@ -213,13 +216,16 @@ class PsnBCashUtils{
     showCashTaskDialog(cashTaskBean);
   }
 
-
-  _showRankTipsAnimatorDialog(PsnCashTaskBean? cashTaskBean){
+  _showSafeCheck2Dialog(PsnCashTaskBean cashTaskBean)async{
+    var account = await queryAccount(cashTaskBean.cashMoney??0, cashTaskBean.cashType??"");
     PsnRootRouters.instance.router(
       routersEnum: PsnRoutersEnum.dialog,
-      content: PsnRankTipsAnimatorDialog(
-        callback: ()async{
-          var rankBean = await PsnBCashUtils.instance.queryRankProgress(cashTaskBean?.cashMoney??0, cashTaskBean?.cashType??"");
+      content: PsnSafeCheckDialog(
+        account: account,
+        safeCheckType: SafeCheckType.success,
+        dismissCallback: ()async{
+          await PsnBCashUtils.instance.deleteCashTask(cashTaskBean);
+          var rankBean = await PsnBCashUtils.instance.createRankProgress(cashTaskBean.cashMoney??0, cashTaskBean.cashType??"");
           if(null==rankBean){
             return;
           }
@@ -228,6 +234,21 @@ class PsnBCashUtils{
       ),
     );
   }
+
+  // _showRankTipsAnimatorDialog(PsnCashTaskBean? cashTaskBean){
+  //   PsnRootRouters.instance.router(
+  //     routersEnum: PsnRoutersEnum.dialog,
+  //     content: PsnRankTipsAnimatorDialog(
+  //       callback: ()async{
+  //         var rankBean = await PsnBCashUtils.instance.queryRankProgress(cashTaskBean?.cashMoney??0, cashTaskBean?.cashType??"");
+  //         if(null==rankBean){
+  //           return;
+  //         }
+  //         showRankDialog(rankBean);
+  //       },
+  //     ),
+  //   );
+  // }
 
   showCashTaskDialog(PsnCashTaskBean? psnCashTaskBean){
     if(null==psnCashTaskBean){
@@ -240,7 +261,6 @@ class PsnBCashUtils{
       ),
     );
   }
-
 
   showRankDialog(PsnRankBean rankBean){
     if((rankBean.currentRank??0)<=1){

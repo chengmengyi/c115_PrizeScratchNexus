@@ -17,6 +17,7 @@ import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 class PsnBLucky7Con extends PsnRootCon implements PlayListener{
   late PsnBPlayUtils playUtils;
   var showGuaKaAnimator=true,showTopFinger=false;
+  GlobalKey topMoneyGlobalKey=GlobalKey();
 
   @override
   void onInit() {
@@ -51,8 +52,17 @@ class PsnBLucky7Con extends PsnRootCon implements PlayListener{
 
   _checkShowGuaKaAnimator(){
     if(PsnBUserGuideUtils.instance.checkShowGuaKaAnimatorStep2()){
-      showGuaKaAnimator=true;
-      update(["guaka_animator"]);
+      var renderBox = playUtils.scratcherKey.currentContext?.findRenderObject() as RenderBox;
+      var offset = renderBox.localToGlobal(Offset.zero);
+      var size = playUtils.scratcherKey.currentContext?.size??Size(0, 0);
+      PsnBUserGuideUtils.instance.showUserGuideStep2(
+        context: context,
+        offset: offset,
+        size: size,
+        dismissCallback: (){
+          playUtils.startAutoScratch();
+        },
+      );
     }
   }
 
@@ -83,10 +93,20 @@ class PsnBLucky7Con extends PsnRootCon implements PlayListener{
   receivedEventBus(int code, int? intValue, String? strValue, anyValue) {
     switch(code){
       case PsnBEventCode.showTopMoneyFinger:
-        showTopFinger=true;
-        update(["top_finger"]);
-        PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.newuser_guide,params: {"pop_step":"pop4"});
+        _showTopMoneyFinger();
         break;
     }
+  }
+
+  _showTopMoneyFinger(){
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.newuser_guide,params: {"pop_step":"pop4"});
+    var renderBox = topMoneyGlobalKey.currentContext?.findRenderObject() as RenderBox;
+    var offset = renderBox.localToGlobal(Offset.zero);
+    var size = renderBox.size;
+    PsnBUserGuideUtils.instance.showUserGuideStep4(
+      context: context,
+      offset: offset,
+      size: size,
+    );
   }
 }

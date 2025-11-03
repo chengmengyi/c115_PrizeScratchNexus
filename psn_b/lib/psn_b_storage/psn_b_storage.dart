@@ -11,3 +11,5 @@ StorageData<bool> bShowOpenAd=StorageData<bool>(key: PsnBStorageName.bShowOpenAd
 StorageData<bool> bShowNewUserGuide=StorageData<bool>(key: PsnBStorageName.bShowNewUserGuide, defaultValue: true);
 StorageData<bool> bAlreadyShowCashTipsDialog=StorageData<bool>(key: PsnBStorageName.bAlreadyShowCashTipsDialog, defaultValue: false);
 
+StorageData<String> bLastShowBoxGuideTimer=StorageData<String>(key: PsnBStorageName.bLastShowBoxGuideTimer, defaultValue: "");
+

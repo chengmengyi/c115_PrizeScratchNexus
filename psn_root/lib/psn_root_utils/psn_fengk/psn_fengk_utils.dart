@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter_ad_ios_plugins/flutter_ios_ad_hep.dart';
+import 'package:flutter_android_ad_plugins/flutter_android_ad_plugins.dart';
 import 'package:flutter_check_af/dio/dio_hep.dart';
 import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_bean.dart';
 import 'package:psn_root/psn_root_utils/psn_firebase_utils.dart';
@@ -26,7 +26,7 @@ class PsnFengkUtils{
       return;
     }
     _initFengKBean();
-    FlutterIosAdHep.instance.setEverydayWatchAdNum(_fengkBean?.behavior?.adDailyShow??60);
+    FlutterAndroidAdPlugins.instance.setEverydayWatchAdNum(_fengkBean?.behavior?.adDailyShow??60);
     _checkDevice();
   }
 

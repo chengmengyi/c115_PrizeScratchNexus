@@ -85,13 +85,13 @@ class PsnRankDialogCon extends PsnRootCon{
     if(indexWhere==0){
       PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
       successCallback?.call();
-    }else if(indexWhere>8){
+    }else if(indexWhere>6){
       scrollController.animateTo(
-        (50.h)*(indexWhere-4),
+        (25.h)*(indexWhere),
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
       );
-    }else if(indexWhere<=8){
+    }else if(indexWhere<=6){
       scrollController.animateTo(
         0,
         duration: const Duration(milliseconds: 500),

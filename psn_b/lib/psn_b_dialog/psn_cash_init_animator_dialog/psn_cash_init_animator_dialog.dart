@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_dialog/psn_cash_init_animator_dialog/psn_cash_init_animator_dialog_con.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
 import 'package:psn_root/psn_root_page/psn_root_dialog.dart';
+import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
+import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_widget/psn_click.dart';
@@ -18,96 +20,65 @@ class PsnCashInitAnimatorDialog extends PsnRootDialog<PsnCashInitAnimatorDialogC
     required this.clickCallback,
 });
   @override
-  PsnCashInitAnimatorDialogCon onCon() => PsnCashInitAnimatorDialogCon();
+  PsnCashInitAnimatorDialogCon onCon() => PsnCashInitAnimatorDialogCon(clickCallback);
 
   @override
-  Widget onCreate() => Column(
-    mainAxisSize: MainAxisSize.min,
+  Widget onCreate() => Stack(
+    alignment: Alignment.bottomCenter,
     children: [
-      PsnTextWidget(text: "Processing payment", size: 23.sp, color: "#FFFFFF".toColor()),
-      SizedBox(height: 60.h,),
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              PsnImageWidget(name: getCashDialogImages(cashType),width: 110.w,height: 60.h,),
-              Container(
-                margin: EdgeInsets.only(bottom: 6.h),
-                child: PsnTextWidget(text: "\$$cashMoney", size: 19.sp, color: "#252525".toColor(),),
+      Container(
+        width: double.infinity,
+        height: 440.h,
+        margin: EdgeInsets.only(left: 29.w,right: 29.w,bottom: 41.h,),
+        child: Stack(
+          children: [
+            PsnImageWidget(name: "cash_init1",width: double.infinity,height: double.infinity,),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                margin: EdgeInsets.only(top: 16.h),
+                child: PsnTextWidget(text: "Processing payment", size: 24.sp, color: "#FFFFFF".toColor(),),
               ),
-            ],
-          ),
-          GetBuilder<PsnCashInitAnimatorDialogCon>(
-            id: "icon",
-            builder: (_){
-              if(psnCon.showFail){
-                return Container(
-                  width: 80.w,
-                  height: 55.w,
-                  alignment: Alignment.center,
-                  child: PsnImageWidget(name: "cash4",width: 34.w,height: 34.w,),
-                );
-              }
-              return Container(
-                width: 80.w,
-                height: 55.w,
-                alignment: Alignment.centerLeft,
-                child: AnimatedBuilder(
-                  animation: psnCon.animation,
-                  builder: (_, child) {
-                    return Transform.translate(
-                      offset: Offset(psnCon.animation.value, 0),
-                      child: child,
-                    );
-                  },
-                  child: PsnImageWidget(name: "cash2",width: 55.w,height: 55.w,),
-                ),
-              );
-            },
-          ),
-          PsnImageWidget(name: "cash3",width: 104.w,height: 104.w,),
-        ],
-      ),
-      SizedBox(height: 30.h,),
-      GetBuilder<PsnCashInitAnimatorDialogCon>(
-        id: "text",
-        builder: (_)=>Visibility(
-          visible: psnCon.showFail,
-          child: Container(
-            margin: EdgeInsets.only(left: 33.w,right: 33.w),
-            child: PsnTextWidget(
-              text: "The bank requires you to verify that you are not a robot",
-              size: 16.sp,
-              color: "#FFFFFF".toColor(),
-              textAlign: TextAlign.center,
             ),
-          ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(height: 65.h,),
+                  Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      PsnImageWidget(name: getCashDialogImages(cashType),width: 248.w,height: 118.h,),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 25.h),
+                        child: PsnTextWidget(text: "\$$cashMoney", size: 25.sp, color: "#252525".toColor(),),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    alignment: Alignment.topCenter,
+                    width: double.infinity,
+                    height: 84.h,
+                    child: AnimatedBuilder(
+                      animation: psnCon.animation,
+                      builder: (_, child) {
+                        return Transform.translate(
+                          offset: Offset(0, psnCon.animation.value),
+                          child: child,
+                        );
+                      },
+                      child: PsnImageWidget(name: "cash_init2",width: 37.w,height: 42.w,),
+                    ),
+                  ),
+                  PsnImageWidget(name: "cash_init3",width: 190.w,height: 108.h,),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
-      SizedBox(height: 30.h,),
-      GetBuilder<PsnCashInitAnimatorDialogCon>(
-        id: "btn",
-        builder: (_)=>Visibility(
-          visible: psnCon.showFail,
-          child:  PsnClick(
-            onTap: (){
-              psnCon.clickConfirm(clickCallback);
-            },
-            child: Container(
-              width: 200.w,
-              height: 48.h,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: "#356ECA".toColor(),
-                borderRadius: BorderRadius.circular(12.w),
-              ),
-              child: PsnTextWidget(text: "Confirm", size: 16.sp, color: "#FFFFFF".toColor(),),
-            ),
-          ),
-        ),
-      ),
+      PsnImageWidget(name: "cash_init4",width: 82.w,height: 82.w,),
     ],
   );
 }

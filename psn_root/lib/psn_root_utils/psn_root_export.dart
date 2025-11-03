@@ -1,4 +1,4 @@
-export 'package:flutter_ad_ios_plugins/hep/ad_num_hep.dart';
+export 'package:flutter_android_ad_plugins/hep/ad_num_hep.dart';
 export 'package:get_storage/get_storage.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:get/get.dart';
@@ -7,10 +7,10 @@ export 'package:carousel_slider/carousel_slider.dart';
 export 'package:webview_flutter/webview_flutter.dart';
 export 'package:flutter_tba_info/flutter_tba_info.dart';
 export 'package:audioplayers/audioplayers.dart';
-export 'package:flutter_ad_ios_plugins/hep/ad_type.dart';
+export 'package:flutter_android_ad_plugins/hep/ad_type.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:permission_handler/permission_handler.dart';
 export 'package:psn/psn.dart';
 export 'package:app_settings/app_settings.dart';
-
+export 'package:intl/intl.dart';
 

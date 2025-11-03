@@ -29,6 +29,8 @@ import 'package:psn_b/psn_b_dialog/psn_dont_worry_dialog/psn_dont_worry_dialog.d
 import 'package:psn_b/psn_b_dialog/psn_new_cash_task_dialog/psn_new_cash_task_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_rank_dialog/psn_rank_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_rank_tips_animator_dialog/psn_rank_tips_animator_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_safe_check_dialog/psn_safe_check_dialog.dart';
+import 'package:psn_b/psn_b_dialog/psn_safe_check_dialog/psn_safe_check_dialog_con.dart';
 import 'package:psn_b/psn_b_routers/psn_b_page_list.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
@@ -59,7 +61,9 @@ class PsnBCardChildCon extends PsnRootCon{
   var currentIndex=0;
   List<PsnBCardBean> cardList=[];
   Timer? _timer;
+  GlobalKey firstPlayCardGlobalKey=GlobalKey();
   GlobalKey playBtnGlobalKey=GlobalKey();
+  GlobalKey boxGlobalKey=GlobalKey();
   CarouselSliderControllerImpl carouselSliderControllerImpl=CarouselSliderControllerImpl();
 
   @override
@@ -73,13 +77,6 @@ class PsnBCardChildCon extends PsnRootCon{
   void onReady() {
     super.onReady();
     _initCard();
-    PsnBUserGuideUtils.instance.showPlayGuideStep1(
-      context: context,
-      key: playBtnGlobalKey,
-      clickCallback: (){
-        toPlay();
-      },
-    );
   }
 
   toPlay()async{
@@ -116,41 +113,22 @@ class PsnBCardChildCon extends PsnRootCon{
     update(["indicator"]);
   }
 
-  _initCard()async{
+  _initCard({bool showUserGuide=false})async{
     var list = await PsnBUserInfoUtils.instance.getCardList();
     cardList.clear();
     cardList.addAll(list);
     update(["list","indicator"]);
-  }
-
-  String getCardIcon(PsnBCardBean bean){
-    switch(PsnBCardTypeEnum.values.byName(bean.cardType??"")){
-      case PsnBCardTypeEnum.lucky7: return "home_card_lucky2";
-      case PsnBCardTypeEnum.collectorWin:
-        if(bean.unlock==1){
-          return "home_card_collector_lock2";
-        }
-        return "home_card_collector2";
-      case PsnBCardTypeEnum.dogWinning:
-        if(bean.unlock==1){
-          return "home_card_dog_lock2";
-        }
-        return "home_card_dog2";
-      case PsnBCardTypeEnum.kingOfCards:
-        if(bean.unlock==1){
-          return "home_card_king_lock2";
-        }
-        return "home_card_king2";
-      case PsnBCardTypeEnum.fruitLineup:
-        if(bean.unlock==1){
-          return "home_card_fruit_lock2";
-        }
-        return "home_card_fruit2";
-      case PsnBCardTypeEnum.numberWinner:
-        if(bean.unlock==1){
-          return "home_card_number_lock2";
-        }
-        return "home_card_number2";
+    if(showUserGuide&&cardList.isNotEmpty){
+      PsnBUserGuideUtils.instance.showPlayGuideStep1(
+        context: context,
+        playBtnGlobalKey: playBtnGlobalKey,
+        firstPlayCardGlobalKey: firstPlayCardGlobalKey,
+        value: cardList.first,
+        boxGlobalKey: boxGlobalKey,
+        step1Callback: (){
+          toPlay();
+        },
+      );
     }
   }
 
@@ -245,24 +223,20 @@ class PsnBCardChildCon extends PsnRootCon{
     // PsnBUserInfoUtils.instance.updateUserCoins(-200);
 
     // PsnBUserInfoUtils.instance.updateUserCoins(200);
-    // PsnBCashUtils.instance.updateCashTask(TaskType.lucky);
+    PsnBCashUtils.instance.updateCashTask(TaskType.lucky);
     // PsnBValueUtils.instance.initValue();
 
     // PsnBCashUtils.instance.queryRankProgress(1000, CashType.pay);
     // PsnBCashUtils.instance.createRankProgress(1000, CashType.pay);
 
-
-    PsnRootRouters.instance.router(
-      routersEnum: PsnRoutersEnum.dialog,
-      content: PsnBLevelUpDialog(
-        dismissCallback: (){
-          PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.toHome, content: PsnBPageName.home);
-          PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.toNextLockTypeAndUnlock);
-        },
-      ),
-    );
-
-
+    // PsnRootRouters.instance.router(
+    //   routersEnum: PsnRoutersEnum.dialog,
+    //   content: PsnSafeCheckDialog(
+    //     account: "dwidiwj@qq.com",
+    //     safeCheckType: SafeCheckType.fail,
+    //     dismissCallback: (){},
+    //   ),
+    // );
   }
 
   @override

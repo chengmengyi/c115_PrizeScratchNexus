@@ -15,12 +15,14 @@ class PsnBPlayBaseWidget extends StatelessWidget{
   Widget child;
   PsnBPlayUtils playUtils;
   EdgeInsets? margin;
+  GlobalKey? topMoneyGlobalKey;
 
   GlobalKey globalKey=GlobalKey();
 
   PsnBPlayBaseWidget({
     required this.child,
     required this.playUtils,
+    this.topMoneyGlobalKey,
     this.margin,
 });
   @override
@@ -30,6 +32,7 @@ class PsnBPlayBaseWidget extends StatelessWidget{
         Column(
           children: [
             PsnBTopWidget(
+              topMoneyGlobalKey: topMoneyGlobalKey,
               clickBack: (){
                 playUtils.clickBack();
               },

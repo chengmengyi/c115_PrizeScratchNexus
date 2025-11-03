@@ -29,7 +29,9 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
       Positioned(
         top: 6.h,
         left: 11.w,
-        child: PsnBoxWidget(),
+        child: PsnBoxWidget(
+          globalKey: psnCon.boxGlobalKey,
+        ),
       ),
       Align(
         alignment: Alignment.topRight,
@@ -95,8 +97,9 @@ class PsnBCardChild extends PsnRootChild<PsnBCardChildCon>{
       psnCon.toPlay();
     },
     child: Stack(
+      key: value.cardType==PsnBCardTypeEnum.lucky7.name?psnCon.firstPlayCardGlobalKey:null,
       children: [
-        PsnImageWidget(name: psnCon.getCardIcon(value),width: double.infinity,height: 390.h,),
+        PsnImageWidget(name: getCardIcon(value),width: double.infinity,height: 390.h,),
         PsnBCardNumWidget(cardTypeEnum: PsnBCardTypeEnum.values.byName(value.cardType??"")),
         Align(
           child: PsnCardLockWidget(cardBean: value),

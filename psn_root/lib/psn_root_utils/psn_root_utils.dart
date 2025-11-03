@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:decimal/decimal.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 
 extension StColor on String{
   Color toColor(){
@@ -103,4 +104,10 @@ String decrypt(String data, int code) {
     xorList.add(decode2[i] ^ code);
   }
   return utf8.decode(xorList);
+}
+
+String getEnglishDateTime() {
+  final now = DateTime.now();
+  final formatter = DateFormat('yyyy-MM-dd HH:mm:ss', 'en_US');
+  return formatter.format(now);
 }

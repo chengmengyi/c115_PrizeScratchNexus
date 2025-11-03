@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_cash_tips_dialog/psn_b_cash_tips_dialog_con.dart';
 import 'package:psn_b/psn_b_utils/psn_b_utils.dart';
+import 'package:psn_b/psn_b_widget/psn_b_btn_widget.dart';
 import 'package:psn_root/psn_root_page/psn_root_dialog.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
@@ -14,45 +15,66 @@ class PsnBCashTipsDialog extends PsnRootDialog<PsnBCashTipsDialogCon>{
   PsnBCashTipsDialogCon onCon() => PsnBCashTipsDialogCon();
 
   @override
-  Widget onCreate() => Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      PsnTextWidget(text: "Congratulations!", size: 21.sp, color: "#FFFFFF".toColor(),),
-      SizedBox(height: 10.h,),
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          PsnTextWidget(text: "Account Reaches ", size: 15.sp, color: "#FFFFFF".toColor()),
-          PsnTextWidget(text: "\$${psnCon.getFirstMoney()}", size: 15.sp, color: "#3DF329".toColor()),
-        ],
-      ),
-      SizedBox(height: 35.h,),
-      Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          PsnImageWidget(name: getCashDialogImages(psnCon.cashType),width: 154.w,height: 82.h,),
-          Container(
-            margin: EdgeInsets.only(bottom: 25.h),
-            child: PsnTextWidget(text: "\$${psnCon.getFirstMoney()}", size: 25.sp, color: "#252525".toColor(),),
+  Widget onCreate() => Container(
+    width: double.infinity,
+    height: 343.h,
+    margin: EdgeInsets.only(left: 29.w,right: 29.w,bottom: 41.h,),
+    child: Stack(
+      children: [
+        PsnImageWidget(name: "cash_tip1",width: double.infinity,height: double.infinity,),
+        Positioned(
+          top: 15.h,
+          right: 15.w,
+          child: PsnClick(
+            onTap: (){
+              psnCon.clickClose();
+            },
+            child: PsnImageWidget(name: "icon_close2",width: 20.w,height: 20.w,),
           ),
-        ],
-      ),
-      SizedBox(height: 50.h,),
-      PsnClick(
-        onTap: (){
-          psnCon.clickCon();
-        },
-        child: Container(
-          width: 200.w,
-          height: 48.h,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: "#356ECA".toColor(),
-            borderRadius: BorderRadius.circular(12.w),
-          ),
-          child: PsnTextWidget(text: "Cash Out", size: 16.sp, color: "#FFFFFF".toColor(),),
         ),
-      )
-    ],
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            margin: EdgeInsets.only(top: 16.h),
+            child: PsnTextWidget(text: "Congratulations!", size: 24.sp, color: "#FFFFFF".toColor(),),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  PsnTextWidget(text: "Account Reaches ", size: 18.sp, color: "#262D3A".toColor()),
+                  PsnTextWidget(text: "\$${psnCon.getFirstMoney()}", size: 24.sp, color: "#1CB310".toColor()),
+                ],
+              ),
+              SizedBox(height: 28.h,),
+              Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  PsnImageWidget(name: getCashDialogImages(psnCon.cashType),width: 248.w,height: 118.h,),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 25.h),
+                    child: PsnTextWidget(text: "\$${psnCon.getFirstMoney()}", size: 35.sp, color: "#252525".toColor(),),
+                  ),
+                ],
+              ),
+              SizedBox(height: 28.h,),
+              PsnBBtnWidget(
+                text: "Cash out",
+                bgName: "btn_green",
+                onTap: (){
+                  psnCon.clickCon();
+                },
+              ),
+              SizedBox(height: 20.h,),
+            ],
+          ),
+        ),
+      ],
+    ),
   );
 }

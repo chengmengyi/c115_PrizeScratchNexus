@@ -1,3 +1,4 @@
+import 'package:psn_b/psn_b_bean/psn_b_card_bean.dart';
 import 'package:psn_b/psn_b_bean/psn_level_result_bean.dart';
 import 'package:psn_b/psn_b_routers/psn_b_page_list.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
@@ -61,5 +62,36 @@ String getCashDialogImages(String cashType){
     case CashType.pag: return "cash_dialog_pag";
     case CashType.pix: return "cash_dialog_pix";
     default: return "cash_dialog_pay";
+  }
+}
+
+String getCardIcon(PsnBCardBean bean){
+  switch(PsnBCardTypeEnum.values.byName(bean.cardType??"")){
+    case PsnBCardTypeEnum.lucky7: return "home_card_lucky2";
+    case PsnBCardTypeEnum.collectorWin:
+      if(bean.unlock==1){
+        return "home_card_collector_lock2";
+      }
+      return "home_card_collector2";
+    case PsnBCardTypeEnum.dogWinning:
+      if(bean.unlock==1){
+        return "home_card_dog_lock2";
+      }
+      return "home_card_dog2";
+    case PsnBCardTypeEnum.kingOfCards:
+      if(bean.unlock==1){
+        return "home_card_king_lock2";
+      }
+      return "home_card_king2";
+    case PsnBCardTypeEnum.fruitLineup:
+      if(bean.unlock==1){
+        return "home_card_fruit_lock2";
+      }
+      return "home_card_fruit2";
+    case PsnBCardTypeEnum.numberWinner:
+      if(bean.unlock==1){
+        return "home_card_number_lock2";
+      }
+      return "home_card_number2";
   }
 }

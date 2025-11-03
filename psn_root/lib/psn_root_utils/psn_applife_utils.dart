@@ -1,7 +1,6 @@
 import 'dart:async';
-
-import 'package:flutter_ad_ios_plugins/flutter_ios_ad_hep.dart';
-import 'package:flutter_ad_ios_plugins/hep/ad_type.dart';
+import 'package:flutter_android_ad_plugins/flutter_android_ad_plugins.dart';
+import 'package:flutter_android_ad_plugins/hep/ad_type.dart';
 import 'package:flutter_app_lifecycle/app_state_observer.dart';
 import 'package:flutter_app_lifecycle/flutter_app_lifecycle.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
@@ -37,7 +36,7 @@ class PsnApplifeUtils{
                 PsnBAndroidNotificationUtils.instance.initNotification();
                 isToOpenNotifi=false;
               }
-              if(_isBackPsn&&!FlutterIosAdHep.instance.adShowing()){
+              if(_isBackPsn&&!FlutterAndroidAdPlugins.instance.adShowing()){
                 PsnAdUtils.instance.showAdBBBBBB(
                   adType: AdType.interstitial,
                   evnetEnum: PsnAdEventEnum.apwxi_launch,
