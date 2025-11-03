@@ -11,4 +11,5 @@ class PsnBStorageName {
   static final String bAlreadyShowCashTipsDialog="bAlreadyShowCashTipsDialog";
   static final String bCardProgress="bCardProgress";
   static final String bLastShowBoxGuideTimer="bLastShowBoxGuideTimer";
+  static final String bBottomLeftCardProgress="bBottomLeftCardProgress";
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
 
 abstract class PsnRootStateful extends StatefulWidget{
+  const PsnRootStateful({Key? key}) : super(key: key);
 }
 
 abstract class PsnRootStatefulState<T extends PsnRootStateful> extends State<T>{

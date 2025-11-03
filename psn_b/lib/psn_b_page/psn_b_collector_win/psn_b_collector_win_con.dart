@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_bean/psn_b_content_bean.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_play_utils.dart';
@@ -42,19 +43,19 @@ class PsnBCollectorWinCon extends PsnRootCon implements PlayListener{
     List<String> availableIcons = List.from(iconList);
     if(PsnBValueUtils.instance.getCollectorPoint1()){
       String first = availableIcons.removeAt(random.nextInt(availableIcons.length));
-      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true)));
+      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true,globalKey: GlobalKey(),)));
     }
     if(PsnBValueUtils.instance.getCollectorPoint2()){
       String first = availableIcons.removeAt(random.nextInt(availableIcons.length));
-      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true)));
+      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true,globalKey: GlobalKey(),)));
     }
     if(PsnBValueUtils.instance.getCollectorPoint3()){
       String first = availableIcons.removeAt(random.nextInt(availableIcons.length));
-      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true)));
+      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true,globalKey: GlobalKey(),)));
     }
     if(PsnBValueUtils.instance.getCollectorPoint4()){
       String first = availableIcons.removeAt(random.nextInt(availableIcons.length));
-      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true)));
+      contentList.addAll(List.filled(3, PsnBContentBean(content: first, reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum), win: true,globalKey: GlobalKey(),)));
     }
     int remaining = 20 - contentList.length;
     Map<String, int> counts = {};

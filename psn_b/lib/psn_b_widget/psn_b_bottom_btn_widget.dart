@@ -27,7 +27,9 @@ class PsnBBottomBtnWidget extends StatelessWidget{
       //   },
       //   child: PsnImageWidget(name: "bottom1",width: 267.w,height: 107.h,),
       // ),
-      PsnBottomLeftCardWidget(),
+      PsnBottomLeftCardWidget(
+        playUtils: playUtils,
+      ),
       Spacer(),
       PsnClick(
         onTap: (){

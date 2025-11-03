@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_bean/psn_b_content_bean.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_play_utils.dart';
@@ -76,7 +77,7 @@ class PsnBFruitCon extends PsnRootCon implements PlayListener{
       bool isTriple = tripleGroups.contains(i);
       var reward = PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum);
       for (String fruit in groups[i]) {
-        result.add(PsnBContentBean(content: fruit, reward: reward,win: isTriple));
+        result.add(PsnBContentBean(content: fruit, reward: reward,win: isTriple,globalKey: GlobalKey(),));
       }
     }
 

@@ -41,7 +41,7 @@ class PsnBLucky7Con extends PsnRootCon implements PlayListener{
     for(var index=0;index<15;index++){
       var lucky7point = PsnBValueUtils.instance.getLucky7Point();
       if(lucky7point){
-        list.add(PsnBContentBean(content: "lucky4", reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum),win: true));
+        list.add(PsnBContentBean(content: "lucky4", reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum),win: true,globalKey: GlobalKey()));
       }else{
         list.add(PsnBContentBean(content: "${Random().nextInt(100)}", reward: PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum),win: false));
       }
@@ -70,7 +70,7 @@ class PsnBLucky7Con extends PsnRootCon implements PlayListener{
     if(showGuaKaAnimator){
       showGuaKaAnimator=false;
       update(["guaka_animator"]);
-      PsnBUserGuideUtils.instance.setGuideStep3();
+      // PsnBUserGuideUtils.instance.setGuideStep3();
     }
   }
 

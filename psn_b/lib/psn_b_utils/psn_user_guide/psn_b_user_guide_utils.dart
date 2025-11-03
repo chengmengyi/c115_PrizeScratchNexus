@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_bean/psn_b_card_bean.dart';
+import 'package:psn_b/psn_b_routers/psn_b_page_list.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_box_guide_overlay.dart';
@@ -7,6 +8,8 @@ import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_guide1_overlay.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_guide2_overlay.dart';
 import 'package:psn_b/psn_b_utils/psn_user_guide/psn_b_guide4_overlay.dart';
 import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
+import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
+import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_b_android_notification_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
@@ -84,11 +87,11 @@ class PsnBUserGuideUtils{
     );
   }
 
-  setGuideStep3(){
-    if(_newUserGuideStep==2){
-      _newUserGuideStep=3;
-    }
-  }
+  // setGuideStep3(){
+  //   if(_newUserGuideStep==2){
+  //     _newUserGuideStep=3;
+  //   }
+  // }
 
   bool checkShowStep3(){
     if(_newUserGuideStep!=3||!bShowNewUserGuide.getData()){
@@ -99,12 +102,10 @@ class PsnBUserGuideUtils{
   }
 
   setGuideStep4(){
-    if(_newUserGuideStep==4){
-      return;
+    if(_newUserGuideStep==3){
+      _newUserGuideStep=4;
+      PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showTopMoneyFinger);
     }
-    _newUserGuideStep=4;
-    bShowNewUserGuide.saveData(false);
-    PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showTopMoneyFinger);
   }
 
   showUserGuideStep4({
@@ -112,6 +113,9 @@ class PsnBUserGuideUtils{
     required Offset offset,
     required Size size,
   }){
+    if(_newUserGuideStep!=4||!bShowNewUserGuide.getData()){
+      return;
+    }
     showOverlay(
       context: context,
       widget: PsnBGuide4Overlay(
@@ -120,6 +124,8 @@ class PsnBUserGuideUtils{
         dismissCallback: (){
           hideOverlay();
           _newUserGuideStep=5;
+          PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.toHome, content: PsnBPageName.home);
+          PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showHomeIndex,intValue: 2);
         },
       ),
     );

@@ -40,6 +40,7 @@ class PsnBPlayUtils {
   var scratcherKey = GlobalKey<ScratcherState>();
   List<PsnBContentBean> contentList=[];
   GlobalKey scratchGlobalKey=GlobalKey();
+  GlobalKey bottomLeftGlobalKey=GlobalKey();
 
   PsnBPlayUtils({
     required this.cardTypeEnum,
@@ -63,6 +64,7 @@ class PsnBPlayUtils {
     canClick=false;
     _stopScratchAuto=true;
     scratcherKey.currentState?.reveal();
+    PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showMeteor);
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.scratch_count);
     await Future.delayed(Duration(milliseconds: 1000));
     canClick=true;
@@ -98,7 +100,6 @@ class PsnBPlayUtils {
         totalReward = contentList.where((item) => item.win).fold(0, (sum, item) => twoNumAdd(sum, item.reward));
         break;
     }
-    bCardProgress.saveData(bCardProgress.getData()+1);
     _checkWinOrFail(totalReward);
     PsnBCashUtils.instance.updateCashTask(TaskType.card);
   }
@@ -121,14 +122,14 @@ class PsnBPlayUtils {
     }
   }
   _checkLuckyCard(double totalReward)async{
-    PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCardProgress);
-    if(bCardProgress.getData()>=3){
+    if(bBottomLeftCardProgress.getData()>=100){
       PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showBottomLeftCardAnimator);
       await Future.delayed(Duration(milliseconds: 1000));
       PsnRootRouters.instance.router(
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBLuckyCardDialog(
           dismissCallback: (){
+            PsnBUserInfoUtils.instance.updateBottomLeftCardNum(-100);
             PsnWheelUtils.instance.updateWheelNum(1);
             resetPlay();
           },

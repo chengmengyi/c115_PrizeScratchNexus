@@ -3,6 +3,7 @@ import 'package:psn_b/psn_b_utils/psn_b_play_utils.dart';
 import 'package:psn_b/psn_b_widget/psn_b_bottom_btn_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_card_num_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_level_content_widget.dart';
+import 'package:psn_b/psn_b_widget/psn_b_meteor_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_top_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_bottom_left_card_animator_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_box_widget.dart';
@@ -77,6 +78,9 @@ class PsnBPlayBaseWidget extends StatelessWidget{
           ],
         ),
         PsnBottomLeftCardAnimatorWidget(),
+        PsnBMeteorWidget(
+          playUtils: playUtils,
+        ),
       ],
     ),
     onWillPop: ()async{

@@ -16,4 +16,5 @@ class PsnBEventCode {
   static const int toNextLockTypeAndUnlock=114;
   static const int showLockAnimator=115;
   static const int clickBox=116;
+  static const int showMeteor=117;
 }

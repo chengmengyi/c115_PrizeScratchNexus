@@ -192,4 +192,26 @@ class PsnBUserInfoUtils {
     PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updatePlayNum);
     return [5, 10, 15, 20, 25].contains(bUserPlayNum.getData());
   }
+
+  updateBottomLeftCardNum(int addNum){
+    var newNum = bBottomLeftCardProgress.getData()+addNum;
+    if(newNum<0){
+      newNum=0;
+    }
+    bBottomLeftCardProgress.saveData(newNum);
+    if(addNum<0){
+      PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.updateCardProgress);
+    }
+  }
+
+  double getBottomLeftCardProgress(){
+    var d = bBottomLeftCardProgress.getData()/100;
+    if(d<0){
+      return 0;
+    }else if(d>1){
+      return 1.0;
+    }else{
+      return d;
+    }
+  }
 }

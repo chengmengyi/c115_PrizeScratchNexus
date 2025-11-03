@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_page/psn_b_lucky7/psn_b_lucky7_con.dart';
+import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_widget/psn_b_guaka_animator_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_play_base_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_play_logo_animator_widget.dart';
+import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
 import 'package:psn_root/psn_root_page/psn_root_page.dart';
 import 'package:psn_root/psn_root_scratcher/scratcher.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
@@ -104,6 +106,7 @@ class PsnBLucky7Page extends PsnRootPage<PsnBLucky7Con>{
                     return Container(
                       width: double.infinity,
                       height: 62.h,
+                      key: bean.globalKey,
                       alignment: Alignment.center,
                       child: PsnBreathingWidget(
                         startAnimator: bean.win,

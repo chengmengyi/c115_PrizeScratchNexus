@@ -223,7 +223,7 @@ class PsnBCardChildCon extends PsnRootCon{
     // PsnBUserInfoUtils.instance.updateUserCoins(-200);
 
     // PsnBUserInfoUtils.instance.updateUserCoins(200);
-    PsnBCashUtils.instance.updateCashTask(TaskType.lucky);
+    // PsnBCashUtils.instance.updateCashTask(TaskType.lucky);
     // PsnBValueUtils.instance.initValue();
 
     // PsnBCashUtils.instance.queryRankProgress(1000, CashType.pay);
@@ -237,6 +237,8 @@ class PsnBCardChildCon extends PsnRootCon{
     //     dismissCallback: (){},
     //   ),
     // );
+
+    // Navigator.push(context, MaterialPageRoute(builder: (_)=>FireballDemo()));
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_bean/psn_b_content_bean.dart';
 import 'package:psn_b/psn_b_utils/pns_b_card_type_enum.dart';
 import 'package:psn_b/psn_b_utils/psn_b_play_utils.dart';
@@ -41,7 +42,7 @@ class PsnBDogWinCon extends PsnRootCon implements PlayListener{
     if(dogNum>0){
       var reward = PsnBValueUtils.instance.getCardReward(playUtils.cardTypeEnum);
       for(var index=0;index<dogNum;index++){
-        contentList.add(PsnBContentBean(content: "dog7", reward: reward, win: true));
+        contentList.add(PsnBContentBean(content: "dog7", reward: reward, win: true,globalKey: GlobalKey(),));
       }
     }
     while(contentList.length<15){
