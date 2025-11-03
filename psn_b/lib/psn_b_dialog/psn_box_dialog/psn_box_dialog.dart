@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_dialog/psn_box_dialog/psn_box_dialog_con.dart';
 import 'package:psn_b/psn_b_widget/psn_b_btn_widget.dart';
+import 'package:psn_b/psn_b_widget/psn_guang_spine_widget.dart';
 import 'package:psn_root/psn_root_page/psn_root_dialog.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
@@ -75,15 +76,19 @@ class PsnBoxDialog extends PsnRootDialog<PsnBoxDialogCon>{
       child: Stack(
         alignment: Alignment.center,
         children: [
-          PsnSpineWidget(
-            atlasFile: "baoxiang",
-            skeletonFile: "skeleton",
-            animatorName: "animation",
-            folder: "box",
-            width: 150.w,
-            height: 135.w,
-            controller: bean.controller,
+          ScaleTransition(
+            scale: psnCon.animation,
+            child: PsnSpineWidget(
+              atlasFile: "baoxiang",
+              skeletonFile: "skeleton",
+              animatorName: "animation",
+              folder: "box",
+              width: 150.w,
+              height: 135.w,
+              controller: bean.controller,
+            ),
           ),
+          PsnGuangSpineWidget(width: 150.w, height: 135.h),
           Visibility(
             visible: bean.open,
             child: PsnTextWidget(text: "+\$${bean.reward}", size: 25.sp, color: "#FFFFFF".toColor(),outlineColor: "#000000".toColor(),),

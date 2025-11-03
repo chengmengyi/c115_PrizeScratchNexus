@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_bean/psn_b_box_bean.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_get_money_dialog/psn_b_get_money_dialog.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
@@ -11,25 +12,34 @@ import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
-import 'package:spine_flutter/spine_flutter.dart';
+import 'package:spine_flutter/spine_flutter.dart' as spine;
 
-class PsnBoxDialogCon extends PsnRootCon{
+class PsnBoxDialogCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
   var canClick=true,showGetAllBtn=false,itemCanClick=true;
+  late AnimationController _controller;
+  late Animation<double> animation;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _initAnimator();
+  }
+
   List<PsnBBoxBean> boxList=[
     PsnBBoxBean(
       reward: PsnBValueUtils.instance.getBoxReward(),
       open: false,
-      controller: SpineWidgetController(),
+      controller: spine.SpineWidgetController(),
     ),
     PsnBBoxBean(
       reward: PsnBValueUtils.instance.getBoxReward(),
       open: false,
-      controller: SpineWidgetController(),
+      controller: spine.SpineWidgetController(),
     ),
     PsnBBoxBean(
       reward: PsnBValueUtils.instance.getBoxReward(),
       open: false,
-      controller: SpineWidgetController(),
+      controller: spine.SpineWidgetController(),
     ),
   ];
 
@@ -41,7 +51,7 @@ class PsnBoxDialogCon extends PsnRootCon{
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.treasure_c);
     canClick=false;
     bean.controller.animationState.setListener((type, trackEntry, event) {
-      if (type == EventType.complete) {
+      if (type == spine.EventType.complete) {
         bean.open=true;
         update(["box"]);
         _showGetDialog(bean);
@@ -82,7 +92,7 @@ class PsnBoxDialogCon extends PsnRootCon{
         var indexWhere = boxList.indexWhere((value)=>!value.open);
         if(indexWhere>=0){
           boxList[indexWhere].controller.animationState.setListener((type, trackEntry, event) {
-            if (type == EventType.complete) {
+            if (type == spine.EventType.complete) {
               _clickAllResult(allReward,dismissCallback);
             }
           });
@@ -117,4 +127,24 @@ class PsnBoxDialogCon extends PsnRootCon{
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
     dismissCallback.call();
   }
+
+  _initAnimator()async{
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
+
+    animation = Tween<double>(begin: 0.8, end: 1.0)
+        .animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+    _controller.repeat(reverse: true);
+  }
+  @override
+  void onClose() {
+    _controller.dispose();
+    super.onClose();
+  }
+
 }

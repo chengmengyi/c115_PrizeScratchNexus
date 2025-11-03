@@ -1,0 +1,63 @@
+{
+"skeleton": {
+	"hash": "xrhXZoLzDUQ",
+	"spine": "4.2.43",
+	"x": -71.5,
+	"y": -67,
+	"width": 143,
+	"height": 134,
+	"images": "../锁/",
+	"audio": "./audio"
+},
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "图层 674", "bone": "root", "attachment": "图层 674" },
+	{ "name": "zz", "bone": "root", "attachment": "zz" },
+	{ "name": "图层 675", "bone": "root", "color": "ffffffc2", "attachment": "图层 675" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"zz": {
+				"zz": {
+					"type": "clipping",
+					"end": "图层 675",
+					"vertexCount": 4,
+					"vertices": [ -162.87, 5.65, -151.66, 13.94, 26.92, -143.1, 14.64, -151.93 ],
+					"color": "ce3a3aff"
+				}
+			},
+			"图层 674": {
+				"图层 674": { "width": 143, "height": 134 }
+			},
+			"图层 675": {
+				"图层 675": { "width": 143, "height": 134 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"attachments": {
+			"default": {
+				"zz": {
+					"zz": {
+						"deform": [
+							{
+								"vertices": [ -13.2734, -15.29637, -13.2734, -15.29637, -13.2734, -15.29637, -13.2734, -15.29637 ]
+							},
+							{
+								"time": 0.4667,
+								"vertices": [ 139.26529, 160.48889, 139.26529, 160.48889, 139.26529, 160.48889, 139.26529, 160.48889 ]
+							}
+						]
+					}
+				}
+			}
+		}
+	}
+}
+}

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:psn_b/psn_b_dialog/psn_box_dialog/psn_box_dialog.dart';
 import 'package:psn_b/psn_b_storage/psn_b_storage.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
+import 'package:psn_b/psn_b_widget/psn_guang_spine_widget.dart';
 import 'package:psn_root/psn_root_page/psn_root_statefull.dart';
 import 'package:psn_root/psn_root_routers/psn_root_routers.dart';
 import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
@@ -25,13 +26,16 @@ class PsnBoxWidget extends PsnRootStateful{
   State<StatefulWidget> createState() => PsnBoxWidgetState();
 }
 
-class PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidget>{
+class PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidget> with SingleTickerProviderStateMixin{
   Timer? _timer;
   int currentTimer=0;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
+    _initAnimator();
     _startTimerCount();
   }
 
@@ -40,34 +44,42 @@ class PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidget>{
     onTap: (){
       _clickBox();
     },
-    child: SizedBox(
-      width: 84.w,
-      height: 70.h,
-      key: widget.globalKey,
-      child: Stack(
-        children: [
-          PsnImageWidget(name: "icon_box",width: double.infinity,height: double.infinity,),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              margin: EdgeInsets.only(bottom: 7.h),
-              child: PsnTextWidget(text: formatMsToMinSec(currentTimer), size: 12.sp, color: "#FFFFFF".toColor()),
+    child: Stack(
+      children: [
+        ScaleTransition(
+          scale: _animation,
+          child: SizedBox(
+            width: 84.w,
+            height: 70.h,
+            key: widget.globalKey,
+            child: Stack(
+              children: [
+                PsnImageWidget(name: "icon_box",width: double.infinity,height: double.infinity,),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 7.h),
+                    child: PsnTextWidget(text: formatMsToMinSec(currentTimer), size: 12.sp, color: "#FFFFFF".toColor()),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Visibility(
+                    visible: currentTimer<=0,
+                    child: PsnClick(
+                      onTap: (){
+                        _clickBox();
+                      },
+                      child: PsnLottieWidget(name: "finger",width: 45.w,height: 45.w,),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Visibility(
-              visible: currentTimer<=0,
-              child: PsnClick(
-                onTap: (){
-                  _clickBox();
-                },
-                child: PsnLottieWidget(name: "finger",width: 45.w,height: 45.w,),
-              ),
-            ),
-          )
-        ],
-      ),
+        ),
+        PsnGuangSpineWidget(width: 84.w, height: 70.h),
+      ],
     ),
   );
 
@@ -89,6 +101,7 @@ class PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidget>{
   }
 
   _startTimerCount(){
+    _controller.stop();
     var timer = bLastBoxTimer.getData();
     if(timer<=0){
       bLastBoxTimer.saveData(DateTime.now().millisecondsSinceEpoch);
@@ -105,6 +118,7 @@ class PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidget>{
         setState(() {
           currentTimer=0;
         });
+        _controller..reset()..repeat(reverse: true);
         return;
       }
       setState(() {
@@ -123,11 +137,17 @@ class PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidget>{
     return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 
-  @override
-  void dispose() {
-    _timer?.cancel();
-    _timer=null;
-    super.dispose();
+  _initAnimator()async{
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
+
+    _animation = Tween<double>(begin: 0.8, end: 1.0)
+        .animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
   }
 
   @override
@@ -140,5 +160,13 @@ class PsnBoxWidgetState extends PsnRootStatefulState<PsnBoxWidget>{
         _clickBox();
         break;
     }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _timer?.cancel();
+    _timer=null;
+    super.dispose();
   }
 }
