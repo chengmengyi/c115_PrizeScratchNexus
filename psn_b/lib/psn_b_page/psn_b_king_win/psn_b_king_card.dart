@@ -102,6 +102,7 @@ class PsnBKingCard extends PsnRootPage<PsnBKingCardCon>{
                                 child: Container(
                                   width: double.infinity,
                                   height: 55.h,
+                                  key: bean.globalKey,
                                   alignment: Alignment.center,
                                   child: SizedBox(
                                     width: 31.w,

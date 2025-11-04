@@ -95,6 +95,7 @@ class PsnBDogWin extends PsnRootPage<PsnBDogWinCon>{
                     return Container(
                       width: double.infinity,
                       height: 58.h,
+                      key: bean.globalKey,
                       alignment: Alignment.center,
                       child: PsnBreathingWidget(
                         startAnimator: bean.win,

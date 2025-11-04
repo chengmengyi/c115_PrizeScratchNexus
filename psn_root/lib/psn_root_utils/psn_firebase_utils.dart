@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:psn_root/psn_root_utils/psn_ad_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_fb_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_storage.dart';
@@ -11,6 +12,7 @@ class PsnFirebaseUtils{
   Function()? valueCallback;
 
   FirebaseRemoteConfig? _remoteConfig;
+  var _hasUpdateFkData=false;
 
   initFirebase()async{
     try{
@@ -38,6 +40,7 @@ class PsnFirebaseUtils{
     var apwxi_ad_config = _remoteConfig?.getString("apwxi_ad_config")??"";
     if(apwxi_ad_config.isNotEmpty){
       psnAdConfigStr.saveData(apwxi_ad_config);
+      PsnAdUtils.instance.updateAdData();
     }
     var risk_control = _remoteConfig?.getString("risk_control")??"";
     if(risk_control.isNotEmpty){
@@ -49,6 +52,18 @@ class PsnFirebaseUtils{
       psnFacebookConfig.saveData(prizescratch_fb_inform);
       PsnFbUtils.instance.initFb();
     }
+  }
+  
+  getFkAdConfig()async{
+    if(_hasUpdateFkData){
+      return;
+    }
+    _hasUpdateFkData=true;
+    var s = _remoteConfig?.getString("apwxi_risk_topon")??"";
+    if(s.isEmpty){
+      return;
+    }
+    PsnAdUtils.instance.updateFkAdData(s);
   }
 
   test(){

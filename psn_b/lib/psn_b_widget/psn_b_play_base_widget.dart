@@ -6,7 +6,6 @@ import 'package:psn_b/psn_b_widget/psn_b_level_content_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_meteor_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_b_top_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_bottom_left_card_animator_widget.dart';
-import 'package:psn_b/psn_b_widget/psn_box_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_box_widget_copy.dart';
 import 'package:psn_b/psn_b_widget/psn_wheel_animator_widget.dart';
 import 'package:psn_b/psn_b_widget/psn_wheel_widget.dart';

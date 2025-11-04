@@ -34,10 +34,6 @@ class PsnRankDialogCon extends PsnRootCon{
   }
 
   clickSkip(){
-    if(kDebugMode){
-      _reduceRank();
-      return;
-    }
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.queue_c);
     PsnAdUtils.instance.showAdBBBBBB(
       adType: AdType.reward,

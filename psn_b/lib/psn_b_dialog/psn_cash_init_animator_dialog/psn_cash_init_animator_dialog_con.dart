@@ -17,6 +17,7 @@ class PsnCashInitAnimatorDialogCon extends PsnRootCon with GetSingleTickerProvid
   @override
   void onInit() {
     super.onInit();
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.payment_animation);
     _initAnimator();
   }
 

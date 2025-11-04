@@ -94,6 +94,7 @@ class PsnBNumberPage extends PsnRootPage<PsnBNumberCon>{
                     return Container(
                       width: double.infinity,
                       height: 63.h,
+                      key: bean.globalKey,
                       alignment: Alignment.center,
                       child: PsnBreathingWidget(
                         startAnimator: bean.win,

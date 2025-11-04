@@ -105,6 +105,7 @@ class PsnBFruitPage extends PsnRootPage<PsnBFruitCon>{
                               child: Container(
                                 width: double.infinity,
                                 height: 73.h,
+                                key: bean.globalKey,
                                 alignment: Alignment.center,
                                 child: PsnImageWidget(name: bean.content,height: 55.h,boxFit: BoxFit.fitHeight,),
                               ),
@@ -121,6 +122,7 @@ class PsnBFruitPage extends PsnRootPage<PsnBFruitCon>{
                           child: ListView.builder(
                             itemCount: 4,
                             shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context,index){
                               return Container(
                                 width: 62.w,

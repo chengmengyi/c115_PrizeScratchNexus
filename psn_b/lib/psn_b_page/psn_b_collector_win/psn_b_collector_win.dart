@@ -95,6 +95,7 @@ class PsnBCollectorWin extends PsnRootPage<PsnBCollectorWinCon>{
                     return Container(
                       width: double.infinity,
                       height: 62.h,
+                      key: bean.globalKey,
                       alignment: Alignment.center,
                       child: PsnBreathingWidget(
                         startAnimator: bean.win,

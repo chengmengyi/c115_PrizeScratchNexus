@@ -39,6 +39,7 @@ class PsnBTbaUtils{
     PsnTbaPointEnum.coin_pop_d,
     PsnTbaPointEnum.coin_pop_bclaim,
     PsnTbaPointEnum.coin_bpop_close,
+    PsnTbaPointEnum.scratch_count,
   ];
 
   installEvent({int tryNum=5})async{

@@ -25,6 +25,7 @@ class _PsnWheelWidgetState extends PsnRootStatefulState<PsnWheelWidget> with Sin
   @override
   void initState() {
     super.initState();
+    _initAnimator();
     _getWheelNum(initAnimator: true);
   }
 
@@ -63,9 +64,6 @@ class _PsnWheelWidgetState extends PsnRootStatefulState<PsnWheelWidget> with Sin
   _getWheelNum({bool initAnimator=false})async{
     wheelNum=await PsnWheelUtils.instance.getWheelNum();
     setState(() {});
-    if(initAnimator){
-      _initAnimator();
-    }
     if(wheelNum>0){
       _controller..reset()..repeat(reverse: true);
     }else{

@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "100150040082",
-    "project_id": "c115-239cb",
-    "storage_bucket": "c115-239cb.firebasestorage.app"
+    "project_number": "701208912720",
+    "project_id": "c115-9323c",
+    "storage_bucket": "c115-9323c.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:100150040082:android:71c6782ac75f6d8e422acb",
+        "mobilesdk_app_id": "1:701208912720:android:9e2ce1a4c6dabc46fe8255",
         "android_client_info": {
           "package_name": "com.example.c115"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCSE9uqofiwR7bl01geFnHCyCxFTsABjUs"
+          "current_key": "AIzaSyB4Veoan5JBEPH9LPZveez5zCZRVm9HXso"
         }
       ],
       "services": {

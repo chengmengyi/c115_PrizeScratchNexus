@@ -45,7 +45,7 @@ class PsnFengkUtils{
     var root = await Psn.instance.root();
     tbaSessionCustom({"root":root?1:0});
     if(root&&_fengkBean?.ui?.device!=0&&_checkHasDevice("root")){
-      tbaUploadFengkTag("root");
+      hasFkAndLoadAd("root");
     }
   }
 
@@ -53,7 +53,7 @@ class PsnFengkUtils{
     var vpn = await Psn.instance.vpn();
     tbaSessionCustom({"vpn":vpn?1:0});
     if(vpn&&_fengkBean?.ui?.device!=0&&_checkHasDevice("vpn")){
-      tbaUploadFengkTag("vpn");
+      hasFkAndLoadAd("vpn");
     }
   }
 
@@ -61,7 +61,7 @@ class PsnFengkUtils{
     var sim = await Psn.instance.sim();
     tbaSessionCustom({"sim":sim?1:0});
     if(!sim&&_fengkBean?.ui?.device!=0&&_checkHasDevice("sim")){
-      tbaUploadFengkTag("sim");
+      hasFkAndLoadAd("sim");
     }
   }
 
@@ -69,7 +69,7 @@ class PsnFengkUtils{
     var simulator = await Psn.instance.simulator();
     tbaSessionCustom({"simulator":simulator?1:0});
     if(simulator&&_fengkBean?.ui?.device!=0&&_checkHasDevice("simulator")){
-      tbaUploadFengkTag("simulator");
+      hasFkAndLoadAd("simulator");
     }
   }
 
@@ -77,7 +77,7 @@ class PsnFengkUtils{
     var developer = await Psn.instance.developer();
     tbaSessionCustom({"developer":developer?1:0});
     if(developer&&_fengkBean?.ui?.device!=0&&_checkHasDevice("developer")){
-      tbaUploadFengkTag("developer");
+      hasFkAndLoadAd("developer");
     }
   }
 
@@ -85,7 +85,7 @@ class PsnFengkUtils{
     var googleplay = await Psn.instance.store();
     tbaSessionCustom({"googleplay":googleplay?1:0});
     if(!googleplay&&_fengkBean?.ui?.device!=0&&_checkHasDevice("googleplay")){
-      tbaUploadFengkTag("googleplay");
+      hasFkAndLoadAd("googleplay");
     }
   }
 
@@ -95,13 +95,12 @@ class PsnFengkUtils{
       path: "https://sg-ddi.shuzilm.cn/q",
       data: {"protocol":2,"pkg":await FlutterTbaInfo.instance.getBundleId(),"did":numberUnitID},
     );
-    print("kk=====${await FlutterTbaInfo.instance.getBundleId()}===${dioResult.success}===${dioResult.msg}");
     if(dioResult.success){
       try{
         _hasInit=true;
         var json = jsonDecode(dioResult.msg);
         if(json["err"]==0&&json["device_type"]!=0&&_fengkBean?.ui?.number==1){
-          tbaUploadFengkTag("number");
+          hasFkAndLoadAd("number");
         }else{
 
         }
@@ -123,7 +122,7 @@ class PsnFengkUtils{
         var result = decrypt(dioResult.msg, 13);
         var bfrog = jsonDecode(result)["data"]["bfrog"];
         if(bfrog&&_fengkBean?.ui?.device!=0&&_checkHasDevice("ip")){
-          tbaUploadFengkTag("ip");
+          hasFkAndLoadAd("ip");
         }
       }catch(e){}
     }
@@ -131,7 +130,12 @@ class PsnFengkUtils{
 
   bool _checkHasDevice(String type)=>_fengkBean?.device?.contains(type)==true;
 
-  tbaUploadFengkTag(String source){
+  hasFkAndLoadAd(String source){
+    _uploadTbaInfo(source);
+    PsnFirebaseUtils.instance.getFkAdConfig();
+  }
+
+  _uploadTbaInfo(String source){
     psnAlreadyFengKSource.saveData(source);
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.risk_chance,params: {"risk_from":source});
   }
@@ -157,31 +161,31 @@ class PsnFengkUtils{
   AdShortClose? getAdShortClose()=>_fengkBean?.behavior?.adShortClose;
 
   bool isFk(){
-    if(kDebugMode){
-      return false;
-    }
+    // if(kDebugMode){
+    //   return false;
+    // }
     var data = psnAlreadyFengKSource.getData();
     if(data.isNotEmpty){
-      tbaUploadFengkTag(data);
+      _uploadTbaInfo(data);
       return true;
     }
     if(_fengkBean?.ui?.behavior!=1){
       return false;
     }
     if(_checkTwoRewardAdTimeNum()){
-      tbaUploadFengkTag("ad_short_show");
+      _uploadTbaInfo("ad_short_show");
       return true;
     }
     if(_checkShortClose()){
-      tbaUploadFengkTag("ad_short_close");
+      _uploadTbaInfo("ad_short_close");
       return true;
     }
     if(_checkDeemAdLess()){
-      tbaUploadFengkTag("wrong_deem_ad_less");
+      _uploadTbaInfo("wrong_deem_ad_less");
       return true;
     }
     if(_checkDeemAdMore()){
-      tbaUploadFengkTag("wrong_deem_ad_more");
+      _uploadTbaInfo("wrong_deem_ad_more");
       return true;
     }
     return false;

@@ -15,7 +15,6 @@ import 'package:psn_root/psn_root_routers/psn_routers_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_fb_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_fengk/psn_fengk_utils.dart';
-import 'package:psn_root/psn_root_utils/psn_firebase_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_local_info.dart';
 import 'package:psn_root/psn_root_utils/psn_music_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
@@ -83,15 +82,15 @@ class PsnAdUtils{
       );
       return;
     }
-    if(PsnFengkUtils.instance.isFk()){
-      if(isOpen){
-        closeCallback.call();
-        return;
-      }
-      "The advertisement cannot be loaded".showToast();
-      closeDialogNotGiveMoney.call();
-      return;
-    }
+    // if(PsnFengkUtils.instance.isFk()){
+    //   if(isOpen){
+    //     closeCallback.call();
+    //     return;
+    //   }
+    //   "The advertisement cannot be loaded".showToast();
+    //   closeDialogNotGiveMoney.call();
+    //   return;
+    // }
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.apwxi_ad_chance,params: {"ad_pos_id":evnetEnum.name});
     var resultData = FlutterAndroidAdPlugins.instance.getCacheResultData(adType);
     if(null==resultData){
@@ -200,6 +199,22 @@ class PsnAdUtils{
     if(adType==AdType.reward){
       psnRewardRevenuePaidNum.saveData(psnRewardRevenuePaidNum.getData()+1);
     }
+  }
+
+  updateAdData(){
+    FlutterAndroidAdPlugins.instance.updateAdData(_createAdData());
+  }
+
+  updateFkAdData(String data){
+    var json = jsonDecode(data);
+    var configAdData = ConfigAdData(
+      maxShowNum: json["dqpdgttu"],
+      maxClickNum: json["fkjpztlk"],
+      priceSwitch: json["apwxi_switch"]??false,
+      newInterList: _getAdList(json["apwxi_int"]),
+      newRewardList: _getAdList(json["apwxi_rv"]),
+    );
+    FlutterAndroidAdPlugins.instance.updateFkAdData(configAdData);
   }
 
   ConfigAdData _createAdData(){

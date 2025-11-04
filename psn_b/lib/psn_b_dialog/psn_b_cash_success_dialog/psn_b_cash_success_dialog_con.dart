@@ -10,6 +10,12 @@ import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBCashSuccessDialogCon extends PsnRootCon{
 
+  @override
+  void onInit() {
+    super.onInit();
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.task_congratulation);
+  }
+
   clickClose(){
     PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
   }

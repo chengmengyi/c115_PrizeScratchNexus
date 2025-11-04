@@ -69,4 +69,9 @@ enum PsnTbaPointEnum{
   coin_pop_d,
   coin_pop_bclaim,
   coin_bpop_close,
+  payment_animation,
+  security_verification_page,
+  security_verification_c,
+  task_congratulation,
+  security_verification_done,
 }

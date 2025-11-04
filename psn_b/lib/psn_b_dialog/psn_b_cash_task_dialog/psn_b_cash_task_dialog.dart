@@ -23,7 +23,7 @@ class PsnBCashTaskDialog extends PsnRootDialog<PsnBCashTaskDialogCon>{
 
   @override
   onStart() {
-    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_task_pop,params: {"pop_from":psnCon.getPopFrom(bean.cashTaskBean)});
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_task_pop,params: {"task_step":psnCon.getPopFrom(bean.cashTaskBean)});
   }
 
   @override
