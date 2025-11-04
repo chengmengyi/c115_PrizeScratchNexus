@@ -28,6 +28,7 @@ class PsnBLuckyCardDialogCon extends PsnRootCon{
 
   clickCardAnimatorEnd(double reward, Function() dismissCallback)async{
     await Future.delayed(Duration(milliseconds: 1500));
+    canClick=true;
     PsnRootRouters.instance.router(
       routersEnum: PsnRoutersEnum.dialog,
       content: PsnBGetMoneyDialog(
