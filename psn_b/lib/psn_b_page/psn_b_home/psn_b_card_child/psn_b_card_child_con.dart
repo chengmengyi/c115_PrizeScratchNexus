@@ -8,7 +8,6 @@ import 'package:psn_b/psn_b_bean/psn_cash_task_bean.dart';
 import 'package:psn_b/psn_b_bean/psn_rank_bean.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_big_win_dialog/psn_b_big_win_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_cash_success_dialog/psn_b_cash_success_dialog.dart';
-import 'package:psn_b/psn_b_dialog/psn_b_cash_task_dialog/psn_b_cash_task_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_cash_tips_dialog/psn_b_cash_tips_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_fail_dialog/psn_b_fail_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_get_money_dialog/psn_b_get_money_dialog.dart';
@@ -76,7 +75,7 @@ class PsnBCardChildCon extends PsnRootCon{
   @override
   void onReady() {
     super.onReady();
-    _initCard();
+    _initCard(showUserGuide: true);
   }
 
   toPlay()async{
@@ -119,16 +118,18 @@ class PsnBCardChildCon extends PsnRootCon{
     cardList.addAll(list);
     update(["list","indicator"]);
     if(showUserGuide&&cardList.isNotEmpty){
-      PsnBUserGuideUtils.instance.showPlayGuideStep1(
-        context: context,
-        playBtnGlobalKey: playBtnGlobalKey,
-        firstPlayCardGlobalKey: firstPlayCardGlobalKey,
-        value: cardList.first,
-        boxGlobalKey: boxGlobalKey,
-        step1Callback: (){
-          toPlay();
-        },
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        PsnBUserGuideUtils.instance.showPlayGuideStep1(
+          context: context,
+          playBtnGlobalKey: playBtnGlobalKey,
+          firstPlayCardGlobalKey: firstPlayCardGlobalKey,
+          value: cardList.first,
+          boxGlobalKey: boxGlobalKey,
+          step1Callback: (){
+            toPlay();
+          },
+        );
+      });
     }
   }
 
@@ -229,14 +230,14 @@ class PsnBCardChildCon extends PsnRootCon{
     // PsnBCashUtils.instance.queryRankProgress(1000, CashType.pay);
     // PsnBCashUtils.instance.createRankProgress(1000, CashType.pay);
 
-    // PsnRootRouters.instance.router(
-    //   routersEnum: PsnRoutersEnum.dialog,
-    //   content: PsnSafeCheckDialog(
-    //     account: "dwidiwj@qq.com",
-    //     safeCheckType: SafeCheckType.fail,
-    //     dismissCallback: (){},
-    //   ),
-    // );
+    PsnRootRouters.instance.router(
+      routersEnum: PsnRoutersEnum.dialog,
+      content: PsnSafeCheckDialog(
+        account: "dwidiwj@qq.com",
+        safeCheckType: SafeCheckType.success,
+        dismissCallback: (){},
+      ),
+    );
 
     // Navigator.push(context, MaterialPageRoute(builder: (_)=>FireballDemo()));
   }

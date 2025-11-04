@@ -62,7 +62,7 @@ class PsnNewCashTaskDialog extends PsnRootDialog<PsnNewCashTaskDialogCon>{
               SizedBox(height: 16.h,),
               Container(
                 margin: EdgeInsets.only(left: 40.w,right: 40.w),
-                child: PsnTextWidget(text: "Complete 3 tasks to verify you’re human.", size: 15.sp, color: "#526171".toColor()),
+                child: PsnTextWidget(text: "Complete tasks to verify you’re human.", size: 15.sp, color: "#526171".toColor()),
               ),
               SizedBox(height: 16.h,),
               _taskWidget(),

@@ -26,11 +26,11 @@ class PsnNewCashTaskDialogCon extends PsnRootCon{
     if(null==withdrawTask){
       return "";
     }
-    var start="Task${withdrawTask.id}:";
+    var start="";
     switch(withdrawTask.type){
       case "card": return "${start}Scratch ${bean?.currentProgress??0}/${withdrawTask.count??0} Card";
       case "wheel": return "${start}Play ${bean?.currentProgress??0}/${withdrawTask.count??0} Spins";
-      case "lucky": return "${start}Play ${bean?.currentProgress??0}/${withdrawTask.count??0} luck cards";
+      case "lucky": return "${start}Play ${bean?.currentProgress??0}/${withdrawTask.count??0} lucky cards";
       case "ad": return "${start}Watch ${bean?.currentProgress??0}/${withdrawTask.count??0} video ads";
       default: return "";
     }

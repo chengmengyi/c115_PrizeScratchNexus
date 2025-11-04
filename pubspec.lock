@@ -352,9 +352,10 @@ packages:
   flutter_android_ad_plugins:
     dependency: transitive
     description:
-      path: "/Users/chengmengyi/testbird/flutter_android_ad_plugins"
-      relative: false
-    source: path
+      name: flutter_android_ad_plugins
+      sha256: "24e8026333c7450255506379fb709406fac724147eb1bd963c81352a1bde57ef"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.2"
   flutter_app_lifecycle:
     dependency: transitive

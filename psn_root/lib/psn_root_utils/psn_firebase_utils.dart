@@ -63,6 +63,7 @@ class PsnFirebaseUtils{
     if(s.isEmpty){
       return;
     }
+    print("flutter ios ad --->start update fengkong");
     PsnAdUtils.instance.updateFkAdData(s);
   }
 

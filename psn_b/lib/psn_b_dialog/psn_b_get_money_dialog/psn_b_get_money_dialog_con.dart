@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:psn_b/psn_b_dialog/psn_b_get_money_dialog/psn_b_get_money_dialog.dart';
 import 'package:psn_b/psn_b_dialog/psn_b_no_net_dialog/psn_b_no_net_dialog.dart';
 import 'package:psn_b/psn_b_utils/psn_b_cash_utils.dart';
 import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
@@ -11,20 +12,28 @@ import 'package:psn_root/psn_root_utils/psn_ad_event_enum.dart';
 import 'package:psn_root/psn_root_utils/psn_ad_utils.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba/psn_b_tba_utils.dart';
+import 'package:psn_root/psn_root_utils/psn_tba_point_enum.dart';
 
 class PsnBGetMoneyDialogCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
   Timer? _timer;
   var showSingleBtn=false;
+  late double reward;
+  late PsnRewardEnum rewardEnum;
   late AnimationController _controller;
   late Animation<double> animation;
+
+  PsnBGetMoneyDialogCon(this.reward,this.rewardEnum);
 
   @override
   void onInit() {
     super.onInit();
     _initAnimator();
+    PsnBTbaUtils.instance.pointEvent(pointEnum: isBigReward()?PsnTbaPointEnum.coin_pop_b:PsnTbaPointEnum.coin_pop_s,params: {"source_from":rewardEnum.name});
   }
 
   clickClaim(PsnAdEventEnum adEventEnum,double totalReward,Function() dismissCallback)async{
+    PsnBTbaUtils.instance.pointEvent(pointEnum: isBigReward()?PsnTbaPointEnum.coin_pop_bclaim:PsnTbaPointEnum.coin_pop_sclaim,params: {"source_from":rewardEnum.name});
     PsnAdUtils.instance.showAdBBBBBB(
       adType: AdType.interstitial,
       evnetEnum: adEventEnum,
@@ -42,6 +51,7 @@ class PsnBGetMoneyDialogCon extends PsnRootCon with GetSingleTickerProviderState
   }
 
   clickDouble(PsnAdEventEnum adEventEnum,double totalReward,Function() dismissCallback)async{
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop_d,params: {"source_from":rewardEnum.name});
     List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
     if(connectivityResult.contains(ConnectivityResult.none)){
       PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.dialog, content: PsnBNoNetDialog());
@@ -81,6 +91,9 @@ class PsnBGetMoneyDialogCon extends PsnRootCon with GetSingleTickerProviderState
       update(["single_btn"]);
     });
   }
+
+  bool isBigReward()=>reward>=PsnBValueUtils.instance.getBigWinValue();
+
   @override
   void onClose() {
     _timer?.cancel();

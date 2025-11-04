@@ -43,7 +43,7 @@ class PsnBNoMoneyDialog extends PsnRootDialog<PsnBNoMoneyDialogCon>{
             children: [
               Container(
                 margin: EdgeInsets.only(left: 15.w,right: 15.w),
-                child: PsnTextWidget(text: "You can scratch cards and spin the wheel to earn more cash!", size: 18.sp, color: "#535F75".toColor(),),
+                child: PsnTextWidget(text: "Now you can scratch more cards to earn extra cash!", size: 18.sp, color: "#535F75".toColor(),),
               ),
               // SizedBox(height: 10.h,),
               // PsnTextWidget(text: "or smash golden eggs to", size: 18.sp, color: "#535F75".toColor(),),

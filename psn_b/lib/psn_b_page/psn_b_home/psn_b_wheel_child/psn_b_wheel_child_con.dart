@@ -66,6 +66,7 @@ class PsnBWheelChildCon extends PsnRootCon with GetSingleTickerProviderStateMixi
         routersEnum: PsnRoutersEnum.dialog,
         content: PsnBGetMoneyDialog(
           reward: wheelList[indexWhere].reward,
+          rewardEnum: PsnRewardEnum.wheel,
           adEventEnumDouble: PsnAdEventEnum.apwxi_wheel_rv,
           adEventEnumClose: PsnAdEventEnum.apwxi_wheel_int,
           dismissCallback: (){

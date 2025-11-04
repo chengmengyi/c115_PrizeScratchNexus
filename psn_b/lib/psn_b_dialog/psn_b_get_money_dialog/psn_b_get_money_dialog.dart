@@ -12,20 +12,26 @@ import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_spine_widget.dart';
 import 'package:psn_root/psn_root_widget/psn_text_widget.dart';
 
+enum PsnRewardEnum{
+  flip_card,wheel,box,
+}
+
 class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
   double reward;
+  PsnRewardEnum rewardEnum;
   PsnAdEventEnum adEventEnumDouble;
   PsnAdEventEnum adEventEnumClose;
   Function() dismissCallback;
   PsnBGetMoneyDialog({
     required this.reward,
+    required this.rewardEnum,
     required this.adEventEnumDouble,
     required this.adEventEnumClose,
     required this.dismissCallback,
 });
 
   @override
-  PsnBGetMoneyDialogCon onCon() => PsnBGetMoneyDialogCon();
+  PsnBGetMoneyDialogCon onCon() => PsnBGetMoneyDialogCon(reward,rewardEnum);
 
   @override
   Widget onCreate() => Stack(
@@ -44,7 +50,7 @@ class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
         children: [
           ScaleTransition(
             scale: psnCon.animation,
-            child: reward>=PsnBValueUtils.instance.getBigWinValue()?
+            child: psnCon.isBigReward()?
             Stack(
               alignment: Alignment.bottomCenter,
               children: [
@@ -82,7 +88,7 @@ class PsnBGetMoneyDialog extends PsnRootDialog<PsnBGetMoneyDialogCon>{
               ),
             ],
           ),
-          reward>=50?
+          psnCon.isBigReward()?
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [

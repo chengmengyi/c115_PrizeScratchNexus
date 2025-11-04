@@ -67,6 +67,7 @@ class PsnBoxDialogCon extends PsnRootCon with GetSingleTickerProviderStateMixin{
       routersEnum: PsnRoutersEnum.dialog,
       content: PsnBGetMoneyDialog(
         reward: bean.reward,
+        rewardEnum: PsnRewardEnum.box,
         adEventEnumDouble: PsnAdEventEnum.apwxi_boxgetpop_rv,
         adEventEnumClose: PsnAdEventEnum.apwxi_boxgetpop_int,
         dismissCallback: (){

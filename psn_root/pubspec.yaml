@@ -36,9 +36,9 @@ dependencies:
   flutter_custom_facebook: 0.0.5
   app_settings: 6.1.1
   intl: 0.20.2
-#  flutter_android_ad_plugins: 0.0.1
-  flutter_android_ad_plugins:
-    path: /Users/chengmengyi/testbird/flutter_android_ad_plugins
+  flutter_android_ad_plugins: 0.0.2
+#  flutter_android_ad_plugins:
+#    path: /Users/chengmengyi/testbird/flutter_android_ad_plugins
   birdsong:
     path: plugins/common_push-output
   psn:

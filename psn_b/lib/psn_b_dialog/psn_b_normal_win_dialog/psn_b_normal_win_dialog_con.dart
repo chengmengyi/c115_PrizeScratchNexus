@@ -45,7 +45,7 @@ class PsnBNormalWinDialogCon extends PsnRootCon with GetSingleTickerProviderStat
   }
 
   clickDouble(PsnBCardTypeEnum cardTypeEnum,double totalReward,Function() dismissCallback){
-    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop_c,params: {"source_from":cardTypeEnum.name});
+    PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.coin_pop_d,params: {"source_from":cardTypeEnum.name});
     PsnAdUtils.instance.showAdBBBBBB(
       adType: AdType.reward,
       showAd: PsnBValueUtils.instance.showAd(AdType.reward),

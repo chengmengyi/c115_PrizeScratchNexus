@@ -32,6 +32,7 @@ class PsnBLuckyCardDialogCon extends PsnRootCon{
       routersEnum: PsnRoutersEnum.dialog,
       content: PsnBGetMoneyDialog(
         reward: reward,
+        rewardEnum: PsnRewardEnum.flip_card,
         adEventEnumDouble: PsnAdEventEnum.apwxi_flopgetpop_rv,
         adEventEnumClose: PsnAdEventEnum.apwxi_flopgetpop_int,
         dismissCallback: (){

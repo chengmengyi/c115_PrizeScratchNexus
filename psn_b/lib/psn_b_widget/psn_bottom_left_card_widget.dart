@@ -5,6 +5,7 @@ import 'package:psn_b/psn_b_utils/psn_b_user_info_utils.dart';
 import 'package:psn_root/psn_root_page/psn_root_statefull.dart';
 import 'package:psn_root/psn_root_utils/psn_root_export.dart';
 import 'package:psn_root/psn_root_utils/psn_root_utils.dart';
+import 'package:psn_root/psn_root_widget/psn_click.dart';
 import 'package:psn_root/psn_root_widget/psn_image_widget.dart';
 
 class PsnBottomLeftCardWidget extends PsnRootStateful{
@@ -19,33 +20,51 @@ class PsnBottomLeftCardWidget extends PsnRootStateful{
 class _PsnBottomLeftCardWidgetState extends PsnRootStatefulState<PsnBottomLeftCardWidget>{
 
   @override
-  Widget build(BuildContext context) => Stack(
-    alignment: Alignment.bottomCenter,
-    key: widget.playUtils.bottomLeftGlobalKey,
-    children: [
-      PsnImageWidget(name: "card10",width: 72.w,height: 68.h,),
-      Container(
-        width: 58.w,
-        height: 10.h,
-        alignment: Alignment.centerLeft,
-        padding: EdgeInsets.only(left: 2.w,right: 2.w),
-        decoration: BoxDecoration(
-          color: "#17171F".toColor(),
-          borderRadius: BorderRadius.circular(6.w),
-          border: Border.all(
-            width: 1.w,
-            color: "#20CE93".toColor(),
+  Widget build(BuildContext context) => PsnClick(
+    onTap: (){
+      "Winning a scratch boosts progress—keep scratching!".showToast();
+    },
+    child: SizedBox(
+      width: 72.w,
+      height: 78.h,
+      child: Stack(
+        key: widget.playUtils.bottomLeftGlobalKey,
+        children: [
+          PsnImageWidget(name: "card10",width: 72.w,height: 68.h,),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 10.h),
+              child: PsnImageWidget(name: "card11",width: 45.w,height: 25.h,),
+            ),
           ),
-        ),
-        child: ClipRRect(
-          child: Align(
-            alignment: Alignment.centerLeft,
-            widthFactor: PsnBUserInfoUtils.instance.getBottomLeftCardProgress(),
-            child: PsnImageWidget(name: "cash11",width: double.infinity,height: 6.h,),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              width: 58.w,
+              height: 10.h,
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 2.w,right: 2.w),
+              decoration: BoxDecoration(
+                color: "#17171F".toColor(),
+                borderRadius: BorderRadius.circular(6.w),
+                border: Border.all(
+                  width: 1.w,
+                  color: "#20CE93".toColor(),
+                ),
+              ),
+              child: ClipRRect(
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  widthFactor: PsnBUserInfoUtils.instance.getBottomLeftCardProgress(),
+                  child: PsnImageWidget(name: "cash11",width: double.infinity,height: 6.h,),
+                ),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
-    ],
+    ),
   );
 
   @override

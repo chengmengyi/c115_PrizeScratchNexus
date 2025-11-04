@@ -60,7 +60,7 @@ class PsnBUserGuideUtils{
   }
 
   bool checkShowGuaKaAnimatorStep2(){
-    if(_newUserGuideStep!=2||!bShowNewUserGuide.getData()){
+    if(_newUserGuideStep!=2){
       return false;
     }
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.newuser_guide,params: {"pop_step":"pop2"});
@@ -94,7 +94,7 @@ class PsnBUserGuideUtils{
   // }
 
   bool checkShowStep3(){
-    if(_newUserGuideStep!=3||!bShowNewUserGuide.getData()){
+    if(_newUserGuideStep!=3){
       return false;
     }
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.newuser_guide,params: {"pop_step":"pop3"});
@@ -113,7 +113,7 @@ class PsnBUserGuideUtils{
     required Offset offset,
     required Size size,
   }){
-    if(_newUserGuideStep!=4||!bShowNewUserGuide.getData()){
+    if(_newUserGuideStep!=4){
       return;
     }
     showOverlay(
