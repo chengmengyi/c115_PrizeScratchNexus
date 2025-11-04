@@ -1,4 +1,5 @@
 import 'package:psn_b/psn_b_bean/psn_cash_task_bean.dart';
+import 'package:psn_b/psn_b_routers/psn_b_page_list.dart';
 import 'package:psn_b/psn_b_utils/psn_b_event_code.dart';
 import 'package:psn_b/psn_b_utils/psn_b_value_utils.dart';
 import 'package:psn_root/psn_root_event/psn_root_event_utils.dart';
@@ -16,9 +17,15 @@ class PsnNewCashTaskDialogCon extends PsnRootCon{
 
   clickGo(PsnCashTaskBean bean, Function()? dismissDialog){
     PsnBTbaUtils.instance.pointEvent(pointEnum: PsnTbaPointEnum.cash_task_pop_c,params: {"pop_from":getPopFrom(bean)});
-    PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
-    PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showHomeIndex,intValue: 0);
-    dismissDialog?.call();
+    var withdrawTask = PsnBValueUtils.instance.getCashTaskConfigByID(bean.cashTaskId);
+    if(withdrawTask?.type=="wheel"){
+      PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.toHome, content: PsnBPageName.home);
+      PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showHomeIndex,intValue: 1);
+    }else{
+      PsnRootRouters.instance.router(routersEnum: PsnRoutersEnum.back, content: null);
+      PsnRootEventUtils.instance.sendEvent(code: PsnBEventCode.showHomeIndex,intValue: 0);
+      dismissDialog?.call();
+    }
   }
 
   String getCaskTaskStr(PsnCashTaskBean? bean){

@@ -67,7 +67,7 @@ class PsnRankDialogCon extends PsnRootCon{
       ranList.add(bean);
     }
     var currentRank = rankBean?.currentRank??0;
-    var account = await PsnBCashUtils.instance.queryAccount(rankBean?.cashMoney??0, rankBean?.cashType??"");
+    var account = await PsnBCashUtils.instance.queryAccount(rankBean?.cashMoney??0, rankBean?.cashType??"",true);
     if(account.isEmpty){
       account="${randomTwoLetters()}****.com";
     }

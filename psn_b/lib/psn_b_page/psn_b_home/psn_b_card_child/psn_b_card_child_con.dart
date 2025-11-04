@@ -223,21 +223,21 @@ class PsnBCardChildCon extends PsnRootCon{
     // bAlreadyShowCashTipsDialog.saveData(false);
     // PsnBUserInfoUtils.instance.updateUserCoins(-200);
 
-    // PsnBUserInfoUtils.instance.updateUserCoins(200);
+    PsnBUserInfoUtils.instance.updateUserCoins(200);
     // PsnBCashUtils.instance.updateCashTask(TaskType.lucky);
     // PsnBValueUtils.instance.initValue();
 
     // PsnBCashUtils.instance.queryRankProgress(1000, CashType.pay);
     // PsnBCashUtils.instance.createRankProgress(1000, CashType.pay);
 
-    PsnRootRouters.instance.router(
-      routersEnum: PsnRoutersEnum.dialog,
-      content: PsnSafeCheckDialog(
-        account: "dwidiwj@qq.com",
-        safeCheckType: SafeCheckType.success,
-        dismissCallback: (){},
-      ),
-    );
+    // PsnRootRouters.instance.router(
+    //   routersEnum: PsnRoutersEnum.dialog,
+    //   content: PsnSafeCheckDialog(
+    //     account: "dwidiwj@qq.com",
+    //     safeCheckType: SafeCheckType.success,
+    //     dismissCallback: (){},
+    //   ),
+    // );
 
     // Navigator.push(context, MaterialPageRoute(builder: (_)=>FireballDemo()));
   }

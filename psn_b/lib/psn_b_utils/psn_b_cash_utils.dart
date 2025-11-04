@@ -73,7 +73,7 @@ class PsnBCashUtils{
     return true;
   }
 
-  Future<String> queryAccount(int cashMoney,String cashType,)async{
+  Future<String> queryAccount(int cashMoney,String cashType,bool showStar)async{
     var database = await PsnRootSqlUtils.instance.initSql();
     var list = await database.query(PsnRootSqlName.bCashAccount,where: '"cashType" = ? AND "cashMoney" = ?',whereArgs: [cashType,cashMoney]);
     if(list.isEmpty){
@@ -83,7 +83,10 @@ class PsnBCashUtils{
     if(account.length<=2){
       return account;
     }
-    return "${account.substring(0,2)}***";
+    if(showStar){
+      return "${account.substring(0,2)}***";
+    }
+    return account;
   }
 
   updateCashTask(String taskType)async{
@@ -217,7 +220,7 @@ class PsnBCashUtils{
   }
 
   _showSafeCheck2Dialog(PsnCashTaskBean cashTaskBean)async{
-    var account = await queryAccount(cashTaskBean.cashMoney??0, cashTaskBean.cashType??"");
+    var account = await queryAccount(cashTaskBean.cashMoney??0, cashTaskBean.cashType??"",false);
     PsnRootRouters.instance.router(
       routersEnum: PsnRoutersEnum.dialog,
       content: PsnSafeCheckDialog(
